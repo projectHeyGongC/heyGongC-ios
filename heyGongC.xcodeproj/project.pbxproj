@@ -31,6 +31,11 @@
 		CA6EACA82B396CD100F81F3A /* Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EACA72B396CD100F81F3A /* Push.swift */; };
 		CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EACAB2B396CDE00F81F3A /* CVal.swift */; };
 		CA6EACB22B396D0E00F81F3A /* GCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EACB12B396D0E00F81F3A /* GCColor.swift */; };
+		CA6EACF42B39863F00F81F3A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EACF32B39863F00F81F3A /* Login.storyboard */; };
+		CA6EACF62B39865700F81F3A /* Monitoring.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EACF52B39865700F81F3A /* Monitoring.storyboard */; };
+		CA6EACF82B39867600F81F3A /* Analysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EACF72B39867500F81F3A /* Analysis.storyboard */; };
+		CA6EACFA2B39868B00F81F3A /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EACF92B39868B00F81F3A /* Subscription.storyboard */; };
+		CA6EACFC2B39869B00F81F3A /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EACFB2B39869B00F81F3A /* UserProfile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +89,11 @@
 		CA6EACA72B396CD100F81F3A /* Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Push.swift; sourceTree = "<group>"; };
 		CA6EACAB2B396CDE00F81F3A /* CVal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVal.swift; sourceTree = "<group>"; };
 		CA6EACB12B396D0E00F81F3A /* GCColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCColor.swift; sourceTree = "<group>"; };
+		CA6EACF32B39863F00F81F3A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		CA6EACF52B39865700F81F3A /* Monitoring.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Monitoring.storyboard; sourceTree = "<group>"; };
+		CA6EACF72B39867500F81F3A /* Analysis.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Analysis.storyboard; sourceTree = "<group>"; };
+		CA6EACF92B39868B00F81F3A /* Subscription.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Subscription.storyboard; sourceTree = "<group>"; };
+		CA6EACFB2B39869B00F81F3A /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		E4EED8813854B15EBCC6E929 /* Pods-heyGongC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongC.release.xcconfig"; path = "Target Support Files/Pods-heyGongC/Pods-heyGongC.release.xcconfig"; sourceTree = "<group>"; };
 		F0E380671CE3419D64AF9DB1 /* Pods_heyGongC_heyGongCUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heyGongC_heyGongCUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -173,6 +183,11 @@
 			children = (
 				CA6EAC612B395E0000F81F3A /* LaunchScreen.storyboard */,
 				CA6EAC592B395DFF00F81F3A /* Main.storyboard */,
+				CA6EACF32B39863F00F81F3A /* Login.storyboard */,
+				CA6EACF52B39865700F81F3A /* Monitoring.storyboard */,
+				CA6EACF72B39867500F81F3A /* Analysis.storyboard */,
+				CA6EACF92B39868B00F81F3A /* Subscription.storyboard */,
+				CA6EACFB2B39869B00F81F3A /* UserProfile.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -378,9 +393,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA6EACF42B39863F00F81F3A /* Login.storyboard in Resources */,
 				CA6EAC632B395E0000F81F3A /* LaunchScreen.storyboard in Resources */,
+				CA6EACF82B39867600F81F3A /* Analysis.storyboard in Resources */,
 				CA6EAC602B395E0000F81F3A /* Assets.xcassets in Resources */,
+				CA6EACF62B39865700F81F3A /* Monitoring.storyboard in Resources */,
+				CA6EACFC2B39869B00F81F3A /* UserProfile.storyboard in Resources */,
 				CA6EAC5B2B395DFF00F81F3A /* Main.storyboard in Resources */,
+				CA6EACFA2B39868B00F81F3A /* Subscription.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +727,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = heyGongC/heyGongC.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TM6B25PL78;
@@ -726,6 +747,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = heyGongC.heyGongC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -740,6 +762,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = heyGongC/heyGongC.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TM6B25PL78;
@@ -759,6 +782,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = heyGongC.heyGongC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
