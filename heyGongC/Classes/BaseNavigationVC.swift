@@ -46,7 +46,7 @@ class BaseNavigationVC: UINavigationController {
     }
     
     func primary() {
-        updateDisplay(color: QTColor.C_FFFFFF)
+        updateDisplay(color: UIColor.white)
     }
     
     private func updateDisplay(color: UIColor?) {
@@ -62,8 +62,8 @@ class BaseNavigationVC: UINavigationController {
         if #available(iOS 13.0, *) {
             let backButtonBackgroundImage = UIImage(named: "ic_header_back")?.withRenderingMode(.alwaysOriginal)
             
-            let attributes = [NSAttributedString.Key.foregroundColor: QTColor.C_201E33,
-                              NSAttributedString.Key.font: UIFont.customFont(font: .H3B)]
+            let attributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)]
 
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()

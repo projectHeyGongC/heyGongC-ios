@@ -12,7 +12,6 @@
 		6270EAC387C1FE62B17F4F8F /* libPods-heyGongCUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F9D21EC7E3AACBA792991F /* libPods-heyGongCUITests.a */; };
 		CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC532B395DFF00F81F3A /* AppDelegate.swift */; };
 		CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC552B395DFF00F81F3A /* SceneDelegate.swift */; };
-		CA6EAC5B2B395DFF00F81F3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EAC592B395DFF00F81F3A /* Main.storyboard */; };
 		CA6EAC5E2B395DFF00F81F3A /* heyGongC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC5C2B395DFF00F81F3A /* heyGongC.xcdatamodeld */; };
 		CA6EAC602B395E0000F81F3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA6EAC5F2B395E0000F81F3A /* Assets.xcassets */; };
 		CA6EAC632B395E0000F81F3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EAC612B395E0000F81F3A /* LaunchScreen.storyboard */; };
@@ -38,6 +37,9 @@
 		CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8A22B3C384C00C02509 /* MainTBC.swift */; };
 		CAC9C8A62B3C467D00C02509 /* ExampleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8A42B3C467D00C02509 /* ExampleVM.swift */; };
 		CAC9C8A72B3C467D00C02509 /* ExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8A52B3C467D00C02509 /* ExampleVC.swift */; };
+		CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8A92B3C4AE100C02509 /* GCError.swift */; };
+		CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */; };
+		CAC9C8B02B3C53AA00C02509 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +71,6 @@
 		CA6EAC502B395DFF00F81F3A /* heyGongC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heyGongC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6EAC532B395DFF00F81F3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA6EAC552B395DFF00F81F3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CA6EAC5A2B395DFF00F81F3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA6EAC5D2B395DFF00F81F3A /* heyGongC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = heyGongC.xcdatamodel; sourceTree = "<group>"; };
 		CA6EAC5F2B395E0000F81F3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA6EAC622B395E0000F81F3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +100,9 @@
 		CAC9C8A22B3C384C00C02509 /* MainTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTBC.swift; sourceTree = "<group>"; };
 		CAC9C8A42B3C467D00C02509 /* ExampleVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleVM.swift; sourceTree = "<group>"; };
 		CAC9C8A52B3C467D00C02509 /* ExampleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleVC.swift; sourceTree = "<group>"; };
+		CAC9C8A92B3C4AE100C02509 /* GCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCError.swift; sourceTree = "<group>"; };
+		CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Design+Ext.swift"; sourceTree = "<group>"; };
+		CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		CCA86E9F0A4499AB3C8A22A1 /* Pods-heyGongCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCTests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongCTests/Pods-heyGongCTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8ABBB3BF7C991B6E11E18AE /* Pods-heyGongCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCUITests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongCUITests/Pods-heyGongCUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA428C97599AB5E1824FA8BA /* libPods-heyGongCTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-heyGongCTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,7 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				CA6EAC612B395E0000F81F3A /* LaunchScreen.storyboard */,
-				CA6EAC592B395DFF00F81F3A /* Main.storyboard */,
+				CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */,
 				CA6EACF32B39863F00F81F3A /* Login.storyboard */,
 				CA6EACF52B39865700F81F3A /* Monitoring.storyboard */,
 				CA6EACF72B39867500F81F3A /* Analysis.storyboard */,
@@ -242,6 +246,7 @@
 				CA6EAC972B39688700F81F3A /* BaseVC.swift */,
 				CA6EAC982B39688700F81F3A /* BaseView.swift */,
 				CA6EAC992B39688700F81F3A /* BaseVM.swift */,
+				CAC9C8A92B3C4AE100C02509 /* GCError.swift */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 		CA6EAC932B3967FC00F81F3A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -413,10 +419,10 @@
 				CA6EACF42B39863F00F81F3A /* Login.storyboard in Resources */,
 				CA6EAC632B395E0000F81F3A /* LaunchScreen.storyboard in Resources */,
 				CA6EACF82B39867600F81F3A /* Analysis.storyboard in Resources */,
+				CAC9C8B02B3C53AA00C02509 /* Splash.storyboard in Resources */,
 				CA6EAC602B395E0000F81F3A /* Assets.xcassets in Resources */,
 				CA6EACF62B39865700F81F3A /* Monitoring.storyboard in Resources */,
 				CA6EACFC2B39869B00F81F3A /* UserProfile.storyboard in Resources */,
-				CA6EAC5B2B395DFF00F81F3A /* Main.storyboard in Resources */,
 				CA6EACFA2B39868B00F81F3A /* Subscription.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +541,7 @@
 				CAC9C8A62B3C467D00C02509 /* ExampleVM.swift in Sources */,
 				CA6EACA22B39699B00F81F3A /* Localized.swift in Sources */,
 				CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */,
+				CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */,
 				CA6EACA32B39699B00F81F3A /* DefaultsKeys.swift in Sources */,
 				CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */,
 				CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */,
@@ -544,6 +551,7 @@
 				CAC9C8A72B3C467D00C02509 /* ExampleVC.swift in Sources */,
 				CA6EACA62B3969AE00F81F3A /* App.swift in Sources */,
 				CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */,
+				CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */,
 				CA6EAC9D2B39688700F81F3A /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,14 +589,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CA6EAC592B395DFF00F81F3A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA6EAC5A2B395DFF00F81F3A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CA6EAC612B395E0000F81F3A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -638,7 +638,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -702,7 +702,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -737,8 +737,8 @@
 				INFOPLIST_FILE = heyGongC/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "어이, 공씨";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Splash;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -772,8 +772,8 @@
 				INFOPLIST_FILE = heyGongC/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "어이, 공씨";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Splash;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

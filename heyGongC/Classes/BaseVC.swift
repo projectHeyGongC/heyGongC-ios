@@ -35,7 +35,7 @@ class BaseVC: UIViewController, BaseImplementation {
     
     var loadingContainer: UIView?
     
-    let safeAreaBottom = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
+    let safeAreaBottom = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets.bottom ?? 0
     
     private let viewModel = BaseVM()
     
@@ -80,20 +80,21 @@ class BaseVC: UIViewController, BaseImplementation {
     //그냥 다 사용
     public func setErrorHandler(error: Error?) {
         
-        guard let e = error as? QTError else {
+        guard let e = error as? GCError else {
             // 알 수 없는 에러
             print(error?.localizedDescription ?? "")
-            QTError.notFoundCode.showErrorMsg(target: self.view)
+            GCError.notFoundCode.showErrorMsg(target: self.view)
             return
         }
         
         switch e {
         case .expired:
-            self.showAlert(title: "로그인 만료", msg: "고객님의 안전한 금융거래 보호를 위해\n재 로그인 합니다.", confirmTitle: "확인", confirm: { [weak self] in
-                print(Defaults.AUTH_TOKEN)
-                App.shared.introType = .login
-                self?.navigationController?.backToIntro()
-            })
+            return
+//            self.showAlert(title: "로그인 만료", msg: "고객님의 안전한 금융거래 보호를 위해\n재 로그인 합니다.", confirmTitle: "확인", confirm: { [weak self] in
+//                print(Defaults.AUTH_TOKEN)
+//                App.shared.introType = .login
+//                self?.navigationController?.backToIntro()
+//            })
         case .unknown(_):
             e.showErrorMsg(target: self.view)
         default:
@@ -177,16 +178,16 @@ extension BaseVC {
     
     private func setLeftLabel() {
         let titleLabel = UILabel()
-        titleLabel.textColor = QTColor.C_201E33
+        titleLabel.textColor = GCColor.C_000000
         titleLabel.text = self.title        // kes 230830 현재 타이틀을 레이블 text로 지정
         self.title = ""                     // kes 230830 보이던 타이틀은 숨겨야함
-        titleLabel.setCustomFont(customFont: .H3B)
+//        titleLabel.setCustomFont(customFont: .H3B)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
     }
     
     private func setRightButton() {
         let btn = UIButton()
-        btn.createCloseButton()
+//        btn.createCloseButton()
         btn.addTarget(self, action: #selector(close), for: .touchUpInside)
         let closeBtn = UIBarButtonItem(customView: btn)
         closeBtn.title = ""

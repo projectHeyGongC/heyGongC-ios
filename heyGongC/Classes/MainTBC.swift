@@ -177,11 +177,11 @@ class MainTBC: UITabBarController {
         // kes 230328 탭바 커스텀 하기 위해서는 초기화해야함
         UITabBar.clearShadow()
         
-        let color = QTColor.C_8B8E9B
-        let selectedColor = QTColor.C_201E33
+        let color = GCColor.C_000000
+        let selectedColor = GCColor.C_006877
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.pretendard(size: 11, weight: .semibold)], for: .selected)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.pretendard(size: 11, weight: .semibold)], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13, weight: .regular)], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13, weight: .regular)], for: .selected)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : color], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : selectedColor], for: .selected)
         

@@ -9,11 +9,12 @@ import SafariServices
 import SwiftyUserDefaults
 
 struct Storyboard {
-    static let Login                = "Login"
-    static let Main                 = "Main"
-    static let Product              = "Product"
-    static let Invest               = "Invest"
-    static let Account              = "Account"
+    static let Splash                = "Splash"
+    static let Login                 = "Login"
+    static let Monitoring            = "Monitoring"
+    static let Analysis              = "Analysis"
+    static let Subscription          = "Subscription"
+    static let UserProfile           = "UserProfile"
 }
 
 class SegueUtils {
@@ -32,24 +33,22 @@ class SegueUtils {
 extension SegueUtils {
     
     // 상품 상세 이동
-    static func goToProductDetail(target: BaseVC, productInfoList: [PortBasicInfo], investType: INVEST_TYPE) {
-        if let vc = Link.ProductDetailVC.viewController as? ProductDetailVC {
-            vc.updateParam(productInfoList: productInfoList, invType: investType)
-            target.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
+//    static func goToProductDetail(target: BaseVC, productInfoList: [PortBasicInfo], investType: INVEST_TYPE) {
+//        if let vc = Link.ProductDetailVC.viewController as? ProductDetailVC {
+//            vc.updateParam(productInfoList: productInfoList, invType: investType)
+//            target.navigationController?.pushViewController(vc, animated: true)
+//        }
+//    }
     
 }
 
 enum Link: String {
-//    case QratorRcmRegisterVC    = "QratorRcmRegisterVC"
+    case CreateAccountVC        = "CreateAccountVC"
     
     var baseStoryboard: String {
         switch self {
-            
-            // 약관
-//        case .NewTermsVC:
-//            return Storyboard.Terms
+        case .CreateAccountVC:
+            return Storyboard.Login
         }
     }
     

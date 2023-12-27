@@ -105,62 +105,6 @@ extension UIView {
     }
 }
 
-@IBDesignable
-class QTTextLabel: UILabel {
-    
-    @IBInspectable
-    var fontPreset: UIColor = QTFontIB.F_Default {
-        didSet {
-            setCustomFontWithColor()
-        }
-    }
-    
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setCustomFontWithColor()
-    }
-
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        setCustomFontWithColor()
-    }
-
-    private func setCustomFontWithColor() {
-        if fontPreset == QTFontIB.F_H1 {
-            setCustomFont(customFont: .H1)
-        } else if fontPreset == QTFontIB.F_H2 {
-            setCustomFont(customFont: .H2)
-        } else if fontPreset == QTFontIB.F_H3 {
-            setCustomFont(customFont: .H3)
-        } else if fontPreset == QTFontIB.F_H4 {
-            setCustomFont(customFont: .H4)
-        } else if fontPreset == QTFontIB.F_H5 {
-            setCustomFont(customFont: .H5)
-        } else if fontPreset == QTFontIB.F_H6 {
-            setCustomFont(customFont: .H6)
-        } else if fontPreset == QTFontIB.F_Default {
-            setCustomFont(customFont: .Default)
-        } else if fontPreset == QTFontIB.F_H1B {
-            setCustomFont(customFont: .H1B)
-        } else if fontPreset == QTFontIB.F_H2B {
-            setCustomFont(customFont: .H2B)
-        } else if fontPreset == QTFontIB.F_H3B {
-            setCustomFont(customFont: .H3B)
-        } else if fontPreset == QTFontIB.F_H4B {
-            setCustomFont(customFont: .H4B)
-        } else if fontPreset == QTFontIB.F_H5B {
-            setCustomFont(customFont: .H5B)
-        } else if fontPreset == QTFontIB.F_H6B {
-            setCustomFont(customFont: .H6B)
-        } else if fontPreset == QTFontIB.F_DefaultB {
-            setCustomFont(customFont: .DefaultB)
-        } else if fontPreset == QTFontIB.F_Point {
-            setCustomFont(customFont: .Point)
-        } else if fontPreset == QTFontIB.F_Calculation {
-            setCustomFont(customFont: .Calculation)
-        }
-    }
-}
 
 @IBDesignable
 class SpinnerView : UIView {

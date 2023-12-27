@@ -12,7 +12,7 @@ import RxCocoa
 class VM {
     public func clearBag() { }
     var bag = DisposeBag()
-    final var errorHandler = BehaviorRelay<QTError?>(value: nil)
+    final var errorHandler = BehaviorRelay<GCError?>(value: nil)
 }
 
 class BaseVM: VM {
