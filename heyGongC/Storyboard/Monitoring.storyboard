@@ -20,10 +20,9 @@
             </objects>
             <point key="canvasLocation" x="569" y="432"/>
         </scene>
-        <!--Item 1-->
+        <!--모니터링-->
         <scene sceneID="EWf-Hj-gVM">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CYb-cv-C8q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="LiZ-lh-h4G" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kgn-JK-UAT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -31,8 +30,9 @@
                         <viewLayoutGuide key="safeArea" id="8rD-9q-R24"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="hJ8-jG-VfX"/>
+                    <tabBarItem key="tabBarItem" title="모니터링" image="tab_ic_monitoring_off" selectedImage="tab_ic_monitoring_on" id="hJ8-jG-VfX"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CYb-cv-C8q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1069" y="-288"/>
         </scene>
@@ -80,6 +80,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="tab_ic_monitoring_off" width="23" height="20"/>
+        <image name="tab_ic_monitoring_on" width="24" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
