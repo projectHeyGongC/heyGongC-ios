@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29AC855B296BC2E3FE9966DD /* Pods_heyGongC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62A43CEC1C8DD9B655BC89A /* Pods_heyGongC.framework */; };
-		5F920155D68C33D7E7B4105A /* libPods-heyGongCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA428C97599AB5E1824FA8BA /* libPods-heyGongCTests.a */; };
-		6270EAC387C1FE62B17F4F8F /* libPods-heyGongCUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F9D21EC7E3AACBA792991F /* libPods-heyGongCUITests.a */; };
+		000B6C3E39B722ADEBAA3A3A /* Pods_heyGongC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF2531D40C235C4E9712DA0 /* Pods_heyGongC.framework */; };
+		AEE7E32B9AFD1349CAC8B9FD /* libPods-heyGongCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60864D0E510E0D049C8876A9 /* libPods-heyGongCTests.a */; };
+		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
+		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
 		CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC532B395DFF00F81F3A /* AppDelegate.swift */; };
 		CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC552B395DFF00F81F3A /* SceneDelegate.swift */; };
 		CA6EAC5E2B395DFF00F81F3A /* heyGongC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC5C2B395DFF00F81F3A /* heyGongC.xcdatamodeld */; };
@@ -40,6 +41,7 @@
 		CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8A92B3C4AE100C02509 /* GCError.swift */; };
 		CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */; };
 		CAC9C8B02B3C53AA00C02509 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */; };
+		F5F7347838662032D33D63B3 /* libPods-heyGongCUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C11B6F031CF7E47A0B542B /* libPods-heyGongCUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,14 +62,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09C9A7437B6571AD800CC04B /* Pods-heyGongC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongC.debug.xcconfig"; path = "Target Support Files/Pods-heyGongC/Pods-heyGongC.debug.xcconfig"; sourceTree = "<group>"; };
-		12AFF072655BBFEABCA563C6 /* Pods-heyGongC-heyGongCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongC-heyGongCUITests.release.xcconfig"; path = "Target Support Files/Pods-heyGongC-heyGongCUITests/Pods-heyGongC-heyGongCUITests.release.xcconfig"; sourceTree = "<group>"; };
-		15F9D21EC7E3AACBA792991F /* libPods-heyGongCUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-heyGongCUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E7B824E57DD41F9602E1A39 /* Pods-heyGongCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCTests.release.xcconfig"; path = "Target Support Files/Pods-heyGongCTests/Pods-heyGongCTests.release.xcconfig"; sourceTree = "<group>"; };
-		3B44C9A8A4640AF7F2F30255 /* Pods-heyGongC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongC.release.xcconfig"; path = "Target Support Files/Pods-heyGongC/Pods-heyGongC.release.xcconfig"; sourceTree = "<group>"; };
-		45C38CA2FE4FC830F0FCF72F /* Pods-heyGongC-heyGongCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongC-heyGongCUITests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongC-heyGongCUITests/Pods-heyGongC-heyGongCUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9D7657E334CABB0CA8E63E26 /* Pods-heyGongCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCUITests.release.xcconfig"; path = "Target Support Files/Pods-heyGongCUITests/Pods-heyGongCUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C62A43CEC1C8DD9B655BC89A /* Pods_heyGongC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heyGongC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AF2531D40C235C4E9712DA0 /* Pods_heyGongC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heyGongC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4593997C50BA2E10DA8192FA /* Pods-heyGongCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCTests.release.xcconfig"; path = "Target Support Files/Pods-heyGongCTests/Pods-heyGongCTests.release.xcconfig"; sourceTree = "<group>"; };
+		581530A4D32C34AD920CA5CF /* Pods-heyGongCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCUITests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongCUITests/Pods-heyGongCUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		60864D0E510E0D049C8876A9 /* libPods-heyGongCTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-heyGongCTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		675B46A1D245A46D694EA2E0 /* Pods-heyGongC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongC.debug.xcconfig"; path = "Target Support Files/Pods-heyGongC/Pods-heyGongC.debug.xcconfig"; sourceTree = "<group>"; };
+		6B97B6CB42262599DFCA3DC9 /* Pods-heyGongC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongC.release.xcconfig"; path = "Target Support Files/Pods-heyGongC/Pods-heyGongC.release.xcconfig"; sourceTree = "<group>"; };
+		82C11B6F031CF7E47A0B542B /* libPods-heyGongCUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-heyGongCUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86E88F3B566BE30F53E6209B /* Pods-heyGongCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCTests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongCTests/Pods-heyGongCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		CA6EAC502B395DFF00F81F3A /* heyGongC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heyGongC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6EAC532B395DFF00F81F3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA6EAC552B395DFF00F81F3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,9 +107,7 @@
 		CAC9C8A92B3C4AE100C02509 /* GCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCError.swift; sourceTree = "<group>"; };
 		CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Design+Ext.swift"; sourceTree = "<group>"; };
 		CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
-		CCA86E9F0A4499AB3C8A22A1 /* Pods-heyGongCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCTests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongCTests/Pods-heyGongCTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E8ABBB3BF7C991B6E11E18AE /* Pods-heyGongCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCUITests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongCUITests/Pods-heyGongCUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		FA428C97599AB5E1824FA8BA /* libPods-heyGongCTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-heyGongCTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6071532393E64072E40E043 /* Pods-heyGongCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCUITests.release.xcconfig"; path = "Target Support Files/Pods-heyGongCUITests/Pods-heyGongCUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29AC855B296BC2E3FE9966DD /* Pods_heyGongC.framework in Frameworks */,
+				000B6C3E39B722ADEBAA3A3A /* Pods_heyGongC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F920155D68C33D7E7B4105A /* libPods-heyGongCTests.a in Frameworks */,
+				AEE7E32B9AFD1349CAC8B9FD /* libPods-heyGongCTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,21 +131,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6270EAC387C1FE62B17F4F8F /* libPods-heyGongCUITests.a in Frameworks */,
+				F5F7347838662032D33D63B3 /* libPods-heyGongCUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B37C823227ECEC5A5FB6EC5A /* Frameworks */ = {
+		B5EB58802C9B1E2B56C85C26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C62A43CEC1C8DD9B655BC89A /* Pods_heyGongC.framework */,
-				FA428C97599AB5E1824FA8BA /* libPods-heyGongCTests.a */,
-				15F9D21EC7E3AACBA792991F /* libPods-heyGongCUITests.a */,
+				2AF2531D40C235C4E9712DA0 /* Pods_heyGongC.framework */,
+				60864D0E510E0D049C8876A9 /* libPods-heyGongCTests.a */,
+				82C11B6F031CF7E47A0B542B /* libPods-heyGongCUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6E711DF2B4B88FD00A05A6A /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				C6E711DD2B4B88EF00A05A6A /* SplashView.swift */,
+			);
+			name = Splash;
 			sourceTree = "<group>";
 		};
 		CA6EAC472B395DFF00F81F3A = {
@@ -154,7 +164,7 @@
 				CA6EAC772B395E0000F81F3A /* heyGongCUITests */,
 				CA6EAC512B395DFF00F81F3A /* Products */,
 				CCBC177120844E39083FA850 /* Pods */,
-				B37C823227ECEC5A5FB6EC5A /* Frameworks */,
+				B5EB58802C9B1E2B56C85C26 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -254,6 +264,7 @@
 		CA6EAC8F2B3967C300F81F3A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C6E711DF2B4B88FD00A05A6A /* Splash */,
 				CAC9C8A82B3C468000C02509 /* Example */,
 			);
 			name = UI;
@@ -273,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */,
+				C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -296,14 +308,12 @@
 		CCBC177120844E39083FA850 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				09C9A7437B6571AD800CC04B /* Pods-heyGongC.debug.xcconfig */,
-				3B44C9A8A4640AF7F2F30255 /* Pods-heyGongC.release.xcconfig */,
-				45C38CA2FE4FC830F0FCF72F /* Pods-heyGongC-heyGongCUITests.debug.xcconfig */,
-				12AFF072655BBFEABCA563C6 /* Pods-heyGongC-heyGongCUITests.release.xcconfig */,
-				CCA86E9F0A4499AB3C8A22A1 /* Pods-heyGongCTests.debug.xcconfig */,
-				1E7B824E57DD41F9602E1A39 /* Pods-heyGongCTests.release.xcconfig */,
-				E8ABBB3BF7C991B6E11E18AE /* Pods-heyGongCUITests.debug.xcconfig */,
-				9D7657E334CABB0CA8E63E26 /* Pods-heyGongCUITests.release.xcconfig */,
+				675B46A1D245A46D694EA2E0 /* Pods-heyGongC.debug.xcconfig */,
+				6B97B6CB42262599DFCA3DC9 /* Pods-heyGongC.release.xcconfig */,
+				86E88F3B566BE30F53E6209B /* Pods-heyGongCTests.debug.xcconfig */,
+				4593997C50BA2E10DA8192FA /* Pods-heyGongCTests.release.xcconfig */,
+				581530A4D32C34AD920CA5CF /* Pods-heyGongCUITests.debug.xcconfig */,
+				D6071532393E64072E40E043 /* Pods-heyGongCUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -315,11 +325,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA6EAC7E2B395E0000F81F3A /* Build configuration list for PBXNativeTarget "heyGongC" */;
 			buildPhases = (
-				A5D9E762AD1F8DC15C0F6CC3 /* [CP] Check Pods Manifest.lock */,
+				E116CBF9E2BFC9AFA37F9F99 /* [CP] Check Pods Manifest.lock */,
 				CA6EAC4C2B395DFF00F81F3A /* Sources */,
 				CA6EAC4D2B395DFF00F81F3A /* Frameworks */,
 				CA6EAC4E2B395DFF00F81F3A /* Resources */,
-				747E27B6414E375101F25D27 /* [CP] Embed Pods Frameworks */,
+				110308A6458CB8E6ECBCBB60 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -334,7 +344,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA6EAC812B395E0000F81F3A /* Build configuration list for PBXNativeTarget "heyGongCTests" */;
 			buildPhases = (
-				DD62E50B80FF959585FF6DF4 /* [CP] Check Pods Manifest.lock */,
+				58BBFA839C2627CDBC81667A /* [CP] Check Pods Manifest.lock */,
 				CA6EAC662B395E0000F81F3A /* Sources */,
 				CA6EAC672B395E0000F81F3A /* Frameworks */,
 				CA6EAC682B395E0000F81F3A /* Resources */,
@@ -353,7 +363,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA6EAC842B395E0000F81F3A /* Build configuration list for PBXNativeTarget "heyGongCUITests" */;
 			buildPhases = (
-				1763D6762742427468CD6746 /* [CP] Check Pods Manifest.lock */,
+				0A6D054B7003543A9492B49F /* [CP] Check Pods Manifest.lock */,
 				CA6EAC702B395E0000F81F3A /* Sources */,
 				CA6EAC712B395E0000F81F3A /* Frameworks */,
 				CA6EAC722B395E0000F81F3A /* Resources */,
@@ -444,7 +454,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1763D6762742427468CD6746 /* [CP] Check Pods Manifest.lock */ = {
+		0A6D054B7003543A9492B49F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -466,7 +476,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		747E27B6414E375101F25D27 /* [CP] Embed Pods Frameworks */ = {
+		110308A6458CB8E6ECBCBB60 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -483,29 +493,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-heyGongC/Pods-heyGongC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A5D9E762AD1F8DC15C0F6CC3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-heyGongC-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DD62E50B80FF959585FF6DF4 /* [CP] Check Pods Manifest.lock */ = {
+		58BBFA839C2627CDBC81667A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -527,6 +515,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E116CBF9E2BFC9AFA37F9F99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-heyGongC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -542,6 +552,7 @@
 				CA6EACA22B39699B00F81F3A /* Localized.swift in Sources */,
 				CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */,
 				CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */,
+				C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */,
 				CA6EACA32B39699B00F81F3A /* DefaultsKeys.swift in Sources */,
 				CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */,
 				CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */,
@@ -551,6 +562,7 @@
 				CAC9C8A72B3C467D00C02509 /* ExampleVC.swift in Sources */,
 				CA6EACA62B3969AE00F81F3A /* App.swift in Sources */,
 				CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */,
+				C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */,
 				CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */,
 				CA6EAC9D2B39688700F81F3A /* BaseView.swift in Sources */,
 			);
@@ -723,7 +735,7 @@
 		};
 		CA6EAC7F2B395E0000F81F3A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09C9A7437B6571AD800CC04B /* Pods-heyGongC.debug.xcconfig */;
+			baseConfigurationReference = 675B46A1D245A46D694EA2E0 /* Pods-heyGongC.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -747,7 +759,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = heyGongC.heyGongC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyGongC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -758,7 +770,7 @@
 		};
 		CA6EAC802B395E0000F81F3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B44C9A8A4640AF7F2F30255 /* Pods-heyGongC.release.xcconfig */;
+			baseConfigurationReference = 6B97B6CB42262599DFCA3DC9 /* Pods-heyGongC.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -782,7 +794,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = heyGongC.heyGongC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyGongC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -793,7 +805,7 @@
 		};
 		CA6EAC822B395E0000F81F3A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCA86E9F0A4499AB3C8A22A1 /* Pods-heyGongCTests.debug.xcconfig */;
+			baseConfigurationReference = 86E88F3B566BE30F53E6209B /* Pods-heyGongCTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -814,7 +826,7 @@
 		};
 		CA6EAC832B395E0000F81F3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E7B824E57DD41F9602E1A39 /* Pods-heyGongCTests.release.xcconfig */;
+			baseConfigurationReference = 4593997C50BA2E10DA8192FA /* Pods-heyGongCTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -835,7 +847,7 @@
 		};
 		CA6EAC852B395E0000F81F3A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8ABBB3BF7C991B6E11E18AE /* Pods-heyGongCUITests.debug.xcconfig */;
+			baseConfigurationReference = 581530A4D32C34AD920CA5CF /* Pods-heyGongCUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -854,7 +866,7 @@
 		};
 		CA6EAC862B395E0000F81F3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9D7657E334CABB0CA8E63E26 /* Pods-heyGongCUITests.release.xcconfig */;
+			baseConfigurationReference = D6071532393E64072E40E043 /* Pods-heyGongCUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
