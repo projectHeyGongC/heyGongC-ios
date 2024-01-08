@@ -44,11 +44,14 @@ extension SegueUtils {
 
 enum Link: String {
     case CreateAccountVC        = "CreateAccountVC"
+    case MainTBC                = "MainTBC"
     
     var baseStoryboard: String {
         switch self {
         case .CreateAccountVC:
             return Storyboard.Login
+        case .MainTBC:
+            return Storyboard.Monitoring
         }
     }
     
