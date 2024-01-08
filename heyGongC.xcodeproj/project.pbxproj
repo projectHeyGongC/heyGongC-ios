@@ -10,6 +10,8 @@
 		29AC855B296BC2E3FE9966DD /* Pods_heyGongC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62A43CEC1C8DD9B655BC89A /* Pods_heyGongC.framework */; };
 		5F920155D68C33D7E7B4105A /* libPods-heyGongCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA428C97599AB5E1824FA8BA /* libPods-heyGongCTests.a */; };
 		6270EAC387C1FE62B17F4F8F /* libPods-heyGongCUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F9D21EC7E3AACBA792991F /* libPods-heyGongCUITests.a */; };
+		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
+		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
 		CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC532B395DFF00F81F3A /* AppDelegate.swift */; };
 		CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC552B395DFF00F81F3A /* SceneDelegate.swift */; };
 		CA6EAC5E2B395DFF00F81F3A /* heyGongC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC5C2B395DFF00F81F3A /* heyGongC.xcdatamodeld */; };
@@ -68,6 +70,8 @@
 		45C38CA2FE4FC830F0FCF72F /* Pods-heyGongC-heyGongCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongC-heyGongCUITests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongC-heyGongCUITests/Pods-heyGongC-heyGongCUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D7657E334CABB0CA8E63E26 /* Pods-heyGongCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCUITests.release.xcconfig"; path = "Target Support Files/Pods-heyGongCUITests/Pods-heyGongCUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C62A43CEC1C8DD9B655BC89A /* Pods_heyGongC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heyGongC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		CA6EAC502B395DFF00F81F3A /* heyGongC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heyGongC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6EAC532B395DFF00F81F3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA6EAC552B395DFF00F81F3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +148,14 @@
 				15F9D21EC7E3AACBA792991F /* libPods-heyGongCUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6E711DF2B4B88FD00A05A6A /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				C6E711DD2B4B88EF00A05A6A /* SplashView.swift */,
+			);
+			name = Splash;
 			sourceTree = "<group>";
 		};
 		CA6EAC472B395DFF00F81F3A = {
@@ -254,6 +266,7 @@
 		CA6EAC8F2B3967C300F81F3A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C6E711DF2B4B88FD00A05A6A /* Splash */,
 				CAC9C8A82B3C468000C02509 /* Example */,
 			);
 			name = UI;
@@ -273,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */,
+				C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -542,6 +556,7 @@
 				CA6EACA22B39699B00F81F3A /* Localized.swift in Sources */,
 				CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */,
 				CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */,
+				C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */,
 				CA6EACA32B39699B00F81F3A /* DefaultsKeys.swift in Sources */,
 				CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */,
 				CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */,
@@ -551,6 +566,7 @@
 				CAC9C8A72B3C467D00C02509 /* ExampleVC.swift in Sources */,
 				CA6EACA62B3969AE00F81F3A /* App.swift in Sources */,
 				CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */,
+				C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */,
 				CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */,
 				CA6EAC9D2B39688700F81F3A /* BaseView.swift in Sources */,
 			);
@@ -747,7 +763,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = heyGongC.heyGongC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyGongC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -782,7 +798,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = heyGongC.heyGongC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heyGongC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
