@@ -11,6 +11,23 @@ import SnapKit
 
 class MonitoringCell : UICollectionViewCell {
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupUI(frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupUI(_ frame: CGRect) {
+        
+    }
+}
+
+extension MonitoringCell {
+    
     enum MonitoringState {
         case Off
         case On
@@ -55,19 +72,5 @@ class MonitoringCell : UICollectionViewCell {
                 return UIImage(named: "ic_sensor_on")!
             }
         }
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setupUI(frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupUI(_ frame: CGRect) {
-        
     }
 }

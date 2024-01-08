@@ -308,8 +308,8 @@
 		CA6EAC8F2B3967C300F81F3A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C6CC868E2B4B9751009FE139 /* Monitoring */,
 				C6E711DF2B4B88FD00A05A6A /* Splash */,
+				C6CC868E2B4B9751009FE139 /* Monitoring */,
 				CAC9C8A82B3C468000C02509 /* Example */,
 			);
 			name = UI;
