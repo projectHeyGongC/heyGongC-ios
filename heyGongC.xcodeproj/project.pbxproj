@@ -16,6 +16,13 @@
 		B84BED872B4BB9A400382F7F /* LoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED862B4BB9A400382F7F /* LoginCollectionViewCell.swift */; };
 		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
 		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
+		CA58BF802B4E6AE2008D8015 /* MonitoringVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF792B4E6AE2008D8015 /* MonitoringVC.swift */; };
+		CA58BF812B4E6AE2008D8015 /* MonitoringVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7A2B4E6AE2008D8015 /* MonitoringVM.swift */; };
+		CA58BF822B4E6AE2008D8015 /* MonitoringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7B2B4E6AE2008D8015 /* MonitoringCell.swift */; };
+		CA58BF832B4E6AE2008D8015 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7C2B4E6AE2008D8015 /* CameraVC.swift */; };
+		CA58BF842B4E6AE2008D8015 /* CameraSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7D2B4E6AE2008D8015 /* CameraSettingVC.swift */; };
+		CA58BF852B4E6AE2008D8015 /* CameraSettingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7E2B4E6AE2008D8015 /* CameraSettingVM.swift */; };
+		CA58BF862B4E6AE2008D8015 /* CameraVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7F2B4E6AE2008D8015 /* CameraVM.swift */; };
 		CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC532B395DFF00F81F3A /* AppDelegate.swift */; };
 		CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC552B395DFF00F81F3A /* SceneDelegate.swift */; };
 		CA6EAC5E2B395DFF00F81F3A /* heyGongC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA6EAC5C2B395DFF00F81F3A /* heyGongC.xcdatamodeld */; };
@@ -82,6 +89,13 @@
 		B84BED862B4BB9A400382F7F /* LoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCollectionViewCell.swift; sourceTree = "<group>"; };
 		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
+		CA58BF792B4E6AE2008D8015 /* MonitoringVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringVC.swift; sourceTree = "<group>"; };
+		CA58BF7A2B4E6AE2008D8015 /* MonitoringVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringVM.swift; sourceTree = "<group>"; };
+		CA58BF7B2B4E6AE2008D8015 /* MonitoringCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringCell.swift; sourceTree = "<group>"; };
+		CA58BF7C2B4E6AE2008D8015 /* CameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
+		CA58BF7D2B4E6AE2008D8015 /* CameraSettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSettingVC.swift; sourceTree = "<group>"; };
+		CA58BF7E2B4E6AE2008D8015 /* CameraSettingVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSettingVM.swift; sourceTree = "<group>"; };
+		CA58BF7F2B4E6AE2008D8015 /* CameraVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVM.swift; sourceTree = "<group>"; };
 		CA6EAC502B395DFF00F81F3A /* heyGongC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heyGongC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6EAC532B395DFF00F81F3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA6EAC552B395DFF00F81F3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +190,44 @@
 				C6E711DD2B4B88EF00A05A6A /* SplashView.swift */,
 			);
 			name = Splash;
+			sourceTree = "<group>";
+		};
+		CA58BF872B4E6AE6008D8015 /* Monitoring */ = {
+			isa = PBXGroup;
+			children = (
+				CA58BF882B4E6AFE008D8015 /* CameraSetting */,
+				CA58BF892B4E6B06008D8015 /* Camera */,
+				CA58BF8A2B4E6B0D008D8015 /* Monitoring */,
+			);
+			name = Monitoring;
+			sourceTree = "<group>";
+		};
+		CA58BF882B4E6AFE008D8015 /* CameraSetting */ = {
+			isa = PBXGroup;
+			children = (
+				CA58BF7D2B4E6AE2008D8015 /* CameraSettingVC.swift */,
+				CA58BF7E2B4E6AE2008D8015 /* CameraSettingVM.swift */,
+			);
+			name = CameraSetting;
+			sourceTree = "<group>";
+		};
+		CA58BF892B4E6B06008D8015 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				CA58BF7C2B4E6AE2008D8015 /* CameraVC.swift */,
+				CA58BF7F2B4E6AE2008D8015 /* CameraVM.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		CA58BF8A2B4E6B0D008D8015 /* Monitoring */ = {
+			isa = PBXGroup;
+			children = (
+				CA58BF7B2B4E6AE2008D8015 /* MonitoringCell.swift */,
+				CA58BF792B4E6AE2008D8015 /* MonitoringVC.swift */,
+				CA58BF7A2B4E6AE2008D8015 /* MonitoringVM.swift */,
+			);
+			name = Monitoring;
 			sourceTree = "<group>";
 		};
 		CA6EAC472B395DFF00F81F3A = {
@@ -286,9 +338,10 @@
 		CA6EAC8F2B3967C300F81F3A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B81358412B4BB8F8007987A0 /* Login */,
-				C6E711DF2B4B88FD00A05A6A /* Splash */,
 				CAC9C8A82B3C468000C02509 /* Example */,
+				C6E711DF2B4B88FD00A05A6A /* Splash */,
+				B81358412B4BB8F8007987A0 /* Login */,
+				CA58BF872B4E6AE6008D8015 /* Monitoring */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -567,15 +620,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA58BF822B4E6AE2008D8015 /* MonitoringCell.swift in Sources */,
 				CA6EAC9B2B39688700F81F3A /* BaseNavigationVC.swift in Sources */,
 				CA6EAC5E2B395DFF00F81F3A /* heyGongC.xcdatamodeld in Sources */,
+				CA58BF812B4E6AE2008D8015 /* MonitoringVM.swift in Sources */,
 				CA6EACA42B39699B00F81F3A /* Segue.swift in Sources */,
 				B84BED852B4BB99600382F7F /* SelectAccountTypeVM.swift in Sources */,
+				CA58BF802B4E6AE2008D8015 /* MonitoringVC.swift in Sources */,
+				CA58BF832B4E6AE2008D8015 /* CameraVC.swift in Sources */,
 				B84BED872B4BB9A400382F7F /* LoginCollectionViewCell.swift in Sources */,
 				B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */,
 				CA6EAC9E2B39688700F81F3A /* BaseVM.swift in Sources */,
 				CAC9C8A62B3C467D00C02509 /* ExampleVM.swift in Sources */,
 				CA6EACA22B39699B00F81F3A /* Localized.swift in Sources */,
+				CA58BF862B4E6AE2008D8015 /* CameraVM.swift in Sources */,
 				CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */,
 				CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */,
 				C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */,
@@ -583,11 +641,13 @@
 				CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */,
 				B84BED832B4BB98D00382F7F /* SelectAccountTypeVC.swift in Sources */,
 				CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */,
+				CA58BF842B4E6AE2008D8015 /* CameraSettingVC.swift in Sources */,
 				B84BED7F2B4BB95F00382F7F /* CreateAccountVC.swift in Sources */,
 				CA6EACA82B396CD100F81F3A /* Push.swift in Sources */,
 				CA6EAC9C2B39688700F81F3A /* BaseVC.swift in Sources */,
 				CA6EACB22B396D0E00F81F3A /* GCColor.swift in Sources */,
 				CAC9C8A72B3C467D00C02509 /* ExampleVC.swift in Sources */,
+				CA58BF852B4E6AE2008D8015 /* CameraSettingVM.swift in Sources */,
 				CA6EACA62B3969AE00F81F3A /* App.swift in Sources */,
 				CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */,
 				C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */,
