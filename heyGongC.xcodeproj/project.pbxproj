@@ -16,6 +16,7 @@
 		B84BED872B4BB9A400382F7F /* LoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED862B4BB9A400382F7F /* LoginCollectionViewCell.swift */; };
 		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
 		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
+		CA3D7B022B4E857B00C63FD0 /* PopupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */; };
 		CA58BF802B4E6AE2008D8015 /* MonitoringVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF792B4E6AE2008D8015 /* MonitoringVC.swift */; };
 		CA58BF812B4E6AE2008D8015 /* MonitoringVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7A2B4E6AE2008D8015 /* MonitoringVM.swift */; };
 		CA58BF822B4E6AE2008D8015 /* MonitoringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7B2B4E6AE2008D8015 /* MonitoringCell.swift */; };
@@ -89,6 +90,7 @@
 		B84BED862B4BB9A400382F7F /* LoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCollectionViewCell.swift; sourceTree = "<group>"; };
 		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
+		CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupManager.swift; sourceTree = "<group>"; };
 		CA58BF792B4E6AE2008D8015 /* MonitoringVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringVC.swift; sourceTree = "<group>"; };
 		CA58BF7A2B4E6AE2008D8015 /* MonitoringVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringVM.swift; sourceTree = "<group>"; };
 		CA58BF7B2B4E6AE2008D8015 /* MonitoringCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringCell.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		CA6EAC912B3967D800F81F3A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */,
 				CA6EACB12B396D0E00F81F3A /* GCColor.swift */,
 				CA6EACAB2B396CDE00F81F3A /* CVal.swift */,
 				CA6EACA72B396CD100F81F3A /* Push.swift */,
@@ -650,6 +653,7 @@
 				CA58BF852B4E6AE2008D8015 /* CameraSettingVM.swift in Sources */,
 				CA6EACA62B3969AE00F81F3A /* App.swift in Sources */,
 				CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */,
+				CA3D7B022B4E857B00C63FD0 /* PopupManager.swift in Sources */,
 				C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */,
 				CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */,
 				CA6EAC9D2B39688700F81F3A /* BaseView.swift in Sources */,
