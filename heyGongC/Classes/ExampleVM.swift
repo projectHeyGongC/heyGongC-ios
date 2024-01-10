@@ -9,6 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-//class ExampleVM: BaseVM {
-//
-//}
+class ExampleVM: BaseVM {
+
+}

@@ -24,7 +24,14 @@ class MonitoringVC: BaseVC {
     }
     
     override func bind() {
-        
+        btnAdd.rx.tap
+            .bind(onNext: { [weak self] in
+                
+                self?.showAlert(localized: .DLG_TEST, 
+                                confirm: { print("confirm") },
+                                cancel: { print("cancel") })
+                
+            }).disposed(by: viewModel.bag)
     }
     
     override func setupHandler() {

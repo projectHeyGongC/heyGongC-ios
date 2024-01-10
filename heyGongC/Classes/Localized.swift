@@ -15,6 +15,8 @@ enum Localized {
     case MONITORING_CAMERA_ON
     case MONITORING_NOISE_ON
     case MONITORING_NOISE_OFF
+    
+    case DLG_TEST
 
     /**
      *  다국어 처리
@@ -31,6 +33,33 @@ enum Localized {
             return "소리 감지 모드 on"
         case .MONITORING_NOISE_OFF:
             return "소리 감지 모드 off"
+            
+        case .DLG_TEST:
+            return "test"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .DLG_TEST:
+            return "testTitle"
+        default: return ""
+        }
+    }
+    
+    var confirmText: String {
+        switch self {
+        case .DLG_TEST:
+            return "확인"
+        default: return ""
+        }
+    }
+    
+    var cancelText: String {
+        switch self {
+        case .DLG_TEST:
+            return "취소"
+        default: return ""
         }
     }
 }
