@@ -56,6 +56,11 @@
                                                             <constraint firstAttribute="width" constant="15" id="QS9-Aw-BVq"/>
                                                             <constraint firstAttribute="height" constant="15" id="w1c-Hi-Gx2"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="7"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozZ-6c-eCW">
                                                         <rect key="frame" x="19" y="0.0" width="35" height="15"/>
