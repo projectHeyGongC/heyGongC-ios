@@ -46,6 +46,7 @@ extension AnalysisVC {
         viewHeaderCalendar.pagingEnabled = false
         viewHeaderCalendar.calendarHeaderView.isHidden = true
         viewHeaderCalendar.appearance.weekdayFont = .systemFont(ofSize: 12, weight: .regular)
+        viewHeaderCalendar.appearance.titleFont = .systemFont(ofSize: 18, weight: .semibold)
         viewHeaderCalendar.appearance.weekdayTextColor = GCColor.C_94A3B8
         viewHeaderCalendar.appearance.todayColor = GCColor.C_000000
         viewHeaderCalendar.appearance.selectionColor = GCColor.C_006877
@@ -53,5 +54,10 @@ extension AnalysisVC {
 }
 
 extension AnalysisVC: FSCalendarDataSource, FSCalendarDelegate {
-    
+    // 날짜 선택 시 콜백 메소드
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    }
+    // 날짜 선택 해제 콜백 메소드
+    public func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    }
 }
