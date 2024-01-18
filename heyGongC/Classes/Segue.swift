@@ -46,15 +46,17 @@ enum Link: String {
     case SelectedAccountTypeVC  = "SelectAccountTypeVC"
     case CreateAccountVC        = "CreateAccountVC"
     case MainTBC                = "MainTBC"
+    case CameraAnalysisVC       = "CameraAnalysisVC"
+    case RecordedVideoListVC    = "RecordedVideoListVC"
     
     var baseStoryboard: String {
         switch self {
-        case .SelectedAccountTypeVC:
-            return Storyboard.Login
-        case .CreateAccountVC:
+        case .SelectedAccountTypeVC, .CreateAccountVC:
             return Storyboard.Login
         case .MainTBC:
             return Storyboard.Monitoring
+        case .RecordedVideoListVC, .CameraAnalysisVC:
+            return Storyboard.Analysis
         }
     }
     

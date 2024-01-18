@@ -22,25 +22,14 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1q-wp-ufp">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="140"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="190"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOd-x5-Huc" customClass="FSCalendar">
-                                                <rect key="frame" x="0.0" y="40" width="393" height="100"/>
+                                                <rect key="frame" x="0.0" y="40" width="393" height="150"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="qiN-Mc-rRJ"/>
+                                                    <constraint firstAttribute="height" constant="150" id="qiN-Mc-rRJ"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
-                                                        <integer key="value" value="0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="headerHeight">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scrollEnabled" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="pagingEnabled" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useVeryShortWeekdaySymbols" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -52,7 +41,7 @@
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pw0-34-ETd">
-                                        <rect key="frame" x="0.0" y="140" width="393" height="570"/>
+                                        <rect key="frame" x="0.0" y="190" width="393" height="520"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="zJt-sX-7cF">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="619"/>
@@ -235,12 +224,41 @@
                                     </scrollView>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I00-1E-oDu">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-kp-YTr" userLabel="bg">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                        <color key="backgroundColor" red="0.011764705882352941" green="0.066666666666666666" blue="0.10588235294117647" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JHp-hK-NyA" customClass="FSCalendar">
+                                        <rect key="frame" x="0.0" y="469" width="393" height="300"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="3iy-yO-aXj"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ka3-kp-YTr" secondAttribute="trailing" id="70l-17-PWU"/>
+                                    <constraint firstAttribute="trailing" secondItem="JHp-hK-NyA" secondAttribute="trailing" id="RnO-Ci-e9W"/>
+                                    <constraint firstItem="JHp-hK-NyA" firstAttribute="leading" secondItem="I00-1E-oDu" secondAttribute="leading" id="UE5-Dy-4JD"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ka3-kp-YTr" secondAttribute="bottom" id="i5z-zb-VFJ"/>
+                                    <constraint firstItem="Ka3-kp-YTr" firstAttribute="leading" secondItem="I00-1E-oDu" secondAttribute="leading" id="pxZ-qC-NwV"/>
+                                    <constraint firstItem="Ka3-kp-YTr" firstAttribute="top" secondItem="I00-1E-oDu" secondAttribute="top" id="zR8-OB-f8W"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="JHp-hK-NyA" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="9md-ab-op6"/>
                             <constraint firstItem="ph1-tS-YJL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="FBx-Ek-wLH"/>
+                            <constraint firstItem="I00-1E-oDu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Mns-JD-lXs"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ph1-tS-YJL" secondAttribute="trailing" id="VVt-ff-ab3"/>
+                            <constraint firstItem="I00-1E-oDu" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="cLi-Yx-iMu"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="I00-1E-oDu" secondAttribute="trailing" id="fux-Q5-ena"/>
+                            <constraint firstAttribute="bottom" secondItem="I00-1E-oDu" secondAttribute="bottom" id="oK0-SG-hvj"/>
                             <constraint firstItem="ph1-tS-YJL" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="qbU-Ih-aSO"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ph1-tS-YJL" secondAttribute="bottom" id="wm0-JA-fxd"/>
                         </constraints>
@@ -248,12 +266,16 @@
                     <tabBarItem key="tabBarItem" title="분석" image="tab_ic_analysis_off" selectedImage="tab_ic_analysis_on" id="ckz-AO-za6"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnMore" destination="z4r-BN-0et" id="tW4-Vy-vMg"/>
+                        <outlet property="calendarHeightConstraint" destination="qiN-Mc-rRJ" id="8UG-Yb-ouK"/>
+                        <outlet property="fullCalendarHeightConstraint" destination="3iy-yO-aXj" id="Fu9-EU-tuY"/>
+                        <outlet property="viewFullCalendar" destination="JHp-hK-NyA" id="ZvM-4G-7VF"/>
                         <outlet property="viewHeaderCalendar" destination="uOd-x5-Huc" id="dOa-ES-FWL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="67.938931297709928" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="-44" y="-2"/>
         </scene>
         <!--Camera AnalysisVC-->
         <scene sceneID="p1S-hd-3DO">
@@ -268,7 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWX-J8-BUi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="808" y="-2"/>
+            <point key="canvasLocation" x="1549" y="-2"/>
         </scene>
         <!--Recorded Video ListVC-->
         <scene sceneID="jW0-Cn-Go3">
@@ -280,10 +302,11 @@
                         <viewLayoutGuide key="safeArea" id="GxX-Qf-5Q6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="uSZ-13-15c"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhU-qJ-LCV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="-2"/>
+            <point key="canvasLocation" x="839" y="-2"/>
         </scene>
     </scenes>
     <resources>
