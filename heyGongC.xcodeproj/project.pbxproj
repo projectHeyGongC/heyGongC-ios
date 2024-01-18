@@ -20,6 +20,11 @@
 		B8C9A76B2B4FCEBA0083B144 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A7692B4FCEBA0083B144 /* UserProfileVC.swift */; };
 		B8C9A76C2B4FCEBA0083B144 /* UserProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A76A2B4FCEBA0083B144 /* UserProfileVM.swift */; };
 		B8C9A76E2B4FCEDF0083B144 /* NotificationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A76D2B4FCEDF0083B144 /* NotificationSettingsVC.swift */; };
+		B8FC68492B581F7500C29691 /* DeviceRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8FC68482B581F7500C29691 /* DeviceRegister.storyboard */; };
+		B8FC684C2B581F9B00C29691 /* QRCodeReaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC684B2B581F9B00C29691 /* QRCodeReaderVC.swift */; };
+		B8FC684E2B581FC000C29691 /* QRCodeReaderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC684D2B581FC000C29691 /* QRCodeReaderVM.swift */; };
+		B8FC68502B581FD800C29691 /* DeviceNamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC684F2B581FD800C29691 /* DeviceNamingVC.swift */; };
+		B8FC68522B581FE600C29691 /* DeviceNamingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC68512B581FE600C29691 /* DeviceNamingVM.swift */; };
 		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
 		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
 		CA3D7B022B4E857B00C63FD0 /* PopupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */; };
@@ -100,6 +105,11 @@
 		B8C9A7692B4FCEBA0083B144 /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		B8C9A76A2B4FCEBA0083B144 /* UserProfileVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVM.swift; sourceTree = "<group>"; };
 		B8C9A76D2B4FCEDF0083B144 /* NotificationSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsVC.swift; sourceTree = "<group>"; };
+		B8FC68482B581F7500C29691 /* DeviceRegister.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeviceRegister.storyboard; sourceTree = "<group>"; };
+		B8FC684B2B581F9B00C29691 /* QRCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderVC.swift; sourceTree = "<group>"; };
+		B8FC684D2B581FC000C29691 /* QRCodeReaderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderVM.swift; sourceTree = "<group>"; };
+		B8FC684F2B581FD800C29691 /* DeviceNamingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNamingVC.swift; sourceTree = "<group>"; };
+		B8FC68512B581FE600C29691 /* DeviceNamingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNamingVM.swift; sourceTree = "<group>"; };
 		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupManager.swift; sourceTree = "<group>"; };
@@ -211,6 +221,17 @@
 			name = UserProfile;
 			sourceTree = "<group>";
 		};
+		B8FC684A2B581F8A00C29691 /* DeviceRegister */ = {
+			isa = PBXGroup;
+			children = (
+				B8FC684B2B581F9B00C29691 /* QRCodeReaderVC.swift */,
+				B8FC684D2B581FC000C29691 /* QRCodeReaderVM.swift */,
+				B8FC684F2B581FD800C29691 /* DeviceNamingVC.swift */,
+				B8FC68512B581FE600C29691 /* DeviceNamingVM.swift */,
+			);
+			name = DeviceRegister;
+			sourceTree = "<group>";
+		};
 		C6E711DF2B4B88FD00A05A6A /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +340,7 @@
 				CA6EACF72B39867500F81F3A /* Analysis.storyboard */,
 				CA6EACF92B39868B00F81F3A /* Subscription.storyboard */,
 				CA6EACFB2B39869B00F81F3A /* UserProfile.storyboard */,
+				B8FC68482B581F7500C29691 /* DeviceRegister.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -365,6 +387,7 @@
 		CA6EAC8F2B3967C300F81F3A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B8FC684A2B581F8A00C29691 /* DeviceRegister */,
 				B8C9A7682B4FCE640083B144 /* UserProfile */,
 				CAC9C8A82B3C468000C02509 /* Example */,
 				C6E711DF2B4B88FD00A05A6A /* Splash */,
@@ -532,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA6EACF42B39863F00F81F3A /* Login.storyboard in Resources */,
+				B8FC68492B581F7500C29691 /* DeviceRegister.storyboard in Resources */,
 				CA6EAC632B395E0000F81F3A /* LaunchScreen.storyboard in Resources */,
 				CA6EACF82B39867600F81F3A /* Analysis.storyboard in Resources */,
 				CAC9C8B02B3C53AA00C02509 /* Splash.storyboard in Resources */,
@@ -662,6 +686,7 @@
 				CA58BF832B4E6AE2008D8015 /* CameraVC.swift in Sources */,
 				B88C41572B55221A006A5F65 /* SettingsVM.swift in Sources */,
 				B84BED872B4BB9A400382F7F /* LoginCollectionViewCell.swift in Sources */,
+				B8FC684C2B581F9B00C29691 /* QRCodeReaderVC.swift in Sources */,
 				B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */,
 				CA6EAC9E2B39688700F81F3A /* BaseVM.swift in Sources */,
 				CAC9C8A62B3C467D00C02509 /* ExampleVM.swift in Sources */,
@@ -669,6 +694,7 @@
 				CA58BF862B4E6AE2008D8015 /* CameraVM.swift in Sources */,
 				CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */,
 				CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */,
+				B8FC68522B581FE600C29691 /* DeviceNamingVM.swift in Sources */,
 				C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */,
 				CA6EACA32B39699B00F81F3A /* DefaultsKeys.swift in Sources */,
 				CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */,
@@ -685,7 +711,9 @@
 				CA58BF852B4E6AE2008D8015 /* CameraSettingVM.swift in Sources */,
 				CA6EACA62B3969AE00F81F3A /* App.swift in Sources */,
 				CA6EAC562B395DFF00F81F3A /* SceneDelegate.swift in Sources */,
+				B8FC684E2B581FC000C29691 /* QRCodeReaderVM.swift in Sources */,
 				CA3D7B022B4E857B00C63FD0 /* PopupManager.swift in Sources */,
+				B8FC68502B581FD800C29691 /* DeviceNamingVC.swift in Sources */,
 				C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */,
 				CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */,
 				CA6EAC9D2B39688700F81F3A /* BaseView.swift in Sources */,
@@ -872,7 +900,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = heyGongC/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "어이, 공씨";
+				INFOPLIST_KEY_NSCameraUsageDescription = "헤이공씨의 다음 작업을 허용하시겠습니까? 사진 및 동영상 촬영";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Launch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Splash;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -907,7 +937,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = heyGongC/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "어이, 공씨";
+				INFOPLIST_KEY_NSCameraUsageDescription = "헤이공씨의 다음 작업을 허용하시겠습니까? 사진 및 동영상 촬영";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Launch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Splash;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
