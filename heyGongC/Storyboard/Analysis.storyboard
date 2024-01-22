@@ -21,8 +21,77 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ph1-tS-YJL">
                                 <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SX7-IB-Nwc">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="38"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="분석" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goB-i9-BqX">
+                                                <rect key="frame" x="182.66666666666666" y="19" width="28" height="19.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                <color key="textColor" name="000000"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="PDX-dh-INl">
+                                                <rect key="frame" x="18" y="14" width="357" height="24"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vvI-GK-64X">
+                                                        <rect key="frame" x="0.0" y="0.0" width="59" height="24"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FD8-3o-RYw">
+                                                                <rect key="frame" x="0.0" y="0.0" width="26.333333333333332" height="24"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                                <color key="textColor" name="000000"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bc1-L0-e5b">
+                                                                <rect key="frame" x="30.333333333333336" y="0.0" width="28.666666666666664" height="24"/>
+                                                                <string key="text">Sun
+Jan 2024</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                                                                <color key="textColor" name="94A3B8"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLE-pY-S5H">
+                                                        <rect key="frame" x="333" y="0.0" width="24" height="24"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5q-eb-aUF">
+                                                                <rect key="frame" x="-3" y="-5" width="30" height="34"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="yKk-RH-Amq">
+                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="24" id="EIr-3s-9v0"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="j6V-47-0an"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="yKk-RH-Amq" secondAttribute="bottom" id="4gP-Dd-9ul"/>
+                                                            <constraint firstAttribute="trailing" secondItem="yKk-RH-Amq" secondAttribute="trailing" id="BQL-A9-IIw"/>
+                                                            <constraint firstItem="yKk-RH-Amq" firstAttribute="top" secondItem="oLE-pY-S5H" secondAttribute="top" id="H5i-nf-NaR"/>
+                                                            <constraint firstItem="yKk-RH-Amq" firstAttribute="leading" secondItem="oLE-pY-S5H" secondAttribute="leading" id="Pc5-6I-FyW"/>
+                                                            <constraint firstItem="T5q-eb-aUF" firstAttribute="centerY" secondItem="oLE-pY-S5H" secondAttribute="centerY" id="p9l-ly-C0Y"/>
+                                                            <constraint firstItem="T5q-eb-aUF" firstAttribute="centerX" secondItem="oLE-pY-S5H" secondAttribute="centerX" id="zDf-Ao-6al"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PDX-dh-INl" secondAttribute="trailing" constant="18" id="FTY-7M-csR"/>
+                                            <constraint firstAttribute="bottom" secondItem="PDX-dh-INl" secondAttribute="bottom" id="J0T-ON-dyO"/>
+                                            <constraint firstItem="goB-i9-BqX" firstAttribute="centerX" secondItem="SX7-IB-Nwc" secondAttribute="centerX" id="SzJ-lM-A5g"/>
+                                            <constraint firstItem="PDX-dh-INl" firstAttribute="leading" secondItem="SX7-IB-Nwc" secondAttribute="leading" constant="18" id="grn-V3-zGl"/>
+                                            <constraint firstItem="PDX-dh-INl" firstAttribute="top" secondItem="SX7-IB-Nwc" secondAttribute="top" constant="14" id="l7t-nV-7bs"/>
+                                            <constraint firstItem="goB-i9-BqX" firstAttribute="top" secondItem="SX7-IB-Nwc" secondAttribute="top" constant="19" id="niQ-6h-KvC"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1q-wp-ufp">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="190"/>
+                                        <rect key="frame" x="0.0" y="38" width="393" height="190"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOd-x5-Huc" customClass="FSCalendar">
                                                 <rect key="frame" x="0.0" y="40" width="393" height="150"/>
@@ -41,7 +110,7 @@
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pw0-34-ETd">
-                                        <rect key="frame" x="0.0" y="190" width="393" height="520"/>
+                                        <rect key="frame" x="0.0" y="228" width="393" height="482"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="zJt-sX-7cF">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="619"/>
@@ -224,7 +293,7 @@
                                     </scrollView>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I00-1E-oDu">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I00-1E-oDu">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-kp-YTr" userLabel="bg">
@@ -266,11 +335,13 @@
                     <tabBarItem key="tabBarItem" title="분석" image="tab_ic_analysis_off" selectedImage="tab_ic_analysis_on" id="ckz-AO-za6"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnFullCalendar" destination="T5q-eb-aUF" id="ZFs-36-P7x"/>
                         <outlet property="btnMore" destination="z4r-BN-0et" id="tW4-Vy-vMg"/>
                         <outlet property="calendarHeightConstraint" destination="qiN-Mc-rRJ" id="8UG-Yb-ouK"/>
                         <outlet property="fullCalendarHeightConstraint" destination="3iy-yO-aXj" id="Fu9-EU-tuY"/>
                         <outlet property="viewFullCalendar" destination="JHp-hK-NyA" id="ZvM-4G-7VF"/>
                         <outlet property="viewHeaderCalendar" destination="uOd-x5-Huc" id="dOa-ES-FWL"/>
+                        <outlet property="viewHidden" destination="I00-1E-oDu" id="VlO-lL-3Si"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -310,11 +381,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_calendar" width="24" height="24"/>
         <image name="ic_right_arrow" width="20" height="20"/>
         <image name="tab_ic_analysis_off" width="20" height="18"/>
         <image name="tab_ic_analysis_on" width="24" height="25"/>
         <namedColor name="000000">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="94A3B8">
+            <color red="0.58039215686274515" green="0.63921568627450975" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="CCCCCC">
             <color red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
