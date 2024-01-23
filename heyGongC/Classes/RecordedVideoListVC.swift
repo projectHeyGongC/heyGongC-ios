@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxOptional
+import Charts
 
 class RecordedVideoListVC: BaseVC {
     

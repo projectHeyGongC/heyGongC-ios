@@ -99,7 +99,7 @@ extension AnalysisVC {
             .bind(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                SegueUtils.open(target: self, link: .RecordedVideoListVC)
+                SegueUtils.open(target: self, link: .RecordedVideoListVC, isPresent: true)
                 
             }).disposed(by: viewModel.bag)
         
