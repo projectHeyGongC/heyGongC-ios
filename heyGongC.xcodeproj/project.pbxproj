@@ -20,6 +20,8 @@
 		B8C9A76B2B4FCEBA0083B144 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A7692B4FCEBA0083B144 /* UserProfileVC.swift */; };
 		B8C9A76C2B4FCEBA0083B144 /* UserProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A76A2B4FCEBA0083B144 /* UserProfileVM.swift */; };
 		B8C9A76E2B4FCEDF0083B144 /* NotificationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A76D2B4FCEDF0083B144 /* NotificationSettingsVC.swift */; };
+		C61EEB302B5FB55900E5B0EB /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61EEB2F2B5FB55900E5B0EB /* NotificationVC.swift */; };
+		C61EEB322B5FB56800E5B0EB /* NotificationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61EEB312B5FB56800E5B0EB /* NotificationVM.swift */; };
 		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
 		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
 		CA3D7B022B4E857B00C63FD0 /* PopupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */; };
@@ -100,6 +102,8 @@
 		B8C9A7692B4FCEBA0083B144 /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		B8C9A76A2B4FCEBA0083B144 /* UserProfileVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVM.swift; sourceTree = "<group>"; };
 		B8C9A76D2B4FCEDF0083B144 /* NotificationSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsVC.swift; sourceTree = "<group>"; };
+		C61EEB2F2B5FB55900E5B0EB /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		C61EEB312B5FB56800E5B0EB /* NotificationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVM.swift; sourceTree = "<group>"; };
 		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupManager.swift; sourceTree = "<group>"; };
@@ -211,6 +215,15 @@
 			name = UserProfile;
 			sourceTree = "<group>";
 		};
+		C61EEB332B5FB56D00E5B0EB /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				C61EEB2F2B5FB55900E5B0EB /* NotificationVC.swift */,
+				C61EEB312B5FB56800E5B0EB /* NotificationVM.swift */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
 		C6E711DF2B4B88FD00A05A6A /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +238,7 @@
 				CA58BF882B4E6AFE008D8015 /* CameraSetting */,
 				CA58BF892B4E6B06008D8015 /* Camera */,
 				CA58BF8A2B4E6B0D008D8015 /* Monitoring */,
+				C61EEB332B5FB56D00E5B0EB /* Notification */,
 			);
 			name = Monitoring;
 			sourceTree = "<group>";
@@ -662,6 +676,7 @@
 				CA58BF832B4E6AE2008D8015 /* CameraVC.swift in Sources */,
 				B88C41572B55221A006A5F65 /* SettingsVM.swift in Sources */,
 				B84BED872B4BB9A400382F7F /* LoginCollectionViewCell.swift in Sources */,
+				C61EEB322B5FB56800E5B0EB /* NotificationVM.swift in Sources */,
 				B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */,
 				CA6EAC9E2B39688700F81F3A /* BaseVM.swift in Sources */,
 				CAC9C8A62B3C467D00C02509 /* ExampleVM.swift in Sources */,
@@ -676,6 +691,7 @@
 				CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */,
 				CA58BF842B4E6AE2008D8015 /* CameraSettingVC.swift in Sources */,
 				B84BED7F2B4BB95F00382F7F /* CreateAccountVC.swift in Sources */,
+				C61EEB302B5FB55900E5B0EB /* NotificationVC.swift in Sources */,
 				B8C9A76B2B4FCEBA0083B144 /* UserProfileVC.swift in Sources */,
 				CA6EACA82B396CD100F81F3A /* Push.swift in Sources */,
 				B88C41592B55222E006A5F65 /* SettingsVC.swift in Sources */,
