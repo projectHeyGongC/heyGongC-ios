@@ -36,6 +36,7 @@ def common_pods
   pod 'SwiftyUserDefaults', '~> 5.0'
   pod 'lottie-ios', '~> 3.3.0'
   pod 'Action'
+  pod 'FSCalendar'
   
 end
 

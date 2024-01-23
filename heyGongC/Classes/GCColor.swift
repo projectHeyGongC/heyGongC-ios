@@ -19,7 +19,10 @@ struct GCColor {
     static let C_E4E4E4 = UIColor(named: "E4E4E4") ?? .white
     static let C_2B2B2B = UIColor(named: "2B2B2B") ?? .white
     static let C_FF0000 = UIColor(named: "FF0000") ?? .white
+    static let C_CCCCCC = UIColor(named: "CCCCCC") ?? .white
     static let C_FFC000 = UIColor(named: "FFC000") ?? .white
     static let C_CACACA = UIColor(named: "CACACA") ?? .white
     static let C_C4C4C4 = UIColor(named: "C4C4C4") ?? .white
+    static let C_E5E5E5 = UIColor(named: "E5E5E5") ?? .white
+    static let C_94A3B8 = UIColor(named: "94A3B8") ?? .white
 }

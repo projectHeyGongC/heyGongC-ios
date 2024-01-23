@@ -23,9 +23,13 @@ class SegueUtils {
     ///   - target: 현재 화면
     ///   - link: 이동할 화면 (Link)
     ///   - animated: 애니메이션 유무
-    static func open(target: UIViewController, link: Link, animated: Bool = true) {
+    static func open(target: UIViewController, link: Link, animated: Bool = true, isPresent: Bool = false) {
         if let vc = link.viewController {
-            target.navigationController?.pushViewController(vc, animated: animated)
+            if isPresent {
+                target.present(vc, animated: animated)
+            } else {
+                target.navigationController?.pushViewController(vc, animated: animated)
+            }
         }
     }
 }
@@ -46,15 +50,17 @@ enum Link: String {
     case SelectedAccountTypeVC  = "SelectAccountTypeVC"
     case CreateAccountVC        = "CreateAccountVC"
     case MainTBC                = "MainTBC"
+    case CameraAnalysisVC       = "CameraAnalysisVC"
+    case RecordedVideoListVC    = "RecordedVideoListVC"
     
     var baseStoryboard: String {
         switch self {
-        case .SelectedAccountTypeVC:
-            return Storyboard.Login
-        case .CreateAccountVC:
+        case .SelectedAccountTypeVC, .CreateAccountVC:
             return Storyboard.Login
         case .MainTBC:
             return Storyboard.Monitoring
+        case .RecordedVideoListVC, .CameraAnalysisVC:
+            return Storyboard.Analysis
         }
     }
     
