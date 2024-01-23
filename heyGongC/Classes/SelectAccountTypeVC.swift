@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import RxSwift
 import SwiftyUserDefaults
+import GoogleSignIn
+
 
 class SelectAccountTypeVC: BaseVC {
     
@@ -36,7 +38,19 @@ class SelectAccountTypeVC: BaseVC {
         
     }
     
-    override func setupHandler() { }
+    override func setupHandler() { 
+        
+    }
+}
+
+extension SelectAccountTypeVC {
+    private func bindAction() {
+        
+        btnGoogle.rx.tap
+            .bind(onNext: {
+                
+            }).disposed(by: viewModel.bag)
+    }
 }
 
 extension SelectAccountTypeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -61,6 +75,18 @@ extension SelectAccountTypeVC: UICollectionViewDelegateFlowLayout {
         let width = scrollView.frame.width
         currentPage = Int(scrollView.contentOffset.x / width)
         pageController.currentPage = currentPage
+    }
+}
+
+extension SelectAccountTypeVC {
+    
+    private func loginForGoogle() {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] signInResult, _ in
+                    guard let self,
+                          let result = signInResult,
+                          let token = result.user.idToken?.tokenString else { return }
+                    // 서버에 토큰을 보내기. 이 때 idToken, accessToken 차이에 주의할 것
+                }
     }
 }
 

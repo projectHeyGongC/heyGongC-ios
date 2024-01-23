@@ -38,6 +38,9 @@ def common_pods
   pod 'Action'
   pod 'FSCalendar'
   
+  # Login
+  pod 'GoogleSignIn'
+  
 end
 
 target 'heyGongC' do

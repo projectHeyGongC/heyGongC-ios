@@ -924,7 +924,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TM6B25PL78;
+				DEVELOPMENT_TEAM = P28M74SH4G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = heyGongC/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "어이, 공씨";
@@ -960,11 +960,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TM6B25PL78;
+				DEVELOPMENT_TEAM = P28M74SH4G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = heyGongC/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "어이, 공씨";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Launch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Splash;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
