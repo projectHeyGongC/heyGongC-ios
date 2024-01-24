@@ -29,6 +29,8 @@
 		CA3D7ABA2B4E75EC00C63FD0 /* RecordedVideoListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7AB92B4E75EC00C63FD0 /* RecordedVideoListVM.swift */; };
 		CA3D7ABD2B4E765100C63FD0 /* AnalysisVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7ABC2B4E765100C63FD0 /* AnalysisVC.swift */; };
 		CA3D7B022B4E857B00C63FD0 /* PopupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */; };
+		CA3D7B042B6125FA00C63FD0 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7B032B6125FA00C63FD0 /* Net.swift */; };
+		CA3D7B072B612E9D00C63FD0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7B062B612E9D00C63FD0 /* CustomButton.swift */; };
 		CA58BF802B4E6AE2008D8015 /* MonitoringVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF792B4E6AE2008D8015 /* MonitoringVC.swift */; };
 		CA58BF812B4E6AE2008D8015 /* MonitoringVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7A2B4E6AE2008D8015 /* MonitoringVM.swift */; };
 		CA58BF822B4E6AE2008D8015 /* MonitoringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58BF7B2B4E6AE2008D8015 /* MonitoringCell.swift */; };
@@ -115,6 +117,8 @@
 		CA3D7AB92B4E75EC00C63FD0 /* RecordedVideoListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordedVideoListVM.swift; sourceTree = "<group>"; };
 		CA3D7ABC2B4E765100C63FD0 /* AnalysisVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisVC.swift; sourceTree = "<group>"; };
 		CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupManager.swift; sourceTree = "<group>"; };
+		CA3D7B032B6125FA00C63FD0 /* Net.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
+		CA3D7B062B612E9D00C63FD0 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CA58BF792B4E6AE2008D8015 /* MonitoringVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringVC.swift; sourceTree = "<group>"; };
 		CA58BF7A2B4E6AE2008D8015 /* MonitoringVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringVM.swift; sourceTree = "<group>"; };
 		CA58BF7B2B4E6AE2008D8015 /* MonitoringCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoringCell.swift; sourceTree = "<group>"; };
@@ -268,6 +272,25 @@
 			name = RecordedVideoList;
 			sourceTree = "<group>";
 		};
+		CA3D7B052B612E8300C63FD0 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				B8C9A7682B4FCE640083B144 /* UserProfile */,
+				B81358412B4BB8F8007987A0 /* Login */,
+				CA58BF872B4E6AE6008D8015 /* Monitoring */,
+				CA32691E2B4E6DDD0087D534 /* Analysis */,
+			);
+			name = Tab;
+			sourceTree = "<group>";
+		};
+		CA3D7B082B612EA600C63FD0 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				CA3D7B062B612E9D00C63FD0 /* CustomButton.swift */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
 		CA58BF872B4E6AE6008D8015 /* Monitoring */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,12 +437,10 @@
 		CA6EAC8F2B3967C300F81F3A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B8C9A7682B4FCE640083B144 /* UserProfile */,
-				CAC9C8A82B3C468000C02509 /* Example */,
 				C6E711DF2B4B88FD00A05A6A /* Splash */,
-				B81358412B4BB8F8007987A0 /* Login */,
-				CA58BF872B4E6AE6008D8015 /* Monitoring */,
-				CA32691E2B4E6DDD0087D534 /* Analysis */,
+				CA3D7B052B612E8300C63FD0 /* Tab */,
+				CAC9C8A82B3C468000C02509 /* Example */,
+				CA3D7B082B612EA600C63FD0 /* Custom */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -447,6 +468,7 @@
 		CA6EAC942B39680F00F81F3A /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				CA3D7B032B6125FA00C63FD0 /* Net.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -703,6 +725,7 @@
 				CA3D7ABA2B4E75EC00C63FD0 /* RecordedVideoListVM.swift in Sources */,
 				CA58BF822B4E6AE2008D8015 /* MonitoringCell.swift in Sources */,
 				B8C9A76C2B4FCEBA0083B144 /* UserProfileVM.swift in Sources */,
+				CA3D7B042B6125FA00C63FD0 /* Net.swift in Sources */,
 				CA6EAC9B2B39688700F81F3A /* BaseNavigationVC.swift in Sources */,
 				CA6EAC5E2B395DFF00F81F3A /* heyGongC.xcdatamodeld in Sources */,
 				CA58BF812B4E6AE2008D8015 /* MonitoringVM.swift in Sources */,
@@ -718,6 +741,7 @@
 				CA3D7ABD2B4E765100C63FD0 /* AnalysisVC.swift in Sources */,
 				CA6EAC9E2B39688700F81F3A /* BaseVM.swift in Sources */,
 				CAC9C8A62B3C467D00C02509 /* ExampleVM.swift in Sources */,
+				CA3D7B072B612E9D00C63FD0 /* CustomButton.swift in Sources */,
 				CA6EACA22B39699B00F81F3A /* Localized.swift in Sources */,
 				CA32691B2B4E6DC90087D534 /* CameraAnalysisVC.swift in Sources */,
 				CA58BF862B4E6AE2008D8015 /* CameraVM.swift in Sources */,
