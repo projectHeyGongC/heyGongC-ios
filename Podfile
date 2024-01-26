@@ -22,7 +22,6 @@ def common_pods
   
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'SnapKit', '~> 5.6.0'
-  pod 'Moya/RxSwift'
   
   # ReactiveX
   pod 'RxSwift'
@@ -31,6 +30,12 @@ def common_pods
   pod 'RxGesture'
   pod 'RxDataSources'
   pod 'Then'
+  
+  # Moya
+  pod 'Moya'
+  pod 'Moya/RxSwift'
+  pod 'Moya/ReactiveSwift'
+  pod 'Moya/Combine'
   
   # Utils
   pod 'SwiftyUserDefaults', '~> 5.0'

@@ -77,8 +77,7 @@ class BaseVC: UIViewController, BaseImplementation {
             }.disposed(by: bag)
     }
     
-    //그냥 다 사용
-    public func setErrorHandler(error: Error?) {
+    private func setErrorHandler(error: Error?) {
         
         guard let e = error as? GCError else {
             // 알 수 없는 에러
@@ -95,8 +94,6 @@ class BaseVC: UIViewController, BaseImplementation {
 //                App.shared.introType = .login
 //                self?.navigationController?.backToIntro()
 //            })
-        case .unknown(_):
-            e.showErrorMsg(target: self.view)
         default:
             print("🔋🔋🔋🔋 \(error?.localizedDescription ?? "")")
             e.showErrorMsg(target: self.view)

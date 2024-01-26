@@ -20,11 +20,19 @@ PODS:
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.2.0)
   - lottie-ios (3.3.0)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Combine (15.0.0):
+    - Moya/Core
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
+  - Moya/ReactiveSwift (15.0.0):
+    - Moya/Core
+    - ReactiveSwift (~> 6.6.1)
   - Moya/RxSwift (15.0.0):
     - Moya/Core
     - RxSwift (~> 6.0)
+  - ReactiveSwift (6.6.1)
   - RxCocoa (6.6.0):
     - RxRelay (= 6.6.0)
     - RxSwift (= 6.6.0)
@@ -51,6 +59,9 @@ DEPENDENCIES:
   - FSCalendar
   - GoogleSignIn
   - lottie-ios (~> 3.3.0)
+  - Moya
+  - Moya/Combine
+  - Moya/ReactiveSwift
   - Moya/RxSwift
   - RxCocoa
   - RxDataSources
@@ -74,6 +85,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - lottie-ios
     - Moya
+    - ReactiveSwift
     - RxCocoa
     - RxDataSources
     - RxGesture
@@ -96,6 +108,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  ReactiveSwift: fab34244ad908808dc822bae352a058c8837c4ca
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
@@ -107,6 +120,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 7e5cb5c1f8f64623490c68b4758b3bfbda7018a0
+PODFILE CHECKSUM: f3295bf4dfecfd50d06547be6dd0900029fdec5d
 
 COCOAPODS: 1.14.3
