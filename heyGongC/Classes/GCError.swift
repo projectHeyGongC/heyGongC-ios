@@ -8,31 +8,30 @@
 import Foundation
 import Toast_Swift
 
-enum GCError: Error {
-    case expired
-    case badRequest
-    case unauthorized
-    case forbidden
-    case internalServerError
-    case errorJson
+/// 서버통신은 성공했으나 서버 내의 통신
+public enum GCError: Error {
+    /// 파라미터 이상
+    case badRequest(msg: String)
+    /// 유효하지 않은 토큰
+    case unauthorized(msg: String)
+    /// 새로운 로그인 존재
+    case forbidden(msg: String)
+    case internalServerError(msg: String)
     case notFoundCode
-    case retry
 }
 
-enum GCErrorCode: String {
-    case success                            = "200"
-    case badRequest                         = "400"
-    case unauthorized                       = "401"
-    case forbidden                          = "403"
-    case internalServerError                = "500"
+enum GCErrorCode: Int {
+    case success                            = 200
+    case badRequest                         = 400
+    case unauthorized                       = 401
+    case forbidden                          = 403
+    case internalServerError                = 500
 }
 
 extension GCError {
     
     func processError(target: UIViewController) {
         switch self {
-        case .expired:
-            print("expired")
         case .badRequest:
             print("badRequest")
         case .unauthorized:
@@ -41,10 +40,6 @@ extension GCError {
             print("forbidden")
         case .internalServerError:
             print("InternalServerError")
-        case .retry:
-            print("retry")
-        case .errorJson:
-            print("errorJson")
         case .notFoundCode:
             print("notFoundCode")
         }

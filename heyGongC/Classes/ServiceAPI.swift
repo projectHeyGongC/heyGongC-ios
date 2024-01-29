@@ -7,39 +7,48 @@
 
 import Foundation
 import Moya
+import SwiftyUserDefaults
 
 class ServiceAPI {
     static let shared = ServiceAPI()
     
     let baseUrl = "http://13.125.159.97/v1/users"
     
-    struct RequestData {
-        var itype: String = "1"
-        var portGrpCd: String
-        var comdKind: String
-    }
-    
-    public func getData(params: RequestData) -> AnyObject {
-        var data = [String : String]()
-        
-        data["itype"] = params.itype
-        data["port_grp_cd"] = params.portGrpCd
-        data["comd_kind"] = params.comdKind
-        
-        return data as AnyObject
+    public func getHeader() -> [String: String] {
+        if Defaults.AUTH_TOKEN == "" {
+            return [
+                "Content-Type": "application/json"
+            ]
+        } else {
+            return [
+                "Content-Type": "application/json",
+                "RefreshAccessTokenRequest": "refreshToken,\(Defaults.AUTH_TOKEN)"
+            ]
+        }
     }
     
     public func judgeStatus<T: Codable>(response: Response, type: T.Type) -> NetworkResult2<GenericResponse<T>> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: response.data) else { return .pathErr }
+        guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: response.data) else { return .jsonErr }
         
         switch response.statusCode {
         case 200..<300:
-            if decodedData.status >= 400 {
-                // 서버 통신은 정상적이지만, 원치 않는 결과로 인한 에러 대응 시 사용.
-                return .success(decodedData)
+            
+            if let error = GCErrorCode(rawValue: decodedData.status) {
+                switch error {
+                case .success:
+                    return .success(decodedData)
+                case .badRequest:
+                    return .error(.badRequest(msg: decodedData.message ?? ""))
+                case .unauthorized:
+                    return .error(.unauthorized(msg: decodedData.message ?? ""))
+                case .forbidden:
+                    return .error(.forbidden(msg: decodedData.message ?? ""))
+                case .internalServerError:
+                    return .error(.internalServerError(msg: decodedData.message ?? ""))
+                }
             } else {
-                return .success(decodedData)
+                return .error(.notFoundCode)
             }
         case 400..<500:
             return .requestErr
@@ -62,8 +71,9 @@ struct GenericResponse<T: Codable>: Codable {
 // NetworkResult2.swift
 public enum NetworkResult2<T> {
     case success(T)
+    case error(GCError)
     case requestErr
-    case pathErr
+    case jsonErr
     case serverErr
     case networkFail
 }

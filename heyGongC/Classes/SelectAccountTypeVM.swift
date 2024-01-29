@@ -12,5 +12,5 @@ import RxCocoa
 
 
 class SelectAccountTypeVM: BaseVM {
-
+    private func 
 }

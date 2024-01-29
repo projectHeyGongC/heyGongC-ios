@@ -44,7 +44,7 @@ class SelectAccountTypeVC: BaseVC {
     }
     
     override func setupHandler() { 
-        
+        self.setErrorHandler(vm: viewModel)
     }
 }
 // MARK: - Private

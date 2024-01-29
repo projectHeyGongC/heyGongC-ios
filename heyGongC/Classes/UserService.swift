@@ -9,12 +9,12 @@ import Foundation
 import Moya
 import RxSwift
 
-
+/// kes 240129 스웨거에 있는 API
 enum UserAPI {
-    case register(type: SelectAccountTypeVC.LoginType)
-    case login(type: SelectAccountTypeVC.LoginType)
+    case register(type: SelectAccountTypeVC.LoginType, param: UserParam.RequestRegisterData)
+    case login(type: SelectAccountTypeVC.LoginType, param: UserParam.RequestLoginData)
     case unregister
-    case refreshToken
+    case refreshToken(param: UserParam.RequestToken)
     case info
 }
 
@@ -25,9 +25,9 @@ extension UserAPI: TargetType {
     
     var path: String {
         switch self {
-        case .register(type: let type):
+        case .register(type: let type, param: _):
             return "/\(type.rawValue)/register"
-        case .login(type: let type):
+        case .login(type: let type, param: _):
             return "/\(type.rawValue)/login"
         case .unregister:
             return "/unregister"
@@ -49,53 +49,22 @@ extension UserAPI: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .register(let type):
-            let
-        case .login(let type):
-            <#code#>
+        case .register(type: _, param: let param):
+            return .requestParameters(parameters: UserParam().getData(params: param), encoding: URLEncoding.default)
+        case .login(type: _, param: let param):
+            return .requestParameters(parameters: UserParam().getData(params: param), encoding: URLEncoding.default)
         case .unregister:
-            <#code#>
-        case .refreshToken:
-            <#code#>
+            return .requestPlain
+        case .refreshToken(param: let param):
+            return .requestParameters(parameters: UserParam().getData(params: param), encoding: URLEncoding.default)
         case .info:
-            <#code#>
+            return .requestPlain
         }
     }
     
     var headers: [String : String]? {
-        <#code#>
+        return ServiceAPI.shared.getHeader()
     }
-}
-
-class UserParam {
-    
-    struct RequestRegisterData {
-        var deviceID, deviceOS: String
-        var ads: Bool
-        var token: Token
-    }
-    
-    // MARK: Token
-    struct Token {
-        var accessToken, refreshToken: String
-        
-        func getToken() -> [String: String] {
-            return [self.accessToken: self.refreshToken]
-        }
-    }
-    
-    public func getData(params: RequestRegisterData) -> AnyObject {
-        var data = [String : Any]()
-        
-        data["deviceID"] = params.deviceID
-        data["deviceOS"] = params.deviceOS
-        data["ads"] = params.ads
-        data["token"] = params.token.getToken()
-        data["deviceID"] = params.deviceID
-        
-        return data as AnyObject
-    }
-    
 }
 
 class UserService {
@@ -103,9 +72,77 @@ class UserService {
     var tagProvider = MoyaProvider<UserAPI>()
     private init() { }
     
-    // 받은 태그를 조회하는 api.
-    func getUserInfo(cardUUID: String) -> Single<NetworkResult2<GenericResponse<UserModel>>> {
-        // ✅ 서버통신의 결과를 Single로 만들어서 반환하였습니다.
+    
+    func requestRegister(type: SelectAccountTypeVC.LoginType, param: UserParam.RequestRegisterData) -> Single<NetworkResult2<GenericResponse<TokenModel>>> {
+        return Single<NetworkResult2<GenericResponse<TokenModel>>>.create { single in
+            self.tagProvider.request(.register(type: type, param: param)) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: TokenModel.self)
+                    single(.success(networkResult))
+                    return
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func requestLogin(type: SelectAccountTypeVC.LoginType, param: UserParam.RequestLoginData) -> Single<NetworkResult2<GenericResponse<TokenModel>>> {
+        return Single<NetworkResult2<GenericResponse<TokenModel>>>.create { single in
+            self.tagProvider.request(.login(type: type, param: param)) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: TokenModel.self)
+                    single(.success(networkResult))
+                    return
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func requestUnregister(type: SelectAccountTypeVC.LoginType) -> Single<NetworkResult2<GenericResponse<TokenModel>>> {
+        return Single<NetworkResult2<GenericResponse<TokenModel>>>.create { single in
+            self.tagProvider.request(.unregister) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: TokenModel.self)
+                    single(.success(networkResult))
+                    return
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func requestToken(type: SelectAccountTypeVC.LoginType, param: UserParam.RequestToken) -> Single<NetworkResult2<GenericResponse<TokenModel>>> {
+        return Single<NetworkResult2<GenericResponse<TokenModel>>>.create { single in
+            self.tagProvider.request(.refreshToken(param: param)) { result in
+                switch result {
+                case .success(let response):
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: TokenModel.self)
+                    single(.success(networkResult))
+                    return
+                case .failure(let error):
+                    single(.failure(error))
+                    return
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
+    func getInfo() -> Single<NetworkResult2<GenericResponse<UserModel>>> {
         return Single<NetworkResult2<GenericResponse<UserModel>>>.create { single in
             self.tagProvider.request(.info) { result in
                 switch result {
@@ -121,5 +158,4 @@ class UserService {
             return Disposables.create()
         }
     }
-    
 }
