@@ -400,6 +400,8 @@ Jan 2024</string>
                         <outlet property="btnMore" destination="z4r-BN-0et" id="tW4-Vy-vMg"/>
                         <outlet property="calendarHeightConstraint" destination="qiN-Mc-rRJ" id="8UG-Yb-ouK"/>
                         <outlet property="lblFullCalendarHeader" destination="Ngq-jh-r6K" id="LhB-VR-6w3"/>
+                        <outlet property="lblSelectedDayOfMonth" destination="FD8-3o-RYw" id="mQ7-hJ-11p"/>
+                        <outlet property="lblSelectedSpecificDate" destination="bc1-L0-e5b" id="e1L-Zs-0dO"/>
                         <outlet property="viewFullCalendar" destination="JHp-hK-NyA" id="ZvM-4G-7VF"/>
                         <outlet property="viewHeaderCalendar" destination="uOd-x5-Huc" id="dOa-ES-FWL"/>
                         <outlet property="viewHidden" destination="I00-1E-oDu" id="VlO-lL-3Si"/>

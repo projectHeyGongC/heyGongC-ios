@@ -13,8 +13,18 @@ import FSCalendar
 
 class AnalysisVC: BaseVC {
     
+    enum DateFormatType: String {
+        case fullCalendarHeader = "MMMM yyyy"
+        case selectedDay = "dd"
+        case selectedSpecificDate = "EEE\nMMM yyyy"
+    }
+    
     @IBOutlet weak var btnFullCalendar: UIButton!
     @IBOutlet weak var btnMore: UIButton!
+    
+    @IBOutlet weak var lblSelectedDayOfMonth: UILabel!
+    
+    @IBOutlet weak var lblSelectedSpecificDate: UILabel!
     
     @IBOutlet weak var viewHeaderCalendar: FSCalendar!
     @IBOutlet weak var viewFullCalendar: FSCalendar!
@@ -29,11 +39,6 @@ class AnalysisVC: BaseVC {
     
     private let viewModel = AnalysisVM()
     private var fullCalendarCurrentPage: Date?
-    private lazy var fullCalendarHeaderDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM yyyy"
-        return dateFormatter
-    }()
     
     override func initialize() {
         viewHidden.isHidden = true
@@ -99,7 +104,7 @@ extension AnalysisVC {
         viewFullCalendar.placeholderType = .none
         viewFullCalendar.firstWeekday = 2
         
-        lblFullCalendarHeader.text = fullCalendarHeaderDateFormatter.string(from: Date.now)
+        lblFullCalendarHeader.text = convertDateToStringWithDateFormatter(date: Date.now, dateFormat: .fullCalendarHeader)
     }
     
     private func moveCurrentPage(next: Bool){
@@ -110,28 +115,35 @@ extension AnalysisVC {
         self.viewFullCalendar.setCurrentPage(fullCalendarCurrentPage!, animated: true)
     }
     
+    private func convertDateToStringWithDateFormatter(date: Date, dateFormat: DateFormatType) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat.rawValue
+        return dateFormatter.string(from: date)
+    }
+    
     private func bindAction() {
         
         btnMore.rx.tap
-            .bind(onNext: { [weak self] in
+            .bind{ [weak self] in
                 guard let self = self else { return }
                 
                 SegueUtils.open(target: self, link: .RecordedVideoListVC, isPresent: true)
-                
-            }).disposed(by: viewModel.bag)
+            }
+            .disposed(by: viewModel.bag)
         
         btnFullCalendar.rx.tap
-            .bind(onNext: { [weak self] in
+            .bind{ [weak self] in
                 guard let self = self else { return }
                 
                 tabBarController?.tabBar.isHidden = true
                 viewHidden.isHidden = false
-                
-            }).disposed(by: viewModel.bag)
+            }
+            .disposed(by: viewModel.bag)
         
         btnFullCalendarLastMonth.rx.tap
             .bind { [weak self] in
                 guard let self = self else { return }
+                
                 moveCurrentPage(next: true)
             }
             .disposed(by: viewModel.bag)
@@ -139,9 +151,19 @@ extension AnalysisVC {
         btnFullCalendarNextMonth.rx.tap
             .bind { [weak self] in
                 guard let self = self else { return }
+                
                 moveCurrentPage(next: false)
             }
             .disposed(by: viewModel.bag)
+        
+        viewModel.selectedDate.subscribe { [weak self] date in
+            guard let self = self else { return }
+            
+            let selectedDate = viewModel.selectedDate.value ?? Date.now
+            lblSelectedDayOfMonth.text = convertDateToStringWithDateFormatter(date: selectedDate, dateFormat: .selectedDay)
+            lblSelectedSpecificDate.text = convertDateToStringWithDateFormatter(date: selectedDate, dateFormat: .selectedSpecificDate)
+        }
+        .disposed(by: viewModel.bag)
     }
 }
 
@@ -173,7 +195,7 @@ extension AnalysisVC: FSCalendarDataSource, FSCalendarDelegate {
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        self.lblFullCalendarHeader.text = self.fullCalendarHeaderDateFormatter.string(from: calendar.currentPage)
+        self.lblFullCalendarHeader.text = convertDateToStringWithDateFormatter(date: calendar.currentPage, dateFormat: .fullCalendarHeader)
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
