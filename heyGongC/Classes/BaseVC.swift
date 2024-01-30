@@ -35,8 +35,6 @@ class BaseVC: UIViewController, BaseImplementation {
     
     var loadingContainer: UIView?
     
-    let safeAreaBottom = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.safeAreaInsets.bottom ?? 0
-    
     private let viewModel = BaseVM()
     
     var disposeBag = DisposeBag()
@@ -87,13 +85,13 @@ class BaseVC: UIViewController, BaseImplementation {
         }
         
         switch e {
-        case .expired:
-            return
-//            self.showAlert(title: "로그인 만료", msg: "고객님의 안전한 금융거래 보호를 위해\n재 로그인 합니다.", confirmTitle: "확인", confirm: { [weak self] in
-//                print(Defaults.AUTH_TOKEN)
-//                App.shared.introType = .login
-//                self?.navigationController?.backToIntro()
-//            })
+        case .unauthorized:
+            self.showAlert(localized: .DLG_EXPIRED, confirm: { [weak self] in
+                print(Defaults.AUTH_TOKEN)
+                App.shared.introType = .login
+                self?.navigationController?.backToIntro()
+            })
+                
         default:
             print("🔋🔋🔋🔋 \(error?.localizedDescription ?? "")")
             e.showErrorMsg(target: self.view)
@@ -204,12 +202,11 @@ extension BaseVC {
 extension UIWindow {
     static var key: UIWindow? {
         if #available(iOS 13, *) {
-            let win = UIApplication.shared.windows.first { $0.isKeyWindow }
-            if win == nil {
-                return UIApplication.shared.windows.first
-            } else {
-                return win
-            }
+            let scenes = UIApplication.shared.connectedScenes
+            let windowScene = scenes.first as? UIWindowScene
+            let window = windowScene?.windows.first
+            
+            return window
         } else {
             return UIApplication.shared.keyWindow
         }

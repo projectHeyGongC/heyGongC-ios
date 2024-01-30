@@ -107,7 +107,7 @@ class MainTBC: UITabBarController {
         
         button.addTarget(self, action: #selector(rightMenu), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+//        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         
         let barButton = UIBarButtonItem(customView: button)
         self.navigationItem.rightBarButtonItem = barButton

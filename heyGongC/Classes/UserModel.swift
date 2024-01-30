@@ -18,7 +18,6 @@ class UserParam {
     
     struct RequestLoginData {
         var deviceID, deviceOS: String
-        var ads: Bool
         var token: Token
     }
     
@@ -37,6 +36,8 @@ class UserParam {
     
     public func getData(params: RequestRegisterData) -> [String: Any] {
         var data = [String : Any]()
+        
+//        data["UserRegisterRequest"] = "deviceId\(params.deviceID),deviceOs,\(params.deviceOS),ads,\(params.ads),token,\(params.token.getToken())"
         
         data["deviceID"] = params.deviceID
         data["deviceOS"] = params.deviceOS

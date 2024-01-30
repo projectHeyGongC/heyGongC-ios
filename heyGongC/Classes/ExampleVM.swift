@@ -11,6 +11,6 @@ import RxCocoa
 
 class ExampleVM: BaseVM {
     private func getExample() {
-        UserService.shared.getUserInfo().subscribe(with: self, onS)
+        
     }
 }

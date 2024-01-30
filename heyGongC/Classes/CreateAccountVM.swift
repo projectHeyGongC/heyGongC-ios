@@ -27,7 +27,6 @@ class CreateAccountVM: BaseVM {
     let requiredSecondIsSelected = BehaviorRelay<Bool>(value: false)
     let notRequiredThirdIsSelected = BehaviorRelay<Bool>(value: false)
     var input = Input()
-    let disposeBag = DisposeBag()
     
     override init(){
         super.init()
@@ -35,7 +34,7 @@ class CreateAccountVM: BaseVM {
         input.buttonTapped
             .subscribe(onNext: { [weak self] type in
                 guard let self = self else { return }
-
+                
                 switch type {
                 case .allAgree:
                     let preValue = self.allAgreeIsSelected.value
@@ -53,7 +52,7 @@ class CreateAccountVM: BaseVM {
                     self.notRequiredThirdIsSelected.accept(!self.notRequiredThirdIsSelected.value)
                 }
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.bag)
         
         Observable.combineLatest(
             requiredFirstIsSelected,
@@ -61,6 +60,6 @@ class CreateAccountVM: BaseVM {
             notRequiredThirdIsSelected)
         { $0 && $1 && $2}
             .bind(to: allAgreeIsSelected)
-            .disposed(by: disposeBag)
+            .disposed(by: self.bag)
     }
 }

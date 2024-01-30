@@ -11,13 +11,15 @@ import Toast_Swift
 /// 서버통신은 성공했으나 서버 내의 통신
 public enum GCError: Error {
     /// 파라미터 이상
-    case badRequest(msg: String)
+    case badRequest
     /// 유효하지 않은 토큰
-    case unauthorized(msg: String)
+    case unauthorized
     /// 새로운 로그인 존재
-    case forbidden(msg: String)
-    case internalServerError(msg: String)
+    case forbidden
+    case internalServerError
     case notFoundCode
+    case unKnown
+    case errorJson
 }
 
 enum GCErrorCode: Int {
@@ -42,6 +44,10 @@ extension GCError {
             print("InternalServerError")
         case .notFoundCode:
             print("notFoundCode")
+        case .unKnown:
+            print("unKnown")
+        case .errorJson:
+            print("errorJson")
         }
     }
     
