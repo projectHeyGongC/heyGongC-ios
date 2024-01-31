@@ -18,9 +18,21 @@ class MonitoringVC: BaseVC {
     
     private let viewModel = MonitoringVM()
     
+    private var btnSettings: UIBarButtonItem = {
+        let object = UIBarButtonItem()
+        object.image = UIImage(named: "ic_notification")
+        object.tintColor = .black
+        return object
+    }()
+    
     //MARK: LifeCycle
     override func initialize() {
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = btnSettings
     }
     
     override func bind() {
