@@ -26,7 +26,7 @@
         <!--모니터링-->
         <scene sceneID="EWf-Hj-gVM">
             <objects>
-                <viewController storyboardIdentifier="MonitoringVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LiZ-lh-h4G" customClass="MonitoringVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MonitoringVC" title="모니터링" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LiZ-lh-h4G" customClass="MonitoringVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kgn-JK-UAT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -10,6 +10,7 @@
 		000B6C3E39B722ADEBAA3A3A /* Pods_heyGongC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF2531D40C235C4E9712DA0 /* Pods_heyGongC.framework */; };
 		AEE7E32B9AFD1349CAC8B9FD /* libPods-heyGongCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60864D0E510E0D049C8876A9 /* libPods-heyGongCTests.a */; };
 		B80269182B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80269172B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift */; };
+		B8059DF12B6A1FA200B4C87A /* SubscriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8059DF02B6A1FA200B4C87A /* SubscriptionVC.swift */; };
 		B84BED7F2B4BB95F00382F7F /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED7E2B4BB95F00382F7F /* CreateAccountVC.swift */; };
 		B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED802B4BB96B00382F7F /* CreateAccountVM.swift */; };
 		B84BED832B4BB98D00382F7F /* SelectAccountTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED822B4BB98D00382F7F /* SelectAccountTypeVC.swift */; };
@@ -96,6 +97,7 @@
 		82C11B6F031CF7E47A0B542B /* libPods-heyGongCUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-heyGongCUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E88F3B566BE30F53E6209B /* Pods-heyGongCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCTests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongCTests/Pods-heyGongCTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B80269172B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		B8059DF02B6A1FA200B4C87A /* SubscriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionVC.swift; sourceTree = "<group>"; };
 		B84BED7E2B4BB95F00382F7F /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		B84BED802B4BB96B00382F7F /* CreateAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVM.swift; sourceTree = "<group>"; };
 		B84BED822B4BB98D00382F7F /* SelectAccountTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountTypeVC.swift; sourceTree = "<group>"; };
@@ -196,6 +198,14 @@
 				82C11B6F031CF7E47A0B542B /* libPods-heyGongCUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8059DEF2B6A1F9100B4C87A /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				B8059DF02B6A1FA200B4C87A /* SubscriptionVC.swift */,
+			);
+			name = Subscription;
 			sourceTree = "<group>";
 		};
 		B81358412B4BB8F8007987A0 /* Login */ = {
@@ -414,6 +424,7 @@
 		CA6EAC8F2B3967C300F81F3A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B8059DEF2B6A1F9100B4C87A /* Subscription */,
 				B8C9A7682B4FCE640083B144 /* UserProfile */,
 				CAC9C8A82B3C468000C02509 /* Example */,
 				C6E711DF2B4B88FD00A05A6A /* Splash */,
@@ -721,6 +732,7 @@
 				CA6EACA22B39699B00F81F3A /* Localized.swift in Sources */,
 				CA32691B2B4E6DC90087D534 /* CameraAnalysisVC.swift in Sources */,
 				CA58BF862B4E6AE2008D8015 /* CameraVM.swift in Sources */,
+				B8059DF12B6A1FA200B4C87A /* SubscriptionVC.swift in Sources */,
 				CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */,
 				CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */,
 				C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */,
