@@ -145,9 +145,9 @@ extension CreateAccountVC {
             .bind(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                if let vc = Link.SelectedAccountTypeVC.viewController as? SelectAccountTypeVC {
+                if let vc = Link.SelectAccountTypeVC.viewController as? SelectAccountTypeVC {
                     vc.updateData(ads: self.viewModel.notRequiredThirdIsSelected.value)
-                    vc.navigationController?.pushViewController(vc, animated: true)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
             }).disposed(by: viewModel.bag)

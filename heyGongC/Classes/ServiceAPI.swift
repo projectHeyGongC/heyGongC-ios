@@ -16,36 +16,36 @@ class ServiceAPI {
     
     public func getHeader() -> [String: String] {
         return [
+            "accept": "application/json",
             "Content-Type": "application/json"
         ]
     }
     
     public func judgeStatus<T: Codable>(response: Response, type: T.Type) -> NetworkResult2<GenericResponse<T>> {
         let decoder = JSONDecoder()
-        guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: response.data) else { return .error(.errorJson) }
+        print("response \(response)")
         
         switch response.statusCode {
-        case 200..<300:
+        case 200:
+            guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: response.data) else { return .error(.errorJson) }
+            return .success(decodedData)
             
-            if let error = GCErrorCode(rawValue: decodedData.status) {
-                switch error {
-                case .success:
-                    return .success(decodedData)
-                case .badRequest:
-                    return .error(.badRequest)
-                case .unauthorized:
-                    return .error(.unauthorized)
-                case .forbidden:
-                    return .error(.forbidden)
-                case .internalServerError:
-                    return .error(.internalServerError)
-                }
-            } else {
-                return .error(.notFoundCode)
-            }
+        case 204:
+            // kes 240131 회원가입 필요
+            guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: response.data) else { return .error(.errorJson) }
+            return .success(decodedData)
+            
+        case 400:
+            return .error(.badRequest)
+        case 401:
+            return .error(.unauthorized)
+        case 403:
+            return .error(.forbidden)
+        case 500:
+            return .error(.internalServerError)
         default:
             print("❗️❗️❗️❗️ networkFail")
-            return .error(.unKnown)
+            return .error(.notFoundCode)
         }
     }
 }

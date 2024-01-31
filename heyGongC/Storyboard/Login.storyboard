@@ -14,7 +14,7 @@
         <!--Select Account TypeVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="SelectAccountTypeVC" id="Y6W-OH-hqX" customClass="SelectAccountTypeVC" customModule="heyGongC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectAccountTypeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="SelectAccountTypeVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -193,7 +193,7 @@
         <!--Create AccountVC-->
         <scene sceneID="4mn-cU-JF0">
             <objects>
-                <viewController storyboardIdentifier="CreateAccountVC" id="jwl-RO-VSo" customClass="CreateAccountVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateAccountVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jwl-RO-VSo" customClass="CreateAccountVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Kb-sW-CZb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

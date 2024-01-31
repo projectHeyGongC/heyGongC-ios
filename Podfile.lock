@@ -51,6 +51,7 @@ PODS:
   - RxSwift (6.6.0)
   - SnapKit (5.6.0)
   - SwiftyUserDefaults (5.3.0)
+  - TAKUUID (1.5.0)
   - Then (3.0.0)
   - Toast-Swift (5.0.1)
 
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit (~> 5.6.0)
   - SwiftyUserDefaults (~> 5.0)
+  - TAKUUID
   - Then
   - Toast-Swift (~> 5.0.1)
 
@@ -94,6 +96,7 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - SwiftyUserDefaults
+    - TAKUUID
     - Then
     - Toast-Swift
 
@@ -117,9 +120,10 @@ SPEC CHECKSUMS:
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
+  TAKUUID: 48d7c690d85a27e7beb79b099349f1cf0d60c928
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: f3295bf4dfecfd50d06547be6dd0900029fdec5d
+PODFILE CHECKSUM: 6da3bd861c7b9a4e6c3eb290080f52b727e4b15e
 
 COCOAPODS: 1.14.3

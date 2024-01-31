@@ -42,6 +42,7 @@ def common_pods
   pod 'lottie-ios', '~> 3.3.0'
   pod 'Action'
   pod 'FSCalendar'
+  pod 'TAKUUID'
   
   # Login
   pod 'GoogleSignIn'

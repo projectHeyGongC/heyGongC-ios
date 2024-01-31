@@ -11,13 +11,15 @@ import Foundation
 class UserParam {
     
     struct RequestRegisterData {
-        var deviceID, deviceOS: String
+        var deviceID = Util.getUUID()
+        var deviceOS = "iOS"
         var ads: Bool
         var token: Token
     }
     
     struct RequestLoginData {
-        var deviceID, deviceOS: String
+        var deviceID = Util.getUUID()
+        var deviceOS = "iOS"
         var token: Token
     }
     
@@ -30,14 +32,13 @@ class UserParam {
         var accessToken, refreshToken: String
         
         func getToken() -> [String: String] {
-            return [self.accessToken: self.refreshToken]
+            return ["accessToken": self.accessToken,
+                    "refreshToken": self.refreshToken]
         }
     }
     
     public func getData(params: RequestRegisterData) -> [String: Any] {
         var data = [String : Any]()
-        
-//        data["UserRegisterRequest"] = "deviceId\(params.deviceID),deviceOs,\(params.deviceOS),ads,\(params.ads),token,\(params.token.getToken())"
         
         data["deviceID"] = params.deviceID
         data["deviceOS"] = params.deviceOS

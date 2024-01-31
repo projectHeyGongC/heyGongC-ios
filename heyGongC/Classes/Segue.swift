@@ -47,7 +47,7 @@ extension SegueUtils {
 }
 
 enum Link: String {
-    case SelectedAccountTypeVC  = "SelectAccountTypeVC"
+    case SelectAccountTypeVC    = "SelectAccountTypeVC"
     case CreateAccountVC        = "CreateAccountVC"
     case MainTBC                = "MainTBC"
     case CameraAnalysisVC       = "CameraAnalysisVC"
@@ -55,7 +55,7 @@ enum Link: String {
     
     var baseStoryboard: String {
         switch self {
-        case .SelectedAccountTypeVC, .CreateAccountVC:
+        case .SelectAccountTypeVC, .CreateAccountVC:
             return Storyboard.Login
         case .MainTBC:
             return Storyboard.Monitoring

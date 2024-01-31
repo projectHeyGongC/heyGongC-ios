@@ -69,8 +69,9 @@ extension UserService: TargetType {
 
 class UserAPI {
     static let shared = UserAPI()
-    var tagProvider = MoyaProvider<UserService>()
+    var tagProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin()])
     private init() { }
+    
     
     func networking<T: Codable>(userService: UserService, type: T.Type) -> Single<NetworkResult2<GenericResponse<T>>> {
         return Single<NetworkResult2<GenericResponse<T>>>.create { single in

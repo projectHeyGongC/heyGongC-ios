@@ -16,9 +16,9 @@ import GoogleSignIn
 class SelectAccountTypeVC: BaseVC {
     
     enum LoginType: String {
-        case Google = "Google"
-        case Kakao = "Kakao"
-        case Apple = "Apple"
+        case Google = "google"
+        case Kakao = "kakao"
+        case Apple = "apple"
     }
     
     @IBOutlet weak var collectionViewOnboarding: UICollectionView!
@@ -72,9 +72,10 @@ extension SelectAccountTypeVC {
     private func loginForGoogle() {
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] signInResult, _ in
             guard let self,
-                  let result = signInResult,
-                  let token = result.user.idToken?.tokenString else { return }
-            print(result, token)
+                  let result = signInResult?.user else { return }
+
+            self.viewModel.callLogin(userData: result)
+//            self.viewModel.callRegister(userData: result)
             // 서버에 토큰을 보내기. 이 때 idToken, accessToken 차이에 주의할 것
         }
     }
