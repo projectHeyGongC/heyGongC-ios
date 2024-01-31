@@ -19,12 +19,12 @@ class AnalysisVC: BaseVC {
         case selectedSpecificDate = "EEE\nMMM yyyy"
     }
     
-    @IBOutlet weak var btnFullCalendar: UIButton!
+    //@IBOutlet weak var btnFullCalendar: UIButton!
     @IBOutlet weak var btnMore: UIButton!
     
-    @IBOutlet weak var lblSelectedDayOfMonth: UILabel!
+    //@IBOutlet weak var lblSelectedDayOfMonth: UILabel!
     
-    @IBOutlet weak var lblSelectedSpecificDate: UILabel!
+    //@IBOutlet weak var lblSelectedSpecificDate: UILabel!
     
     @IBOutlet weak var viewHeaderCalendar: FSCalendar!
     @IBOutlet weak var viewFullCalendar: FSCalendar!
@@ -37,16 +37,49 @@ class AnalysisVC: BaseVC {
     @IBOutlet weak var btnFullCalendarNextMonth: UIButton!
     @IBOutlet weak var lblFullCalendarHeader: UILabel!
     
+    private var btnFullCalendar: UIBarButtonItem = {
+        let object = UIBarButtonItem()
+        object.image = UIImage(named: "ic_calendar")
+        object.tintColor = .black
+        return object
+    }()
+    
+    private var lblSelectedDayOfMonth: UILabel = {
+       let object = UILabel()
+        object.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        return object
+    }()
+    
+    private var lblSelectedSpecificDate: UILabel = {
+        let object = UILabel()
+        object.font = .systemFont(ofSize: 6, weight: .regular)
+        object.numberOfLines = 0
+        object.textColor = GCColor.C_94A3B8
+        return object
+    }()
+    
+    
     private let viewModel = AnalysisVM()
     private var fullCalendarCurrentPage: Date?
     
     override func initialize() {
         viewHidden.isHidden = true
-        
+        setupLeftBarButtonUI()
         initHeaderCalendar()
         initFullCalendar()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = btnFullCalendar
+        navigationController?.navigationBar.topItem?.leftBarButtonItem?.customView?.isHidden = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.navigationBar.topItem?.leftBarButtonItem?.customView?.isHidden = true
+    }
+
     override func bind() {
         bindAction()
     }
@@ -54,6 +87,16 @@ class AnalysisVC: BaseVC {
     deinit {
         print("[Clear... AnalysisVC ViewModel]")
         onBack(vm: viewModel)
+    }
+    
+    private func setupLeftBarButtonUI(){
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        stackView.addArrangedSubview(lblSelectedDayOfMonth)
+        stackView.addArrangedSubview(lblSelectedSpecificDate)
+        var barBtn = UIBarButtonItem(customView: stackView)
+        navigationController?.navigationBar.topItem?.setLeftBarButton(barBtn, animated: false)
     }
 }
 
