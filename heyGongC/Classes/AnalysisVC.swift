@@ -58,6 +58,10 @@ class AnalysisVC: BaseVC {
         return object
     }()
     
+    private var leftBarButtonItem : UIBarButtonItem = {
+        let object = UIBarButtonItem()
+        return object
+    }()
     
     private let viewModel = AnalysisVM()
     private var fullCalendarCurrentPage: Date?
@@ -72,12 +76,13 @@ class AnalysisVC: BaseVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBar.topItem?.rightBarButtonItem = btnFullCalendar
-        navigationController?.navigationBar.topItem?.leftBarButtonItem?.customView?.isHidden = false
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = leftBarButtonItem
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        navigationController?.navigationBar.topItem?.leftBarButtonItem?.customView?.isHidden = true
+        navigationController?.navigationBar.topItem?.leftBarButtonItem = nil
+
     }
 
     override func bind() {
@@ -95,8 +100,8 @@ class AnalysisVC: BaseVC {
         stackView.spacing = 4
         stackView.addArrangedSubview(lblSelectedDayOfMonth)
         stackView.addArrangedSubview(lblSelectedSpecificDate)
-        var barBtn = UIBarButtonItem(customView: stackView)
-        navigationController?.navigationBar.topItem?.setLeftBarButton(barBtn, animated: false)
+        leftBarButtonItem = UIBarButtonItem(customView: stackView)
+        navigationController?.navigationBar.topItem?.setLeftBarButton(leftBarButtonItem, animated: false)
     }
 }
 
