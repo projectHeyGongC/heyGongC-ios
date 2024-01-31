@@ -22,6 +22,12 @@ class UserProfileVC: BaseVC {
     @IBOutlet weak var btnAddDivice: UIButton!
     @IBOutlet weak var collectionViewDeviceInfo: UICollectionView!
     private var collectionViewHeightConstraint: Constraint?
+    private var btnSettings: UIBarButtonItem = {
+        let object = UIBarButtonItem()
+        object.image = UIImage(named: "ic_gear")
+        object.tintColor = .black
+        return object
+    }()
     
     let viewModel = UserProfileVM()
     
@@ -35,6 +41,12 @@ class UserProfileVC: BaseVC {
         
         updateCollectionViewHeight()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = btnSettings
+    }
+    
     
     override func bind() {
         btnDisconnectAllDevices.rx.tap
@@ -55,6 +67,16 @@ class UserProfileVC: BaseVC {
                 viewModel.addDivice()
                 updateCollectionViewHeight()
                 collectionViewDeviceInfo.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        btnSettings.rx.tap
+            .bind { [weak self] in
+                guard let self = self else { return }
+                
+                guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as? SettingsVC else { return }
+                navigationController?.pushViewController(nextVC, animated: true)
+                
             }
             .disposed(by: disposeBag)
     }

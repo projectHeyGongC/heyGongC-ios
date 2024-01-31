@@ -47,6 +47,15 @@ class SettingsVC: BaseVC {
 
             }
             .disposed(by: disposeBag)
+        
+        btnNotificationSettings.rx.tap
+            .bind { [weak self] in
+                guard let self = self else { return }
+                guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NotificationSettings") as? NotificationSettingsVC else { return }
+                
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setupHandler() { }
