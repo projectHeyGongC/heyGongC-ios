@@ -68,8 +68,17 @@ class NotificationSettingsVC: BaseVC {
         stackView.addArrangedSubview(lblTitle)
         stackView.addArrangedSubview(lblSubtitle)
         
+        lblTitle.snp.makeConstraints { make in
+            make.height.equalTo(15)
+        }
+        
+        lblSubtitle.snp.makeConstraints { make in
+            make.height.equalTo(24)
+        }
+        
         stackView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(10)
+            make.centerY.equalToSuperview()
+            //make.top.bottom.equalToSuperview().inset(10)
             make.left.equalToSuperview().inset(12)
         }
         

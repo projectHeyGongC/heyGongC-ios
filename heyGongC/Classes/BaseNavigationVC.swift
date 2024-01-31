@@ -31,7 +31,7 @@ class BaseNavigationVC: UINavigationController {
         if #available(iOS 13.0, *) {
             primary()
         } else {
-            let backButtonBackgroundImage = UIImage(named: "ic_header_back")
+            let backButtonBackgroundImage = UIImage(named: "ic_left_arrow")
             let barAppearance =
                 UINavigationBar.appearance(whenContainedInInstancesOf: [BaseNavigationVC.self])
             barAppearance.backIndicatorImage = backButtonBackgroundImage
@@ -60,20 +60,19 @@ class BaseNavigationVC: UINavigationController {
     
     private func setNavigationBarAppearance(color: UIColor?) {
         if #available(iOS 13.0, *) {
-            let backButtonBackgroundImage = UIImage(named: "ic_header_back")?.withRenderingMode(.alwaysOriginal)
+            let backButtonBackgroundImage = UIImage(named: "ic_left_arrow")?.withRenderingMode(.alwaysOriginal).withAlignmentRectInsets(UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0))
             
             let attributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)]
+                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
 
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = color
-            appearance.titlePositionAdjustment = UIOffset(horizontal: -200, vertical: 0)
+            //appearance.titlePositionAdjustment = UIOffset(horizontal: -200, vertical: 0)
             appearance.setBackIndicatorImage(backButtonBackgroundImage, transitionMaskImage: backButtonBackgroundImage)
             appearance.titleTextAttributes = attributes
             appearance.shadowColor = color
-            navigationBar.standardAppearance = appearance;
-            
+            navigationBar.standardAppearance = appearance
             navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
         }
     }

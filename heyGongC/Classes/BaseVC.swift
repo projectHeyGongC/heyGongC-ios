@@ -43,13 +43,18 @@ class BaseVC: UIViewController, BaseImplementation {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         self.setupNavigationBar(type: .basic)
         addTapGesture()
         
         bind()
         initialize()
         setupHandler()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.topItem?.title = title
     }
     
     var tab: MainTBC? {

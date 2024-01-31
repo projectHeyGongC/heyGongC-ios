@@ -536,7 +536,7 @@ Jan 2024</string>
                                     <constraint firstAttribute="trailing" secondItem="QfE-NB-Vlw" secondAttribute="trailing" constant="10" id="qeL-db-AFb"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
