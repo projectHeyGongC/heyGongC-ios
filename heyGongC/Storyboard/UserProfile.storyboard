@@ -183,6 +183,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="301" height="101"/>
                                         <connections>
+                                            <outlet property="deviceInfoView" destination="Igu-ap-11i" id="uOZ-E8-dWu"/>
                                             <outlet property="ellipseView" destination="ChS-qX-CkY" id="uXH-iA-ZBF"/>
                                             <outlet property="imgViewDeviceType" destination="gTE-3q-CCs" id="bqF-QF-oQM"/>
                                             <outlet property="lblDeviceName" destination="bJ4-Yc-J9S" id="DxS-A3-cOb"/>

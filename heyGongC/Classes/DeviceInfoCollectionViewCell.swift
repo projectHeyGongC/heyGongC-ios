@@ -11,18 +11,28 @@ class DeviceInfoCollectionViewCell: UICollectionViewCell {
     
     static var identifier = String(describing: DeviceInfoCollectionViewCell.self)
     
+    @IBOutlet weak var deviceInfoView: UIView!
     @IBOutlet weak var ellipseView: UIView!
     @IBOutlet weak var imgViewDeviceType: UIImageView!
     @IBOutlet weak var lblDeviceName: UILabel!
     
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override var isHighlighted: Bool {
+        didSet{
+            if self.isHighlighted {
+                UIView.animate(withDuration: 0.3) { // for animation effect
+                    self.alpha = 0.5
+                }
+            }
+            else {
+                UIView.animate(withDuration: 0.3) { // for animation effect
+                    self.alpha = 1.0
+                }
+            }
+        }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
     override func prepareForReuse() {

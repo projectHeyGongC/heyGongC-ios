@@ -118,4 +118,11 @@ extension UserProfileVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionViewDeviceInfo.bounds.width, height: 50)
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Monitoring", bundle: nil)
+        guard let settingVC = storyboard.instantiateViewController(withIdentifier: "CameraSettingVC") as? CameraSettingVC else { return }
+        navigationController?.pushViewController(settingVC, animated: true)
+    }
 }
