@@ -86,6 +86,8 @@ class MainTBC: UITabBarController {
         let color = GCColor.C_000000
         let selectedColor = GCColor.C_006877
         
+        UITabBar.appearance().tintColor = GCColor.C_006877
+        UITabBar.appearance().unselectedItemTintColor = color
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13, weight: .regular)], for: .selected)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13, weight: .regular)], for: .selected)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : color], for: .normal)
