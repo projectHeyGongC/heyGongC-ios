@@ -11,31 +11,21 @@ import RxCocoa
 import RxOptional
 import FSCalendar
 
+enum DateFormatType: String {
+    case fullCalendarHeader = "MMMM yyyy"
+    case selectedDay = "dd"
+    case selectedSpecificDate = "EEE\nMMM yyyy"
+}
+
+protocol IsSelectedDate {
+    func pass(date: Date)
+}
+
 class AnalysisVC: BaseVC {
     
-    enum DateFormatType: String {
-        case fullCalendarHeader = "MMMM yyyy"
-        case selectedDay = "dd"
-        case selectedSpecificDate = "EEE\nMMM yyyy"
-    }
-    
-    //@IBOutlet weak var btnFullCalendar: UIButton!
     @IBOutlet weak var btnMore: UIButton!
-    
-    //@IBOutlet weak var lblSelectedDayOfMonth: UILabel!
-    
-    //@IBOutlet weak var lblSelectedSpecificDate: UILabel!
-    
-    @IBOutlet weak var viewHeaderCalendar: FSCalendar!
-    @IBOutlet weak var viewFullCalendar: FSCalendar!
-    @IBOutlet weak var viewHidden: UIView!
-    
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var fullCalendarHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var btnFullCalendarLastMonth: UIButton!
-    @IBOutlet weak var btnFullCalendarNextMonth: UIButton!
-    @IBOutlet weak var lblFullCalendarHeader: UILabel!
+    @IBOutlet weak var viewHeaderCalendar: FSCalendar!
     
     private var btnFullCalendar: UIBarButtonItem = {
         let object = UIBarButtonItem()
@@ -64,13 +54,10 @@ class AnalysisVC: BaseVC {
     }()
     
     private let viewModel = AnalysisVM()
-    private var fullCalendarCurrentPage: Date?
     
     override func initialize() {
-        viewHidden.isHidden = true
         setupLeftBarButtonUI()
         initHeaderCalendar()
-        initFullCalendar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -129,46 +116,6 @@ extension AnalysisVC {
         viewHeaderCalendar.appearance.selectionColor = .clear
     }
     
-    private func initFullCalendar() {
-        viewFullCalendar.tag = 1
-        viewFullCalendar.dataSource = self
-        viewFullCalendar.delegate = self
-        
-        viewFullCalendar.scope = .month
-        viewFullCalendar.scrollEnabled = true
-        viewFullCalendar.pagingEnabled = true
-        
-        viewFullCalendar.headerHeight = 0
-        
-        // kes 240118 text 관련 설정
-        viewFullCalendar.appearance.weekdayFont = .systemFont(ofSize: 16, weight: .medium)
-        viewFullCalendar.appearance.titleFont = .systemFont(ofSize: 16, weight: .regular)
-        
-        viewFullCalendar.appearance.weekdayTextColor = GCColor.C_9291A5
-        viewFullCalendar.appearance.titleTodayColor = GCColor.C_000000
-        viewFullCalendar.appearance.todaySelectionColor = .clear
-        viewFullCalendar.appearance.todayColor = .clear
-        viewFullCalendar.appearance.selectionColor = GCColor.C_006877
-        viewFullCalendar.placeholderType = .none
-        viewFullCalendar.firstWeekday = 2
-        
-        lblFullCalendarHeader.text = convertDateToStringWithDateFormatter(date: Date.now, dateFormat: .fullCalendarHeader)
-    }
-    
-    private func moveCurrentPage(next: Bool){
-        let cal = Calendar.current
-        var dateComponents = DateComponents()
-        dateComponents.month = next ? -1 : 1
-        fullCalendarCurrentPage = cal.date(byAdding: dateComponents, to: fullCalendarCurrentPage ?? Date.now)
-        self.viewFullCalendar.setCurrentPage(fullCalendarCurrentPage!, animated: true)
-    }
-    
-    private func convertDateToStringWithDateFormatter(date: Date, dateFormat: DateFormatType) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat.rawValue
-        return dateFormatter.string(from: date)
-    }
-    
     private func bindAction() {
         
         btnMore.rx.tap
@@ -184,32 +131,22 @@ extension AnalysisVC {
                 guard let self = self else { return }
                 
                 tabBarController?.tabBar.isHidden = true
-                viewHidden.isHidden = false
-            }
-            .disposed(by: viewModel.bag)
-        
-        btnFullCalendarLastMonth.rx.tap
-            .bind { [weak self] in
-                guard let self = self else { return }
                 
-                moveCurrentPage(next: true)
-            }
-            .disposed(by: viewModel.bag)
-        
-        btnFullCalendarNextMonth.rx.tap
-            .bind { [weak self] in
-                guard let self = self else { return }
+                guard let reactionVC = storyboard?.instantiateViewController(withIdentifier: "FullCalendarVC") as? FullCalendarVC else { return }
                 
-                moveCurrentPage(next: false)
+                reactionVC.modalPresentationStyle = .overFullScreen
+                reactionVC.delegate = self
+                reactionVC.selectedDateRelay.accept(viewModel.selectedDate.value)
+                self.present(reactionVC, animated: false, completion: nil)
             }
             .disposed(by: viewModel.bag)
         
         viewModel.selectedDate.subscribe { [weak self] date in
             guard let self = self else { return }
-            
-            let selectedDate = viewModel.selectedDate.value ?? Date.now
-            lblSelectedDayOfMonth.text = convertDateToStringWithDateFormatter(date: selectedDate, dateFormat: .selectedDay)
-            lblSelectedSpecificDate.text = convertDateToStringWithDateFormatter(date: selectedDate, dateFormat: .selectedSpecificDate)
+            guard let selectedDate = viewModel.selectedDate.value else { return }
+            lblSelectedDayOfMonth.text = selectedDate.convertDateToStringWithDateFormatter(dateFormat: .selectedDay)
+            lblSelectedSpecificDate.text = selectedDate.convertDateToStringWithDateFormatter(dateFormat: .selectedSpecificDate)
+            viewHeaderCalendar.select(viewModel.selectedDate.value)
         }
         .disposed(by: viewModel.bag)
     }
@@ -227,7 +164,6 @@ extension AnalysisVC: FSCalendarDataSource, FSCalendarDelegate {
         } else if calendar.tag == 1 {
             // kes 240120 popupCalendar
             tabBarController?.tabBar.isHidden = false
-            viewHidden.isHidden = true
         }
     }
     
@@ -242,18 +178,19 @@ extension AnalysisVC: FSCalendarDataSource, FSCalendarDelegate {
         }
     }
     
-    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        self.lblFullCalendarHeader.text = convertDateToStringWithDateFormatter(date: calendar.currentPage, dateFormat: .fullCalendarHeader)
-    }
-    
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         if calendar.tag == 0 {
             // kes 240120 headerCalendar
             self.calendarHeightConstraint.constant = bounds.height
         } else if calendar.tag == 1 {
             // kes 240120 popupCalendar
-            self.fullCalendarHeightConstraint.constant = bounds.height
         }
         self.view.layoutIfNeeded()
+    }
+}
+
+extension AnalysisVC: IsSelectedDate {
+    func pass(date: Date) {
+        viewModel.updateDate(date)
     }
 }

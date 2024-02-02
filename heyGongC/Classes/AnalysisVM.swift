@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class AnalysisVM: BaseVM {
-    var selectedDate = BehaviorRelay<Date?>(value: nil)
+    var selectedDate = BehaviorRelay<Date?>(value: Date.now)
     
     public func updateDate(_ date: Date) {
         self.selectedDate.accept(date)
