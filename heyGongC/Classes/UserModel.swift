@@ -10,25 +10,25 @@ import Foundation
 // MARK: - RequestData
 class UserParam {
     
-    struct RequestRegisterData {
-        var deviceID = Util.getUUID()
-        var deviceOS = "iOS"
+    struct RequestRegisterData: Codable {
+        var deviceId = Util.getUUID()
+        var deviceOs = "iOS"
         var ads: Bool
         var token: Token
     }
     
-    struct RequestLoginData {
-        var deviceID = Util.getUUID()
-        var deviceOS = "iOS"
+    struct RequestLoginData: Codable {
+        var deviceId = Util.getUUID()
+        var deviceOs = "iOS"
         var token: Token
     }
     
-    struct RequestToken {
+    struct RequestToken: Codable {
         var refreshToken: String
     }
     
     // MARK: Token
-    struct Token {
+    struct Token: Codable {
         var accessToken, refreshToken: String
         
         func getToken() -> [String: String] {
@@ -40,11 +40,11 @@ class UserParam {
     public func getData(params: RequestRegisterData) -> [String: Any] {
         var data = [String : Any]()
         
-        data["deviceID"] = params.deviceID
-        data["deviceOS"] = params.deviceOS
+        data["deviceId"] = params.deviceId
+        data["deviceOs"] = params.deviceOs
         data["ads"] = params.ads
         data["token"] = params.token.getToken()
-        data["deviceID"] = params.deviceID
+        data["deviceId"] = params.deviceId
         
         return data
     }
@@ -52,10 +52,9 @@ class UserParam {
     public func getData(params: RequestLoginData) -> [String: Any] {
         var data = [String : Any]()
         
-        data["deviceID"] = params.deviceID
-        data["deviceOS"] = params.deviceOS
+        data["deviceId"] = params.deviceId
+        data["deviceOs"] = params.deviceOs
         data["token"] = params.token.getToken()
-        data["deviceID"] = params.deviceID
         
         return data
     }

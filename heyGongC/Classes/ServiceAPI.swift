@@ -32,8 +32,7 @@ class ServiceAPI {
             
         case 204:
             // kes 240131 회원가입 필요
-            guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: response.data) else { return .error(.errorJson) }
-            return .success(decodedData)
+            return .success(nil)
             
         case 400:
             return .error(.badRequest)
@@ -60,6 +59,6 @@ struct GenericResponse<T: Codable>: Codable {
 
 // NetworkResult2.swift
 public enum NetworkResult2<T> {
-    case success(T)
+    case success(T?)
     case error(GCError)
 }

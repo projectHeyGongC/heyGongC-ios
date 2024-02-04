@@ -50,13 +50,13 @@ extension UserService: TargetType {
     var task: Moya.Task {
         switch self {
         case .register(type: _, param: let param):
-            return .requestParameters(parameters: UserParam().getData(params: param), encoding: URLEncoding.default)
+            return .requestJSONEncodable(param)
         case .login(type: _, param: let param):
-            return .requestParameters(parameters: UserParam().getData(params: param), encoding: URLEncoding.default)
+            return .requestJSONEncodable(param)
         case .unregister:
             return .requestPlain
         case .refreshToken(param: let param):
-            return .requestParameters(parameters: UserParam().getData(params: param), encoding: URLEncoding.default)
+            return .requestJSONEncodable(param)
         case .info:
             return .requestPlain
         }
@@ -78,6 +78,7 @@ class UserAPI {
             self.tagProvider.request(userService) { result in
                 switch result {
                 case .success(let response):
+                    print("🥰🥰🥰 \(response)")
                     let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self)
                     single(.success(networkResult))
                     return

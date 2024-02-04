@@ -49,7 +49,7 @@ class SelectAccountTypeVM: BaseVM {
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    if response.code == "204" {
+                    if response?.code == "204" {
                         self.callRegister(userData: userData)
                     } else {
                         print("로그인 성공")
