@@ -11,6 +11,7 @@
 		AEE7E32B9AFD1349CAC8B9FD /* libPods-heyGongCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60864D0E510E0D049C8876A9 /* libPods-heyGongCTests.a */; };
 		B80269182B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80269172B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift */; };
 		B8059DF12B6A1FA200B4C87A /* SubscriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8059DF02B6A1FA200B4C87A /* SubscriptionVC.swift */; };
+		B81BE4D72B6B97C6009CC9D4 /* FullCalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81BE4D62B6B97C6009CC9D4 /* FullCalendarVC.swift */; };
 		B84BED7F2B4BB95F00382F7F /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED7E2B4BB95F00382F7F /* CreateAccountVC.swift */; };
 		B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED802B4BB96B00382F7F /* CreateAccountVM.swift */; };
 		B84BED832B4BB98D00382F7F /* SelectAccountTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED822B4BB98D00382F7F /* SelectAccountTypeVC.swift */; };
@@ -105,6 +106,7 @@
 		86E88F3B566BE30F53E6209B /* Pods-heyGongCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCTests.debug.xcconfig"; path = "Target Support Files/Pods-heyGongCTests/Pods-heyGongCTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B80269172B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B8059DF02B6A1FA200B4C87A /* SubscriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionVC.swift; sourceTree = "<group>"; };
+		B81BE4D62B6B97C6009CC9D4 /* FullCalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCalendarVC.swift; sourceTree = "<group>"; };
 		B84BED7E2B4BB95F00382F7F /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		B84BED802B4BB96B00382F7F /* CreateAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVM.swift; sourceTree = "<group>"; };
 		B84BED822B4BB98D00382F7F /* SelectAccountTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountTypeVC.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			children = (
 				CA3D7ABC2B4E765100C63FD0 /* AnalysisVC.swift */,
 				CA3D7AB42B4E75B600C63FD0 /* AnalysisVM.swift */,
+				B81BE4D62B6B97C6009CC9D4 /* FullCalendarVC.swift */,
 			);
 			name = Analysis;
 			sourceTree = "<group>";
@@ -801,6 +804,7 @@
 				CA32691D2B4E6DDA0087D534 /* CameraAnalysisVM.swift in Sources */,
 				B88C41592B55222E006A5F65 /* SettingsVC.swift in Sources */,
 				CA6EAC9C2B39688700F81F3A /* BaseVC.swift in Sources */,
+				B81BE4D72B6B97C6009CC9D4 /* FullCalendarVC.swift in Sources */,
 				CA6EACB22B396D0E00F81F3A /* GCColor.swift in Sources */,
 				CAC9C8A72B3C467D00C02509 /* ExampleVC.swift in Sources */,
 				CA3D7AB52B4E75B600C63FD0 /* AnalysisVM.swift in Sources */,
