@@ -22,7 +22,6 @@ def common_pods
   
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'SnapKit', '~> 5.6.0'
-  pod 'Moya', '~> 15.0'
   
   # ReactiveX
   pod 'RxSwift'
@@ -32,11 +31,21 @@ def common_pods
   pod 'RxDataSources'
   pod 'Then'
   
+  # Moya
+  pod 'Moya'
+  pod 'Moya/RxSwift'
+  pod 'Moya/ReactiveSwift'
+  pod 'Moya/Combine'
+  
   # Utils
   pod 'SwiftyUserDefaults', '~> 5.0'
   pod 'lottie-ios', '~> 3.3.0'
   pod 'Action'
   pod 'FSCalendar'
+  pod 'TAKUUID'
+  
+  # Login
+  pod 'GoogleSignIn'
   
 end
 

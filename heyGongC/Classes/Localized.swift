@@ -21,6 +21,7 @@ enum Localized {
     case DLG_NOTIFICATION_ON
     case DLG_NOTIFICATION_OFF
     case DLG_TEST
+    case DLG_EXPIRED
 
     /**
      *  다국어 처리
@@ -39,6 +40,8 @@ enum Localized {
             return "소리 감지 모드 off"
         case .DLG_TEST:
             return "test"
+        case .DLG_EXPIRED:
+            return "재로그인 진행합니다."
         default:
             return ""
         }
@@ -58,23 +61,19 @@ enum Localized {
             return "알림이 설정되었습니다"
         case .DLG_NOTIFICATION_OFF:
             return "알림이 거부되었습니다"
+        case .DLG_EXPIRED:
+            return "세션 만료"
         default: return ""
         }
     }
     
     var confirmText: String {
         switch self {
-        case .DLG_TEST:
-            return "확인"
-        case .DLG_DISCONNECTED_ALL_DIVICES:
-            return "확인"
-        case .DLG_DELETE_USER:
+        case .DLG_TEST, .DLG_DISCONNECTED_ALL_DIVICES, .DLG_DELETE_USER:
             return "확인"
         case .DLG_LOGOUT:
             return "예"
-        case .DLG_NOTIFICATION_ON:
-            return "확인"
-        case .DLG_NOTIFICATION_OFF:
+        case .DLG_NOTIFICATION_ON, .DLG_NOTIFICATION_OFF,  .DLG_EXPIRED:
             return "확인"
         default: return ""
         }

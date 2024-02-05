@@ -21,7 +21,7 @@ class SplashView: UIViewController {
     override func viewDidLoad() {
         setUI()
         setLayout()
-        SegueUtils.open(target: self, link: .MainTBC)
+        SegueUtils.open(target: self, link: .CreateAccountVC)
     }
     
     private func setUI() {

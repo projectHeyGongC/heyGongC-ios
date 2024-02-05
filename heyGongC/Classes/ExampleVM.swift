@@ -10,5 +10,7 @@ import RxSwift
 import RxCocoa
 
 class ExampleVM: BaseVM {
-
+    private func getExample() {
+        
+    }
 }
