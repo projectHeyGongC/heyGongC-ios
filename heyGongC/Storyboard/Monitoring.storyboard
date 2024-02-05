@@ -12,6 +12,88 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--NotificationVC-->
+        <scene sceneID="fBi-KJ-gBU">
+            <objects>
+                <viewController storyboardIdentifier="NotificationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kb5-FD-sBY" customClass="NotificationVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VHc-5U-V2a">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ind-XR-Zgy">
+                                <rect key="frame" x="0.0" y="98" width="393" height="1"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="kSM-D7-beP"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8Oc-90-5Kf">
+                                <rect key="frame" x="0.0" y="99" width="393" height="719"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="105" id="a5I-md-l64">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="105"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a5I-md-l64" id="zNT-Yf-kf2">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="105"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="w3q-jq-HiA">
+                                                    <rect key="frame" x="14" y="14" width="365" height="77"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30분 전" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLu-CI-9YO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="365" height="36.666666666666664"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="소리가 감지되었습니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXZ-kT-638">
+                                                            <rect key="frame" x="0.0" y="56.666666666666679" width="365" height="20.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jF-wx-tVe">
+                                                    <rect key="frame" x="0.0" y="104" width="393" height="1"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="t3M-uB-NNv"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7jF-wx-tVe" firstAttribute="leading" secondItem="zNT-Yf-kf2" secondAttribute="leading" id="85B-LZ-gc2"/>
+                                                <constraint firstAttribute="trailing" secondItem="w3q-jq-HiA" secondAttribute="trailing" constant="14" id="BZk-oa-6o0"/>
+                                                <constraint firstAttribute="bottom" secondItem="w3q-jq-HiA" secondAttribute="bottom" constant="14" id="IaY-FO-MJN"/>
+                                                <constraint firstAttribute="trailing" secondItem="7jF-wx-tVe" secondAttribute="trailing" id="fEp-yR-vb7"/>
+                                                <constraint firstItem="w3q-jq-HiA" firstAttribute="top" secondItem="zNT-Yf-kf2" secondAttribute="top" constant="14" id="mB4-Ul-Dev"/>
+                                                <constraint firstAttribute="bottom" secondItem="7jF-wx-tVe" secondAttribute="bottom" id="v0y-Xi-Gnd"/>
+                                                <constraint firstItem="w3q-jq-HiA" firstAttribute="leading" secondItem="zNT-Yf-kf2" secondAttribute="leading" constant="14" id="vn6-pi-YgD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HGK-6j-22l"/>
+                        <color key="backgroundColor" name="FAFAFA"/>
+                        <constraints>
+                            <constraint firstItem="HGK-6j-22l" firstAttribute="trailing" secondItem="8Oc-90-5Kf" secondAttribute="trailing" id="2kx-lf-hCm"/>
+                            <constraint firstItem="ind-XR-Zgy" firstAttribute="leading" secondItem="HGK-6j-22l" secondAttribute="leading" id="Ihu-5A-awo"/>
+                            <constraint firstItem="8Oc-90-5Kf" firstAttribute="top" secondItem="ind-XR-Zgy" secondAttribute="bottom" id="IpK-ub-Ovz"/>
+                            <constraint firstItem="HGK-6j-22l" firstAttribute="bottom" secondItem="8Oc-90-5Kf" secondAttribute="bottom" id="Vfk-Ul-XvO"/>
+                            <constraint firstItem="ind-XR-Zgy" firstAttribute="top" secondItem="HGK-6j-22l" secondAttribute="top" constant="39" id="Vjt-xv-bBM"/>
+                            <constraint firstItem="HGK-6j-22l" firstAttribute="trailing" secondItem="ind-XR-Zgy" secondAttribute="trailing" id="Ztj-wO-4VP"/>
+                            <constraint firstItem="8Oc-90-5Kf" firstAttribute="leading" secondItem="HGK-6j-22l" secondAttribute="leading" id="s1L-BZ-ZMZ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GS7-Qj-t6l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1067.9389312977098" y="431.69014084507046"/>
+        </scene>
         <!--UserProfile-->
         <scene sceneID="QPK-ae-1XD">
             <objects>
