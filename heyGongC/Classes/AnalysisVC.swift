@@ -129,9 +129,7 @@ extension AnalysisVC {
         btnFullCalendar.rx.tap
             .bind{ [weak self] in
                 guard let self = self else { return }
-                
-                tabBarController?.tabBar.isHidden = true
-                
+
                 guard let reactionVC = storyboard?.instantiateViewController(withIdentifier: "FullCalendarVC") as? FullCalendarVC else { return }
                 
                 reactionVC.modalPresentationStyle = .overFullScreen
@@ -174,7 +172,6 @@ extension AnalysisVC: FSCalendarDataSource, FSCalendarDelegate {
         
         } else if calendar.tag == 1 {
             // kes 240120 popupCalendar
-            
         }
     }
     
