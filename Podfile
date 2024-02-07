@@ -22,6 +22,10 @@ def common_pods
   
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'SnapKit', '~> 5.6.0'
+
+  # Firebase
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
   
   # ReactiveX
   pod 'RxSwift'
