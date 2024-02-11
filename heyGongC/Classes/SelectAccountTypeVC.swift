@@ -15,13 +15,6 @@ import AuthenticationServices
 
 
 class SelectAccountTypeVC: BaseVC {
-    
-    enum LoginType: String {
-        case Google = "google"
-        case Kakao = "kakao"
-        case Apple = "apple"
-    }
-    
     @IBOutlet weak var collectionViewOnboarding: UICollectionView!
     @IBOutlet weak var btnGoogle: CSUIButton!
     @IBOutlet weak var btnKakao: CSUIButton!
@@ -42,21 +35,44 @@ class SelectAccountTypeVC: BaseVC {
     }
     
     override func bind() {
+        bindSuccess()
         bindAction()
     }
     
     override func setupHandler() { 
         self.setErrorHandler(vm: viewModel)
     }
-    
-    /// viewModel로 파라미터 전달
-    /// - Parameter ads: 마케팅 동의 여부
-    public func updateData(ads: Bool) {
-        self.viewModel.ads = ads
-    }
 }
+
 // MARK: - Private
 extension SelectAccountTypeVC {
+    
+    private func bindSuccess() {
+        viewModel.loginSuccess.bind { [weak self] in
+            
+            guard let self else { return }
+            
+            if $0 {
+                SegueUtils.open(target: self, link: .MainTBC)
+            }
+            
+        }.disposed(by: viewModel.bag)
+        
+        viewModel.goRegister.bind { [weak self] in
+            guard let self else { return }
+            
+            if $0 {
+                if let vc = Link.CreateAccountVC.viewController as? CreateAccountVC {
+                    guard let param = self.viewModel.param else { return }
+                    
+                    vc.updateParam(param: param)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        }.disposed(by: viewModel.bag)
+    }
+    
     private func bindAction() {
         
         btnGoogle.rx.tap
@@ -75,7 +91,7 @@ extension SelectAccountTypeVC {
             guard let self,
                   let result = signInResult?.user else { return }
 
-            self.viewModel.callLogin(userData: result)
+            self.viewModel.callLogin(loginType: .Google, accessToken: result.accessToken.tokenString)
 //            self.viewModel.callRegister(userData: result)
             // 서버에 토큰을 보내기. 이 때 idToken, accessToken 차이에 주의할 것
         }

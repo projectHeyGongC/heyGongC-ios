@@ -22,10 +22,21 @@ struct Input {
 }
 
 class CreateAccountVM: BaseVM {
+    struct Param {
+        var loginType: SelectAccountTypeVM.LoginType
+        var accessToken: String
+        var refreshToken: String
+    }
+    
+    public var param: Param?
+    
     let allAgreeIsSelected = BehaviorRelay<Bool>(value: false)
     let requiredFirstIsSelected = BehaviorRelay<Bool>(value: false)
     let requiredSecondIsSelected = BehaviorRelay<Bool>(value: false)
     let notRequiredThirdIsSelected = BehaviorRelay<Bool>(value: false)
+    
+    public var successRegister = BehaviorRelay<Bool>(value: false)
+    
     var input = Input()
     
     override init(){
@@ -61,5 +72,30 @@ class CreateAccountVM: BaseVM {
         { $0 && $1 && $2}
             .bind(to: allAgreeIsSelected)
             .disposed(by: self.bag)
+    }
+    
+    
+    // MARK: - callApi
+    /// 회원가입
+    public func callRegister() {
+        
+        guard let data = self.param else { return }
+        
+        let token = UserParam.Token(accessToken: data.accessToken, refreshToken: data.refreshToken)
+        let param = UserParam.RequestRegisterData(ads: notRequiredThirdIsSelected.value, token: token)
+        
+        UserAPI.shared.networking(userService: .register(type: data.loginType, param: param), type: TokenModel.self)
+            .subscribe(with: self,
+                       onSuccess: { owner, networkResult in
+                switch networkResult {
+                case .success(let response):
+                    self.successRegister.accept(true)
+                case .error(let error):
+                    self.errorHandler.accept(error)
+                }
+            }, onFailure: { owner, error in
+                print("callRegister - error")
+                
+            }).disposed(by: self.bag)
     }
 }

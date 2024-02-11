@@ -13,7 +13,7 @@ import SwiftyUserDefaults
 
 class CreateAccountVC: BaseVC {
     
-    var viewModel: CreateAccountVM = CreateAccountVM()
+    private let viewModel = CreateAccountVM()
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
@@ -36,12 +36,19 @@ class CreateAccountVC: BaseVC {
     }
     
     override func bind() {
+        bindSuccess()
         bindUI()
         bindAction()
-        
     }
     
     override func setupHandler() { }
+    
+    public func updateParam(param: CreateAccountVM.Param) {
+        self.viewModel.param = param
+    }
+}
+
+extension CreateAccountVC {
     
     private func setupUI(){
         lblSubTitle.text = "서비스 시작 및 가입을 위해 먼저 가입 및\n 정보 제공에 동의해 주세요."
@@ -82,6 +89,18 @@ class CreateAccountVC: BaseVC {
 }
 
 extension CreateAccountVC {
+    
+    private func bindSuccess() {
+        viewModel.successRegister.bind { [weak self] in
+            
+            guard let self = self else { return }
+            
+            if $0 {
+                SegueUtils.open(target: self, link: .MainTBC)
+            }
+                       
+        }.disposed(by: viewModel.bag)
+    }
     
     private func bindUI() {
         Observable<AgreementButtonType>.merge([
@@ -145,10 +164,7 @@ extension CreateAccountVC {
             .bind(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                if let vc = Link.SelectAccountTypeVC.viewController as? SelectAccountTypeVC {
-                    vc.updateData(ads: self.viewModel.notRequiredThirdIsSelected.value)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+                self.viewModel.callRegister()
                 
             }).disposed(by: viewModel.bag)
     }
