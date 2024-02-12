@@ -11,12 +11,6 @@ import RxCocoa
 import RxOptional
 import FSCalendar
 
-enum DateFormatType: String {
-    case fullCalendarHeader = "MMMM yyyy"
-    case selectedDay = "dd"
-    case selectedSpecificDate = "EEE\nMMM yyyy"
-}
-
 protocol IsSelectedDate {
     func pass(date: Date)
 }
@@ -142,8 +136,8 @@ extension AnalysisVC {
         viewModel.selectedDate.subscribe { [weak self] date in
             guard let self = self else { return }
             guard let selectedDate = viewModel.selectedDate.value else { return }
-            lblSelectedDayOfMonth.text = selectedDate.convertDateToStringWithDateFormatter(dateFormat: .selectedDay)
-            lblSelectedSpecificDate.text = selectedDate.convertDateToStringWithDateFormatter(dateFormat: .selectedSpecificDate)
+            lblSelectedDayOfMonth.text = selectedDate.convertDateToString(dateFormat: "dd")
+            lblSelectedSpecificDate.text = selectedDate.convertDateToString(dateFormat: "EEE\nMMM yyyy")
             viewHeaderCalendar.select(viewModel.selectedDate.value)
         }
         .disposed(by: viewModel.bag)
@@ -155,33 +149,14 @@ extension AnalysisVC: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         self.viewModel.updateDate(date)
-        
-        if calendar.tag == 0 {
-            // kes 240120 headerCalendar
-        
-        } else if calendar.tag == 1 {
-            // kes 240120 popupCalendar
-            tabBarController?.tabBar.isHidden = false
-        }
+        tabBarController?.tabBar.isHidden = false
     }
     
     // 날짜 선택 해제 콜백 메소드
-    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        if calendar.tag == 0 {
-            // kes 240120 headerCalendar
-        
-        } else if calendar.tag == 1 {
-            // kes 240120 popupCalendar
-        }
-    }
+    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) { }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-        if calendar.tag == 0 {
-            // kes 240120 headerCalendar
-            self.calendarHeightConstraint.constant = bounds.height
-        } else if calendar.tag == 1 {
-            // kes 240120 popupCalendar
-        }
+        self.calendarHeightConstraint.constant = bounds.height
         self.view.layoutIfNeeded()
     }
 }

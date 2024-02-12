@@ -12,6 +12,7 @@
 		B80269182B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80269172B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift */; };
 		B8059DF12B6A1FA200B4C87A /* SubscriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8059DF02B6A1FA200B4C87A /* SubscriptionVC.swift */; };
 		B81BE4D72B6B97C6009CC9D4 /* FullCalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81BE4D62B6B97C6009CC9D4 /* FullCalendarVC.swift */; };
+		B83738882B7A0E2800E27637 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83738872B7A0E2800E27637 /* Date+Ext.swift */; };
 		B84BED7F2B4BB95F00382F7F /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED7E2B4BB95F00382F7F /* CreateAccountVC.swift */; };
 		B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED802B4BB96B00382F7F /* CreateAccountVM.swift */; };
 		B84BED832B4BB98D00382F7F /* SelectAccountTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84BED822B4BB98D00382F7F /* SelectAccountTypeVC.swift */; };
@@ -22,16 +23,16 @@
 		B8C9A76B2B4FCEBA0083B144 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A7692B4FCEBA0083B144 /* UserProfileVC.swift */; };
 		B8C9A76C2B4FCEBA0083B144 /* UserProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A76A2B4FCEBA0083B144 /* UserProfileVM.swift */; };
 		B8C9A76E2B4FCEDF0083B144 /* NotificationSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C9A76D2B4FCEDF0083B144 /* NotificationSettingsVC.swift */; };
-		C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A44882B687005007F7178 /* UINavigationController+Ext.swift */; };
-		C61A448B2B68B614007F7178 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A448A2B68B614007F7178 /* Util.swift */; };
-		C6D094B52B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */; };
-		C6D664532B6387B8003D392A /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D664522B6387B8003D392A /* ServiceAPI.swift */; };
-		C6D664572B639610003D392A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D664562B639610003D392A /* UserModel.swift */; };
 		B8FC68492B581F7500C29691 /* DeviceRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8FC68482B581F7500C29691 /* DeviceRegister.storyboard */; };
 		B8FC684C2B581F9B00C29691 /* QRCodeReaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC684B2B581F9B00C29691 /* QRCodeReaderVC.swift */; };
 		B8FC684E2B581FC000C29691 /* QRCodeReaderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC684D2B581FC000C29691 /* QRCodeReaderVM.swift */; };
 		B8FC68502B581FD800C29691 /* DeviceNamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC684F2B581FD800C29691 /* DeviceNamingVC.swift */; };
 		B8FC68522B581FE600C29691 /* DeviceNamingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC68512B581FE600C29691 /* DeviceNamingVM.swift */; };
+		C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A44882B687005007F7178 /* UINavigationController+Ext.swift */; };
+		C61A448B2B68B614007F7178 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A448A2B68B614007F7178 /* Util.swift */; };
+		C6D094B52B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */; };
+		C6D664532B6387B8003D392A /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D664522B6387B8003D392A /* ServiceAPI.swift */; };
+		C6D664572B639610003D392A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D664562B639610003D392A /* UserModel.swift */; };
 		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
 		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
 		CA32691B2B4E6DC90087D534 /* CameraAnalysisVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32691A2B4E6DC90087D534 /* CameraAnalysisVC.swift */; };
@@ -112,6 +113,7 @@
 		B80269172B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		B8059DF02B6A1FA200B4C87A /* SubscriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionVC.swift; sourceTree = "<group>"; };
 		B81BE4D62B6B97C6009CC9D4 /* FullCalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCalendarVC.swift; sourceTree = "<group>"; };
+		B83738872B7A0E2800E27637 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B84BED7E2B4BB95F00382F7F /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		B84BED802B4BB96B00382F7F /* CreateAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVM.swift; sourceTree = "<group>"; };
 		B84BED822B4BB98D00382F7F /* SelectAccountTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccountTypeVC.swift; sourceTree = "<group>"; };
@@ -122,16 +124,16 @@
 		B8C9A7692B4FCEBA0083B144 /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		B8C9A76A2B4FCEBA0083B144 /* UserProfileVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVM.swift; sourceTree = "<group>"; };
 		B8C9A76D2B4FCEDF0083B144 /* NotificationSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsVC.swift; sourceTree = "<group>"; };
-		C61A44882B687005007F7178 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
-		C61A448A2B68B614007F7178 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggingPlugin.swift; sourceTree = "<group>"; };
-		C6D664522B6387B8003D392A /* ServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
-		C6D664562B639610003D392A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B8FC68482B581F7500C29691 /* DeviceRegister.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeviceRegister.storyboard; sourceTree = "<group>"; };
 		B8FC684B2B581F9B00C29691 /* QRCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderVC.swift; sourceTree = "<group>"; };
 		B8FC684D2B581FC000C29691 /* QRCodeReaderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderVM.swift; sourceTree = "<group>"; };
 		B8FC684F2B581FD800C29691 /* DeviceNamingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNamingVC.swift; sourceTree = "<group>"; };
 		B8FC68512B581FE600C29691 /* DeviceNamingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNamingVM.swift; sourceTree = "<group>"; };
+		C61A44882B687005007F7178 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
+		C61A448A2B68B614007F7178 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggingPlugin.swift; sourceTree = "<group>"; };
+		C6D664522B6387B8003D392A /* ServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
+		C6D664562B639610003D392A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		CA32691A2B4E6DC90087D534 /* CameraAnalysisVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnalysisVC.swift; sourceTree = "<group>"; };
@@ -259,14 +261,6 @@
 			name = UserProfile;
 			sourceTree = "<group>";
 		};
-		C6D664582B639618003D392A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C6D664562B639610003D392A /* UserModel.swift */,
-			);
-			name = Model;
-            sourceTree = "<group>";
-        };
 		B8FC684A2B581F8A00C29691 /* DeviceRegister */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +270,14 @@
 				B8FC68512B581FE600C29691 /* DeviceNamingVM.swift */,
 			);
 			name = DeviceRegister;
+			sourceTree = "<group>";
+		};
+		C6D664582B639618003D392A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6D664562B639610003D392A /* UserModel.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		C6E711DF2B4B88FD00A05A6A /* Splash */ = {
@@ -327,7 +329,6 @@
 		CA3D7B052B612E8300C63FD0 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
-				B8C9A7682B4FCE640083B144 /* UserProfile */,
 				B81358412B4BB8F8007987A0 /* Login */,
 				CA58BF872B4E6AE6008D8015 /* Monitoring */,
 				CA32691E2B4E6DDD0087D534 /* Analysis */,
@@ -493,7 +494,6 @@
 				B8059DEF2B6A1F9100B4C87A /* Subscription */,
 				B8FC684A2B581F8A00C29691 /* DeviceRegister */,
 				B8C9A7682B4FCE640083B144 /* UserProfile */,
-				CAC9C8A82B3C468000C02509 /* Example */,
 				C6E711DF2B4B88FD00A05A6A /* Splash */,
 				CA3D7B052B612E8300C63FD0 /* Tab */,
 				CAC9C8A82B3C468000C02509 /* Example */,
@@ -520,6 +520,7 @@
 				CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */,
 				C61A44882B687005007F7178 /* UINavigationController+Ext.swift */,
 				C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */,
+				B83738872B7A0E2800E27637 /* Date+Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -823,6 +824,7 @@
 				CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */,
 				B84BED832B4BB98D00382F7F /* SelectAccountTypeVC.swift in Sources */,
 				CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */,
+				B83738882B7A0E2800E27637 /* Date+Ext.swift in Sources */,
 				CA58BF842B4E6AE2008D8015 /* CameraSettingVC.swift in Sources */,
 				B84BED7F2B4BB95F00382F7F /* CreateAccountVC.swift in Sources */,
 				B8C9A76B2B4FCEBA0083B144 /* UserProfileVC.swift in Sources */,
