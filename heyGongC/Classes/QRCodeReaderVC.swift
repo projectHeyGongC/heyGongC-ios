@@ -14,6 +14,8 @@ import AVFoundation
 
 class QRCodeReaderVC: BaseVC {
     
+    private let viewModel = QRCodeReaderVM()
+    
     @IBOutlet weak var viewCamera: UIView!
     @IBOutlet weak var imgViewScanArea: UIImageView!
     
@@ -30,6 +32,11 @@ class QRCodeReaderVC: BaseVC {
     override func bind() { }
     
     override func setupHandler() { }
+    
+    deinit {
+        print("[Clear... QRCodeReaderVC ViewModel]")
+        onBack(vm: viewModel)
+    }
 }
 
 extension QRCodeReaderVC: AVCaptureMetadataOutputObjectsDelegate {
