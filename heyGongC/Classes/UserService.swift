@@ -69,7 +69,7 @@ extension UserService: TargetType {
 
 class UserAPI {
     static let shared = UserAPI()
-    var tagProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin()])
+    var userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin()])
     private init() { }
     
     enum LoginResult<T> {
@@ -80,7 +80,7 @@ class UserAPI {
     
     func networkingLogin<T: Codable>(userService: UserService, type: T.Type) -> Single<LoginResult<T>> {
         return Single<LoginResult<T>>.create { single in
-            self.tagProvider.request(userService) { result in
+            self.userProvider.request(userService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
@@ -98,7 +98,7 @@ class UserAPI {
     
     func networking<T: Codable>(userService: UserService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
-            self.tagProvider.request(userService) { result in
+            self.userProvider.request(userService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")

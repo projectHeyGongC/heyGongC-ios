@@ -42,6 +42,11 @@ class SelectAccountTypeVC: BaseVC {
     override func setupHandler() { 
         self.setErrorHandler(vm: viewModel)
     }
+    
+    deinit {
+        print("[Clear... SelectAccountTypeVC ViewModel]")
+        onBack(vm: viewModel)
+    }
 }
 
 // MARK: - Private
@@ -80,6 +85,14 @@ extension SelectAccountTypeVC {
                 guard let self = self else { return }
                 
                 self.loginForGoogle()
+            }).disposed(by: viewModel.bag)
+        
+        btnApple.rx.tap
+            .bind(onNext: { [weak self] in
+                guard let self else { return }
+                
+                self.loginForApple()
+                
             }).disposed(by: viewModel.bag)
     }
 }
@@ -145,29 +158,13 @@ extension SelectAccountTypeVC: ASAuthorizationControllerDelegate, ASAuthorizatio
     //로그인 성공
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            // You can create an account in your system.
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
             
-            if  let authorizationCode = appleIDCredential.authorizationCode,
-                let identityToken = appleIDCredential.identityToken,
-                let authCodeString = String(data: authorizationCode, encoding: .utf8),
+            if let identityToken = appleIDCredential.identityToken,
                 let identifyTokenString = String(data: identityToken, encoding: .utf8) {
-                print("authorizationCode: \(authorizationCode)")
-                print("identityToken: \(identityToken)")
-                print("authCodeString: \(authCodeString)")
                 print("identifyTokenString: \(identifyTokenString)")
+                
+                self.viewModel.callLogin(loginType: .Apple, accessToken: identifyTokenString)
             }
-            
-            print("useridentifier: \(userIdentifier)")
-            print("fullName: \(fullName)")
-            print("email: \(email)")
-            
-            //Move to MainPage
-            //let validVC = SignValidViewController()
-            //validVC.modalPresentationStyle = .fullScreen
-            //present(validVC, animated: true, completion: nil)
             
         case let passwordCredential as ASPasswordCredential:
             // Sign in using an existing iCloud Keychain credential.

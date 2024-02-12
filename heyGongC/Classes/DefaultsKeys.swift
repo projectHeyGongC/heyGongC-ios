@@ -15,6 +15,7 @@ import SwiftyUserDefaults
 extension DefaultsKeys {
     //기본정보
     var REFRESH_TOKEN: DefaultsKey<String> { .init("REFRESH_TOKEN", defaultValue:"") }
+    var AUTO_LOGIN: DefaultsKey<Bool> { .init("AUTO_LOGIN", defaultValue: false) }
     
     var IS_PUSH: DefaultsKey<Bool> { .init("IS_PUSH", defaultValue: false) }            // kes 230323 푸시 왔는지 체크 후 상단바 이미지 on/off
 }

@@ -43,6 +43,11 @@ class CreateAccountVC: BaseVC {
     
     override func setupHandler() { }
     
+    deinit {
+        print("[Clear... CreateAccountVC ViewModel]")
+        onBack(vm: viewModel)
+    }
+    
     public func updateParam(param: CreateAccountVM.Param) {
         self.viewModel.param = param
     }
@@ -91,7 +96,8 @@ extension CreateAccountVC {
 extension CreateAccountVC {
     
     private func bindSuccess() {
-        viewModel.successRegister.bind { [weak self] in
+        viewModel.successRegister
+            .bind { [weak self] in
             
             guard let self = self else { return }
             
@@ -110,7 +116,7 @@ extension CreateAccountVC {
             btnNotRequiredThird.rx.tap.map { _ in .notRequiredThird }
         ])
         .bind(to: viewModel.input.buttonTapped)
-        .disposed(by: disposeBag)
+        .disposed(by: viewModel.bag)
         
         Observable.combineLatest(
             viewModel.requiredFirstIsSelected,
@@ -120,7 +126,7 @@ extension CreateAccountVC {
                 self.btnNext.backgroundColor = isEnabled ? UIColor(named: "ffc000") : UIColor(named: "c4c4c4")
                 self.btnNext.isEnabled = isEnabled
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         
         viewModel.allAgreeIsSelected
@@ -128,7 +134,7 @@ extension CreateAccountVC {
                 let imageName = isSelected ? "ic_radioButton_on" : "ic_radioButton_off"
                 self?.btnAllAgree.setImage(UIImage(named: imageName), for: .normal)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         viewModel.requiredFirstIsSelected
             .bind{ [weak self] isSelected in
@@ -136,7 +142,7 @@ extension CreateAccountVC {
                 let imageName = isSelected ? "ic_checkBox_on" : "ic_checkBox_off"
                 self?.btnRequiredFirst.setImage(UIImage(named: imageName), for: .normal)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         viewModel.requiredSecondIsSelected
             .bind{ [weak self] isSelected in
@@ -144,7 +150,7 @@ extension CreateAccountVC {
                 let imageName = isSelected ? "ic_checkBox_on" : "ic_checkBox_off"
                 self?.btnRequiredSecond.setImage(UIImage(named: imageName), for: .normal)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         viewModel.notRequiredThirdIsSelected
             .skip(1)
@@ -155,7 +161,7 @@ extension CreateAccountVC {
                 self?.setMarketingToast(isSelected)
                 
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
             
     }
     
