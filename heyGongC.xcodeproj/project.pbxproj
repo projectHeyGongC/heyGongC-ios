@@ -278,14 +278,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		C6D664582B639618003D392A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C6D664562B639610003D392A /* UserModel.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		C6E711DF2B4B88FD00A05A6A /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,11 +327,10 @@
 		CA3D7B052B612E8300C63FD0 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
-				B81358412B4BB8F8007987A0 /* Login */,
 				CA58BF872B4E6AE6008D8015 /* Monitoring */,
 				CA32691E2B4E6DDD0087D534 /* Analysis */,
-				B8059DEF2B6A1F9100B4C87A /* Subscription */,
 				B8C9A7682B4FCE640083B144 /* UserProfile */,
+				B8059DEF2B6A1F9100B4C87A /* Subscription */,
 			);
 			name = Tab;
 			sourceTree = "<group>";
@@ -564,7 +555,6 @@
 			isa = PBXGroup;
 			children = (
 				B8FC684A2B581F8A00C29691 /* DeviceRegister */,
-				B8C9A7682B4FCE640083B144 /* UserProfile */,
 				C6E711DF2B4B88FD00A05A6A /* Splash */,
 				B81358412B4BB8F8007987A0 /* Login */,
 				CA3D7B052B612E8300C63FD0 /* Tab */,
