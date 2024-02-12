@@ -47,7 +47,9 @@ class DeviceNamingVC: BaseVC {
             
     }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
     
     deinit {
         print("[Clear... DeviceNamingVC ViewModel]")

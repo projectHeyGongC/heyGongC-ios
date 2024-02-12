@@ -12,6 +12,9 @@ import RxSwift
 import SwiftyUserDefaults
 
 class SubscriptionVC: BaseVC {
+    
+    private let viewModel = SubscriptionVM()
+    
     override func initialize() {
         
     }
@@ -23,5 +26,8 @@ class SubscriptionVC: BaseVC {
     
     override func bind() { }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
+    
 }

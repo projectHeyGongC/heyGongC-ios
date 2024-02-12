@@ -21,19 +21,14 @@ class ServiceAPI {
         ]
     }
     
-    public func judgeStatus<T: Codable>(response: Response, type: T.Type) -> NetworkResult2<GenericResponse<T>> {
+    public func judgeStatus<T: Codable>(response: Response, type: T.Type) -> NetworkResult2<T> {
         let decoder = JSONDecoder()
         print("response \(response)")
         
         switch response.statusCode {
         case 200:
-            guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: response.data) else { return .error(.errorJson) }
+            guard let decodedData = try? decoder.decode(T.self, from: response.data) else { return .error(.errorJson) }
             return .success(decodedData)
-            
-        case 204:
-            // kes 240131 회원가입 필요
-            return .success(nil)
-            
         case 400:
             return .error(.badRequest)
         case 401:
@@ -47,18 +42,42 @@ class ServiceAPI {
             return .error(.notFoundCode)
         }
     }
+    
+    /**
+     로그인 쪽 성공 값 _ 204 추가된 로그인 API
+     */
+    public func judgeLoginStatus<T: Codable>(response: Response, type: T.Type) -> UserAPI.LoginResult<T> {
+        let decoder = JSONDecoder()
+        print("response \(response)")
+        
+        switch response.statusCode {
+        case 200:
+            guard let decodedData = try? decoder.decode(T.self, from: response.data) else { return .error(.errorJson) }
+            return .success(decodedData)
+        case 204:
+            return .register
+        case 400:
+            return .error(.badRequest)
+        case 401:
+            return .error(.unauthorized)
+        case 403:
+            return .error(.forbidden)
+        case 500:
+            return .error(.internalServerError)
+        default:
+            print("❗️❗️❗️❗️ networkFail")
+            return .error(.notFoundCode)
+        }
+    }
+    
+    public func refreshAccessToken(token: String) {
+        Defaults.REFRESH_TOKEN = token
+        print("💎💎💎💎 update refreshToken")
+    }
 }
-
-struct GenericResponse<T: Codable>: Codable {
-    let code: String?
-    let message: String?
-    let status: Int
-    let data: T?
-}
-
 
 // NetworkResult2.swift
 public enum NetworkResult2<T> {
-    case success(T?)
+    case success(T)
     case error(GCError)
 }

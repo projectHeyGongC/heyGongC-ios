@@ -14,6 +14,8 @@ import RxRelay
 
 class FullCalendarVC: BaseVC {
     
+    private let bag = DisposeBag()
+    
     @IBOutlet weak var viewBackground: UIView!
     @IBOutlet weak var fullCalendar: FSCalendar!
     @IBOutlet weak var btnFullCalendarLastMonth: UIButton!
@@ -41,24 +43,22 @@ class FullCalendarVC: BaseVC {
                 guard let self = self else { return }
                 moveCurrentPage(next: true)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: bag)
         
         btnFullCalendarNextMonth.rx.tap
             .bind { [weak self] _ in
                 guard let self = self else { return }
                 moveCurrentPage(next: false)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: bag)
         
         selectedDateRelay
         .bind{ [weak self] date in
             guard let self = self else { return }
             fullCalendar.select(date)
         }
-        .disposed(by: disposeBag)
+        .disposed(by: bag)
     }
-    
-    override func setupHandler() { }
     
     private func initFullCalendar() {
         fullCalendar.tag = 1

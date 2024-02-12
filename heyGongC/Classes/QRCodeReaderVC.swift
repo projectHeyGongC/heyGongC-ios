@@ -24,6 +24,8 @@ class QRCodeReaderVC: BaseVC {
     //1. AVSession만들기
     let session = AVCaptureSession()
     
+    private let viewModel = QRCodeReaderVM()
+    
     override func initialize() {
         setupAVCatureInfo()
         
@@ -31,7 +33,9 @@ class QRCodeReaderVC: BaseVC {
     
     override func bind() { }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
     
     deinit {
         print("[Clear... QRCodeReaderVC ViewModel]")
