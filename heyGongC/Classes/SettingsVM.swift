@@ -12,4 +12,21 @@ import RxCocoa
 
 class SettingsVM: BaseVM {
     
+    public var completeUnregister = BehaviorRelay<Bool>(value: false)
+    
+    public func callUnregister() {
+        UserAPI.shared.networking(userService: .unregister, type: BaseModel.self)
+            .subscribe(with: self,
+                       onSuccess: { owner, networkResult in
+                switch networkResult {
+                case .success(let response):
+                    self.completeUnregister.accept(true)
+                case .error(let error):
+                    self.errorHandler.accept(error)
+                }
+            }, onFailure: { owner, error in
+                print("callUnregister - error")
+                
+            }).disposed(by: self.bag)
+    }
 }

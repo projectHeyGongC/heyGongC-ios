@@ -81,3 +81,7 @@ public enum NetworkResult2<T> {
     case success(T)
     case error(GCError)
 }
+
+struct BaseModel: Codable {
+    let code, message: String?
+}

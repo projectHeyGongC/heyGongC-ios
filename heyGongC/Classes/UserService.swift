@@ -63,7 +63,15 @@ extension UserService: TargetType {
     }
     
     var headers: [String : String]? {
-        return ServiceAPI.shared.getHeader()
+        switch self {
+        case .register, .login, .unregister, .info:
+            return ServiceAPI.shared.getHeader()
+        case .refreshToken(let param):
+            var header = ServiceAPI.shared.getHeader()
+            header["RefreshAccessTokenRequest"] = "refreshToken,\(param)"
+            
+            return header
+        }
     }
 }
 

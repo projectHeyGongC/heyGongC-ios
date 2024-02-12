@@ -24,6 +24,7 @@ class SettingsVC: BaseVC {
     }
     
     override func bind() {
+        bindApi()
         bindAction()
     }
     
@@ -39,15 +40,26 @@ class SettingsVC: BaseVC {
 
 extension SettingsVC {
     
+    private func bindApi() {
+        viewModel.completeUnregister
+            .bind { [weak self] in
+                
+                if $0 {
+                    Defaults.removeAll()
+                    self?.navigationController?.backToIntro()
+                }
+            }.disposed(by: viewModel.bag)
+    }
+    
     private func bindAction() {
             btnDeleteUser.rx.tap
                 .bind{ [weak self] in
                     guard let self = self else { return }
-                    showAlert(localized: .DLG_DELETE_USER, isAccent: true) {
+                    self.showAlert(localized: .DLG_DELETE_USER, 
+                                   confirm: { [weak self] in
                         
-                    } cancel: {
-                        
-                    }
+                        self?.viewModel.callUnregister()
+                    })
 
                 }
                 .disposed(by: viewModel.bag)
