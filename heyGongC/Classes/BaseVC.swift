@@ -92,7 +92,7 @@ class BaseVC: UIViewController, BaseImplementation {
         switch e {
         case .unauthorized:
             self.showAlert(localized: .DLG_EXPIRED, confirm: { [weak self] in
-                print(Defaults.AUTH_TOKEN)
+                print(Defaults.REFRESH_TOKEN)
                 App.shared.introType = .login
                 self?.navigationController?.backToIntro()
             })

@@ -11,16 +11,10 @@ import SnapKit
 import RxSwift
 import SwiftyUserDefaults
 import GoogleSignIn
+import AuthenticationServices
 
 
 class SelectAccountTypeVC: BaseVC {
-    
-    enum LoginType: String {
-        case Google = "google"
-        case Kakao = "kakao"
-        case Apple = "apple"
-    }
-    
     @IBOutlet weak var collectionViewOnboarding: UICollectionView!
     @IBOutlet weak var btnGoogle: CSUIButton!
     @IBOutlet weak var btnKakao: CSUIButton!
@@ -41,6 +35,7 @@ class SelectAccountTypeVC: BaseVC {
     }
     
     override func bind() {
+        bindSuccess()
         bindAction()
     }
     
@@ -48,14 +43,41 @@ class SelectAccountTypeVC: BaseVC {
         self.setErrorHandler(vm: viewModel)
     }
     
-    /// viewModel로 파라미터 전달
-    /// - Parameter ads: 마케팅 동의 여부
-    public func updateData(ads: Bool) {
-        self.viewModel.ads = ads
+    deinit {
+        print("[Clear... SelectAccountTypeVC ViewModel]")
+        onBack(vm: viewModel)
     }
 }
+
 // MARK: - Private
 extension SelectAccountTypeVC {
+    
+    private func bindSuccess() {
+        viewModel.loginSuccess.bind { [weak self] in
+            
+            guard let self else { return }
+            
+            if $0 {
+                SegueUtils.open(target: self, link: .MainTBC)
+            }
+            
+        }.disposed(by: viewModel.bag)
+        
+        viewModel.goRegister.bind { [weak self] in
+            guard let self else { return }
+            
+            if $0 {
+                if let vc = Link.CreateAccountVC.viewController as? CreateAccountVC {
+                    guard let param = self.viewModel.param else { return }
+                    
+                    vc.updateParam(param: param)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        }.disposed(by: viewModel.bag)
+    }
+    
     private func bindAction() {
         
         btnGoogle.rx.tap
@@ -63,6 +85,14 @@ extension SelectAccountTypeVC {
                 guard let self = self else { return }
                 
                 self.loginForGoogle()
+            }).disposed(by: viewModel.bag)
+        
+        btnApple.rx.tap
+            .bind(onNext: { [weak self] in
+                guard let self else { return }
+                
+                self.loginForApple()
+                
             }).disposed(by: viewModel.bag)
     }
 }
@@ -74,10 +104,21 @@ extension SelectAccountTypeVC {
             guard let self,
                   let result = signInResult?.user else { return }
 
-            self.viewModel.callLogin(userData: result)
+            self.viewModel.callLogin(loginType: .Google, accessToken: result.accessToken.tokenString)
 //            self.viewModel.callRegister(userData: result)
             // 서버에 토큰을 보내기. 이 때 idToken, accessToken 차이에 주의할 것
         }
+    }
+    
+    private func loginForApple() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email] //유저로 부터 알 수 있는 정보들(name, email)
+               
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
 }
 
@@ -104,5 +145,43 @@ extension SelectAccountTypeVC: UICollectionViewDelegateFlowLayout {
         let width = scrollView.frame.width
         currentPage = Int(scrollView.contentOffset.x / width)
         pageController.currentPage = currentPage
+    }
+}
+
+// MARK: - AppleLoginDelegate
+extension SelectAccountTypeVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding{
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    //로그인 성공
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            
+            if let identityToken = appleIDCredential.identityToken,
+                let identifyTokenString = String(data: identityToken, encoding: .utf8) {
+                print("identifyTokenString: \(identifyTokenString)")
+                
+                self.viewModel.callLogin(loginType: .Apple, accessToken: identifyTokenString)
+            }
+            
+        case let passwordCredential as ASPasswordCredential:
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            print("username: \(username)")
+            print("password: \(password)")
+            
+        default:
+            break
+        }
+    }
+    
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // 로그인 실패(유저의 취소도 포함)
+        print("login failed - \(error.localizedDescription)")
     }
 }

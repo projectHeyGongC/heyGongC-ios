@@ -54,5 +54,4 @@ class MonitoringVC: BaseVC {
         print("[Clear... MonitoringVC ViewModel]")
         onBack(vm: viewModel)
     }
-    
 }
