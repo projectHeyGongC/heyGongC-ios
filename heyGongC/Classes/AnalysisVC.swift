@@ -80,6 +80,9 @@ class AnalysisVC: BaseVC {
         print("[Clear... AnalysisVC ViewModel]")
         onBack(vm: viewModel)
     }
+}
+
+extension AnalysisVC {
     
     private func setupLeftBarButtonUI(){
         let stackView = UIStackView()
@@ -90,9 +93,6 @@ class AnalysisVC: BaseVC {
         leftBarButtonItem = UIBarButtonItem(customView: stackView)
         navigationController?.navigationBar.topItem?.setLeftBarButton(leftBarButtonItem, animated: false)
     }
-}
-
-extension AnalysisVC {
     
     private func initHeaderCalendar() {
         viewHeaderCalendar.tag = 0

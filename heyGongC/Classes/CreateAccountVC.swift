@@ -41,7 +41,9 @@ class CreateAccountVC: BaseVC {
         bindAction()
     }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
     
     deinit {
         print("[Clear... CreateAccountVC ViewModel]")
