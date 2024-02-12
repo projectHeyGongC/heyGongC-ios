@@ -94,6 +94,9 @@ class BaseVC: UIViewController, BaseImplementation {
             self.showAlert(localized: .DLG_EXPIRED, confirm: { [weak self] in
                 print(Defaults.REFRESH_TOKEN)
                 App.shared.introType = .login
+                
+//                let param = UserParam.RequestToken(refreshToken: Defaults.REFRESH_TOKEN)
+//                UserAPI.shared.networking(userService: .refreshToken(param: param), type: BaseModel.self)
                 self?.navigationController?.backToIntro()
             })
                 

@@ -49,7 +49,7 @@ class SelectAccountTypeVM: BaseVM {
                     self.errorHandler.accept(error)
                 }
             }, onFailure: { owner, error in
-                print("callRegister - error")
+                print("callLogin - error")
                 
             }).disposed(by: self.bag)
     }

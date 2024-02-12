@@ -53,7 +53,8 @@ class SelectAccountTypeVC: BaseVC {
 extension SelectAccountTypeVC {
     
     private func bindSuccess() {
-        viewModel.loginSuccess.bind { [weak self] in
+        viewModel.loginSuccess
+            .bind { [weak self] in
             
             guard let self else { return }
             
@@ -105,8 +106,6 @@ extension SelectAccountTypeVC {
                   let result = signInResult?.user else { return }
 
             self.viewModel.callLogin(loginType: .Google, accessToken: result.accessToken.tokenString)
-//            self.viewModel.callRegister(userData: result)
-            // 서버에 토큰을 보내기. 이 때 idToken, accessToken 차이에 주의할 것
         }
     }
     
