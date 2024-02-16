@@ -21,6 +21,9 @@ class UserProfileVC: BaseVC {
     @IBOutlet weak var btnDisconnectAllDevices: UIButton!
     @IBOutlet weak var btnAddDivice: UIButton!
     @IBOutlet weak var collectionViewDeviceInfo: UICollectionView!
+    @IBOutlet weak var lblUserEmail: UILabel!
+    @IBOutlet weak var imgViewSNSType: UIImageView!
+    @IBOutlet weak var viewBackground: UIView!
     
     private var collectionViewHeightConstraint: Constraint?
     private var btnSettings: UIBarButtonItem = {
@@ -46,6 +49,11 @@ class UserProfileVC: BaseVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = btnSettings
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupUI()
     }
     
     
@@ -80,6 +88,30 @@ class UserProfileVC: BaseVC {
                 
             }
             .disposed(by: viewModel.bag)
+    }
+    
+    private func setupUI(){
+        lblUserEmail.text = KeyChains.shared.USER_DATA?.email
+        setSNSTypeUI(type: KeyChains.shared.USER_DATA?.snsType)
+    }
+    
+    private func setSNSTypeUI(type: String?){
+        guard let type = type else { return }
+        
+        switch type {
+        case "GOOGLE":
+            viewBackground.backgroundColor = .white
+            imgViewSNSType.image = UIImage(named: "ic_google")
+        case "APPLE":
+            viewBackground.backgroundColor = .black
+            imgViewSNSType.image = UIImage(named: "ic_apple")
+        case "KAKAO":
+            viewBackground.backgroundColor = UIColor(named: "color_kakao")
+            imgViewSNSType.image = UIImage(named: "ic_kakao")
+        default:
+            viewBackground.backgroundColor = .white
+            imgViewSNSType.image = UIImage()
+        }
     }
     
     override func setupHandler() {

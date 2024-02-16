@@ -11,4 +11,14 @@ import RxCocoa
 
 class NotificationSettingsVM: BaseVM {
     
+    public var switchNotificationStatus = BehaviorRelay<Bool>(value: false)
+    
+    override init(){
+        super.init()
+        
+        if let status = KeyChains.shared.USER_DATA?.alarm {
+            switchNotificationStatus.accept(status)
+        }
+        
+    }
 }
