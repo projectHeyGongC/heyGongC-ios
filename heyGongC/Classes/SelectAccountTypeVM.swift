@@ -41,6 +41,8 @@ class SelectAccountTypeVM: BaseVM {
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
+                    UserDefaults.standard.set(response?.accessToken, forKey: UserDefaultsKey.accessToken.rawValue)
+                    UserDefaults.standard.set(response?.refreshToken, forKey: UserDefaultsKey.refreshToken.rawValue)
                     ServiceAPI.shared.refreshAccessToken(token: response?.refreshToken ?? "")
                     self.loginSuccess.accept(true)
                 case .register:
