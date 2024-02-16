@@ -18,7 +18,17 @@ enum UserService {
     case info
 }
 
-extension UserService: TargetType {
+extension UserService: TargetType, AccessTokenAuthorizable {
+    
+    var authorizationType: Moya.AuthorizationType? {
+        switch self {
+        case .login, .register:
+            return .none
+        default:
+            return .bearer
+        }
+    }
+    
     var baseURL: URL {
         return URL(string: ServiceAPI.shared.baseUrl)!
     }
@@ -69,8 +79,16 @@ extension UserService: TargetType {
 
 class UserAPI {
     static let shared = UserAPI()
-    var userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin()])
-    private init() { }
+    
+    let tokenClosure: (TargetType) -> String = { _ in
+        return UserDefaults.standard.string(forKey: UserDefaultsKey.accessToken.rawValue) ?? ""
+    }
+    
+    let userProvider: MoyaProvider<UserService>
+    
+    private init() {
+        userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+    }
     
     enum LoginResult<T> {
         case success(T?)

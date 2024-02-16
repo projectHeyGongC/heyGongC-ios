@@ -50,6 +50,7 @@ PODS:
     - RxSwift (= 6.6.0)
   - RxSwift (6.6.0)
   - SnapKit (5.6.0)
+  - SwiftKeychainWrapper (4.0.1)
   - SwiftyUserDefaults (5.3.0)
   - TAKUUID (1.5.0)
   - Then (3.0.0)
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - RxOptional
   - RxSwift
   - SnapKit (~> 5.6.0)
+  - SwiftKeychainWrapper
   - SwiftyUserDefaults (~> 5.0)
   - TAKUUID
   - Then
@@ -95,6 +97,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SnapKit
+    - SwiftKeychainWrapper
     - SwiftyUserDefaults
     - TAKUUID
     - Then
@@ -119,11 +122,12 @@ SPEC CHECKSUMS:
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftyUserDefaults: 63f80248cf5bfb3458825d9a78f2eb7e1293a040
   TAKUUID: 48d7c690d85a27e7beb79b099349f1cf0d60c928
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 6da3bd861c7b9a4e6c3eb290080f52b727e4b15e
+PODFILE CHECKSUM: d3b2419c0bdfb89f14f981ef79e281d50b7bc493
 
 COCOAPODS: 1.14.3
