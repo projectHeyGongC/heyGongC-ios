@@ -89,6 +89,8 @@ class CreateAccountVM: BaseVM {
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
+                    UserDefaults.standard.set(response.accessToken, forKey: UserDefaultsKey.accessToken.rawValue)
+                    UserDefaults.standard.set(response.refreshToken, forKey: UserDefaultsKey.refreshToken.rawValue)
                     self.successRegister.accept(true)
                 case .error(let error):
                     self.errorHandler.accept(error)

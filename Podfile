@@ -43,6 +43,7 @@ def common_pods
   pod 'Action'
   pod 'FSCalendar'
   pod 'TAKUUID'
+  pod 'SwiftKeychainWrapper'
   
   # Login
   pod 'GoogleSignIn'
