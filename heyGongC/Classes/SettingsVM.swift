@@ -17,11 +17,11 @@ class SettingsVM: BaseVM {
     public var completLogout = BehaviorRelay<Bool>(value: false)
     
     public func callUnregister() {
-        UserAPI.shared.networking(userService: .unregister, type: BaseModel.self)
+        UserAPI.shared.networking(userService: .unregister, type: BaseModel.self, isParsing: false)
             .subscribe(with: self,
                        onSuccess: { owner, networkResult in
                 switch networkResult {
-                case .success(let response):
+                case .success(let _):
                     self.completeUnregister.accept(true)
                 case .error(let error):
                     self.errorHandler.accept(error)
