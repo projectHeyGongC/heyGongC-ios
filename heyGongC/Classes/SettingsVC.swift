@@ -44,11 +44,24 @@ extension SettingsVC {
         viewModel.completeUnregister
             .bind { [weak self] in
                 
+                guard let self = self else { return }
+                
                 if $0 {
                     Defaults.removeAll()
-                    self?.navigationController?.backToIntro()
+                    navigationController?.backToIntro()
                 }
             }.disposed(by: viewModel.bag)
+        
+        viewModel.completLogout
+            .bind{ [weak self] in
+                
+                guard let self = self else { return }
+                
+                if $0 {
+                    navigationController?.backToIntro()
+                }
+            }
+            .disposed(by: viewModel.bag)
     }
     
     private func bindAction() {
@@ -57,8 +70,8 @@ extension SettingsVC {
                     guard let self = self else { return }
                     self.showAlert(localized: .DLG_DELETE_USER, 
                                    confirm: { [weak self] in
-                        
-                        self?.viewModel.callUnregister()
+                        guard let self = self else { return }
+                        viewModel.callUnregister()
                     })
 
                 }
@@ -67,12 +80,12 @@ extension SettingsVC {
             btnLogout.rx.tap
                 .bind{ [weak self] in
                     guard let self = self else { return }
-                    showAlert(localized: .DLG_LOGOUT) {
+                    showAlert(localized: .DLG_LOGOUT,
+                              confirm: { [weak self] in
                         
-                    } cancel: {
-                        
-                    }
-
+                        guard let self = self else { return }
+                        viewModel.callLogout()
+                    })
                 }
                 .disposed(by: viewModel.bag)
             
