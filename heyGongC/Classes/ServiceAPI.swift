@@ -21,13 +21,13 @@ class ServiceAPI {
         ]
     }
     
-    public func judgeStatus<T: Codable>(response: Response, type: T.Type?) -> NetworkResult2<T> {
+    public func judgeStatus<T: Codable>(response: Response, type: T.Type, isParsing: Bool) -> NetworkResult2<T> {
         let decoder = JSONDecoder()
         print("response \(response)")
         
         switch response.statusCode {
         case 200:
-            if let type = type {
+            if isParsing {
                 guard let decodedData = try? decoder.decode(T.self, from: response.data) else { return .error(.errorJson) }
                 return .success(decodedData)
             } else {

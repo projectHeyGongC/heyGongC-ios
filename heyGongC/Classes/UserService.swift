@@ -123,13 +123,13 @@ class UserAPI {
         }
     }
     
-    func networking<T: Codable>(userService: UserService, type: T.Type?) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(userService: UserService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             self.userProvider.request(userService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: isParsing)
                     single(.success(networkResult))
                     return
                 case .failure(let error):
