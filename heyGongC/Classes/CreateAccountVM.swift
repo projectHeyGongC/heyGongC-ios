@@ -90,8 +90,8 @@ class CreateAccountVM: BaseVM {
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    Defaults.REFRESH_TOKEN = response?.refreshToken ?? ""
-                    ServiceAPI.shared.refreshAccessToken(token: response?.accessToken ?? "")
+                    Defaults.REFRESH_TOKEN = response.refreshToken ?? ""
+                    ServiceAPI.shared.refreshAccessToken(token: response.accessToken ?? "")
 
                     self.successRegister.accept(true)
                 case .error(let error):

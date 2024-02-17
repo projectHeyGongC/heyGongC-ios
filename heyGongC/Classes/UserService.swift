@@ -115,7 +115,7 @@ class UserAPI {
         }
     }
     
-    func networking<T: Codable>(userService: UserService, type: T.Type?) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(userService: UserService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             self.userProvider.request(userService) { result in
                 switch result {
