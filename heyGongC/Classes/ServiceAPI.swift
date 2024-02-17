@@ -21,14 +21,18 @@ class ServiceAPI {
         ]
     }
     
-    public func judgeStatus<T: Codable>(response: Response, type: T.Type) -> NetworkResult2<T> {
+    public func judgeStatus<T: Codable>(response: Response, type: T.Type?) -> NetworkResult2<T> {
         let decoder = JSONDecoder()
         print("response \(response)")
         
         switch response.statusCode {
         case 200:
-            guard let decodedData = try? decoder.decode(T.self, from: response.data) else { return .error(.errorJson) }
-            return .success(decodedData)
+            if let type = type {
+                guard let decodedData = try? decoder.decode(T.self, from: response.data) else { return .error(.errorJson) }
+                return .success(decodedData)
+            } else {
+                return .success(nil)
+            }
         case 400:
             return .error(.badRequest)
         case 401:
@@ -78,7 +82,7 @@ class ServiceAPI {
 
 // NetworkResult2.swift
 public enum NetworkResult2<T> {
-    case success(T)
+    case success(T?)
     case error(GCError)
 }
 
