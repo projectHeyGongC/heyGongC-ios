@@ -8,6 +8,7 @@
 import Foundation
 import Moya
 import RxSwift
+import SwiftyUserDefaults
 
 /// kes 240129 스웨거에 있는 API
 enum UserService {
@@ -89,7 +90,7 @@ class UserAPI {
     static let shared = UserAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
-        return UserDefaults.standard.string(forKey: UserDefaultsKey.accessToken.rawValue) ?? ""
+        return Defaults.ACCESS_TOKEN
     }
     
     let userProvider: MoyaProvider<UserService>
