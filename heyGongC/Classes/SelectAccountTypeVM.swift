@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import GoogleSignIn
-
+import SwiftyUserDefaults
 
 class SelectAccountTypeVM: BaseVM {
     
@@ -41,9 +41,10 @@ class SelectAccountTypeVM: BaseVM {
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    UserDefaults.standard.set(response?.accessToken, forKey: UserDefaultsKey.accessToken.rawValue)
-                    UserDefaults.standard.set(response?.refreshToken, forKey: UserDefaultsKey.refreshToken.rawValue)
-                    ServiceAPI.shared.refreshAccessToken(token: response?.refreshToken ?? "")
+                    
+                    Defaults.REFRESH_TOKEN = response?.refreshToken ?? ""
+                    
+                    ServiceAPI.shared.refreshAccessToken(token: response?.accessToken ?? "")
                     self.loginSuccess.accept(true)
                 case .register:
                     self.goRegister.accept(true)
