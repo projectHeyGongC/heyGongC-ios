@@ -13,7 +13,7 @@ import SwiftyUserDefaults
 
 class DeviceNamingVC: BaseVC {
     
-    var viewModel = DeviceNamingVM()
+    private let viewModel = DeviceNamingVM()
     
     @IBOutlet weak var txtFieldDeviceName: UITextField!
     @IBOutlet weak var btnDeviceRegister: UIButton!
@@ -36,18 +36,25 @@ class DeviceNamingVC: BaseVC {
                     self.txtFieldDeviceName.layer.borderColor = isEmpty ? GCColor.C_C4C4C4.cgColor : GCColor.C_006877.cgColor
                 }
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         btnDismiss.rx.tap
             .subscribe { _ in
                 self.dismiss(animated: true)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
             
             
     }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
+    
+    deinit {
+        print("[Clear... DeviceNamingVC ViewModel]")
+        onBack(vm: viewModel)
+    }
 }
 
 extension DeviceNamingVC: UITextFieldDelegate {

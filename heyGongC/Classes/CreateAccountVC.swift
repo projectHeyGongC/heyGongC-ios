@@ -13,7 +13,7 @@ import SwiftyUserDefaults
 
 class CreateAccountVC: BaseVC {
     
-    var viewModel: CreateAccountVM = CreateAccountVM()
+    private let viewModel = CreateAccountVM()
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubTitle: UILabel!
@@ -36,12 +36,26 @@ class CreateAccountVC: BaseVC {
     }
     
     override func bind() {
+        bindSuccess()
         bindUI()
         bindAction()
-        
     }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
+    
+    deinit {
+        print("[Clear... CreateAccountVC ViewModel]")
+        onBack(vm: viewModel)
+    }
+    
+    public func updateParam(param: CreateAccountVM.Param) {
+        self.viewModel.param = param
+    }
+}
+
+extension CreateAccountVC {
     
     private func setupUI(){
         lblSubTitle.text = "서비스 시작 및 가입을 위해 먼저 가입 및\n 정보 제공에 동의해 주세요."
@@ -83,6 +97,19 @@ class CreateAccountVC: BaseVC {
 
 extension CreateAccountVC {
     
+    private func bindSuccess() {
+        viewModel.successRegister
+            .bind { [weak self] in
+            
+            guard let self = self else { return }
+            
+            if $0 {
+                SegueUtils.open(target: self, link: .MainTBC)
+            }
+                       
+        }.disposed(by: viewModel.bag)
+    }
+    
     private func bindUI() {
         Observable<AgreementButtonType>.merge([
             btnAllAgree.rx.tap.map { _ in .allAgree },
@@ -91,7 +118,7 @@ extension CreateAccountVC {
             btnNotRequiredThird.rx.tap.map { _ in .notRequiredThird }
         ])
         .bind(to: viewModel.input.buttonTapped)
-        .disposed(by: disposeBag)
+        .disposed(by: viewModel.bag)
         
         Observable.combineLatest(
             viewModel.requiredFirstIsSelected,
@@ -101,7 +128,7 @@ extension CreateAccountVC {
                 self.btnNext.backgroundColor = isEnabled ? UIColor(named: "ffc000") : UIColor(named: "c4c4c4")
                 self.btnNext.isEnabled = isEnabled
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         
         viewModel.allAgreeIsSelected
@@ -109,7 +136,7 @@ extension CreateAccountVC {
                 let imageName = isSelected ? "ic_radioButton_on" : "ic_radioButton_off"
                 self?.btnAllAgree.setImage(UIImage(named: imageName), for: .normal)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         viewModel.requiredFirstIsSelected
             .bind{ [weak self] isSelected in
@@ -117,7 +144,7 @@ extension CreateAccountVC {
                 let imageName = isSelected ? "ic_checkBox_on" : "ic_checkBox_off"
                 self?.btnRequiredFirst.setImage(UIImage(named: imageName), for: .normal)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         viewModel.requiredSecondIsSelected
             .bind{ [weak self] isSelected in
@@ -125,7 +152,7 @@ extension CreateAccountVC {
                 let imageName = isSelected ? "ic_checkBox_on" : "ic_checkBox_off"
                 self?.btnRequiredSecond.setImage(UIImage(named: imageName), for: .normal)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         viewModel.notRequiredThirdIsSelected
             .skip(1)
@@ -136,7 +163,7 @@ extension CreateAccountVC {
                 self?.setMarketingToast(isSelected)
                 
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
             
     }
     
@@ -145,10 +172,7 @@ extension CreateAccountVC {
             .bind(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                if let vc = Link.SelectAccountTypeVC.viewController as? SelectAccountTypeVC {
-                    vc.updateData(ads: self.viewModel.notRequiredThirdIsSelected.value)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+                self.viewModel.callRegister()
                 
             }).disposed(by: viewModel.bag)
     }

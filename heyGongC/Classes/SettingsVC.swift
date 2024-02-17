@@ -24,39 +24,53 @@ class SettingsVC: BaseVC {
     }
     
     override func bind() {
-        btnDeleteUser.rx.tap
-            .bind{ [weak self] in
-                guard let self = self else { return }
-                showAlert(localized: .DLG_DELETE_USER, isAccent: true) {
-                    
-                } cancel: {
-                    
-                }
-
-            }
-            .disposed(by: disposeBag)
-        
-        btnLogout.rx.tap
-            .bind{ [weak self] in
-                guard let self = self else { return }
-                showAlert(localized: .DLG_LOGOUT) {
-                    
-                } cancel: {
-                    
-                }
-
-            }
-            .disposed(by: disposeBag)
-        
-        btnNotificationSettings.rx.tap
-            .bind { [weak self] in
-                guard let self = self else { return }
-                guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NotificationSettings") as? NotificationSettingsVC else { return }
-                
-                navigationController?.pushViewController(vc, animated: true)
-            }
-            .disposed(by: disposeBag)
+        bindAction()
     }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
+    
+    deinit {
+        print("[Clear... SettingsVC ViewModel]")
+        onBack(vm: viewModel)
+    }
+}
+
+extension SettingsVC {
+    
+    private func bindAction() {
+            btnDeleteUser.rx.tap
+                .bind{ [weak self] in
+                    guard let self = self else { return }
+                    showAlert(localized: .DLG_DELETE_USER, isAccent: true) {
+                        
+                    } cancel: {
+                        
+                    }
+
+                }
+                .disposed(by: viewModel.bag)
+            
+            btnLogout.rx.tap
+                .bind{ [weak self] in
+                    guard let self = self else { return }
+                    showAlert(localized: .DLG_LOGOUT) {
+                        
+                    } cancel: {
+                        
+                    }
+
+                }
+                .disposed(by: viewModel.bag)
+            
+            btnNotificationSettings.rx.tap
+                .bind { [weak self] in
+                    guard let self = self else { return }
+                    guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "NotificationSettings") as? NotificationSettingsVC else { return }
+                    
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+                .disposed(by: viewModel.bag)
+    }
 }

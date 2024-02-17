@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum UserDefaultsKey: String {
+    case accessToken
+    case refreshToken
+}
+
 // MARK: - RequestData
 class UserParam {
     

@@ -36,7 +36,7 @@ class ExampleVC: BaseVC {
     }
     
     deinit {
-        print("[Clear... CreateAccountVC ViewModel]")
+        print("[Clear... ExampleVC ViewModel]")
         onBack(vm: viewModel)
     }
 }

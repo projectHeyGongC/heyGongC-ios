@@ -15,6 +15,8 @@ class NotificationSettingsVC: BaseVC {
     
     @IBOutlet weak var viewBackground: UIView!
     
+    private let viewModel =  NotificationSettingsVM()
+    
     private var lblTitle: UILabel = {
         let object = UILabel()
         return object
@@ -34,7 +36,7 @@ class NotificationSettingsVC: BaseVC {
     }()
     
     private var stackView: UIStackView = {
-       let object = UIStackView()
+        let object = UIStackView()
         object.axis = .vertical
         return object
     }()
@@ -49,12 +51,22 @@ class NotificationSettingsVC: BaseVC {
             .subscribe{ newValue in
                 self.showAlert(localized: newValue ? .DLG_NOTIFICATION_ON : .DLG_NOTIFICATION_OFF)
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
     }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
     
-    func setupUI(){
+    deinit {
+        print("[Clear... NotificationSettingsVC ViewModel]")
+        onBack(vm: viewModel)
+    }
+}
+
+extension NotificationSettingsVC {
+    
+    private func setupUI(){
         
         lblTitle.text = "이벤트 알림"
         lblTitle.font = .systemFont(ofSize: 12, weight: .regular)

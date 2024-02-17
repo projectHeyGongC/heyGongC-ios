@@ -21,6 +21,7 @@ class UserProfileVC: BaseVC {
     @IBOutlet weak var btnDisconnectAllDevices: UIButton!
     @IBOutlet weak var btnAddDivice: UIButton!
     @IBOutlet weak var collectionViewDeviceInfo: UICollectionView!
+    
     private var collectionViewHeightConstraint: Constraint?
     private var btnSettings: UIBarButtonItem = {
         let object = UIBarButtonItem()
@@ -29,7 +30,7 @@ class UserProfileVC: BaseVC {
         return object
     }()
     
-    let viewModel = UserProfileVM()
+    private let viewModel = UserProfileVM()
     
     override func initialize() {
         collectionViewDeviceInfo.delegate = self
@@ -59,7 +60,7 @@ class UserProfileVC: BaseVC {
                 
                 
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         btnAddDivice.rx.tap
             .bind{ [weak self] in
@@ -68,7 +69,7 @@ class UserProfileVC: BaseVC {
                 updateCollectionViewHeight()
                 collectionViewDeviceInfo.reloadData()
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
         
         btnSettings.rx.tap
             .bind { [weak self] in
@@ -78,10 +79,20 @@ class UserProfileVC: BaseVC {
                 navigationController?.pushViewController(nextVC, animated: true)
                 
             }
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.bag)
     }
     
-    override func setupHandler() { }
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
+    
+    deinit {
+        print("[Clear... UserProfileVC ViewModel]")
+        onBack(vm: viewModel)
+    }
+}
+
+extension UserProfileVC {
     
     // 데이터가 업데이트된 후 호출되는 메서드
     private func updateCollectionViewHeight() {

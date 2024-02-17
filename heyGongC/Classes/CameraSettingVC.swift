@@ -32,5 +32,4 @@ class CameraSettingVC: BaseVC {
         print("[Clear... CameraSettingVC ViewModel]")
         onBack(vm: viewModel)
     }
-    
 }
