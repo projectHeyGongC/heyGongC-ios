@@ -126,6 +126,7 @@
 		B8C9A7692B4FCEBA0083B144 /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		B8C9A76A2B4FCEBA0083B144 /* UserProfileVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVM.swift; sourceTree = "<group>"; };
 		B8C9A76D2B4FCEDF0083B144 /* NotificationSettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingsVC.swift; sourceTree = "<group>"; };
+		B8E8BDEA2B8089BA005C682E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B8FC68482B581F7500C29691 /* DeviceRegister.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeviceRegister.storyboard; sourceTree = "<group>"; };
 		B8FC684B2B581F9B00C29691 /* QRCodeReaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderVC.swift; sourceTree = "<group>"; };
 		B8FC684D2B581FC000C29691 /* QRCodeReaderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderVM.swift; sourceTree = "<group>"; };
@@ -475,6 +476,7 @@
 				CA6EAC5F2B395E0000F81F3A /* Assets.xcassets */,
 				CA6EAC642B395E0000F81F3A /* heyGongC.entitlements */,
 				CA6EAC652B395E0000F81F3A /* Info.plist */,
+				B8E8BDEA2B8089BA005C682E /* PrivacyInfo.xcprivacy */,
 				CA6EAC5C2B395DFF00F81F3A /* heyGongC.xcdatamodeld */,
 			);
 			path = heyGongC;
