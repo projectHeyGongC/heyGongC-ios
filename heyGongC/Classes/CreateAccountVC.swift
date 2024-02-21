@@ -125,7 +125,7 @@ extension CreateAccountVC {
             viewModel.requiredSecondIsSelected)
         { $0 && $1 }
             .subscribe{ isEnabled in
-                self.btnNext.backgroundColor = isEnabled ? UIColor(named: "ffc000") : UIColor(named: "c4c4c4")
+                self.btnNext.backgroundColor = isEnabled ? GCColor.C_FFC000 : GCColor.C_C4C4C4
                 self.btnNext.isEnabled = isEnabled
             }
             .disposed(by: viewModel.bag)
