@@ -18,20 +18,36 @@ class QRCodeReaderVC: BaseVC {
     
     @IBOutlet weak var viewCamera: UIView!
     @IBOutlet weak var imgViewScanArea: UIImageView!
+    @IBOutlet weak var btnDismiss: UIButton!
     
     var video = AVCaptureVideoPreviewLayer()
-    
-    //1. AVSession만들기
     let session = AVCaptureSession()
     
     private let viewModel = QRCodeReaderVM()
     
     override func initialize() {
         setupAVCatureInfo()
-        
     }
     
-    override func bind() { }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        session.stopRunning()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        DispatchQueue.global(qos: .background).async{
+            self.session.startRunning()
+        }
+    }
+    
+    override func bind() {
+        btnDismiss.rx.tap.bind { [weak self] in
+            guard let self = self else { return }
+            dismiss(animated: true)
+        }
+        .disposed(by: viewModel.bag)
+    }
     
     override func setupHandler() {
         self.setErrorHandler(vm: viewModel)
