@@ -12,7 +12,7 @@ import SwiftyUserDefaults
 class ServiceAPI {
     static let shared = ServiceAPI()
     
-    let baseUrl = "http://13.125.159.97/v1/users"
+    let baseUrl = "http://13.125.159.97/v1/"
     
     public func getHeader() -> [String: String] {
         return [
