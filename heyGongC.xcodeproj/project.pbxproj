@@ -28,6 +28,8 @@
 		B8FC684E2B581FC000C29691 /* QRCodeReaderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC684D2B581FC000C29691 /* QRCodeReaderVM.swift */; };
 		B8FC68502B581FD800C29691 /* DeviceNamingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC684F2B581FD800C29691 /* DeviceNamingVC.swift */; };
 		B8FC68522B581FE600C29691 /* DeviceNamingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FC68512B581FE600C29691 /* DeviceNamingVM.swift */; };
+		B8FEAE792B84E65500E39D57 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FEAE782B84E65500E39D57 /* DeviceModel.swift */; };
+		B8FEAE7B2B84EB7B00E39D57 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */; };
 		C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A44882B687005007F7178 /* UINavigationController+Ext.swift */; };
 		C61A448B2B68B614007F7178 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A448A2B68B614007F7178 /* Util.swift */; };
 		C6D094B52B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */; };
@@ -132,6 +134,8 @@
 		B8FC684D2B581FC000C29691 /* QRCodeReaderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderVM.swift; sourceTree = "<group>"; };
 		B8FC684F2B581FD800C29691 /* DeviceNamingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNamingVC.swift; sourceTree = "<group>"; };
 		B8FC68512B581FE600C29691 /* DeviceNamingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNamingVM.swift; sourceTree = "<group>"; };
+		B8FEAE782B84E65500E39D57 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
+		B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		C61A44882B687005007F7178 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		C61A448A2B68B614007F7178 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggingPlugin.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				C6D664562B639610003D392A /* UserModel.swift */,
+				B8FEAE782B84E65500E39D57 /* DeviceModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -593,6 +598,7 @@
 			isa = PBXGroup;
 			children = (
 				CA3D7B032B6125FA00C63FD0 /* UserService.swift */,
+				B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */,
 				C6D664522B6387B8003D392A /* ServiceAPI.swift */,
 				C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */,
 				CAC9C8A92B3C4AE100C02509 /* GCError.swift */,
@@ -864,6 +870,7 @@
 				CA6EACA42B39699B00F81F3A /* Segue.swift in Sources */,
 				B84BED852B4BB99600382F7F /* SelectAccountTypeVM.swift in Sources */,
 				B80269182B4FDC1000F92BBC /* DeviceInfoCollectionViewCell.swift in Sources */,
+				B8FEAE7B2B84EB7B00E39D57 /* DeviceService.swift in Sources */,
 				CA58BF802B4E6AE2008D8015 /* MonitoringVC.swift in Sources */,
 				CA58BF832B4E6AE2008D8015 /* CameraVC.swift in Sources */,
 				B88C41572B55221A006A5F65 /* SettingsVM.swift in Sources */,
@@ -872,6 +879,7 @@
 				B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */,
 				CA3D7ABD2B4E765100C63FD0 /* AnalysisVC.swift in Sources */,
 				CA6EAC9E2B39688700F81F3A /* BaseVM.swift in Sources */,
+				B8FEAE792B84E65500E39D57 /* DeviceModel.swift in Sources */,
 				C6D094B52B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift in Sources */,
 				CAC9C8A62B3C467D00C02509 /* ExampleVM.swift in Sources */,
 				CA3D7B072B612E9D00C63FD0 /* CustomButton.swift in Sources */,

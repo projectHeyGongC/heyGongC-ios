@@ -37,15 +37,15 @@ extension UserService: TargetType, AccessTokenAuthorizable {
     var path: String {
         switch self {
         case .register(type: let type, param: _):
-            return "/\(type.rawValue)/register"
+            return "users/\(type.rawValue)/register"
         case .login(type: let type, param: _):
-            return "/\(type.rawValue)/login"
+            return "users/\(type.rawValue)/login"
         case .unregister:
-            return "/unregister"
+            return "users/unregister"
         case .refreshToken:
-            return "/token/refresh"
+            return "users/token/refresh"
         case .info:
-            return "/info"
+            return "users/info"
         }
     }
     
