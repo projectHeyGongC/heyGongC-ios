@@ -23,8 +23,6 @@ class QRCodeReaderVC: BaseVC {
     var video = AVCaptureVideoPreviewLayer()
     let session = AVCaptureSession()
     
-    private let viewModel = QRCodeReaderVM()
-    
     override func initialize() {
         setupAVCatureInfo()
     }
