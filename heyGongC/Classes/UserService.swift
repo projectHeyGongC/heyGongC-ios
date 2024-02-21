@@ -8,6 +8,7 @@
 import Foundation
 import Moya
 import RxSwift
+import SwiftyUserDefaults
 
 /// kes 240129 스웨거에 있는 API
 enum UserService {
@@ -18,7 +19,17 @@ enum UserService {
     case info
 }
 
-extension UserService: TargetType {
+extension UserService: TargetType, AccessTokenAuthorizable {
+    
+    var authorizationType: Moya.AuthorizationType? {
+        switch self {
+        case .login, .register:
+            return .none
+        default:
+            return .bearer
+        }
+    }
+    
     var baseURL: URL {
         return URL(string: ServiceAPI.shared.baseUrl)!
     }
@@ -69,8 +80,16 @@ extension UserService: TargetType {
 
 class UserAPI {
     static let shared = UserAPI()
-    var userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin()])
-    private init() { }
+    
+    let tokenClosure: (TargetType) -> String = { _ in
+        return Defaults.ACCESS_TOKEN
+    }
+    
+    let userProvider: MoyaProvider<UserService>
+    
+    private init() {
+        userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+    }
     
     enum LoginResult<T> {
         case success(T?)
@@ -96,13 +115,13 @@ class UserAPI {
         }
     }
     
-    func networking<T: Codable>(userService: UserService, type: T.Type) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(userService: UserService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             self.userProvider.request(userService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: isParsing)
                     single(.success(networkResult))
                     return
                 case .failure(let error):

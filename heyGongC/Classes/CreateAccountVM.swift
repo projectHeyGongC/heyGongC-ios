@@ -9,6 +9,7 @@ import Foundation
 import Foundation
 import RxSwift
 import RxCocoa
+import SwiftyUserDefaults
 
 enum AgreementButtonType {
     case allAgree // 전체 동의
@@ -89,6 +90,9 @@ class CreateAccountVM: BaseVM {
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
+                    Defaults.REFRESH_TOKEN = response?.refreshToken ?? ""
+                    ServiceAPI.shared.refreshAccessToken(token: response?.accessToken ?? "")
+
                     self.successRegister.accept(true)
                 case .error(let error):
                     self.errorHandler.accept(error)
