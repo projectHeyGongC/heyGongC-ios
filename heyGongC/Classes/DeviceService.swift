@@ -11,15 +11,16 @@ import RxSwift
 import SwiftyUserDefaults
 
 enum DeviceService {
-    case select(seq: Int)
-    case edit(seq: Int, param: DeviceParam.RequestEditData)
-    case delete(seq: Int)
-    case list
-    case append(param: DeviceParam.RequestAppendData)
+    case getInfo(id: Int)
+    case edit(id: Int, param: DeviceParam.EditRequest)
+    case delete(id: Int)
+    case getList
+    case add(param: DeviceParam.InfoRequest)
     case deleteAll
 }
 
 extension DeviceService: TargetType, AccessTokenAuthorizable {
+    
     var authorizationType: Moya.AuthorizationType? {
         switch self {
         default:
@@ -33,18 +34,18 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
     
     var path: String {
         switch self {
-        case .select(seq: let seq), .edit(seq: let seq, param: _), .delete(seq: let seq):
+        case .getInfo(id: let seq), .edit(id: let seq, param: _), .delete(id: let seq):
             return "device/\(seq)"
-        case .list, .deleteAll, .append(param: _):
+        case .getList, .deleteAll, .add(param: _):
             return "device"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .append:
+        case .add:
             return .post
-        case .select, .list:
+        case .getInfo, .getList:
             return .get
         case .edit:
             return .put
@@ -55,11 +56,11 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
     
     var task: Moya.Task {
         switch self {
-        case .append(let param):
+        case .add(let param):
             return .requestJSONEncodable(param)
-        case .list, .select(seq: _), .delete(seq: _), .deleteAll:
+        case .getList, .getInfo(id: _), .delete(id: _), .deleteAll:
             return .requestPlain
-        case .edit(seq: _, param: let param):
+        case .edit(id: _, param: let param):
             return .requestJSONEncodable(param)
         }
     }

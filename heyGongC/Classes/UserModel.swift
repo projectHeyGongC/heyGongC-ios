@@ -10,34 +10,24 @@ import Foundation
 // MARK: - RequestData
 class UserParam {
     
-    struct RequestRegisterData: Codable {
+    struct RegisterRequest: Codable {
         var deviceId = Util.getUUID()
         var deviceOs = "iOS"
         var ads: Bool
         var token: Token
     }
     
-    struct RequestLoginData: Codable {
+    struct LoginRequest: Codable {
         var deviceId = Util.getUUID()
         var deviceOs = "iOS"
         var token: Token
     }
     
-    struct RequestToken: Codable {
+    struct TokenRequest: Codable {
         var refreshToken: String
     }
     
-    // MARK: Token
-    struct Token: Codable {
-        var accessToken, refreshToken: String
-        
-        func getToken() -> [String: String] {
-            return ["accessToken": self.accessToken,
-                    "refreshToken": self.refreshToken]
-        }
-    }
-    
-    public func getData(params: RequestRegisterData) -> [String: Any] {
+    public func getData(params: RegisterRequest) -> [String: Any] {
         var data = [String : Any]()
         
         data["deviceId"] = params.deviceId
@@ -49,7 +39,7 @@ class UserParam {
         return data
     }
     
-    public func getData(params: RequestLoginData) -> [String: Any] {
+    public func getData(params: LoginRequest) -> [String: Any] {
         var data = [String : Any]()
         
         data["deviceId"] = params.deviceId
@@ -59,7 +49,7 @@ class UserParam {
         return data
     }
     
-    public func getData(params: RequestToken) -> [String: Any] {
+    public func getData(params: TokenRequest) -> [String: Any] {
         var data = [String : Any]()
         
         data["refreshToken"] = params.refreshToken
@@ -68,7 +58,7 @@ class UserParam {
     }
 }
 
-// MARK: - Model
+// MARK: - UserModel
 
 struct UserModel: Codable {
     let deviceID, deviceOS, snsType, email: String?
@@ -81,7 +71,7 @@ struct UserModel: Codable {
     }
 }
 
-// MARK: - UserModel
+// MARK: - TokenModel
 struct TokenModel: Codable {
     let accessToken, refreshToken: String?
 }

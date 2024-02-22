@@ -33,8 +33,8 @@ class SelectAccountTypeVM: BaseVM {
     public func callLogin(loginType: LoginType, accessToken: String) {
         self.param = CreateAccountVM.Param(loginType: loginType, accessToken: accessToken, refreshToken: "")
         
-        let token = UserParam.Token(accessToken: accessToken, refreshToken: "")
-        let param = UserParam.RequestLoginData(token: token)
+        let token = Token(accessToken: accessToken, refreshToken: "")
+        let param = UserParam.LoginRequest(token: token)
         
         UserAPI.shared.networkingLogin(userService: .login(type: loginType, param: param), type: TokenModel.self)
             .subscribe(with: self,

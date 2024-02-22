@@ -37,6 +37,7 @@
 		C6D664572B639610003D392A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D664562B639610003D392A /* UserModel.swift */; };
 		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
 		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
+		C6FB4E202B86C90E00014EE7 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB4E1F2B86C90E00014EE7 /* Structs.swift */; };
 		CA32691B2B4E6DC90087D534 /* CameraAnalysisVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32691A2B4E6DC90087D534 /* CameraAnalysisVC.swift */; };
 		CA32691D2B4E6DDA0087D534 /* CameraAnalysisVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32691C2B4E6DDA0087D534 /* CameraAnalysisVM.swift */; };
 		CA3D7AB52B4E75B600C63FD0 /* AnalysisVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7AB42B4E75B600C63FD0 /* AnalysisVM.swift */; };
@@ -72,7 +73,6 @@
 		CA6EACA42B39699B00F81F3A /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EACA12B39699B00F81F3A /* Segue.swift */; };
 		CA6EACA62B3969AE00F81F3A /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EACA52B3969AE00F81F3A /* App.swift */; };
 		CA6EACA82B396CD100F81F3A /* Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EACA72B396CD100F81F3A /* Push.swift */; };
-		CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EACAB2B396CDE00F81F3A /* CVal.swift */; };
 		CA6EACB22B396D0E00F81F3A /* GCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6EACB12B396D0E00F81F3A /* GCColor.swift */; };
 		CA6EACF42B39863F00F81F3A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EACF32B39863F00F81F3A /* Login.storyboard */; };
 		CA6EACF62B39865700F81F3A /* Monitoring.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6EACF52B39865700F81F3A /* Monitoring.storyboard */; };
@@ -143,6 +143,7 @@
 		C6D664562B639610003D392A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
+		C6FB4E1F2B86C90E00014EE7 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		CA32691A2B4E6DC90087D534 /* CameraAnalysisVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnalysisVC.swift; sourceTree = "<group>"; };
 		CA32691C2B4E6DDA0087D534 /* CameraAnalysisVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnalysisVM.swift; sourceTree = "<group>"; };
 		CA3D7AB42B4E75B600C63FD0 /* AnalysisVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisVM.swift; sourceTree = "<group>"; };
@@ -183,7 +184,6 @@
 		CA6EACA12B39699B00F81F3A /* Segue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
 		CA6EACA52B3969AE00F81F3A /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		CA6EACA72B396CD100F81F3A /* Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Push.swift; sourceTree = "<group>"; };
-		CA6EACAB2B396CDE00F81F3A /* CVal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVal.swift; sourceTree = "<group>"; };
 		CA6EACB12B396D0E00F81F3A /* GCColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCColor.swift; sourceTree = "<group>"; };
 		CA6EACF32B39863F00F81F3A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		CA6EACF52B39865700F81F3A /* Monitoring.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Monitoring.storyboard; sourceTree = "<group>"; };
@@ -576,9 +576,9 @@
 			children = (
 				CA3D7B012B4E857B00C63FD0 /* PopupManager.swift */,
 				CA6EACB12B396D0E00F81F3A /* GCColor.swift */,
-				CA6EACAB2B396CDE00F81F3A /* CVal.swift */,
 				CA6EACA72B396CD100F81F3A /* Push.swift */,
 				C61A448A2B68B614007F7178 /* Util.swift */,
+				C6FB4E1F2B86C90E00014EE7 /* Structs.swift */,
 				B8355BAD2B7F2FD50035FB01 /* KeyChains.swift */,
 			);
 			name = Utils;
@@ -597,9 +597,9 @@
 		CA6EAC942B39680F00F81F3A /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C6D664522B6387B8003D392A /* ServiceAPI.swift */,
 				CA3D7B032B6125FA00C63FD0 /* UserService.swift */,
 				B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */,
-				C6D664522B6387B8003D392A /* ServiceAPI.swift */,
 				C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */,
 				CAC9C8A92B3C4AE100C02509 /* GCError.swift */,
 			);
@@ -887,6 +887,7 @@
 				CA32691B2B4E6DC90087D534 /* CameraAnalysisVC.swift in Sources */,
 				CA58BF862B4E6AE2008D8015 /* CameraVM.swift in Sources */,
 				B8059DF12B6A1FA200B4C87A /* SubscriptionVC.swift in Sources */,
+				C6FB4E202B86C90E00014EE7 /* Structs.swift in Sources */,
 				C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */,
 				CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */,
 				CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */,
@@ -896,7 +897,6 @@
 				CA6EACA32B39699B00F81F3A /* DefaultsKeys.swift in Sources */,
 				CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */,
 				B84BED832B4BB98D00382F7F /* SelectAccountTypeVC.swift in Sources */,
-				CA6EACAC2B396CDE00F81F3A /* CVal.swift in Sources */,
 				CA5D07FF2B7A1329009E33C5 /* SubscriptionVM.swift in Sources */,
 				CA58BF842B4E6AE2008D8015 /* CameraSettingVC.swift in Sources */,
 				B84BED7F2B4BB95F00382F7F /* CreateAccountVC.swift in Sources */,

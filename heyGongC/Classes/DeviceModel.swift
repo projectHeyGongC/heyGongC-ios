@@ -10,18 +10,19 @@ import Foundation
 // MARK: - RequestData
 
 class DeviceParam {
-    struct RequestAppendData: Codable {
+    
+    struct InfoRequest: Codable {
         let parsedDeviceSeq: Int?
         let deviceQR: String?
         let name: String?
         let type: String?
     }
     
-    struct RequestEditData: Codable {
+    struct EditRequest: Codable {
         let name: String?
     }
     
-    public func getData(params: RequestAppendData) -> [String: Any] {
+    public func getData(params: InfoRequest) -> [String: Any] {
         var data = [String : Any]()
         
         data["deviceQR"] = params.deviceQR
@@ -32,9 +33,9 @@ class DeviceParam {
         return data
     }
     
-    public func getData(params: RequestEditData) -> [String: Any] {
-        var data = [String : Any]()
-        data["name"] = params.name
+    public func getData(params: EditRequest) -> Any {
+        var data = String()
+        data = params.name ?? ""
         return data
     }
 }

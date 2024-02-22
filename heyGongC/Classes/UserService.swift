@@ -12,10 +12,10 @@ import SwiftyUserDefaults
 
 /// kes 240129 스웨거에 있는 API
 enum UserService {
-    case register(type: SelectAccountTypeVM.LoginType, param: UserParam.RequestRegisterData)
-    case login(type: SelectAccountTypeVM.LoginType, param: UserParam.RequestLoginData)
+    case register(type: SelectAccountTypeVM.LoginType, param: UserParam.RegisterRequest)
+    case login(type: SelectAccountTypeVM.LoginType, param: UserParam.LoginRequest)
     case unregister
-    case refreshToken(param: UserParam.RequestToken)
+    case refreshToken(param: UserParam.TokenRequest)
     case info
 }
 

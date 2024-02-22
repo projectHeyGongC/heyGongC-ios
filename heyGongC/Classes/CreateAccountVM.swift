@@ -82,8 +82,8 @@ class CreateAccountVM: BaseVM {
         
         guard let data = self.param else { return }
         
-        let token = UserParam.Token(accessToken: data.accessToken, refreshToken: data.refreshToken)
-        let param = UserParam.RequestRegisterData(ads: notRequiredThirdIsSelected.value, token: token)
+        let token = Token(accessToken: data.accessToken, refreshToken: data.refreshToken)
+        let param = UserParam.RegisterRequest(ads: notRequiredThirdIsSelected.value, token: token)
         
         UserAPI.shared.networking(userService: .register(type: data.loginType, param: param), type: TokenModel.self)
             .subscribe(with: self,
