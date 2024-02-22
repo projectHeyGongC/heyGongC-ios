@@ -22,10 +22,7 @@ enum DeviceService {
 extension DeviceService: TargetType, AccessTokenAuthorizable {
     
     var authorizationType: Moya.AuthorizationType? {
-        switch self {
-        default:
-            return .bearer
-        }
+        return .bearer
     }
     
     var baseURL: URL {
