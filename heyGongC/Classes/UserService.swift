@@ -33,6 +33,10 @@ enum UserService {
 
 extension UserService: TargetType, AccessTokenAuthorizable {
     
+    var validationType: ValidationType {
+        return .successCodes
+    }
+    
     var authorizationType: Moya.AuthorizationType? {
         switch self {
         case .login, .register:
@@ -100,7 +104,9 @@ class UserAPI {
     let userProvider: MoyaProvider<UserService>
     
     private init() {
-        userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+        // kes 240223 세션 만료 적용 테스트 필요
+        userProvider = MoyaProvider<UserService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+
     }
     
     enum LoginResult<T> {
