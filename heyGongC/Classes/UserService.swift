@@ -17,6 +17,18 @@ enum UserService {
     case unregister
     case refreshToken(param: UserParam.TokenRequest)
     case info
+    
+    /**
+     
+     */
+    var isParsing: Bool {
+        switch self {
+        case .register, .login, .refreshToken, .info:
+            return true
+        case .unregister:
+            return false
+        }
+    }
 }
 
 extension UserService: TargetType, AccessTokenAuthorizable {
@@ -92,7 +104,7 @@ class UserAPI {
     }
     
     enum LoginResult<T> {
-        case success(T?)
+        case success(T)
         case register
         case error(GCError)
     }
@@ -115,13 +127,13 @@ class UserAPI {
         }
     }
     
-    func networking<T: Codable>(userService: UserService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(userService: UserService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             self.userProvider.request(userService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: isParsing)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: userService.isParsing)
                     single(.success(networkResult))
                     return
                 case .failure(let error):

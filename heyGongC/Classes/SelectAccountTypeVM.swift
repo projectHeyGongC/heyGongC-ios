@@ -42,9 +42,9 @@ class SelectAccountTypeVM: BaseVM {
                 switch networkResult {
                 case .success(let response):
                     
-                    Defaults.REFRESH_TOKEN = response?.refreshToken ?? ""
+                    Defaults.REFRESH_TOKEN = response.refreshToken ?? ""
                     
-                    ServiceAPI.shared.refreshAccessToken(token: response?.accessToken ?? "")
+                    ServiceAPI.shared.refreshAccessToken(token: response.accessToken ?? "")
                     self.loginSuccess.accept(true)
                 case .register:
                     self.goRegister.accept(true)

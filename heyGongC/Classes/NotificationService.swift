@@ -17,6 +17,10 @@ enum NotificationService {
     case check(eventSeq: Int)
     case getList
     case add(param: NotificationParam.InfoRequest)
+    
+    var isParsing: Bool {
+        return true
+    }
 }
 
 extension NotificationService: TargetType, AccessTokenAuthorizable {
@@ -82,7 +86,7 @@ class NotificationAPI {
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: isParsing)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: notiService.isParsing)
                     single(.success(networkResult))
                     return
                 case .failure(let error):
