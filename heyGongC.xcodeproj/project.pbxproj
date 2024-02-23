@@ -32,12 +32,14 @@
 		B8FEAE7B2B84EB7B00E39D57 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */; };
 		C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A44882B687005007F7178 /* UINavigationController+Ext.swift */; };
 		C61A448B2B68B614007F7178 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A448A2B68B614007F7178 /* Util.swift */; };
+		C6BEE5522B870295003F7436 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEE5512B870295003F7436 /* NotificationModel.swift */; };
 		C6D094B52B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */; };
 		C6D664532B6387B8003D392A /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D664522B6387B8003D392A /* ServiceAPI.swift */; };
 		C6D664572B639610003D392A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D664562B639610003D392A /* UserModel.swift */; };
 		C6E711DE2B4B88EF00A05A6A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711DD2B4B88EF00A05A6A /* SplashView.swift */; };
 		C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */; };
 		C6FB4E202B86C90E00014EE7 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB4E1F2B86C90E00014EE7 /* Structs.swift */; };
+		C6FB4E222B86EAA700014EE7 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FB4E212B86EAA700014EE7 /* NotificationService.swift */; };
 		CA32691B2B4E6DC90087D534 /* CameraAnalysisVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32691A2B4E6DC90087D534 /* CameraAnalysisVC.swift */; };
 		CA32691D2B4E6DDA0087D534 /* CameraAnalysisVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32691C2B4E6DDA0087D534 /* CameraAnalysisVM.swift */; };
 		CA3D7AB52B4E75B600C63FD0 /* AnalysisVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3D7AB42B4E75B600C63FD0 /* AnalysisVM.swift */; };
@@ -138,12 +140,14 @@
 		B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		C61A44882B687005007F7178 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		C61A448A2B68B614007F7178 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		C6BEE5512B870295003F7436 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggingPlugin.swift; sourceTree = "<group>"; };
 		C6D664522B6387B8003D392A /* ServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
 		C6D664562B639610003D392A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C6E711DD2B4B88EF00A05A6A /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		C6FB4E1F2B86C90E00014EE7 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		C6FB4E212B86EAA700014EE7 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		CA32691A2B4E6DC90087D534 /* CameraAnalysisVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnalysisVC.swift; sourceTree = "<group>"; };
 		CA32691C2B4E6DDA0087D534 /* CameraAnalysisVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnalysisVM.swift; sourceTree = "<group>"; };
 		CA3D7AB42B4E75B600C63FD0 /* AnalysisVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisVM.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 			children = (
 				C6D664562B639610003D392A /* UserModel.swift */,
 				B8FEAE782B84E65500E39D57 /* DeviceModel.swift */,
+				C6BEE5512B870295003F7436 /* NotificationModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				C6D664522B6387B8003D392A /* ServiceAPI.swift */,
 				CA3D7B032B6125FA00C63FD0 /* UserService.swift */,
 				B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */,
+				C6FB4E212B86EAA700014EE7 /* NotificationService.swift */,
 				C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */,
 				CAC9C8A92B3C4AE100C02509 /* GCError.swift */,
 			);
@@ -883,6 +889,7 @@
 				C6D094B52B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift in Sources */,
 				CAC9C8A62B3C467D00C02509 /* ExampleVM.swift in Sources */,
 				CA3D7B072B612E9D00C63FD0 /* CustomButton.swift in Sources */,
+				C6FB4E222B86EAA700014EE7 /* NotificationService.swift in Sources */,
 				CA6EACA22B39699B00F81F3A /* Localized.swift in Sources */,
 				CA32691B2B4E6DC90087D534 /* CameraAnalysisVC.swift in Sources */,
 				CA58BF862B4E6AE2008D8015 /* CameraVM.swift in Sources */,
@@ -896,6 +903,7 @@
 				CA5D08022B7A1363009E33C5 /* NotificationSettingsVM.swift in Sources */,
 				CA6EACA32B39699B00F81F3A /* DefaultsKeys.swift in Sources */,
 				CA6EAC542B395DFF00F81F3A /* AppDelegate.swift in Sources */,
+				C6BEE5522B870295003F7436 /* NotificationModel.swift in Sources */,
 				B84BED832B4BB98D00382F7F /* SelectAccountTypeVC.swift in Sources */,
 				CA5D07FF2B7A1329009E33C5 /* SubscriptionVM.swift in Sources */,
 				CA58BF842B4E6AE2008D8015 /* CameraSettingVC.swift in Sources */,

@@ -33,7 +33,7 @@ class UserParam {
         data["deviceId"] = params.deviceId
         data["deviceOs"] = params.deviceOs
         data["ads"] = params.ads
-        data["token"] = params.token.getToken()
+        data["token"] = params.token
         data["deviceId"] = params.deviceId
         
         return data
