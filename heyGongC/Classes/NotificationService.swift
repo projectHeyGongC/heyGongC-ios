@@ -1,25 +1,25 @@
 //
-//  DeviceService.swift
+//  NotificationService.swift
 //  heyGongC
 //
-//  Created by 장예지 on 2/20/24.
+//  Created by 김은서 on 2/22/24.
 //
+
 
 import Foundation
 import Moya
 import RxSwift
 import SwiftyUserDefaults
 
-enum DeviceService {
-    case getInfo(id: Int)
-    case edit(id: Int, param: DeviceParam.EditRequest)
-    case delete(id: Int)
+/// kes 240129 스웨거에 있는 API
+enum NotificationService {
+    case getInfo(eventSeq: Int)
+    case check(eventSeq: Int)
     case getList
-    case add(param: DeviceParam.InfoRequest)
-    case deleteAll
+    case add(param: NotificationParam.InfoRequest)
 }
 
-extension DeviceService: TargetType, AccessTokenAuthorizable {
+extension NotificationService: TargetType, AccessTokenAuthorizable {
     
     var authorizationType: Moya.AuthorizationType? {
         return .bearer
@@ -31,58 +31,54 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
     
     var path: String {
         switch self {
-        case .getInfo(id: let seq), .edit(id: let seq, param: _), .delete(id: let seq):
-            return "device/\(seq)"
-        case .getList, .deleteAll, .add(param: _):
-            return "device"
+        case .getInfo(let eventSeq), .check(let eventSeq):
+            return "notification/\(eventSeq)"
+        case .getList, .add:
+            return "notification"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .add:
-            return .post
         case .getInfo, .getList:
             return .get
-        case .edit:
+        case .check:
             return .put
-        case .delete, .deleteAll:
-            return .delete
+        case .add:
+            return .post
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .add(let param):
-            return .requestJSONEncodable(param)
-        case .getList, .getInfo(id: _), .delete(id: _), .deleteAll:
+        case .getInfo, .check, .getList:
             return .requestPlain
-        case .edit(id: _, param: let param):
+        case .add(let param):
             return .requestJSONEncodable(param)
         }
     }
     
     var headers: [String : String]? {
-        ServiceAPI.shared.getHeader()
+        return ServiceAPI.shared.getHeader()
     }
 }
 
-class DeviceAPI {
-    static let shared = DeviceAPI()
+class NotificationAPI {
+    static let shared = NotificationAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
         return Defaults.ACCESS_TOKEN
     }
     
-    let deviceProvider: MoyaProvider<DeviceService>
+    let notiProvider: MoyaProvider<NotificationService>
     
     private init() {
-        deviceProvider = MoyaProvider<DeviceService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+        notiProvider = MoyaProvider<NotificationService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
     }
     
-    func networking<T: Codable>(deviceService: DeviceService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(notiService: NotificationService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
-            self.deviceProvider.request(deviceService) { result in
+            self.notiProvider.request(notiService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
