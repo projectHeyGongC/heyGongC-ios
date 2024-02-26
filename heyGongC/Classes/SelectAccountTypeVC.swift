@@ -28,6 +28,7 @@ class SelectAccountTypeVC: BaseVC {
     private var currentPage = 0
     
     override func initialize() {
+        self.setupNavigationBar(type: .fullScreen)
         collectionViewOnboarding.delegate = self
         collectionViewOnboarding.dataSource = self
         btnApple.setAttributeStingBold(specificText: "Apple")

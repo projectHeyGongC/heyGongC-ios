@@ -517,11 +517,11 @@
 				CA6EAC612B395E0000F81F3A /* LaunchScreen.storyboard */,
 				CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */,
 				CA6EACF32B39863F00F81F3A /* Login.storyboard */,
+				B8FC68482B581F7500C29691 /* DeviceRegister.storyboard */,
 				CA6EACF52B39865700F81F3A /* Monitoring.storyboard */,
 				CA6EACF72B39867500F81F3A /* Analysis.storyboard */,
 				CA6EACF92B39868B00F81F3A /* Subscription.storyboard */,
 				CA6EACFB2B39869B00F81F3A /* UserProfile.storyboard */,
-				B8FC68482B581F7500C29691 /* DeviceRegister.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
