@@ -17,7 +17,7 @@ class SettingsVM: BaseVM {
     public var completLogout = BehaviorRelay<Bool>(value: false)
     
     public func callUnregister() {
-        UserAPI.shared.networking(userService: .unregister, type: String.self, isParsing: false)
+        UserAPI.shared.networking(userService: .unregister, type: String.self)
             .subscribe(with: self,
                        onSuccess: { owner, networkResult in
                 switch networkResult {
