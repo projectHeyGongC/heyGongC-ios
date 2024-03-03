@@ -53,6 +53,14 @@ class MonitoringVC: BaseVC {
                                 cancel: { print("cancel") })
                 
             }).disposed(by: viewModel.bag)
+        
+        btnSettings.rx.tap
+            .bind(onNext: { [weak self] in
+                guard let self = self else { return }
+                
+                
+                
+            }).disposed(by: viewModel.bag)
     }
     
     override func setupHandler() {

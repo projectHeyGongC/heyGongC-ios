@@ -80,7 +80,7 @@ class NotificationAPI {
         notiProvider = MoyaProvider<NotificationService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
     }
     
-    func networking<T: Codable>(notiService: NotificationService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(notiService: NotificationService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             self.notiProvider.request(notiService) { result in
                 switch result {
