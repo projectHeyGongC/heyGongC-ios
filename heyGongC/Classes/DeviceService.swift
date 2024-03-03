@@ -17,6 +17,15 @@ enum DeviceService {
     case getList
     case add(param: DeviceParam.InfoRequest)
     case deleteAll
+    
+    var isParsing: Bool {
+        switch self {
+        case .getInfo, .edit, .getList, .add:
+            return true
+        case .delete, .deleteAll:
+            return false
+        }
+    }
 }
 
 extension DeviceService: TargetType, AccessTokenAuthorizable {
@@ -86,7 +95,7 @@ class DeviceAPI {
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: isParsing)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: deviceService.isParsing)
                     single(.success(networkResult))
                     return
                 case .failure(let error):

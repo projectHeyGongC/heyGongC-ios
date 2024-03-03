@@ -17,9 +17,25 @@ enum UserService {
     case unregister
     case refreshToken(param: UserParam.TokenRequest)
     case info
+    
+    /**
+     
+     */
+    var isParsing: Bool {
+        switch self {
+        case .register, .login, .refreshToken, .info:
+            return true
+        case .unregister:
+            return false
+        }
+    }
 }
 
 extension UserService: TargetType, AccessTokenAuthorizable {
+    
+    var validationType: ValidationType {
+        return .successCodes
+    }
     
     var authorizationType: Moya.AuthorizationType? {
         switch self {
@@ -96,11 +112,13 @@ class UserAPI {
     let userProvider: MoyaProvider<UserService>
     
     private init() {
-        userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+        // kes 240223 세션 만료 적용 테스트 필요
+        userProvider = MoyaProvider<UserService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+
     }
     
     enum LoginResult<T> {
-        case success(T?)
+        case success(T)
         case register
         case error(GCError)
     }
@@ -123,13 +141,13 @@ class UserAPI {
         }
     }
     
-    func networking<T: Codable>(userService: UserService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(userService: UserService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             self.userProvider.request(userService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: isParsing)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: userService.isParsing)
                     single(.success(networkResult))
                     return
                 case .failure(let error):

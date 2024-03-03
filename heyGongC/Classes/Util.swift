@@ -14,4 +14,5 @@ class Util {
         let uuid = TAKUUIDStorage.sharedInstance().findOrCreate() ?? ""
         return uuid
     }
+    
 }
