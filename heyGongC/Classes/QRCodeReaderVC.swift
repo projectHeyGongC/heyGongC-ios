@@ -45,6 +45,20 @@ class QRCodeReaderVC: BaseVC {
             dismiss(animated: true)
         }
         .disposed(by: viewModel.bag)
+        
+        viewModel.successReadQR
+            .bind { [weak self] in
+                guard let self = self else { return}
+                if $0 {
+                    if let vc = storyboard?.instantiateViewController(withIdentifier: "DeviceNaming") as? DeviceNamingVC,
+                       let param = viewModel.param {
+                        vc.updateParam(param: param)
+                        vc.modalPresentationStyle = .fullScreen
+                        present(vc, animated: true, completion: nil)
+                    }
+                }
+            }
+            .disposed(by: viewModel.bag)
     }
     
     override func setupHandler() {
@@ -98,14 +112,10 @@ extension QRCodeReaderVC: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject {
-            print(object.stringValue!)
+        if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject, let qrData = object.stringValue {
+            //QR코드 값 viewModel에 넘기기
+            viewModel.getDeviceType(qrData: qrData)
             self.session.stopRunning()
-            
-            if let secondViewController = storyboard?.instantiateViewController(withIdentifier: "DeviceNaming") as? DeviceNamingVC {
-                secondViewController.modalPresentationStyle = .fullScreen
-                present(secondViewController, animated: true, completion: nil)
-            }
         }
     }
     

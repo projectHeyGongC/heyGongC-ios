@@ -38,17 +38,40 @@ class DeviceNamingVC: BaseVC {
             }
             .disposed(by: viewModel.bag)
         
+        btnDeviceRegister.rx.tap
+            .bind { [weak self] in
+                guard let self = self else { return }
+                if let name = txtFieldDeviceName.text {
+                    viewModel.name = name
+                    viewModel.callAppendDevice()
+                }
+            }
+            .disposed(by: viewModel.bag)
+        
         btnDismiss.rx.tap
             .subscribe { _ in
                 self.dismiss(animated: true)
             }
             .disposed(by: viewModel.bag)
             
-            
+        viewModel.successAppendDevice
+            .bind { [weak self] in
+                
+                guard let self else { return }
+                
+                if $0 {
+                    SegueUtils.open(target: self, link: .MainTBC)
+                }
+            }
+            .disposed(by: viewModel.bag)
     }
     
     override func setupHandler() {
         self.setErrorHandler(vm: viewModel)
+    }
+    
+    func updateParam(param: QRCodeReaderVM.Param){
+        self.viewModel.param = param
     }
     
     deinit {
