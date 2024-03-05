@@ -12,14 +12,14 @@ import Foundation
 class DeviceParam {
     
     struct InfoRequest: Codable {
-        let parsedDeviceSeq: Int?
-        let deviceQR: String?
-        let name: String?
-        let type: String?
+        var parsedDeviceSeq: Int
+        var deviceQR: String
+        var name: String
+        var type: String
     }
     
     struct EditRequest: Codable {
-        let name: String?
+        let name: String
     }
     
     public func getData(params: InfoRequest) -> [String: Any] {
@@ -35,7 +35,7 @@ class DeviceParam {
     
     public func getData(params: EditRequest) -> Any {
         var data = String()
-        data = params.name ?? ""
+        data = params.name
         return data
     }
 }
