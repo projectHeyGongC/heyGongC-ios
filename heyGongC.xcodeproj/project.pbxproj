@@ -32,6 +32,7 @@
 		B8FEAE7B2B84EB7B00E39D57 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */; };
 		C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A44882B687005007F7178 /* UINavigationController+Ext.swift */; };
 		C61A448B2B68B614007F7178 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A448A2B68B614007F7178 /* Util.swift */; };
+		C6AB4E322B98632100E2BAAC /* Common.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6AB4E312B98632100E2BAAC /* Common.storyboard */; };
 		C6BEE5522B870295003F7436 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEE5512B870295003F7436 /* NotificationModel.swift */; };
 		C6BEE5542B886E24003F7436 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEE5532B886E24003F7436 /* AuthInterceptor.swift */; };
 		C6D094B52B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */; };
@@ -144,6 +145,7 @@
 		B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		C61A44882B687005007F7178 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		C61A448A2B68B614007F7178 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		C6AB4E312B98632100E2BAAC /* Common.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Common.storyboard; sourceTree = "<group>"; };
 		C6BEE5512B870295003F7436 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		C6BEE5532B886E24003F7436 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggingPlugin.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 				CA6EACF72B39867500F81F3A /* Analysis.storyboard */,
 				CA6EACF92B39868B00F81F3A /* Subscription.storyboard */,
 				CA6EACFB2B39869B00F81F3A /* UserProfile.storyboard */,
+				C6AB4E312B98632100E2BAAC /* Common.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				CA6EACF42B39863F00F81F3A /* Login.storyboard in Resources */,
 				B8FC68492B581F7500C29691 /* DeviceRegister.storyboard in Resources */,
 				CA6EAC632B395E0000F81F3A /* LaunchScreen.storyboard in Resources */,
+				C6AB4E322B98632100E2BAAC /* Common.storyboard in Resources */,
 				CA6EACF82B39867600F81F3A /* Analysis.storyboard in Resources */,
 				CAC9C8B02B3C53AA00C02509 /* Splash.storyboard in Resources */,
 				CA6EAC602B395E0000F81F3A /* Assets.xcassets in Resources */,

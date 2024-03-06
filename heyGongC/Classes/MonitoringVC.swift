@@ -13,7 +13,8 @@ import RxOptional
 
 class MonitoringVC: BaseVC {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableViewHeightConstant: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAdd: UIButton!
     
     private let viewModel = MonitoringVM()
