@@ -13,7 +13,7 @@ import RxOptional
 
 class MonitoringVC: BaseVC {
     
-    @IBOutlet weak var tableViewHeightConstant: NSLayoutConstraint!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAdd: UIButton!
     
@@ -28,7 +28,8 @@ class MonitoringVC: BaseVC {
     
     //MARK: LifeCycle
     override func initialize() {
-        viewModel.fetchUserInfo()
+        viewModel.callUserInfo()
+        viewModel.callDeviceList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,10 +47,28 @@ class MonitoringVC: BaseVC {
             }
             .disposed(by: viewModel.bag)
         
+        bindAction()
+        bindTableView()
+    }
+    
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
+    
+    deinit {
+        print("[Clear... MonitoringVC ViewModel]")
+        onBack(vm: viewModel)
+    }
+}
+
+// MARK: - private
+extension MonitoringVC {
+    private func bindAction() {
+        
         btnAdd.rx.tap
             .bind(onNext: { [weak self] in
                 
-                self?.showAlert(localized: .DLG_TEST, 
+                self?.showAlert(localized: .DLG_TEST,
                                 confirm: { print("confirm") },
                                 cancel: { print("cancel") })
                 
@@ -64,12 +83,24 @@ class MonitoringVC: BaseVC {
             }).disposed(by: viewModel.bag)
     }
     
-    override func setupHandler() {
-        self.setErrorHandler(vm: viewModel)
-    }
-    
-    deinit {
-        print("[Clear... MonitoringVC ViewModel]")
-        onBack(vm: viewModel)
+    private func bindTableView() {
+        
+        viewModel.deviceList
+            .filterNil()
+            .bind(to: tableView.rx.items(cellIdentifier: "DeviceCell", cellType: DeviceCell.self)) {
+                (index, element, cell) in
+                
+                cell.updateDisplay(element: element, index: index)
+                cell.selectionStyle = .none
+                
+            }.disposed(by: viewModel.bag)
+        
+        viewModel.deviceList
+            .filterNil()
+            .bind { [weak self] _ in
+            guard let self = self else { return }
+            
+            self.tableView.updateTableViewHeight(layout: self.tableViewHeight)
+        }.disposed(by: viewModel.bag)
     }
 }

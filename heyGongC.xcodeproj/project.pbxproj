@@ -33,6 +33,8 @@
 		C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A44882B687005007F7178 /* UINavigationController+Ext.swift */; };
 		C61A448B2B68B614007F7178 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A448A2B68B614007F7178 /* Util.swift */; };
 		C6AB4E322B98632100E2BAAC /* Common.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6AB4E312B98632100E2BAAC /* Common.storyboard */; };
+		C6AB4E342B99649200E2BAAC /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AB4E332B99649200E2BAAC /* DeviceCell.swift */; };
+		C6AB4E372B997E2D00E2BAAC /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AB4E362B997E2D00E2BAAC /* UITableView+Ext.swift */; };
 		C6BEE5522B870295003F7436 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEE5512B870295003F7436 /* NotificationModel.swift */; };
 		C6BEE5542B886E24003F7436 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEE5532B886E24003F7436 /* AuthInterceptor.swift */; };
 		C6D094B52B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */; };
@@ -146,6 +148,8 @@
 		C61A44882B687005007F7178 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		C61A448A2B68B614007F7178 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C6AB4E312B98632100E2BAAC /* Common.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Common.storyboard; sourceTree = "<group>"; };
+		C6AB4E332B99649200E2BAAC /* DeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		C6AB4E362B997E2D00E2BAAC /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		C6BEE5512B870295003F7436 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		C6BEE5532B886E24003F7436 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
 		C6D094B42B6A2C6D00D10B1C /* MoyaLoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggingPlugin.swift; sourceTree = "<group>"; };
@@ -289,6 +293,14 @@
 			name = DeviceRegister;
 			sourceTree = "<group>";
 		};
+		C6AB4E352B99649A00E2BAAC /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C6AB4E332B99649200E2BAAC /* DeviceCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		C6D664582B639618003D392A /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +411,7 @@
 				CA58BF7B2B4E6AE2008D8015 /* MonitoringCell.swift */,
 				CA58BF792B4E6AE2008D8015 /* MonitoringVC.swift */,
 				CA58BF7A2B4E6AE2008D8015 /* MonitoringVM.swift */,
+				C6AB4E352B99649A00E2BAAC /* TableViewCell */,
 			);
 			name = Monitoring;
 			sourceTree = "<group>";
@@ -616,6 +629,7 @@
 			children = (
 				CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */,
 				C61A44882B687005007F7178 /* UINavigationController+Ext.swift */,
+				C6AB4E362B997E2D00E2BAAC /* UITableView+Ext.swift */,
 				C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */,
 			);
 			name = Extensions;
@@ -906,6 +920,7 @@
 				B88C41572B55221A006A5F65 /* SettingsVM.swift in Sources */,
 				B84BED872B4BB9A400382F7F /* LoginCollectionViewCell.swift in Sources */,
 				B8FC684C2B581F9B00C29691 /* QRCodeReaderVC.swift in Sources */,
+				C6AB4E372B997E2D00E2BAAC /* UITableView+Ext.swift in Sources */,
 				B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */,
 				CA3D7ABD2B4E765100C63FD0 /* AnalysisVC.swift in Sources */,
 				CA6EAC9E2B39688700F81F3A /* BaseVM.swift in Sources */,
@@ -916,6 +931,7 @@
 				C6FB4E222B86EAA700014EE7 /* NotificationService.swift in Sources */,
 				CA6EACA22B39699B00F81F3A /* Localized.swift in Sources */,
 				CA32691B2B4E6DC90087D534 /* CameraAnalysisVC.swift in Sources */,
+				C6AB4E342B99649200E2BAAC /* DeviceCell.swift in Sources */,
 				CA58BF862B4E6AE2008D8015 /* CameraVM.swift in Sources */,
 				B8059DF12B6A1FA200B4C87A /* SubscriptionVC.swift in Sources */,
 				C6FB4E202B86C90E00014EE7 /* Structs.swift in Sources */,

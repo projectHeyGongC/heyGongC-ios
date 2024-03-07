@@ -131,7 +131,7 @@
                                                     <constraint firstAttribute="height" constant="411" id="6bq-i5-TPt"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="299" id="gjc-Lh-ZRh">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeviceCell" rowHeight="299" id="gjc-Lh-ZRh" customClass="DeviceCell" customModule="heyGongC" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="50" width="393" height="299"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gjc-Lh-ZRh" id="ZG7-73-19N">
@@ -383,6 +383,7 @@
                     <connections>
                         <outlet property="btnAdd" destination="ZAH-EG-9es" id="FIu-FU-pJJ"/>
                         <outlet property="tableView" destination="iQk-hf-TQV" id="npP-iW-ttK"/>
+                        <outlet property="tableViewHeight" destination="6bq-i5-TPt" id="QFY-Yh-HtQ"/>
                         <outlet property="tableViewHeightConstant" destination="6bq-i5-TPt" id="zBj-bC-55c"/>
                     </connections>
                 </viewController>
