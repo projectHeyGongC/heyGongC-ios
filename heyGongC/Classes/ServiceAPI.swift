@@ -12,7 +12,7 @@ import SwiftyUserDefaults
 class ServiceAPI {
     static let shared = ServiceAPI()
     
-    let baseUrl = "http://13.125.159.97/v1/"
+    let baseUrl = "http://15.165.133.184/v1/"
     
     public func getHeader() -> [String: String] {
         return [
@@ -75,9 +75,9 @@ class ServiceAPI {
         }
     }
     
-    public func refreshAccessToken(token: String) {
-        Defaults.ACCESS_TOKEN = token
-        print("💎💎💎💎 update ACCESS_TOKEN")
+    public func refreshToken(token: Token) {
+        Defaults.TOKEN = token
+        print("💎💎💎💎 update Token")
     }
 }
 

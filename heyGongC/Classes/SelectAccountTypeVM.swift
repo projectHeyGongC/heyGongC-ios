@@ -14,12 +14,6 @@ import SwiftyUserDefaults
 
 class SelectAccountTypeVM: BaseVM {
     
-    enum LoginType: String {
-        case Google = "google"
-        case Kakao = "kakao"
-        case Apple = "apple"
-    }
-    
     /**
      회원가입 화면으로 보낼 parameter
      */
@@ -36,15 +30,14 @@ class SelectAccountTypeVM: BaseVM {
         let token = Token(accessToken: accessToken, refreshToken: "")
         let param = UserParam.LoginRequest(token: token)
         
-        UserAPI.shared.networkingLogin(userService: .login(type: loginType, param: param), type: TokenModel.self)
+        UserAPI.shared.networkingLogin(userService: .login(type: loginType, param: param), type: Token.self)
             .subscribe(with: self,
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    
-                    Defaults.REFRESH_TOKEN = response.refreshToken ?? ""
-                    
-                    ServiceAPI.shared.refreshAccessToken(token: response.accessToken ?? "")
+                    ServiceAPI.shared.refreshToken(token: response)
+                    Defaults.AUTO_LOGIN = true
+                    Defaults.LOGIN_TYPE = loginType
                     self.loginSuccess.accept(true)
                 case .register:
                     self.goRegister.accept(true)

@@ -10,6 +10,7 @@ import SwiftKeychainWrapper
 
 extension KeychainWrapper.Key {
     static let USER_DATA: KeychainWrapper.Key = "USER_DATA"
+    static let LOGIN_INFO: KeychainWrapper.Key = "LOGIN_INFO"
 }
 
 final class KeyChains {

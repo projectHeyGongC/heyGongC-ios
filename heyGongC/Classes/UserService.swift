@@ -12,8 +12,8 @@ import SwiftyUserDefaults
 
 /// kes 240129 스웨거에 있는 API
 enum UserService {
-    case register(type: SelectAccountTypeVM.LoginType, param: UserParam.RegisterRequest)
-    case login(type: SelectAccountTypeVM.LoginType, param: UserParam.LoginRequest)
+    case register(type: LoginType, param: UserParam.RegisterRequest)
+    case login(type: LoginType, param: UserParam.LoginRequest)
     case unregister
     case refreshToken(param: UserParam.TokenRequest)
     case info
@@ -106,14 +106,14 @@ class UserAPI {
     static let shared = UserAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
-        return Defaults.ACCESS_TOKEN
+        return Defaults.TOKEN?.accessToken ?? ""
     }
     
     let userProvider: MoyaProvider<UserService>
     
     private init() {
         // kes 240223 세션 만료 적용 테스트 필요
-        userProvider = MoyaProvider<UserService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+        userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
 
     }
     

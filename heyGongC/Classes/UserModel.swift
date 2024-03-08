@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 
 // MARK: - RequestData
 class UserParam {
@@ -24,7 +25,7 @@ class UserParam {
     }
     
     struct TokenRequest: Codable {
-        var refreshToken: String
+        var refreshToken: String = Defaults.TOKEN?.refreshToken ?? ""
     }
     
     public func getData(params: RegisterRequest) -> [String: Any] {
@@ -69,9 +70,4 @@ struct UserModel: Codable {
         case deviceOS = "deviceOs"
         case snsType, email, alarm, ads
     }
-}
-
-// MARK: - TokenModel
-struct TokenModel: Codable {
-    let accessToken, refreshToken: String?
 }

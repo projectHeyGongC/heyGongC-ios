@@ -40,7 +40,7 @@ class SelectAccountTypeVC: BaseVC {
         bindAction()
     }
     
-    override func setupHandler() { 
+    override func setupHandler() {
         self.setErrorHandler(vm: viewModel)
     }
     
@@ -56,28 +56,28 @@ extension SelectAccountTypeVC {
     private func bindSuccess() {
         viewModel.loginSuccess
             .bind { [weak self] in
-            
-            guard let self else { return }
-            
-            if $0 {
-                SegueUtils.open(target: self, link: .MainTBC)
-            }
-            
-        }.disposed(by: viewModel.bag)
-        
-        viewModel.goRegister.bind { [weak self] in
-            guard let self else { return }
-            
-            if $0 {
-                if let vc = Link.CreateAccountVC.viewController as? CreateAccountVC {
-                    guard let param = self.viewModel.param else { return }
-                    
-                    vc.updateParam(param: param)
-                    self.navigationController?.pushViewController(vc, animated: true)
+                guard let self else { return }
+                
+                if $0 {
+                    SegueUtils.open(target: self, link: .MainTBC)
                 }
-            }
-            
-        }.disposed(by: viewModel.bag)
+                
+            }.disposed(by: viewModel.bag)
+        
+        viewModel.goRegister
+            .bind { [weak self] in
+                guard let self else { return }
+                
+                if $0 {
+                    if let vc = Link.CreateAccountVC.viewController as? CreateAccountVC {
+                        guard let param = self.viewModel.param else { return }
+                        
+                        vc.updateParam(param: param)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+                
+            }.disposed(by: viewModel.bag)
     }
     
     private func bindAction() {
@@ -105,8 +105,10 @@ extension SelectAccountTypeVC {
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] signInResult, _ in
             guard let self,
                   let result = signInResult?.user else { return }
-
+            
             self.viewModel.callLogin(loginType: .Google, accessToken: result.accessToken.tokenString)
+            //            self.viewModel.callRegister(userData: result)
+            // 서버에 토큰을 보내기. 이 때 idToken, accessToken 차이에 주의할 것
         }
     }
     
@@ -114,7 +116,7 @@ extension SelectAccountTypeVC {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email] //유저로 부터 알 수 있는 정보들(name, email)
-               
+        
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
@@ -132,14 +134,14 @@ extension SelectAccountTypeVC: UICollectionViewDelegate, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoginCollectionViewCell.identifier, for: indexPath) as! LoginCollectionViewCell
         cell.lblOnboardingTitle.text = onboardingText[indexPath.row]
         cell.imgViewOnboarding.image = UIImage(named: onboardingImage[indexPath.row])
-              return cell
+        return cell
     }
 }
 
 extension SelectAccountTypeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-        }
+    }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
@@ -150,17 +152,17 @@ extension SelectAccountTypeVC: UICollectionViewDelegateFlowLayout {
 
 // MARK: - AppleLoginDelegate
 extension SelectAccountTypeVC: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding{
-  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
-
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-    //로그인 성공
+        //로그인 성공
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
             if let identityToken = appleIDCredential.identityToken,
-                let identifyTokenString = String(data: identityToken, encoding: .utf8) {
+               let identifyTokenString = String(data: identityToken, encoding: .utf8) {
                 print("identifyTokenString: \(identifyTokenString)")
                 
                 self.viewModel.callLogin(loginType: .Apple, accessToken: identifyTokenString)
@@ -179,7 +181,7 @@ extension SelectAccountTypeVC: ASAuthorizationControllerDelegate, ASAuthorizatio
         }
     }
     
-
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // 로그인 실패(유저의 취소도 포함)
         print("login failed - \(error.localizedDescription)")
