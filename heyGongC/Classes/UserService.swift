@@ -105,7 +105,7 @@ class UserAPI {
     
     private init() {
         // kes 240223 세션 만료 적용 테스트 필요
-        userProvider = MoyaProvider<UserService>(session: Session(interceptor: AuthInterceptor.shared), plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+        userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
 
     }
     

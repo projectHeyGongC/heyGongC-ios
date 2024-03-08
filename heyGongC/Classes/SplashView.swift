@@ -11,6 +11,7 @@ import RxCocoa
 import RxOptional
 import Then
 import SwiftyUserDefaults
+import GoogleSignIn
 
 class SplashView: UIViewController {
     
@@ -41,30 +42,43 @@ class SplashView: UIViewController {
     }
     
     private func checkMember() {
-        if Defaults.AUTO_LOGIN {
-            self.callLogin()
-        } else {
-            // kes 240226 SNS 로그인 되어있지 않은 상태
+        switch Defaults.LOGIN_TYPE {
+        case .Google:
+            if GIDSignIn.sharedInstance.hasPreviousSignIn() {
+                
+                GIDSignIn.sharedInstance.restorePreviousSignIn() { [weak self] signInResult, _ in
+                    guard let self,
+                          let token = signInResult?.accessToken.tokenString else { return }
+                    
+                    self.callAutoLogin(loginType: .Google, accessToken: token)
+                    
+                }
+            } else {
+                // kes 240226 구글 로그인 되어있지 않은 상태
+                SegueUtils.open(target: self, link: .SelectAccountTypeVC)
+            }
+        case .Apple:
+            break
+        case .Kakao:
+            break
+        default:
             SegueUtils.open(target: self, link: .SelectAccountTypeVC)
         }
     }
     
-    private func callLogin() {
-        // MARK: - callAPI
-        guard let token = Defaults.TOKEN,
-              let loginType = Defaults.LOGIN_TYPE else {
-            SegueUtils.open(target: self, link: .SelectAccountTypeVC)
-            return
-        }
-        
+    // MARK: - callAPI
+    /// 로그인
+    public func callAutoLogin(loginType: LoginType, accessToken: String) {
+        let token = Token(accessToken: accessToken, refreshToken: "")
         let param = UserParam.LoginRequest(token: token)
+        
         UserAPI.shared.networkingLogin(userService: .login(type: loginType, param: param), type: Token.self)
             .subscribe(with: self,
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    Defaults.AUTO_LOGIN = true
                     ServiceAPI.shared.refreshToken(token: response)
+                    SegueUtils.open(target: self, link: .MainTBC)
                     
                 default:
                     // kes 240226 에러로 자동 로그인 불가할 때 첫시작으로 랜딩
@@ -73,6 +87,6 @@ class SplashView: UIViewController {
             }, onFailure: { owner, error in
                 SegueUtils.open(target: self, link: .SelectAccountTypeVC)
                 
-            }).disposed(by: bag)
+            }).disposed(by: self.bag)
     }
 }
