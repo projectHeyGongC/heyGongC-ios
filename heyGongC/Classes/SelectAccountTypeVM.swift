@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import GoogleSignIn
 import SwiftyUserDefaults
+import SwiftKeychainWrapper
 
 class SelectAccountTypeVM: BaseVM {
     
@@ -21,6 +22,12 @@ class SelectAccountTypeVM: BaseVM {
     
     public var loginSuccess = BehaviorRelay<Bool>(value: false)
     public var goRegister = BehaviorRelay<Bool>(value: false)
+    
+    /// apple 로그인에 필요한 appleID 키체인에 저장
+    /// - Parameter appleID: Apple 로그인 성공시 받는 user ID 정보
+    public func updateAppleID(appleID: String?) {
+        KeyChains.shared.APPLE_ID = appleID ?? ""
+    }
     
     // MARK: - callAPI
     /// 로그인
@@ -36,7 +43,6 @@ class SelectAccountTypeVM: BaseVM {
                 switch networkResult {
                 case .success(let response):
                     ServiceAPI.shared.refreshToken(token: response)
-                    Defaults.AUTO_LOGIN = true
                     Defaults.LOGIN_TYPE = loginType
                     self.loginSuccess.accept(true)
                 case .register:

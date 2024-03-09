@@ -12,6 +12,7 @@ import RxOptional
 import Then
 import SwiftyUserDefaults
 import GoogleSignIn
+import AuthenticationServices
 
 class SplashView: UIViewController {
     
@@ -58,7 +59,17 @@ class SplashView: UIViewController {
                 SegueUtils.open(target: self, link: .SelectAccountTypeVC)
             }
         case .Apple:
-            break
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            appleIDProvider.getCredentialState(forUserID: KeyChains.shared.APPLE_ID) { (credentialState, error) in
+                    switch credentialState {
+                    case .authorized:
+                        // The Apple ID credential is valid.
+                        self.callAutoLogin(loginType: .Google, accessToken: Defaults.TOKEN?.accessToken ?? "")
+                    default:
+                        // kes 240309 연동되어 있지않는 상태
+                        SegueUtils.open(target: self, link: .SelectAccountTypeVC)
+                    }
+                }
         case .Kakao:
             break
         default:

@@ -93,7 +93,6 @@ class CreateAccountVM: BaseVM {
                     guard let token = response else { return }
                     
                     ServiceAPI.shared.refreshToken(token: token)
-                    Defaults.AUTO_LOGIN = true
                     Defaults.LOGIN_TYPE = data.loginType
                     self.successRegister.accept(true)
                     

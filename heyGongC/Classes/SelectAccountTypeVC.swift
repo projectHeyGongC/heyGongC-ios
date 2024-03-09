@@ -12,7 +12,7 @@ import RxSwift
 import SwiftyUserDefaults
 import GoogleSignIn
 import AuthenticationServices
-
+import SwiftKeychainWrapper
 
 class SelectAccountTypeVC: BaseVC {
     @IBOutlet weak var collectionViewOnboarding: UICollectionView!
@@ -165,17 +165,9 @@ extension SelectAccountTypeVC: ASAuthorizationControllerDelegate, ASAuthorizatio
                let identifyTokenString = String(data: identityToken, encoding: .utf8) {
                 print("identifyTokenString: \(identifyTokenString)")
                 
+                self.viewModel.updateAppleID(appleID: appleIDCredential.user)
                 self.viewModel.callLogin(loginType: .Apple, accessToken: identifyTokenString)
             }
-            
-        case let passwordCredential as ASPasswordCredential:
-            // Sign in using an existing iCloud Keychain credential.
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            print("username: \(username)")
-            print("password: \(password)")
-            
         default:
             break
         }
