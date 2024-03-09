@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 import SnapKit
 import RxSwift
-import SwiftyUserDefaults
-import GoogleSignIn
 
 class SettingsVC: BaseVC {
     
@@ -42,24 +40,23 @@ class SettingsVC: BaseVC {
 extension SettingsVC {
     
     private func bindApi() {
+        
         viewModel.completeUnregister
             .bind { [weak self] in
                 
                 guard let self = self else { return }
                 
                 if $0 {
-                    Defaults.removeAll()
                     navigationController?.backToIntro()
                 }
             }.disposed(by: viewModel.bag)
         
         viewModel.completLogout
-            .bind{ [weak self] in
+            .bind { [weak self] in
                 
                 guard let self = self else { return }
                 
                 if $0 {
-                    GIDSignIn.sharedInstance.signOut()
                     navigationController?.backToIntro()
                 }
             }

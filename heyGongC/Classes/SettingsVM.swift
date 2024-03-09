@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import SwiftyUserDefaults
+import GoogleSignIn
 
 class SettingsVM: BaseVM {
     
@@ -22,6 +23,7 @@ class SettingsVM: BaseVM {
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(_):
+                    GIDSignIn.sharedInstance.disconnect()
                     self.completeUnregister.accept(true)
                 case .error(let error):
                     self.errorHandler.accept(error)
@@ -34,6 +36,7 @@ class SettingsVM: BaseVM {
     
     public func callLogout(){
         KeyChains.shared.USER_DATA = nil
+        GIDSignIn.sharedInstance.signOut()
         Defaults.removeAll()
         self.completLogout.accept(true)
     }
