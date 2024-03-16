@@ -25,7 +25,7 @@ extension Token: DefaultsSerializable {
 }
 
 enum LoginType: String, DefaultsSerializable {
-    case Google = "google"
-    case Kakao = "kakao"
-    case Apple = "apple"
+    case Google = "GOOGLE"
+    case Kakao = "KAKAO"
+    case Apple = "APPLE"
 }
