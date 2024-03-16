@@ -71,7 +71,7 @@ class NotificationAPI {
     static let shared = NotificationAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
-        return Defaults.ACCESS_TOKEN
+        return Defaults.TOKEN?.accessToken ?? ""
     }
     
     let notiProvider: MoyaProvider<NotificationService>

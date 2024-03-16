@@ -26,28 +26,31 @@ final class AuthInterceptor: RequestInterceptor {
         }
         
         var urlRequest = urlRequest
-        urlRequest.setValue(Defaults.ACCESS_TOKEN, forHTTPHeaderField: "accessToken")
-        urlRequest.setValue(Defaults.REFRESH_TOKEN, forHTTPHeaderField: "refreshToken")
+        urlRequest.setValue(Defaults.TOKEN?.accessToken ?? "", forHTTPHeaderField: "accessToken")
+        urlRequest.setValue(Defaults.TOKEN?.refreshToken ?? "", forHTTPHeaderField: "refreshToken")
         print("adator 적용 \(urlRequest.headers)")
         completion(.success(urlRequest))
     }
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         print("retry 진입")
-        guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401
+        guard let response = request.task?.response as? HTTPURLResponse, 
+                response.statusCode == 401
         else {
             completion(.doNotRetryWithError(error))
             return
         }
         
         // 토큰 갱신 API 호출
-        let param = UserParam.TokenRequest(refreshToken: Defaults.ACCESS_TOKEN)
+        let param = UserParam.TokenRequest()
         UserAPI.shared.networking(userService: .refreshToken(param: param), type: String.self)
             .subscribe(with: self,
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    ServiceAPI.shared.refreshAccessToken(token: response ?? "")
+                    // !!!: API 수정 이후 refresh 재갱신
+//                    ServiceAPI.shared.refreshToken(token: response ?? "")
+                    Defaults.TOKEN?.accessToken = response ?? ""
                     completion(.retry)
                 case .error(let error):
                     completion(.doNotRetryWithError(error))

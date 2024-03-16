@@ -10,6 +10,7 @@ import SwiftKeychainWrapper
 
 extension KeychainWrapper.Key {
     static let USER_DATA: KeychainWrapper.Key = "USER_DATA"
+    static let APPLE_ID: KeychainWrapper.Key = "APPLE_ID"
 }
 
 final class KeyChains {
@@ -22,6 +23,15 @@ final class KeyChains {
         }
         set{
             encodeToKeychain(newValue, forKey: .USER_DATA)
+        }
+    }
+    
+    var APPLE_ID: String {
+        get {
+            decodeFromKeychain(forKey: .APPLE_ID, as: String.self) ?? ""
+        }
+        set{
+            encodeToKeychain(newValue, forKey: .APPLE_ID)
         }
     }
 }

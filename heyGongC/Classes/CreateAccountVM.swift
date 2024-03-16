@@ -24,7 +24,7 @@ struct Input {
 
 class CreateAccountVM: BaseVM {
     struct Param {
-        var loginType: SelectAccountTypeVM.LoginType
+        var loginType: LoginType
         var accessToken: String
         var refreshToken: String
     }
@@ -85,15 +85,17 @@ class CreateAccountVM: BaseVM {
         let token = Token(accessToken: data.accessToken, refreshToken: data.refreshToken)
         let param = UserParam.RegisterRequest(ads: notRequiredThirdIsSelected.value, token: token)
         
-        UserAPI.shared.networking(userService: .register(type: data.loginType, param: param), type: TokenModel.self)
+        UserAPI.shared.networking(userService: .register(type: data.loginType, param: param), type: Token.self)
             .subscribe(with: self,
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    Defaults.REFRESH_TOKEN = response?.refreshToken ?? ""
-                    ServiceAPI.shared.refreshAccessToken(token: response?.accessToken ?? "")
-
+                    guard let token = response else { return }
+                    
+                    ServiceAPI.shared.refreshToken(token: token)
+                    Defaults.LOGIN_TYPE = data.loginType
                     self.successRegister.accept(true)
+                    
                 case .error(let error):
                     self.errorHandler.accept(error)
                 }

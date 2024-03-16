@@ -11,14 +11,9 @@ import RxSwift
 import RxCocoa
 import GoogleSignIn
 import SwiftyUserDefaults
+import SwiftKeychainWrapper
 
 class SelectAccountTypeVM: BaseVM {
-    
-    enum LoginType: String {
-        case Google = "google"
-        case Kakao = "kakao"
-        case Apple = "apple"
-    }
     
     /**
      회원가입 화면으로 보낼 parameter
@@ -28,6 +23,12 @@ class SelectAccountTypeVM: BaseVM {
     public var loginSuccess = BehaviorRelay<Bool>(value: false)
     public var goRegister = BehaviorRelay<Bool>(value: false)
     
+    /// apple 로그인에 필요한 appleID 키체인에 저장
+    /// - Parameter appleID: Apple 로그인 성공시 받는 user ID 정보
+    public func updateAppleID(appleID: String?) {
+        KeyChains.shared.APPLE_ID = appleID ?? ""
+    }
+    
     // MARK: - callAPI
     /// 로그인
     public func callLogin(loginType: LoginType, accessToken: String) {
@@ -36,15 +37,13 @@ class SelectAccountTypeVM: BaseVM {
         let token = Token(accessToken: accessToken, refreshToken: "")
         let param = UserParam.LoginRequest(token: token)
         
-        UserAPI.shared.networkingLogin(userService: .login(type: loginType, param: param), type: TokenModel.self)
+        UserAPI.shared.networkingLogin(userService: .login(type: loginType, param: param), type: Token.self)
             .subscribe(with: self,
                        onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    
-                    Defaults.REFRESH_TOKEN = response.refreshToken ?? ""
-                    
-                    ServiceAPI.shared.refreshAccessToken(token: response.accessToken ?? "")
+                    ServiceAPI.shared.refreshToken(token: response)
+                    Defaults.LOGIN_TYPE = loginType
                     self.loginSuccess.accept(true)
                 case .register:
                     self.goRegister.accept(true)
@@ -52,7 +51,7 @@ class SelectAccountTypeVM: BaseVM {
                     self.errorHandler.accept(error)
                 }
             }, onFailure: { owner, error in
-                print("callRegister - error")
+                print("callLogin - error")
                 
             }).disposed(by: self.bag)
     }

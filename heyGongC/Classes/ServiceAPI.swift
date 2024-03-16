@@ -75,9 +75,9 @@ class ServiceAPI {
         }
     }
     
-    public func refreshAccessToken(token: String) {
-        Defaults.ACCESS_TOKEN = token
-        print("💎💎💎💎 update ACCESS_TOKEN")
+    public func refreshToken(token: Token) {
+        Defaults.TOKEN = token
+        print("💎💎💎💎 update Token")
     }
 }
 
@@ -85,4 +85,8 @@ class ServiceAPI {
 public enum NetworkResult2<T> {
     case success(T?)
     case error(GCError)
+}
+
+struct BaseModel: Codable {
+    let code, message: String?
 }

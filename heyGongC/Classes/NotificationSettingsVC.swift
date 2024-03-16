@@ -52,6 +52,13 @@ class NotificationSettingsVC: BaseVC {
                 self.showAlert(localized: newValue ? .DLG_NOTIFICATION_ON : .DLG_NOTIFICATION_OFF)
             }
             .disposed(by: viewModel.bag)
+        
+        viewModel.switchNotificationStatus
+            .subscribe { [weak self] in
+                guard let self = self else { return }
+                switchEventNotification.isOn = $0
+            }
+            .disposed(by: viewModel.bag)
     }
     
     override func setupHandler() {
