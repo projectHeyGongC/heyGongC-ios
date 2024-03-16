@@ -18,18 +18,13 @@ class QRCodeReaderVC: BaseVC {
     
     @IBOutlet weak var viewCamera: UIView!
     @IBOutlet weak var imgViewScanArea: UIImageView!
-    @IBOutlet weak var btnDismiss: UIButton!
     
     var video = AVCaptureVideoPreviewLayer()
     let session = AVCaptureSession()
     
     override func initialize() {
+        self.setNavTitle(title: "", navType: .close)
         setupAVCatureInfo()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        session.stopRunning()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,13 +34,12 @@ class QRCodeReaderVC: BaseVC {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        session.stopRunning()
+    }
+    
     override func bind() {
-        btnDismiss.rx.tap.bind { [weak self] in
-            guard let self = self else { return }
-            dismiss(animated: true)
-        }
-        .disposed(by: viewModel.bag)
-        
         viewModel.successReadQR
             .bind { [weak self] in
                 guard let self = self else { return}

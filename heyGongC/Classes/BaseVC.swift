@@ -126,10 +126,9 @@ class BaseVC: UIViewController, BaseImplementation {
             self.navigationController?.isNavigationBarHidden = false
             
         case .close:
-            setLeftLabel()
             self.navigationItem.hidesBackButton = true
             self.navigationController?.isNavigationBarHidden = false
-            setRightButton()
+            setCloseButton()
         }
     }
     
@@ -188,13 +187,13 @@ extension BaseVC {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
     }
     
-    private func setRightButton() {
+    private func setCloseButton() {
         let btn = UIButton()
-//        btn.createCloseButton()
+        btn.createCloseButton()
         btn.addTarget(self, action: #selector(close), for: .touchUpInside)
         let closeBtn = UIBarButtonItem(customView: btn)
         closeBtn.title = ""
-        self.navigationItem.rightBarButtonItem = closeBtn
+        self.navigationItem.leftBarButtonItem = closeBtn
     }
     
     @objc public func close() {

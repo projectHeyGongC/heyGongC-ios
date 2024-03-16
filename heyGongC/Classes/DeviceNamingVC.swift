@@ -17,11 +17,10 @@ class DeviceNamingVC: BaseVC {
     
     @IBOutlet weak var txtFieldDeviceName: UITextField!
     @IBOutlet weak var btnDeviceRegister: UIButton!
-    @IBOutlet weak var btnDismiss: UIButton!
     
     override func initialize() {
         setTextFieldUI()
-        
+        self.setNavTitle(title: "", navType: .close)
     }
     
     override func bind() {
@@ -45,12 +44,6 @@ class DeviceNamingVC: BaseVC {
                     viewModel.name = name
                     viewModel.callAppendDevice()
                 }
-            }
-            .disposed(by: viewModel.bag)
-        
-        btnDismiss.rx.tap
-            .subscribe { _ in
-                self.dismiss(animated: true)
             }
             .disposed(by: viewModel.bag)
             

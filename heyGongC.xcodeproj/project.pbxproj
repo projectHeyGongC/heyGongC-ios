@@ -88,6 +88,7 @@
 		CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8A92B3C4AE100C02509 /* GCError.swift */; };
 		CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */; };
 		CAC9C8B02B3C53AA00C02509 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */; };
+		CADAC11C2BA58077004351C2 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADAC11B2BA58077004351C2 /* UIButton+Ext.swift */; };
 		F5F7347838662032D33D63B3 /* libPods-heyGongCUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C11B6F031CF7E47A0B542B /* libPods-heyGongCUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -202,6 +203,7 @@
 		CAC9C8A92B3C4AE100C02509 /* GCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCError.swift; sourceTree = "<group>"; };
 		CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Design+Ext.swift"; sourceTree = "<group>"; };
 		CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		CADAC11B2BA58077004351C2 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		D6071532393E64072E40E043 /* Pods-heyGongCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCUITests.release.xcconfig"; path = "Target Support Files/Pods-heyGongCUITests/Pods-heyGongCUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -597,6 +599,7 @@
 				CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */,
 				C61A44882B687005007F7178 /* UINavigationController+Ext.swift */,
 				C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */,
+				CADAC11B2BA58077004351C2 /* UIButton+Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				CA3D7AB82B4E75E500C63FD0 /* RecordedVideoListVC.swift in Sources */,
 				CA3D7ABA2B4E75EC00C63FD0 /* RecordedVideoListVM.swift in Sources */,
 				CA58BF822B4E6AE2008D8015 /* MonitoringCell.swift in Sources */,
+				CADAC11C2BA58077004351C2 /* UIButton+Ext.swift in Sources */,
 				B8C9A76C2B4FCEBA0083B144 /* UserProfileVM.swift in Sources */,
 				CA3D7B042B6125FA00C63FD0 /* UserService.swift in Sources */,
 				CA6EAC9B2B39688700F81F3A /* BaseNavigationVC.swift in Sources */,

@@ -15,6 +15,7 @@ struct Storyboard {
     static let Analysis              = "Analysis"
     static let Subscription          = "Subscription"
     static let UserProfile           = "UserProfile"
+    static let DeviceRegister        = "DeviceRegister"
 }
 
 class SegueUtils {
@@ -52,6 +53,7 @@ enum Link: String {
     case MainTBC                = "MainTBC"
     case CameraAnalysisVC       = "CameraAnalysisVC"
     case RecordedVideoListVC    = "RecordedVideoListVC"
+    case QRCodeReaderVC         = "QRCodeReaderVC"
     
     var baseStoryboard: String {
         switch self {
@@ -61,6 +63,8 @@ enum Link: String {
             return Storyboard.Monitoring
         case .RecordedVideoListVC, .CameraAnalysisVC:
             return Storyboard.Analysis
+        case .QRCodeReaderVC:
+            return Storyboard.DeviceRegister
         }
     }
     
