@@ -13,15 +13,17 @@ class UserParam {
     
     struct RegisterRequest: Codable {
         var deviceId = Util.getUUID()
-        var deviceOs = "iOS"
+        var deviceOs = "IOS"
         var ads: Bool
-        var token: Token
+        var snsType: String
+        var accessToken: String
     }
     
     struct LoginRequest: Codable {
         var deviceId = Util.getUUID()
-        var deviceOs = "iOS"
-        var token: Token
+        var deviceOs = "IOS"
+        var snsType: String
+        var accessToken: String
     }
     
     struct TokenRequest: Codable {
@@ -34,8 +36,8 @@ class UserParam {
         data["deviceId"] = params.deviceId
         data["deviceOs"] = params.deviceOs
         data["ads"] = params.ads
-        data["token"] = params.token
-        data["deviceId"] = params.deviceId
+        data["snsType"] = params.snsType
+        data["accessToken"] = params.accessToken
         
         return data
     }
@@ -45,7 +47,8 @@ class UserParam {
         
         data["deviceId"] = params.deviceId
         data["deviceOs"] = params.deviceOs
-        data["token"] = params.token.getToken()
+        data["snsType"] = params.snsType
+        data["accessToken"] = params.accessToken
         
         return data
     }

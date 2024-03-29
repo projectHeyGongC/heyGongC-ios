@@ -12,8 +12,8 @@ import SwiftyUserDefaults
 
 /// kes 240129 스웨거에 있는 API
 enum UserService {
-    case register(type: LoginType, param: UserParam.RegisterRequest)
-    case login(type: LoginType, param: UserParam.LoginRequest)
+    case register(param: UserParam.RegisterRequest)
+    case login(param: UserParam.LoginRequest)
     case unregister
     case refreshToken(param: UserParam.TokenRequest)
     case info
@@ -52,10 +52,10 @@ extension UserService: TargetType, AccessTokenAuthorizable {
     
     var path: String {
         switch self {
-        case .register(type: let type, param: _):
-            return "users/\(type.rawValue)/register"
-        case .login(type: let type, param: _):
-            return "users/\(type.rawValue)/login"
+        case .register(_):
+            return "users/register"
+        case .login(_):
+            return "users/login"
         case .unregister:
             return "users/unregister"
         case .refreshToken:
@@ -76,9 +76,9 @@ extension UserService: TargetType, AccessTokenAuthorizable {
     
     var task: Moya.Task {
         switch self {
-        case .register(type: _, param: let param):
+        case .register(param: let param):
             return .requestJSONEncodable(param)
-        case .login(type: _, param: let param):
+        case .login(param: let param):
             return .requestJSONEncodable(param)
         case .unregister:
             return .requestPlain
