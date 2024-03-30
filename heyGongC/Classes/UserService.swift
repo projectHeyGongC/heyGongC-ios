@@ -133,7 +133,11 @@ class UserAPI {
                     single(.success(networkResult))
                     return
                 case .failure(let error):
-                    single(.failure(error))
+                    if error.response?.statusCode == 400 {
+                        single(.success(.register))
+                    } else {
+                        single(.failure(error))
+                    }
                     return
                 }
             }
