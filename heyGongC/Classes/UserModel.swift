@@ -17,6 +17,7 @@ class UserParam {
         var ads: Bool
         var snsType: String
         var accessToken: String
+        var fcmToken: String = Defaults.FCM_TOKEN
     }
     
     struct LoginRequest: Codable {
