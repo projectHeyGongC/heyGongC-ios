@@ -24,6 +24,7 @@ class UserParam {
         var deviceOs = "IOS"
         var snsType: String
         var accessToken: String
+        var fcmToken: String = Defaults.FCM_TOKEN
     }
     
     struct TokenRequest: Codable {
@@ -49,6 +50,7 @@ class UserParam {
         data["deviceOs"] = params.deviceOs
         data["snsType"] = params.snsType
         data["accessToken"] = params.accessToken
+        data["fcmToken"] = Defaults.FCM_TOKEN
         
         return data
     }
