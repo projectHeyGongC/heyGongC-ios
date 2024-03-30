@@ -11,19 +11,19 @@ import RxSwift
 import SwiftyUserDefaults
 
 enum DeviceService {
-    case getInfo(id: Int)
-    case edit(id: Int, param: DeviceParam.EditRequest)
-    case delete(id: Int)
-    case getList
-    case add(param: DeviceParam.InfoRequest)
-    case deleteAll
+    case editInfo(deviceId: String, param: DeviceParam.EditRequest)
+    case settings(deviceId: String, param: DeviceParam.DeviceSettingRequest)
+    case control(deviceId: String, param: DeviceParam.ControlTypeRequest)
+    case subscribe(param: DeviceParam.InfoRequest)
+    case disconnect(param: DeviceParam.DeviceIdsRequest)
+    case devices
     
     var isParsing: Bool {
         switch self {
-        case .getInfo, .edit, .getList, .add:
-            return true
-        case .delete, .deleteAll:
+        case .settings(deviceId: _, param: _), .disconnect(param: _), .subscribe(param: _):
             return false
+        default:
+            return true
         }
     }
 }
@@ -40,34 +40,46 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
     
     var path: String {
         switch self {
-        case .getInfo(id: let seq), .edit(id: let seq, param: _), .delete(id: let seq):
-            return "device/\(seq)"
-        case .getList, .deleteAll, .add(param: _):
-            return "device"
+        case .editInfo(deviceId: let id, param: _):
+            return "devices/\(id)"
+        case .settings(deviceId: let id, param: _):
+            return "devices/\(id)/settings"
+        case .control(deviceId: let id, param: _):
+            return "devices/\(id)/control"
+        case .subscribe(param: _):
+            return "devices/subscribe"
+        case .disconnect(param: _):
+            return "devices/disconnect"
+        case .devices:
+            return "devices/"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .add:
-            return .post
-        case .getInfo, .getList:
-            return .get
-        case .edit:
+        case .editInfo(deviceId: _, param: _), .settings(deviceId: _, param: _):
             return .put
-        case .delete, .deleteAll:
-            return .delete
+        case .control(deviceId: _, param: _), .subscribe(param: _), .disconnect(param: _):
+            return .post
+        case .devices:
+            return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .add(let param):
+        case .editInfo(deviceId: _, param: let param):
             return .requestJSONEncodable(param)
-        case .getList, .getInfo(id: _), .delete(id: _), .deleteAll:
+        case .settings(deviceId: _, param: let param):
+            return .requestJSONEncodable(param)
+        case .control(deviceId: _, param: let param):
+            return .requestJSONEncodable(param)
+        case .subscribe(param: let param):
+            return .requestJSONEncodable(param)
+        case .disconnect(param: let param):
+            return .requestJSONEncodable(param)
+        case .devices:
             return .requestPlain
-        case .edit(id: _, param: let param):
-            return .requestJSONEncodable(param)
         }
     }
     

@@ -53,7 +53,7 @@ class DeviceNamingVC: BaseVC {
                 guard let self else { return }
                 
                 if $0 {
-                    SegueUtils.open(target: self, link: .MainTBC)
+                    self.dismiss(animated: true)
                 }
             }
             .disposed(by: viewModel.bag)
@@ -63,8 +63,8 @@ class DeviceNamingVC: BaseVC {
         self.setErrorHandler(vm: viewModel)
     }
     
-    func updateParam(param: QRCodeReaderVM.Param){
-        self.viewModel.param = param
+    func updateDeviceId(deviceId: String){
+        self.viewModel.deviceId = deviceId
     }
     
     deinit {

@@ -22,6 +22,7 @@ enum Localized {
     case DLG_NOTIFICATION_OFF
     case DLG_TEST
     case DLG_EXPIRED
+    case DLG_QRCODE_SCANING_ERROR
 
     /**
      *  다국어 처리
@@ -63,6 +64,8 @@ enum Localized {
             return "알림이 거부되었습니다"
         case .DLG_EXPIRED:
             return "세션 만료"
+        case .DLG_QRCODE_SCANING_ERROR:
+            return "QR코드 스캔을 다시 시도해주세요."
         default: return ""
         }
     }
@@ -73,7 +76,7 @@ enum Localized {
             return "확인"
         case .DLG_LOGOUT:
             return "예"
-        case .DLG_NOTIFICATION_ON, .DLG_NOTIFICATION_OFF,  .DLG_EXPIRED:
+        case .DLG_NOTIFICATION_ON, .DLG_NOTIFICATION_OFF,  .DLG_EXPIRED, .DLG_QRCODE_SCANING_ERROR:
             return "확인"
         default: return ""
         }
@@ -81,11 +84,7 @@ enum Localized {
     
     var cancelText: String {
         switch self {
-        case .DLG_TEST:
-            return "취소"
-        case .DLG_DISCONNECTED_ALL_DIVICES:
-            return "취소"
-        case .DLG_DELETE_USER:
+        case .DLG_TEST, .DLG_DELETE_USER, .DLG_DISCONNECTED_ALL_DIVICES:
             return "취소"
         case .DLG_LOGOUT:
             return "아니요"

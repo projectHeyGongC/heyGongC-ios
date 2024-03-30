@@ -44,12 +44,19 @@ class QRCodeReaderVC: BaseVC {
             .bind { [weak self] in
                 guard let self = self else { return}
                 if $0 {
-                    if let vc = storyboard?.instantiateViewController(withIdentifier: "DeviceNaming") as? DeviceNamingVC,
-                       let param = viewModel.param {
-                        vc.updateParam(param: param)
+                    if let vc = storyboard?.instantiateViewController(withIdentifier: "DeviceNamingVC") as? DeviceNamingVC,
+                       let deviceId = viewModel.deviceId {
+                        vc.updateDeviceId(deviceId: deviceId)
                         vc.modalPresentationStyle = .fullScreen
                         present(vc, animated: true, completion: nil)
                     }
+                } else {
+                    showAlert(localized: .DLG_QRCODE_SCANING_ERROR, isAccent: false) {
+                        DispatchQueue.global(qos: .background).async {
+                            self.session.startRunning()
+                        }
+                    } cancel: { }
+
                 }
             }
             .disposed(by: viewModel.bag)
@@ -108,7 +115,7 @@ extension QRCodeReaderVC: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject, let qrData = object.stringValue {
             //QR코드 값 viewModel에 넘기기
-            viewModel.getDeviceType(qrData: qrData)
+            viewModel.getDeviceId(qrData: qrData)
             self.session.stopRunning()
         }
     }

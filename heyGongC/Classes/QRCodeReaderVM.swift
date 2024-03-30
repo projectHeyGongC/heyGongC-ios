@@ -12,25 +12,21 @@ import RxCocoa
 
 class QRCodeReaderVM: BaseVM {
     
-    struct Param {
-        var type: String
-        var deviceQR: String
-    }
+    public var deviceId: String?
+    public var successReadQR = PublishRelay<Bool>()
     
-    public var param: QRCodeReaderVM.Param?
-    public var successReadQR = BehaviorRelay<Bool>(value: false)
-    
-    func getDeviceType(qrData: String) {
-        if let splitIndex = qrData.firstIndex(of: " ") {
-            let afterFirstSpaceIndex = qrData.index(after: splitIndex)
-            let type = qrData[afterFirstSpaceIndex..<qrData.endIndex]
-            
-            print("device Type: \(type), qrData: \(qrData)")
-            param = Param(type: String(type), deviceQR: qrData)
-            
-            successReadQR.accept(true)
+    func getDeviceId(qrData: String) {
+        
+        guard let heygongCRange = qrData.range(of: "HeyGongC_") else {
+            successReadQR.accept(false)
             return
         }
-        successReadQR.accept(false)
+    
+        let startIndex = heygongCRange.upperBound
+        let deviceIdStr = qrData[startIndex...]
+        print("deviceId: \(String(deviceIdStr))")
+        deviceId = String(deviceIdStr)
+        
+        successReadQR.accept(true)
     }
 }
