@@ -8,33 +8,60 @@
 import Foundation
 import Moya
 import RxSwift
+import SwiftyUserDefaults
 
 /// kes 240129 스웨거에 있는 API
 enum UserService {
-    case register(type: SelectAccountTypeVM.LoginType, param: UserParam.RequestRegisterData)
-    case login(type: SelectAccountTypeVM.LoginType, param: UserParam.RequestLoginData)
+    case register(param: UserParam.RegisterRequest)
+    case login(param: UserParam.LoginRequest)
     case unregister
-    case refreshToken(param: UserParam.RequestToken)
+    case refreshToken(param: UserParam.TokenRequest)
     case info
+    
+    /**
+     
+     */
+    var isParsing: Bool {
+        switch self {
+        case .register, .login, .refreshToken, .info:
+            return true
+        case .unregister:
+            return false
+        }
+    }
 }
 
-extension UserService: TargetType {
+extension UserService: TargetType, AccessTokenAuthorizable {
+    
+    var validationType: ValidationType {
+        return .successCodes
+    }
+    
+    var authorizationType: Moya.AuthorizationType? {
+        switch self {
+        case .login, .register:
+            return .none
+        default:
+            return .bearer
+        }
+    }
+    
     var baseURL: URL {
         return URL(string: ServiceAPI.shared.baseUrl)!
     }
     
     var path: String {
         switch self {
-        case .register(type: let type, param: _):
-            return "/\(type.rawValue)/register"
-        case .login(type: let type, param: _):
-            return "/\(type.rawValue)/login"
+        case .register(_):
+            return "users/register"
+        case .login(_):
+            return "users/login"
         case .unregister:
-            return "/unregister"
+            return "users/unregister"
         case .refreshToken:
-            return "/token/refresh"
+            return "users/token/refresh"
         case .info:
-            return "/info"
+            return "users/info"
         }
     }
     
@@ -49,9 +76,9 @@ extension UserService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .register(type: _, param: let param):
+        case .register(param: let param):
             return .requestJSONEncodable(param)
-        case .login(type: _, param: let param):
+        case .login(param: let param):
             return .requestJSONEncodable(param)
         case .unregister:
             return .requestPlain
@@ -63,17 +90,35 @@ extension UserService: TargetType {
     }
     
     var headers: [String : String]? {
-        return ServiceAPI.shared.getHeader()
+        switch self {
+        case .register, .login, .unregister, .info:
+            return ServiceAPI.shared.getHeader()
+        case .refreshToken(let param):
+            var header = ServiceAPI.shared.getHeader()
+            header["RefreshAccessTokenRequest"] = "refreshToken,\(param)"
+            
+            return header
+        }
     }
 }
 
 class UserAPI {
     static let shared = UserAPI()
-    var userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin()])
-    private init() { }
+    
+    let tokenClosure: (TargetType) -> String = { _ in
+        return Defaults.TOKEN?.accessToken ?? ""
+    }
+    
+    let userProvider: MoyaProvider<UserService>
+    
+    private init() {
+        // kes 240223 세션 만료 적용 테스트 필요
+        userProvider = MoyaProvider<UserService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+
+    }
     
     enum LoginResult<T> {
-        case success(T?)
+        case success(T)
         case register
         case error(GCError)
     }
@@ -88,7 +133,11 @@ class UserAPI {
                     single(.success(networkResult))
                     return
                 case .failure(let error):
-                    single(.failure(error))
+                    if error.response?.statusCode == 400 {
+                        single(.success(.register))
+                    } else {
+                        single(.failure(error))
+                    }
                     return
                 }
             }
@@ -102,7 +151,7 @@ class UserAPI {
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: userService.isParsing)
                     single(.success(networkResult))
                     return
                 case .failure(let error):

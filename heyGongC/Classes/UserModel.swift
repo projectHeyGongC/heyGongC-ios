@@ -6,60 +6,57 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 
 // MARK: - RequestData
 class UserParam {
     
-    struct RequestRegisterData: Codable {
+    struct RegisterRequest: Codable {
         var deviceId = Util.getUUID()
-        var deviceOs = "iOS"
+        var deviceOs = "IOS"
         var ads: Bool
-        var token: Token
+        var snsType: String
+        var accessToken: String
+        var fcmToken: String = Defaults.FCM_TOKEN
     }
     
-    struct RequestLoginData: Codable {
+    struct LoginRequest: Codable {
         var deviceId = Util.getUUID()
-        var deviceOs = "iOS"
-        var token: Token
+        var deviceOs = "IOS"
+        var snsType: String
+        var accessToken: String
+        var fcmToken: String = Defaults.FCM_TOKEN
     }
     
-    struct RequestToken: Codable {
-        var refreshToken: String
+    struct TokenRequest: Codable {
+        var refreshToken: String = Defaults.TOKEN?.refreshToken ?? ""
     }
     
-    // MARK: Token
-    struct Token: Codable {
-        var accessToken, refreshToken: String
-        
-        func getToken() -> [String: String] {
-            return ["accessToken": self.accessToken,
-                    "refreshToken": self.refreshToken]
-        }
-    }
-    
-    public func getData(params: RequestRegisterData) -> [String: Any] {
+    public func getData(params: RegisterRequest) -> [String: Any] {
         var data = [String : Any]()
         
         data["deviceId"] = params.deviceId
         data["deviceOs"] = params.deviceOs
         data["ads"] = params.ads
-        data["token"] = params.token.getToken()
-        data["deviceId"] = params.deviceId
+        data["snsType"] = params.snsType
+        data["accessToken"] = params.accessToken
         
         return data
     }
     
-    public func getData(params: RequestLoginData) -> [String: Any] {
+    public func getData(params: LoginRequest) -> [String: Any] {
         var data = [String : Any]()
         
         data["deviceId"] = params.deviceId
         data["deviceOs"] = params.deviceOs
-        data["token"] = params.token.getToken()
+        data["snsType"] = params.snsType
+        data["accessToken"] = params.accessToken
+        data["fcmToken"] = Defaults.FCM_TOKEN
         
         return data
     }
     
-    public func getData(params: RequestToken) -> [String: Any] {
+    public func getData(params: TokenRequest) -> [String: Any] {
         var data = [String : Any]()
         
         data["refreshToken"] = params.refreshToken
@@ -68,7 +65,7 @@ class UserParam {
     }
 }
 
-// MARK: - Model
+// MARK: - UserModel
 
 struct UserModel: Codable {
     let deviceID, deviceOS, snsType, email: String?
@@ -79,9 +76,4 @@ struct UserModel: Codable {
         case deviceOS = "deviceOs"
         case snsType, email, alarm, ads
     }
-}
-
-// MARK: - UserModel
-struct TokenModel: Codable {
-    let accessToken, refreshToken: String?
 }

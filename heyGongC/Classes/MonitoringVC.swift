@@ -27,7 +27,7 @@ class MonitoringVC: BaseVC {
     
     //MARK: LifeCycle
     override func initialize() {
-        
+        viewModel.fetchUserInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,6 +36,15 @@ class MonitoringVC: BaseVC {
     }
     
     override func bind() {
+        
+        viewModel.successFetchUserInfo
+            .bind {
+                if $0 {
+                    
+                }
+            }
+            .disposed(by: viewModel.bag)
+        
         btnAdd.rx.tap
             .bind(onNext: { [weak self] in
                 

@@ -11,7 +11,7 @@ import UIKit
 extension UINavigationController {
    
     public func backToIntro() {
-        let sb = UIStoryboard(name: "Initial", bundle: nil)
+        let sb = UIStoryboard(name: Storyboard.Splash, bundle: nil)
         let intro = sb.instantiateViewController(withIdentifier: "SplashView")
         self.setViewControllers([intro], animated: false)
     }
