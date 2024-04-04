@@ -12,6 +12,10 @@ import SwiftyUserDefaults
 import FSCalendar
 import RxRelay
 
+protocol IsSelectedDate {
+    func pass(date: Date)
+}
+
 class FullCalendarVC: UIViewController {
     
     private let bag = DisposeBag()

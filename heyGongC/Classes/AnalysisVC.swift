@@ -11,10 +11,6 @@ import RxCocoa
 import RxOptional
 import FSCalendar
 
-protocol IsSelectedDate {
-    func pass(date: Date)
-}
-
 class AnalysisVC: BaseVC {
     
     @IBOutlet weak var tableView: UITableView!
