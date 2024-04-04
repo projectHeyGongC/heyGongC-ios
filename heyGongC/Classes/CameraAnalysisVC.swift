@@ -32,3 +32,8 @@ class CameraAnalysisVC: BaseVC {
     }
 }
 
+extension CameraAnalysisVC {
+    public func updateParam() {
+        
+    }
+}

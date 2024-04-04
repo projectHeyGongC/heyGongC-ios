@@ -14,10 +14,6 @@ import SwiftyUserDefaults
 enum AnalysisService {
     case getAnalysis(requestAt: String)
     case getDetail(deviceId: String, requestAt: String)
-    
-    var isParsing: Bool {
-        return true
-    }
 }
 
 extension AnalysisService: TargetType, AccessTokenAuthorizable {
@@ -75,13 +71,13 @@ class AnalysisAPI {
         notiProvider = MoyaProvider<AnalysisService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
     }
     
-    func networking<T: Codable>(analysisService: AnalysisService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(analysisService: AnalysisService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             self.notiProvider.request(analysisService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: analysisService.isParsing)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: true)
                     single(.success(networkResult))
                     return
                 case .failure(let error):

@@ -172,6 +172,16 @@ extension AnalysisVC {
                 
                 self.tableView.updateTableViewHeight(layout: self.tableViewHeight)
             }.disposed(by: viewModel.bag)
+        
+        
+        // 테이블 뷰 선택
+        Observable.zip(tableView.rx.modelSelected(AnalysisModel.Notification.self), tableView.rx.itemSelected)
+            .bind { [weak self] (model, indexPath) in
+                if let vc = Link.CameraAnalysisVC.viewController as? CameraAnalysisVC {
+                    
+                }
+            }
+            .disposed(by: viewModel.bag)
     }
 }
 

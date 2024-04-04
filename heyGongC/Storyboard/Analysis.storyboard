@@ -349,10 +349,10 @@
             </objects>
             <point key="canvasLocation" x="-68" y="679.80295566502468"/>
         </scene>
-        <!--Camera AnalysisVC-->
+        <!--Recorded Video ListVC-->
         <scene sceneID="p1S-hd-3DO">
             <objects>
-                <viewController storyboardIdentifier="CameraAnalysisVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cvE-Og-OJO" customClass="CameraAnalysisVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecordedVideoListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cvE-Og-OJO" customClass="RecordedVideoListVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2cq-ut-H9R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -413,10 +413,10 @@
             </objects>
             <point key="canvasLocation" x="1488" y="-2"/>
         </scene>
-        <!--Recorded Video ListVC-->
+        <!--Camera AnalysisVC-->
         <scene sceneID="jW0-Cn-Go3">
             <objects>
-                <viewController storyboardIdentifier="RecordedVideoListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dWj-Bz-zQp" customClass="RecordedVideoListVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraAnalysisVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dWj-Bz-zQp" customClass="CameraAnalysisVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4DL-kd-4Bk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
