@@ -11,7 +11,7 @@ import RxSwift
 import SwiftyUserDefaults
 
 /// kes 240129 스웨거에 있는 API
-enum NotificationService {
+enum AnalysisService {
     case getAnalysis(requestAt: String)
     case getDetail(deviceId: String, requestAt: String)
     
@@ -20,7 +20,7 @@ enum NotificationService {
     }
 }
 
-extension NotificationService: TargetType, AccessTokenAuthorizable {
+extension AnalysisService: TargetType, AccessTokenAuthorizable {
     
     var authorizationType: Moya.AuthorizationType? {
         return .bearer
@@ -32,30 +32,28 @@ extension NotificationService: TargetType, AccessTokenAuthorizable {
     
     var path: String {
         switch self {
-        case .getInfo(let eventSeq), .check(let eventSeq):
-            return "notification/\(eventSeq)"
-        case .getList, .add:
-            return "notification"
+        case .getAnalysis(_):
+            return "analysis"
+        case .getDetail(_, _):
+            return "analysis/detail"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getInfo, .getList:
+        case .getAnalysis(_):
             return .get
-        case .check:
-            return .put
-        case .add:
-            return .post
+        case .getDetail(_, _):
+            return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .getInfo, .check, .getList:
-            return .requestPlain
-        case .add(let param):
-            return .requestJSONEncodable(param)
+        case .getAnalysis(let requestAt):
+            return .requestParameters(parameters: ["requestAt": requestAt], encoding: URLEncoding.queryString)
+        case .getDetail(let deviceId, let requestAt):
+            return .requestParameters(parameters: ["deviceId": deviceId, "requestAt": requestAt], encoding: URLEncoding.queryString)
         }
     }
     
@@ -64,20 +62,20 @@ extension NotificationService: TargetType, AccessTokenAuthorizable {
     }
 }
 
-class NotificationAPI {
-    static let shared = NotificationAPI()
+class AnalysisAPI {
+    static let shared = AnalysisAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
         return Defaults.TOKEN?.accessToken ?? ""
     }
     
-    let notiProvider: MoyaProvider<NotificationService>
+    let notiProvider: MoyaProvider<AnalysisService>
     
     private init() {
-        notiProvider = MoyaProvider<NotificationService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
+        notiProvider = MoyaProvider<AnalysisService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
     }
     
-    func networking<T: Codable>(notiService: NotificationService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(alnalysisService: AnalysisService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             self.notiProvider.request(notiService) { result in
                 switch result {
