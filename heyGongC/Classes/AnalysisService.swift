@@ -75,13 +75,13 @@ class AnalysisAPI {
         notiProvider = MoyaProvider<AnalysisService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
     }
     
-    func networking<T: Codable>(alnalysisService: AnalysisService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(analysisService: AnalysisService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
-            self.notiProvider.request(notiService) { result in
+            self.notiProvider.request(analysisService) { result in
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
-                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: notiService.isParsing)
+                    let networkResult = ServiceAPI.shared.judgeStatus(response: response, type: T.self, isParsing: analysisService.isParsing)
                     single(.success(networkResult))
                     return
                 case .failure(let error):

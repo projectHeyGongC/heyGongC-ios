@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 // MARK: - AnalysisModel
 struct AnalysisModel: Codable {
     let notifications: [Notification]?

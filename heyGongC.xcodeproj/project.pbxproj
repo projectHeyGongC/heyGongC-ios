@@ -33,6 +33,8 @@
 		B8FEAE7B2B84EB7B00E39D57 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */; };
 		C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A44882B687005007F7178 /* UINavigationController+Ext.swift */; };
 		C61A448B2B68B614007F7178 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61A448A2B68B614007F7178 /* Util.swift */; };
+		C699D6E32BBEAE3200A42083 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C699D6E22BBEAE3200A42083 /* UITableView+Ext.swift */; };
+		C6A3FD992BBEA2C400806FE1 /* AnalysisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A3FD982BBEA2C300806FE1 /* AnalysisCell.swift */; };
 		C6AEF0BF2BBBEEF9006B27C1 /* AnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AEF0BE2BBBEEF9006B27C1 /* AnalysisService.swift */; };
 		C6AEF0C12BBBF4C0006B27C1 /* AnalysisModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AEF0C02BBBF4C0006B27C1 /* AnalysisModel.swift */; };
 		C6BEE5522B870295003F7436 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BEE5512B870295003F7436 /* NotificationModel.swift */; };
@@ -146,6 +148,8 @@
 		B8FEAE7A2B84EB7B00E39D57 /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
 		C61A44882B687005007F7178 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		C61A448A2B68B614007F7178 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		C699D6E22BBEAE3200A42083 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		C6A3FD982BBEA2C300806FE1 /* AnalysisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisCell.swift; sourceTree = "<group>"; };
 		C6AEF0BE2BBBEEF9006B27C1 /* AnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisService.swift; sourceTree = "<group>"; };
 		C6AEF0C02BBBF4C0006B27C1 /* AnalysisModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisModel.swift; sourceTree = "<group>"; };
 		C6BEE5512B870295003F7436 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 		CA32691E2B4E6DDD0087D534 /* Analysis */ = {
 			isa = PBXGroup;
 			children = (
+				C6A3FD982BBEA2C300806FE1 /* AnalysisCell.swift */,
 				CA3D7AB62B4E75CC00C63FD0 /* Analysis */,
 				CA32691F2B4E6DF00087D534 /* CameraAnalysis */,
 				CA3D7ABB2B4E75EE00C63FD0 /* RecordedVideoList */,
@@ -619,6 +624,7 @@
 				C61A44882B687005007F7178 /* UINavigationController+Ext.swift */,
 				C6E711E02B4B8A6B00A05A6A /* UIView + Ext.swift */,
 				B83738872B7A0E2800E27637 /* Date+Ext.swift */,
+				C699D6E22BBEAE3200A42083 /* UITableView+Ext.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -906,6 +912,7 @@
 				B88C41572B55221A006A5F65 /* SettingsVM.swift in Sources */,
 				B84BED872B4BB9A400382F7F /* LoginCollectionViewCell.swift in Sources */,
 				B8FC684C2B581F9B00C29691 /* QRCodeReaderVC.swift in Sources */,
+				C699D6E32BBEAE3200A42083 /* UITableView+Ext.swift in Sources */,
 				B84BED812B4BB96B00382F7F /* CreateAccountVM.swift in Sources */,
 				CA3D7ABD2B4E765100C63FD0 /* AnalysisVC.swift in Sources */,
 				CA6EAC9E2B39688700F81F3A /* BaseVM.swift in Sources */,
@@ -924,6 +931,7 @@
 				C61A44892B687005007F7178 /* UINavigationController+Ext.swift in Sources */,
 				CAC9C8A32B3C384C00C02509 /* MainTBC.swift in Sources */,
 				CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */,
+				C6A3FD992BBEA2C400806FE1 /* AnalysisCell.swift in Sources */,
 				B8FC68522B581FE600C29691 /* DeviceNamingVM.swift in Sources */,
 				C6E711E12B4B8A6B00A05A6A /* UIView + Ext.swift in Sources */,
 				CA5D08022B7A1363009E33C5 /* NotificationSettingsVM.swift in Sources */,

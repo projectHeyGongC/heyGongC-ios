@@ -13,4 +13,14 @@ extension Date {
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: self)
     }
+    
+    /**
+     yyyyMMdd 형태로 변경
+     */
+    func makeToYMD() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        
+        return dateFormatter.string(from: self)
+    }
 }
