@@ -177,8 +177,13 @@ extension AnalysisVC {
         // 테이블 뷰 선택
         Observable.zip(tableView.rx.modelSelected(AnalysisModel.Notification.self), tableView.rx.itemSelected)
             .bind { [weak self] (model, indexPath) in
+                guard let stringDate = self?.viewModel.selectedDate.value?.makeToYMD() else { return }
+                
                 if let vc = Link.CameraAnalysisVC.viewController as? CameraAnalysisVC {
+                    let param = CameraAnalysisVM.Param(data: model, date: stringDate)
+                    vc.updateParam(param: param)
                     
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }
             .disposed(by: viewModel.bag)

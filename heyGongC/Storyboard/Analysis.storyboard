@@ -509,6 +509,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uSZ-13-15c"/>
+                    <connections>
+                        <outlet property="lblAlarmCnt" destination="0GL-B3-RYg" id="gJR-fQ-9AC"/>
+                        <outlet property="lblDate" destination="STM-SI-mIK" id="cOy-c3-Pam"/>
+                        <outlet property="lblName" destination="QuF-tK-56s" id="CXr-i9-U0d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhU-qJ-LCV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
