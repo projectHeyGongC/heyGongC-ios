@@ -32,7 +32,7 @@ class MonitoringVM: BaseVM {
     }
     
     public func callDeviceList() {
-        DeviceAPI.shared.networking(deviceService: .getList, type: [DeviceModel].self)
+        DeviceAPI.shared.networking(deviceService: .devices, type: [DeviceModel].self)
             .subscribe(with: self,
             onSuccess: { owner, networkResult in
                 switch networkResult {

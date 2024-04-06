@@ -51,7 +51,7 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
         case .disconnect(param: _):
             return "devices/disconnect"
         case .devices:
-            return "devices/"
+            return "devices"
         }
     }
     

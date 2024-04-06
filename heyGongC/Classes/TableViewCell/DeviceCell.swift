@@ -11,11 +11,14 @@ import UIKit
 class DeviceCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblBattery: UILabel!
+    
     
     private var index: Int?
     
     public func updateDisplay(element: DeviceModel, index: Int) {
-        lblName.text = element.name
+        lblName.text = element.deviceName
+        lblBattery.text = "\(element.battery)%"
         self.index = index
     }
 }
