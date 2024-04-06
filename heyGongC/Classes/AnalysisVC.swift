@@ -11,18 +11,10 @@ import RxCocoa
 import RxOptional
 import FSCalendar
 
-enum DateFormatType: String {
-    case fullCalendarHeader = "MMMM yyyy"
-    case selectedDay = "dd"
-    case selectedSpecificDate = "EEE\nMMM yyyy"
-}
-
-protocol IsSelectedDate {
-    func pass(date: Date)
-}
-
 class AnalysisVC: BaseVC {
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var btnMore: UIButton!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewHeaderCalendar: FSCalendar!
@@ -35,7 +27,7 @@ class AnalysisVC: BaseVC {
     }()
     
     private var lblSelectedDayOfMonth: UILabel = {
-       let object = UILabel()
+        let object = UILabel()
         object.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         return object
     }()
@@ -69,11 +61,13 @@ class AnalysisVC: BaseVC {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         navigationController?.navigationBar.topItem?.leftBarButtonItem = nil
-
+        
     }
-
+    
     override func bind() {
         bindAction()
+        bindTableView()
+        bindCalendar()
     }
     
     deinit {
@@ -82,6 +76,7 @@ class AnalysisVC: BaseVC {
     }
 }
 
+// MARK: - UI
 extension AnalysisVC {
     
     private func setupLeftBarButtonUI(){
@@ -115,6 +110,10 @@ extension AnalysisVC {
         viewHeaderCalendar.appearance.todayColor = .clear
         viewHeaderCalendar.appearance.selectionColor = .clear
     }
+}
+
+// MARK: - Bind
+extension AnalysisVC {
     
     private func bindAction() {
         
@@ -129,7 +128,7 @@ extension AnalysisVC {
         btnFullCalendar.rx.tap
             .bind{ [weak self] in
                 guard let self = self else { return }
-
+                
                 guard let reactionVC = storyboard?.instantiateViewController(withIdentifier: "FullCalendarVC") as? FullCalendarVC else { return }
                 
                 reactionVC.modalPresentationStyle = .overFullScreen
@@ -138,54 +137,79 @@ extension AnalysisVC {
                 self.present(reactionVC, animated: false, completion: nil)
             }
             .disposed(by: viewModel.bag)
+    }
+    
+    private func bindCalendar() {
+        viewModel.selectedDate
+            .filterNil()
+            .subscribe { [weak self] date in
+                guard let self = self else { return }
+                guard let selectedDate = viewModel.selectedDate.value else { return }
+                
+                lblSelectedDayOfMonth.text = selectedDate.convertDateToString(dateFormat: "dd")
+                lblSelectedSpecificDate.text = selectedDate.convertDateToString(dateFormat: "EEE\nMMM yyyy")
+                viewHeaderCalendar.select(viewModel.selectedDate.value)
+                
+                self.viewModel.callAnalysis(date: date)
+            }.disposed(by: viewModel.bag)
+    }
+    
+    private func bindTableView() {
         
-        viewModel.selectedDate.subscribe { [weak self] date in
-            guard let self = self else { return }
-            guard let selectedDate = viewModel.selectedDate.value else { return }
-            lblSelectedDayOfMonth.text = selectedDate.convertDateToStringWithDateFormatter(dateFormat: .selectedDay)
-            lblSelectedSpecificDate.text = selectedDate.convertDateToStringWithDateFormatter(dateFormat: .selectedSpecificDate)
-            viewHeaderCalendar.select(viewModel.selectedDate.value)
-        }
-        .disposed(by: viewModel.bag)
+        viewModel.tableData
+            .filterNil()
+            .bind(to: tableView.rx.items(cellIdentifier: "AnalysisNotiCell", cellType: AnalysisNotiCell.self)) {
+                (index, element, cell) in
+                
+                cell.updateDisplay(element: element)
+                
+            }.disposed(by: viewModel.bag)
+        
+        viewModel.tableData
+            .filterNil()
+            .bind { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.tableView.updateTableViewHeight(layout: self.tableViewHeight)
+            }.disposed(by: viewModel.bag)
+        
+        
+        // 테이블 뷰 선택
+        Observable.zip(tableView.rx.modelSelected(AnalysisModel.Notification.self), tableView.rx.itemSelected)
+            .bind { [weak self] (model, indexPath) in
+                guard let stringDate = self?.viewModel.selectedDate.value?.makeToYMD() else { return }
+                
+                if let vc = Link.CameraAnalysisVC.viewController as? CameraAnalysisVC {
+                    let param = CameraAnalysisVM.Param(data: model, date: stringDate)
+                    vc.updateParam(param: param)
+                    
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            .disposed(by: viewModel.bag)
     }
 }
 
+// MARK: - FSCalendarDelegate
 extension AnalysisVC: FSCalendarDataSource, FSCalendarDelegate {
+    
     // 날짜 선택 시 콜백 메소드
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         self.viewModel.updateDate(date)
-        
-        if calendar.tag == 0 {
-            // kes 240120 headerCalendar
-        
-        } else if calendar.tag == 1 {
-            // kes 240120 popupCalendar
-            tabBarController?.tabBar.isHidden = false
-        }
+        tabBarController?.tabBar.isHidden = false
     }
     
     // 날짜 선택 해제 콜백 메소드
-    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        if calendar.tag == 0 {
-            // kes 240120 headerCalendar
-        
-        } else if calendar.tag == 1 {
-            // kes 240120 popupCalendar
-        }
-    }
+    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) { }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-        if calendar.tag == 0 {
-            // kes 240120 headerCalendar
-            self.calendarHeightConstraint.constant = bounds.height
-        } else if calendar.tag == 1 {
-            // kes 240120 popupCalendar
-        }
+        self.calendarHeightConstraint.constant = bounds.height
         self.view.layoutIfNeeded()
     }
 }
 
+// MARK: - Custom Delegate
 extension AnalysisVC: IsSelectedDate {
     func pass(date: Date) {
         viewModel.updateDate(date)

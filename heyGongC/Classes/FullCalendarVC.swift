@@ -12,7 +12,11 @@ import SwiftyUserDefaults
 import FSCalendar
 import RxRelay
 
-class FullCalendarVC: BaseVC {
+protocol IsSelectedDate {
+    func pass(date: Date)
+}
+
+class FullCalendarVC: UIViewController {
     
     private let bag = DisposeBag()
     
@@ -23,11 +27,14 @@ class FullCalendarVC: BaseVC {
     @IBOutlet weak var lblFullCalendarHeader: UILabel!
     
     private var fullCalendarCurrentPage: Date?
+    private let disposeBag = DisposeBag()
+    
     var delegate: IsSelectedDate?
     var selectedDateRelay = BehaviorRelay<Date?>(value: Date.now)
     
-    override func initialize() {
+    override func viewDidLoad() {
         initFullCalendar()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +44,7 @@ class FullCalendarVC: BaseVC {
         }
     }
     
-    override func bind() {
+    private func bind() {
         btnFullCalendarLastMonth.rx.tap
             .bind { [weak self] _ in
                 guard let self = self else { return }
@@ -83,7 +90,7 @@ class FullCalendarVC: BaseVC {
         fullCalendar.placeholderType = .none
         fullCalendar.firstWeekday = 2
         
-        lblFullCalendarHeader.text = Date.now.convertDateToStringWithDateFormatter(dateFormat: .fullCalendarHeader)
+        lblFullCalendarHeader.text = Date.now.convertDateToString(dateFormat: "MMMM yyyy")
     }
     
     private func moveCurrentPage(next: Bool){
@@ -113,15 +120,7 @@ extension FullCalendarVC: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        self.lblFullCalendarHeader.text = calendar.currentPage.convertDateToStringWithDateFormatter(dateFormat: .fullCalendarHeader)
-    }
-}
-
-extension Date {
-    func convertDateToStringWithDateFormatter(dateFormat: DateFormatType) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat.rawValue
-        return dateFormatter.string(from: self)
+        self.lblFullCalendarHeader.text = calendar.currentPage.convertDateToString(dateFormat: "MMMM yyyy")
     }
 }
 
