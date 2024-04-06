@@ -18,18 +18,13 @@ class QRCodeReaderVC: BaseVC {
     
     @IBOutlet weak var viewCamera: UIView!
     @IBOutlet weak var imgViewScanArea: UIImageView!
-    @IBOutlet weak var btnDismiss: UIButton!
     
     var video = AVCaptureVideoPreviewLayer()
     let session = AVCaptureSession()
     
     override func initialize() {
+        self.setNavTitle(title: "", navType: .close)
         setupAVCatureInfo()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        session.stopRunning()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,12 +34,32 @@ class QRCodeReaderVC: BaseVC {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        session.stopRunning()
+    }
+    
     override func bind() {
-        btnDismiss.rx.tap.bind { [weak self] in
-            guard let self = self else { return }
-            dismiss(animated: true)
-        }
-        .disposed(by: viewModel.bag)
+        viewModel.successReadQR
+            .bind { [weak self] in
+                guard let self = self else { return}
+                if $0 {
+                    if let vc = storyboard?.instantiateViewController(withIdentifier: "DeviceNamingVC") as? DeviceNamingVC,
+                       let deviceId = viewModel.deviceId {
+                        vc.updateDeviceId(deviceId: deviceId)
+                        vc.modalPresentationStyle = .fullScreen
+                        present(vc, animated: true, completion: nil)
+                    }
+                } else {
+                    showAlert(localized: .DLG_QRCODE_SCANING_ERROR, isAccent: false) {
+                        DispatchQueue.global(qos: .background).async {
+                            self.session.startRunning()
+                        }
+                    } cancel: { }
+
+                }
+            }
+            .disposed(by: viewModel.bag)
     }
     
     override func setupHandler() {
@@ -98,14 +113,10 @@ extension QRCodeReaderVC: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject {
-            print(object.stringValue!)
+        if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject, let qrData = object.stringValue {
+            //QR코드 값 viewModel에 넘기기
+            viewModel.getDeviceId(qrData: qrData)
             self.session.stopRunning()
-            
-            if let secondViewController = storyboard?.instantiateViewController(withIdentifier: "DeviceNaming") as? DeviceNamingVC {
-                secondViewController.modalPresentationStyle = .fullScreen
-                present(secondViewController, animated: true, completion: nil)
-            }
         }
     }
     

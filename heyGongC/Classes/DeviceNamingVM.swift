@@ -12,4 +12,29 @@ import RxCocoa
 
 class DeviceNamingVM: BaseVM {
     
+    public var successAppendDevice = BehaviorRelay<Bool>(value: false)
+    public var deviceId: String?
+    public var name: String?
+    
+    public func callAppendDevice(){
+        
+        guard let deviceId = self.deviceId, let name = name else { return }
+        
+        let data = DeviceParam.InfoRequest(deviceId: deviceId, deviceName: name)
+        
+        DeviceAPI.shared.networking(deviceService: .subscribe(param: data), type: DeviceModel.self, isParsing: false)
+            .subscribe(with: self,
+                       onSuccess: { owner, networkValue in
+                switch networkValue {
+                case .success(let response):
+                    print(response)
+                    self.successAppendDevice.accept(true)
+                case .error(let error):
+                    self.errorHandler.accept(error)
+                }
+            }, onFailure: { owner, error in
+                print("callAppendDevice - error")
+            })
+            .disposed(by: self.bag)
+    }
 }

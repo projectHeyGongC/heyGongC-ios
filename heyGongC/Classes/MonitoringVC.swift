@@ -67,10 +67,8 @@ extension MonitoringVC {
         
         btnAdd.rx.tap
             .bind(onNext: { [weak self] in
-                
-                self?.showAlert(localized: .DLG_TEST,
-                                confirm: { print("confirm") },
-                                cancel: { print("cancel") })
+                guard let self else { return }
+                SegueUtils.open(target: self, link: .QRCodeReaderVC)
                 
             }).disposed(by: viewModel.bag)
         

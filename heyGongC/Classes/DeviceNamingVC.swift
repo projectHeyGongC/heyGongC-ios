@@ -17,11 +17,10 @@ class DeviceNamingVC: BaseVC {
     
     @IBOutlet weak var txtFieldDeviceName: UITextField!
     @IBOutlet weak var btnDeviceRegister: UIButton!
-    @IBOutlet weak var btnDismiss: UIButton!
     
     override func initialize() {
         setTextFieldUI()
-        
+        self.setNavTitle(title: "", navType: .close)
     }
     
     override func bind() {
@@ -38,17 +37,34 @@ class DeviceNamingVC: BaseVC {
             }
             .disposed(by: viewModel.bag)
         
-        btnDismiss.rx.tap
-            .subscribe { _ in
-                self.dismiss(animated: true)
+        btnDeviceRegister.rx.tap
+            .bind { [weak self] in
+                guard let self = self else { return }
+                if let name = txtFieldDeviceName.text {
+                    viewModel.name = name
+                    viewModel.callAppendDevice()
+                }
             }
             .disposed(by: viewModel.bag)
             
-            
+        viewModel.successAppendDevice
+            .bind { [weak self] in
+                
+                guard let self else { return }
+                
+                if $0 {
+                    self.dismiss(animated: true)
+                }
+            }
+            .disposed(by: viewModel.bag)
     }
     
     override func setupHandler() {
         self.setErrorHandler(vm: viewModel)
+    }
+    
+    func updateDeviceId(deviceId: String){
+        self.viewModel.deviceId = deviceId
     }
     
     deinit {

@@ -13,7 +13,7 @@
         <!--Code ReaderVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="DeviceRegister" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="QRCodeReaderVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QRCodeReaderVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="QRCodeReaderVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,16 +35,6 @@
                                     <constraint firstItem="vk2-bC-8LG" firstAttribute="centerX" secondItem="cIU-z2-ub9" secondAttribute="centerX" id="v5g-3g-eXr"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OC3-Gc-vOX">
-                                <rect key="frame" x="12" y="71" width="28" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="lYp-uv-jan"/>
-                                    <constraint firstAttribute="width" constant="28" id="lst-Vh-oXs"/>
-                                </constraints>
-                                <color key="tintColor" red="0.28235294119999998" green="0.28235294119999998" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="ic_xmark"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공기계의 QR코드를 스캔해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYO-pW-Kkf">
                                 <rect key="frame" x="89" y="136" width="215" height="20"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -58,15 +48,12 @@
                             <constraint firstItem="cIU-z2-ub9" firstAttribute="top" secondItem="RYO-pW-Kkf" secondAttribute="bottom" constant="37" id="JfJ-Tq-xp3"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cIU-z2-ub9" secondAttribute="trailing" id="JiD-uy-AgN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cIU-z2-ub9" secondAttribute="bottom" id="Mgs-ha-7Of"/>
-                            <constraint firstItem="OC3-Gc-vOX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="Xm7-3X-N8P"/>
-                            <constraint firstItem="OC3-Gc-vOX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="12" id="aH8-v3-vmy"/>
                             <constraint firstItem="RYO-pW-Kkf" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="sBq-bd-hkd"/>
                             <constraint firstItem="cIU-z2-ub9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="uFf-0Y-76x"/>
                             <constraint firstItem="cIU-z2-ub9" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="134" id="vE0-Ex-4BT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnDismiss" destination="OC3-Gc-vOX" id="QZB-ZL-bg3"/>
                         <outlet property="imgViewScanArea" destination="vk2-bC-8LG" id="xKX-as-dG7"/>
                         <outlet property="viewCamera" destination="cIU-z2-ub9" id="zN1-Og-1h9"/>
                         <segue destination="8rs-dR-nKl" kind="modal" modalPresentationStyle="fullScreen" id="ehe-B0-JOF"/>
@@ -79,7 +66,7 @@
         <!--Device NamingVC-->
         <scene sceneID="drP-tl-dBe">
             <objects>
-                <viewController storyboardIdentifier="DeviceNaming" id="8rs-dR-nKl" customClass="DeviceNamingVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceNamingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8rs-dR-nKl" customClass="DeviceNamingVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H81-fr-nHT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,18 +92,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aI7-dp-0L9">
-                                <rect key="frame" x="12" y="12" width="28" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="hfA-LV-y9E"/>
-                                    <constraint firstAttribute="width" constant="28" id="jiG-cb-clx"/>
-                                </constraints>
-                                <color key="tintColor" red="0.28235294117647058" green="0.28235294117647058" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="ic_xmark"/>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6rC-dL-KkC">
-                                <rect key="frame" x="24" y="127" width="345" height="41"/>
+                                <rect key="frame" x="24" y="84" width="345" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="Qgq-IZ-KDb"/>
                                 </constraints>
@@ -135,26 +112,20 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기기이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGU-1c-FBF">
-                                <rect key="frame" x="24" y="74" width="345" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="KZD-4a-zZG"/>
-                                </constraints>
+                                <rect key="frame" x="24" y="32" width="345" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="000000"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5U1-QS-GDr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="aI7-dp-0L9" firstAttribute="leading" secondItem="5U1-QS-GDr" secondAttribute="leading" constant="12" id="401-S3-JvG"/>
-                            <constraint firstItem="aI7-dp-0L9" firstAttribute="top" secondItem="5U1-QS-GDr" secondAttribute="top" constant="12" id="4L9-Kv-sSx"/>
                             <constraint firstItem="5U1-QS-GDr" firstAttribute="bottom" secondItem="2fS-lR-nHW" secondAttribute="bottom" constant="76" id="4X3-hU-jh9"/>
                             <constraint firstItem="5U1-QS-GDr" firstAttribute="trailing" secondItem="rGU-1c-FBF" secondAttribute="trailing" constant="24" id="8sC-bk-yeO"/>
                             <constraint firstItem="5U1-QS-GDr" firstAttribute="trailing" secondItem="6rC-dL-KkC" secondAttribute="trailing" constant="24" id="A21-dP-7wB"/>
                             <constraint firstItem="2fS-lR-nHW" firstAttribute="centerX" secondItem="H81-fr-nHT" secondAttribute="centerX" id="JRq-mS-UfE"/>
-                            <constraint firstItem="rGU-1c-FBF" firstAttribute="centerX" secondItem="H81-fr-nHT" secondAttribute="centerX" id="PEU-WB-5TM"/>
-                            <constraint firstItem="rGU-1c-FBF" firstAttribute="top" secondItem="5U1-QS-GDr" secondAttribute="top" constant="74" id="Pcz-HY-CJY"/>
+                            <constraint firstItem="rGU-1c-FBF" firstAttribute="top" secondItem="5U1-QS-GDr" secondAttribute="top" constant="32" id="Pcz-HY-CJY"/>
                             <constraint firstItem="6rC-dL-KkC" firstAttribute="top" secondItem="rGU-1c-FBF" secondAttribute="bottom" constant="28" id="Y5A-5V-W57"/>
                             <constraint firstItem="6rC-dL-KkC" firstAttribute="centerX" secondItem="H81-fr-nHT" secondAttribute="centerX" id="YPs-Hr-sEP"/>
                             <constraint firstItem="rGU-1c-FBF" firstAttribute="leading" secondItem="5U1-QS-GDr" secondAttribute="leading" constant="24" id="cCu-nQ-PTe"/>
@@ -164,7 +135,6 @@
                     <navigationItem key="navigationItem" id="a4O-ey-N9O"/>
                     <connections>
                         <outlet property="btnDeviceRegister" destination="2fS-lR-nHW" id="dUb-aK-F0h"/>
-                        <outlet property="btnDismiss" destination="aI7-dp-0L9" id="KKs-og-mRg"/>
                         <outlet property="txtFieldDeviceName" destination="6rC-dL-KkC" id="O6r-0j-GbH"/>
                     </connections>
                 </viewController>
@@ -174,7 +144,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_xmark" width="28" height="28"/>
         <image name="img_scanArea" width="279" height="226"/>
         <namedColor name="000000">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
