@@ -94,6 +94,7 @@
 		CAC9C8AA2B3C4AE100C02509 /* GCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8A92B3C4AE100C02509 /* GCError.swift */; };
 		CAC9C8AC2B3C4B8900C02509 /* Design+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */; };
 		CAC9C8B02B3C53AA00C02509 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */; };
+		CADAC11E2BAEB61A004351C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CADAC11D2BAEB61A004351C2 /* GoogleService-Info.plist */; };
 		F5F7347838662032D33D63B3 /* libPods-heyGongCUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C11B6F031CF7E47A0B542B /* libPods-heyGongCUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -214,6 +215,7 @@
 		CAC9C8A92B3C4AE100C02509 /* GCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCError.swift; sourceTree = "<group>"; };
 		CAC9C8AB2B3C4B8900C02509 /* Design+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Design+Ext.swift"; sourceTree = "<group>"; };
 		CAC9C8AF2B3C53AA00C02509 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		CADAC11D2BAEB61A004351C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6071532393E64072E40E043 /* Pods-heyGongCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heyGongCUITests.release.xcconfig"; path = "Target Support Files/Pods-heyGongCUITests/Pods-heyGongCUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -519,6 +521,7 @@
 				CA6EAC872B39671900F81F3A /* Storyboard */,
 				CA6EAC5F2B395E0000F81F3A /* Assets.xcassets */,
 				CA6EAC642B395E0000F81F3A /* heyGongC.entitlements */,
+				CADAC11D2BAEB61A004351C2 /* GoogleService-Info.plist */,
 				CA6EAC652B395E0000F81F3A /* Info.plist */,
 				B8E8BDEA2B8089BA005C682E /* PrivacyInfo.xcprivacy */,
 				CA6EAC5C2B395DFF00F81F3A /* heyGongC.xcdatamodeld */,
@@ -787,6 +790,7 @@
 				CAC9C8B02B3C53AA00C02509 /* Splash.storyboard in Resources */,
 				CA6EAC602B395E0000F81F3A /* Assets.xcassets in Resources */,
 				CA6EACF62B39865700F81F3A /* Monitoring.storyboard in Resources */,
+				CADAC11E2BAEB61A004351C2 /* GoogleService-Info.plist in Resources */,
 				CA6EACFC2B39869B00F81F3A /* UserProfile.storyboard in Resources */,
 				CA6EACFA2B39868B00F81F3A /* Subscription.storyboard in Resources */,
 			);

@@ -6,25 +6,30 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 
 // MARK: - RequestData
 class UserParam {
     
     struct RegisterRequest: Codable {
         var deviceId = Util.getUUID()
-        var deviceOs = "iOS"
+        var deviceOs = "IOS"
         var ads: Bool
-        var token: Token
+        var snsType: String
+        var accessToken: String
+        var fcmToken: String = Defaults.FCM_TOKEN
     }
     
     struct LoginRequest: Codable {
         var deviceId = Util.getUUID()
-        var deviceOs = "iOS"
-        var token: Token
+        var deviceOs = "IOS"
+        var snsType: String
+        var accessToken: String
+        var fcmToken: String = Defaults.FCM_TOKEN
     }
     
     struct TokenRequest: Codable {
-        var refreshToken: String
+        var refreshToken: String = Defaults.TOKEN?.refreshToken ?? ""
     }
     
     public func getData(params: RegisterRequest) -> [String: Any] {
@@ -33,8 +38,8 @@ class UserParam {
         data["deviceId"] = params.deviceId
         data["deviceOs"] = params.deviceOs
         data["ads"] = params.ads
-        data["token"] = params.token
-        data["deviceId"] = params.deviceId
+        data["snsType"] = params.snsType
+        data["accessToken"] = params.accessToken
         
         return data
     }
@@ -44,7 +49,9 @@ class UserParam {
         
         data["deviceId"] = params.deviceId
         data["deviceOs"] = params.deviceOs
-        data["token"] = params.token.getToken()
+        data["snsType"] = params.snsType
+        data["accessToken"] = params.accessToken
+        data["fcmToken"] = Defaults.FCM_TOKEN
         
         return data
     }
@@ -69,9 +76,4 @@ struct UserModel: Codable {
         case deviceOS = "deviceOs"
         case snsType, email, alarm, ads
     }
-}
-
-// MARK: - TokenModel
-struct TokenModel: Codable {
-    let accessToken, refreshToken: String?
 }

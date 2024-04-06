@@ -37,6 +37,10 @@ def common_pods
   pod 'Moya/ReactiveSwift'
   pod 'Moya/Combine'
   
+  # Firebase
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+  
   # Utils
   pod 'SwiftyUserDefaults', '~> 5.0'
   pod 'lottie-ios', '~> 3.3.0'

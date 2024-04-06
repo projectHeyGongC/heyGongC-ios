@@ -8,15 +8,12 @@
 import Foundation
 import SwiftyUserDefaults
 
-/**
- *  SharedPreferenceUtil.java
- */
                                                     
 extension DefaultsKeys {
     //기본정보
-    var REFRESH_TOKEN: DefaultsKey<String> { .init("REFRESH_TOKEN", defaultValue:"") }
-    var ACCESS_TOKEN: DefaultsKey<String> { .init("ACCESS_TOKEN", defaultValue:"") }
-    var AUTO_LOGIN: DefaultsKey<Bool> { .init("AUTO_LOGIN", defaultValue: false) }
+    var TOKEN: DefaultsKey<Token?> { .init("TOKEN", defaultValue: nil) }
+    var LOGIN_TYPE: DefaultsKey<LoginType?> { .init("LOGIN_TYPE", defaultValue: nil) }
     
-    var IS_PUSH: DefaultsKey<Bool> { .init("IS_PUSH", defaultValue: false) }            // kes 230323 푸시 왔는지 체크 후 상단바 이미지 on/off
+    var IS_PUSH: DefaultsKey<Bool> { .init("IS_PUSH", defaultValue: false) }
+    var FCM_TOKEN: DefaultsKey<String> { .init("FCM_TOKEN", defaultValue: "") }
 }

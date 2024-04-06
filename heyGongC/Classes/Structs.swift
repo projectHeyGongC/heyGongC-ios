@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 
 // MARK: Token
 struct Token: Codable {
@@ -15,4 +16,16 @@ struct Token: Codable {
         return ["accessToken": self.accessToken,
                 "refreshToken": self.refreshToken]
     }
+}
+
+extension Token: DefaultsSerializable {
+    static var _defaults: DefaultsCodableBridge<Token> {
+        return DefaultsCodableBridge<Token>()
+    }
+}
+
+enum LoginType: String, DefaultsSerializable {
+    case Google = "GOOGLE"
+    case Kakao = "KAKAO"
+    case Apple = "APPLE"
 }
