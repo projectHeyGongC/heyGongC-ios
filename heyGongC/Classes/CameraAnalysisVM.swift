@@ -28,6 +28,7 @@ class CameraAnalysisVM: BaseVM {
         guard let param,
               let deviceId = param.data.deviceID else { return }
         
+        // kes 240410 'yyyy-MM-dd' 로 넘기기
         AnalysisAPI.shared
             .networking(analysisService: .getDetail(deviceId: deviceId, requestAt: param.date),type: AnalysisDetailModel.self)
             .subscribe(with: self, onSuccess: { owner, networkResult in
