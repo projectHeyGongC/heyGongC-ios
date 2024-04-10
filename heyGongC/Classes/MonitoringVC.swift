@@ -19,7 +19,7 @@ class MonitoringVC: BaseVC {
     
     private let viewModel = MonitoringVM()
     
-    private var btnSettings: UIBarButtonItem = {
+    private var btnNotifications: UIBarButtonItem = {
         let object = UIBarButtonItem()
         object.image = UIImage(named: "ic_notification")
         object.tintColor = .black
@@ -34,7 +34,7 @@ class MonitoringVC: BaseVC {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = btnSettings
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = btnNotifications
     }
     
     override func bind() {
@@ -72,13 +72,14 @@ extension MonitoringVC {
                 
             }).disposed(by: viewModel.bag)
         
-        btnSettings.rx.tap
+        btnNotifications.rx.tap
             .bind(onNext: { [weak self] in
                 guard let self = self else { return }
                 
                 
-                
             }).disposed(by: viewModel.bag)
+        
+        
     }
     
     private func bindTableView() {
@@ -88,6 +89,7 @@ extension MonitoringVC {
             .bind(to: tableView.rx.items(cellIdentifier: "DeviceCell", cellType: DeviceCell.self)) {
                 (index, element, cell) in
                 
+                //DeviceCell에서 element가지고 있다가 gear버튼 눌렀을 경우 element를 CameraVC로 보내기?
                 cell.updateDisplay(element: element, index: index)
                 cell.selectionStyle = .none
                 
@@ -96,9 +98,9 @@ extension MonitoringVC {
         viewModel.deviceList
             .filterNil()
             .bind { [weak self] _ in
-            guard let self = self else { return }
-            
-            self.tableView.updateTableViewHeight(layout: self.tableViewHeight)
-        }.disposed(by: viewModel.bag)
+                guard let self = self else { return }
+                
+                self.tableView.updateTableViewHeight(layout: self.tableViewHeight)
+            }.disposed(by: viewModel.bag)
     }
 }

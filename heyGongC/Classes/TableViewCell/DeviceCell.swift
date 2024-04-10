@@ -12,7 +12,7 @@ class DeviceCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblBattery: UILabel!
-    
+    @IBOutlet weak var btnSettings: UIButton!
     
     private var index: Int?
     

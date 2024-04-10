@@ -323,6 +323,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="btnSettings" destination="Tdt-py-R6E" id="rpa-Uf-b2H"/>
                                                             <outlet property="lblBattery" destination="94a-qy-ObA" id="HxK-jb-p8C"/>
                                                             <outlet property="lblName" destination="LfE-eA-k0x" id="kcN-d6-ppd"/>
                                                         </connections>

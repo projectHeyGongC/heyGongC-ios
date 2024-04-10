@@ -11,6 +11,4 @@ import RxSwift
 import RxCocoa
 
 class CameraSettingVM: BaseVM {
-    
-    
 }
