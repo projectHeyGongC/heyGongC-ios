@@ -62,7 +62,7 @@
                                                                     <constraint firstAttribute="height" priority="1" constant="50" id="AFJ-fQ-l5a"/>
                                                                 </constraints>
                                                                 <prototypes>
-                                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="93" id="8U4-Ad-WzY">
+                                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnalysisNotiCell" rowHeight="93" id="8U4-Ad-WzY" customClass="AnalysisNotiCell" customModule="heyGongC" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="50" width="295" height="93"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8U4-Ad-WzY" id="ThV-pX-mum">
@@ -115,6 +115,10 @@
                                                                                 <constraint firstAttribute="bottom" secondItem="pqV-oi-0EB" secondAttribute="bottom" constant="6" id="z25-LN-K6y"/>
                                                                             </constraints>
                                                                         </tableViewCellContentView>
+                                                                        <connections>
+                                                                            <outlet property="lblContents" destination="EL6-vj-9Vm" id="N0X-bT-eiH"/>
+                                                                            <outlet property="lblName" destination="MuL-Ak-JgJ" id="lce-5x-E6A"/>
+                                                                        </connections>
                                                                     </tableViewCell>
                                                                 </prototypes>
                                                             </tableView>
@@ -239,6 +243,8 @@
                     <connections>
                         <outlet property="btnMore" destination="z4r-BN-0et" id="tW4-Vy-vMg"/>
                         <outlet property="calendarHeightConstraint" destination="qiN-Mc-rRJ" id="8UG-Yb-ouK"/>
+                        <outlet property="tableView" destination="hUu-Ev-A2r" id="BPa-mV-MXA"/>
+                        <outlet property="tableViewHeight" destination="AFJ-fQ-l5a" id="jwr-vD-5Ga"/>
                         <outlet property="viewHeaderCalendar" destination="uOd-x5-Huc" id="dOa-ES-FWL"/>
                     </connections>
                 </viewController>
@@ -343,10 +349,10 @@
             </objects>
             <point key="canvasLocation" x="-68" y="679.80295566502468"/>
         </scene>
-        <!--Camera AnalysisVC-->
+        <!--Recorded Video ListVC-->
         <scene sceneID="p1S-hd-3DO">
             <objects>
-                <viewController storyboardIdentifier="CameraAnalysisVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cvE-Og-OJO" customClass="CameraAnalysisVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecordedVideoListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cvE-Og-OJO" customClass="RecordedVideoListVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2cq-ut-H9R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -407,10 +413,10 @@
             </objects>
             <point key="canvasLocation" x="1488" y="-2"/>
         </scene>
-        <!--Recorded Video ListVC-->
+        <!--Camera AnalysisVC-->
         <scene sceneID="jW0-Cn-Go3">
             <objects>
-                <viewController storyboardIdentifier="RecordedVideoListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dWj-Bz-zQp" customClass="RecordedVideoListVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraAnalysisVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dWj-Bz-zQp" customClass="CameraAnalysisVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4DL-kd-4Bk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -503,6 +509,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uSZ-13-15c"/>
+                    <connections>
+                        <outlet property="lblAlarmCnt" destination="0GL-B3-RYg" id="gJR-fQ-9AC"/>
+                        <outlet property="lblDate" destination="STM-SI-mIK" id="cOy-c3-Pam"/>
+                        <outlet property="lblName" destination="QuF-tK-56s" id="CXr-i9-U0d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhU-qJ-LCV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

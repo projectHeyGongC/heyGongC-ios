@@ -26,8 +26,7 @@ class DeviceNamingVM: BaseVM {
             .subscribe(with: self,
                        onSuccess: { owner, networkValue in
                 switch networkValue {
-                case .success(let response):
-                    print(response)
+                case .success(_):
                     self.successAppendDevice.accept(true)
                 case .error(let error):
                     self.errorHandler.accept(error)

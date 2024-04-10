@@ -56,7 +56,7 @@
                     <connections>
                         <outlet property="imgViewScanArea" destination="vk2-bC-8LG" id="xKX-as-dG7"/>
                         <outlet property="viewCamera" destination="cIU-z2-ub9" id="zN1-Og-1h9"/>
-                        <segue destination="8rs-dR-nKl" kind="modal" modalPresentationStyle="fullScreen" id="ehe-B0-JOF"/>
+                        <segue destination="8rs-dR-nKl" kind="presentation" identifier="goDetail" id="ehe-B0-JOF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -68,11 +68,11 @@
             <objects>
                 <viewController storyboardIdentifier="DeviceNamingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8rs-dR-nKl" customClass="DeviceNamingVC" customModule="heyGongC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H81-fr-nHT">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fS-lR-nHW">
-                                <rect key="frame" x="53.666666666666657" y="738" width="286" height="38"/>
+                                <rect key="frame" x="53.666666666666657" y="728" width="286" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="PL7-YP-ZXb"/>
                                     <constraint firstAttribute="width" constant="286" id="flN-Hh-r2r"/>

@@ -12,6 +12,10 @@ import RxOptional
 
 class CameraAnalysisVC: BaseVC {
     
+    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblAlarmCnt: UILabel!
+    @IBOutlet weak var lblName: UILabel!
+    
     private let viewModel = CameraAnalysisVM()
     
     override func initialize() {
@@ -23,7 +27,7 @@ class CameraAnalysisVC: BaseVC {
     }
     
     override func bind() {
-        
+        bindText()
     }
     
     deinit {
@@ -32,3 +36,25 @@ class CameraAnalysisVC: BaseVC {
     }
 }
 
+extension CameraAnalysisVC {
+    private func bindText() {
+        viewModel.name
+            .bind(to: lblName.rx.text)
+            .disposed(by: viewModel.bag)
+        
+        viewModel.date
+            .bind(to: lblDate.rx.text)
+            .disposed(by: viewModel.bag)
+        
+        viewModel.alarmCnt
+            .bind(to: lblAlarmCnt.rx.text)
+            .disposed(by: viewModel.bag)
+    }
+}
+
+extension CameraAnalysisVC {
+    public func updateParam(param: CameraAnalysisVM.Param) {
+        self.viewModel.param = param
+    }
+    
+}

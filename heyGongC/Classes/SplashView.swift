@@ -80,7 +80,6 @@ class SplashView: UIViewController {
     // MARK: - callAPI
     /// 로그인
     public func callAutoLogin(loginType: LoginType, accessToken: String) {
-        let token = Token(accessToken: accessToken, refreshToken: "")
         
         // TODO: 토큰 관련 api 정리되면 필요없는 하단 변수 정리
         let param = UserParam.LoginRequest(snsType: loginType.rawValue, accessToken: accessToken)

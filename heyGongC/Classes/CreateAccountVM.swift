@@ -83,7 +83,6 @@ class CreateAccountVM: BaseVM {
         guard let data = self.param else { return }
         
         // TODO: 토큰 관련 api 정리되면 필요없는 하단 변수 정리
-        let token = Token(accessToken: data.accessToken, refreshToken: data.refreshToken)
         let param = UserParam.RegisterRequest(ads: notRequiredThirdIsSelected.value, snsType: data.loginType.rawValue, accessToken: data.accessToken)
         
         UserAPI.shared.networking(userService: .register(param: param), type: Token.self)
