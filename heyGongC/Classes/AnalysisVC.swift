@@ -16,10 +16,14 @@ class AnalysisVC: BaseVC {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var btnMore: UIButton!
+    
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewHeaderCalendar: FSCalendar!
+    
     @IBOutlet weak var imgVideo: UIImageView!
+    @IBOutlet weak var lblNoVideo: UILabel!
     
     private let viewModel = AnalysisVM()
     
@@ -125,12 +129,18 @@ extension AnalysisVC {
     private func bindUI() {
         
         self.viewModel.videoImgUrl
-            .filterNil()
             .bind { [weak self] in
                 guard let self = self else { return }
-                guard let url = URL(string: $0) else { return }
-                
-                imgVideo.kf.setImage(with: url)
+                if let imgUrl = $0 {
+                    self.imgVideo.isHidden = false
+                    self.lblNoVideo.isHidden = true
+                    if let url = URL(string: imgUrl) {
+                        imgVideo.kf.setImage(with: url)
+                    }
+                } else {
+                    self.imgVideo.isHidden = true
+                    self.lblNoVideo.isHidden = false
+                }
             }.disposed(by: viewModel.bag)
     }
     
