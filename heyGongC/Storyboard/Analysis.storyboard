@@ -69,7 +69,7 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="295" height="93"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
-                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pqV-oi-0EB">
+                                                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pqV-oi-0EB" userLabel="on">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="295" height="87"/>
                                                                                     <subviews>
                                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DhO-wD-tkZ">
@@ -107,17 +107,45 @@
                                                                                         </userDefinedRuntimeAttribute>
                                                                                     </userDefinedRuntimeAttributes>
                                                                                 </view>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tt8-U5-58A" userLabel="off">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="295" height="87"/>
+                                                                                    <subviews>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기기를 추가하여 리포트를 받아보세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2f-NZ-nUx">
+                                                                                            <rect key="frame" x="59.5" y="36.5" width="176.5" height="14.5"/>
+                                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                            <nil key="highlightedColor"/>
+                                                                                        </label>
+                                                                                    </subviews>
+                                                                                    <color key="backgroundColor" name="CCCCCC"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstItem="p2f-NZ-nUx" firstAttribute="centerX" secondItem="tt8-U5-58A" secondAttribute="centerX" id="ZEV-L0-xhe"/>
+                                                                                        <constraint firstItem="p2f-NZ-nUx" firstAttribute="centerY" secondItem="tt8-U5-58A" secondAttribute="centerY" id="cbi-ks-qdO"/>
+                                                                                        <constraint firstAttribute="height" constant="50" id="tKB-lZ-OS1"/>
+                                                                                    </constraints>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                            <real key="value" value="10"/>
+                                                                                        </userDefinedRuntimeAttribute>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </view>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="trailing" secondItem="pqV-oi-0EB" secondAttribute="trailing" id="3q8-5I-QgS"/>
                                                                                 <constraint firstItem="pqV-oi-0EB" firstAttribute="top" secondItem="ThV-pX-mum" secondAttribute="top" id="5Ko-dq-M3p"/>
+                                                                                <constraint firstItem="tt8-U5-58A" firstAttribute="leading" secondItem="ThV-pX-mum" secondAttribute="leading" id="A3J-ts-Exo"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="tt8-U5-58A" secondAttribute="bottom" constant="6" id="iJC-EN-pgr"/>
                                                                                 <constraint firstItem="pqV-oi-0EB" firstAttribute="leading" secondItem="ThV-pX-mum" secondAttribute="leading" id="l9u-uV-djh"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="tt8-U5-58A" secondAttribute="trailing" id="nn6-wL-HHd"/>
+                                                                                <constraint firstItem="tt8-U5-58A" firstAttribute="top" secondItem="ThV-pX-mum" secondAttribute="top" id="p5i-rH-4P7"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="pqV-oi-0EB" secondAttribute="bottom" constant="6" id="z25-LN-K6y"/>
                                                                             </constraints>
                                                                         </tableViewCellContentView>
                                                                         <connections>
                                                                             <outlet property="lblContents" destination="EL6-vj-9Vm" id="N0X-bT-eiH"/>
                                                                             <outlet property="lblName" destination="MuL-Ak-JgJ" id="lce-5x-E6A"/>
+                                                                            <outlet property="viewOff" destination="tt8-U5-58A" id="Ri8-QR-uxb"/>
+                                                                            <outlet property="viewOn" destination="pqV-oi-0EB" id="yPZ-Uf-S9h"/>
                                                                         </connections>
                                                                     </tableViewCell>
                                                                 </prototypes>
@@ -195,22 +223,50 @@
                                                                     </stackView>
                                                                 </subviews>
                                                             </stackView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yqt-CU-h6t">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Kc-ge-SAN">
                                                                 <rect key="frame" x="30" y="79" width="315" height="180"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yqt-CU-h6t">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="180"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="180" id="LnH-sU-bDS"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 생성된 영상이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhw-t1-Xda">
+                                                                        <rect key="frame" x="71.5" y="81" width="172" height="18"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                        <color key="textColor" name="FFFFFF"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" name="ADADAF"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="180" id="LnH-sU-bDS"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="yqt-CU-h6t" secondAttribute="bottom" id="7Mn-qn-U1Z"/>
+                                                                    <constraint firstItem="Yhw-t1-Xda" firstAttribute="centerY" secondItem="5Kc-ge-SAN" secondAttribute="centerY" id="DgC-7e-CIn"/>
+                                                                    <constraint firstItem="yqt-CU-h6t" firstAttribute="leading" secondItem="5Kc-ge-SAN" secondAttribute="leading" id="Fsd-QE-pr7"/>
+                                                                    <constraint firstItem="yqt-CU-h6t" firstAttribute="leading" secondItem="5Kc-ge-SAN" secondAttribute="leading" id="L3Y-2r-0jg"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="yqt-CU-h6t" secondAttribute="trailing" id="MSz-tV-hQD"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="yqt-CU-h6t" secondAttribute="trailing" id="cdE-zu-9f8"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="yqt-CU-h6t" secondAttribute="bottom" id="gET-lR-FIk"/>
+                                                                    <constraint firstItem="yqt-CU-h6t" firstAttribute="top" secondItem="5Kc-ge-SAN" secondAttribute="top" id="iMi-hA-3ZR"/>
+                                                                    <constraint firstItem="Yhw-t1-Xda" firstAttribute="centerX" secondItem="5Kc-ge-SAN" secondAttribute="centerX" id="udM-ey-PGZ"/>
                                                                 </constraints>
-                                                            </imageView>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstItem="yqt-CU-h6t" firstAttribute="top" secondItem="RYZ-CK-UJF" secondAttribute="bottom" constant="36" id="7Nx-IQ-gwS"/>
+                                                            <constraint firstAttribute="bottom" secondItem="5Kc-ge-SAN" secondAttribute="bottom" constant="36" id="01L-U0-bhV"/>
                                                             <constraint firstItem="RYZ-CK-UJF" firstAttribute="top" secondItem="lAg-fJ-bfb" secondAttribute="top" id="9Lw-py-6Zg"/>
-                                                            <constraint firstItem="yqt-CU-h6t" firstAttribute="leading" secondItem="lAg-fJ-bfb" secondAttribute="leading" constant="30" id="KEF-Rt-N6K"/>
-                                                            <constraint firstAttribute="trailing" secondItem="yqt-CU-h6t" secondAttribute="trailing" constant="30" id="boU-14-gId"/>
+                                                            <constraint firstItem="5Kc-ge-SAN" firstAttribute="leading" secondItem="lAg-fJ-bfb" secondAttribute="leading" constant="30" id="XN5-gk-UWF"/>
+                                                            <constraint firstAttribute="trailing" secondItem="5Kc-ge-SAN" secondAttribute="trailing" constant="30" id="Yvg-2g-YXc"/>
                                                             <constraint firstItem="RYZ-CK-UJF" firstAttribute="leading" secondItem="lAg-fJ-bfb" secondAttribute="leading" constant="42" id="fnA-h1-K4i"/>
+                                                            <constraint firstItem="5Kc-ge-SAN" firstAttribute="top" secondItem="RYZ-CK-UJF" secondAttribute="bottom" constant="36" id="hHU-MQ-3rE"/>
                                                             <constraint firstAttribute="trailing" secondItem="RYZ-CK-UJF" secondAttribute="trailing" constant="42" id="lV7-9y-HYy"/>
-                                                            <constraint firstAttribute="bottom" secondItem="yqt-CU-h6t" secondAttribute="bottom" constant="36" id="xzR-Aa-jde"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -243,6 +299,8 @@
                     <connections>
                         <outlet property="btnMore" destination="z4r-BN-0et" id="tW4-Vy-vMg"/>
                         <outlet property="calendarHeightConstraint" destination="qiN-Mc-rRJ" id="8UG-Yb-ouK"/>
+                        <outlet property="imgVideo" destination="yqt-CU-h6t" id="26j-ZK-Qhf"/>
+                        <outlet property="lblNoVideo" destination="Yhw-t1-Xda" id="1g8-hU-Ry6"/>
                         <outlet property="tableView" destination="hUu-Ev-A2r" id="BPa-mV-MXA"/>
                         <outlet property="tableViewHeight" destination="AFJ-fQ-l5a" id="jwr-vD-5Ga"/>
                         <outlet property="viewHeaderCalendar" destination="uOd-x5-Huc" id="dOa-ES-FWL"/>
@@ -532,6 +590,9 @@
         </namedColor>
         <namedColor name="9291A5">
             <color red="0.5725490196078431" green="0.56862745098039214" blue="0.6470588235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ADADAF">
+            <color red="0.67843137254901964" green="0.67843137254901964" blue="0.68627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="CCCCCC">
             <color red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

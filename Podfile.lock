@@ -119,6 +119,7 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.2.0)
+  - Kingfisher (7.11.0)
   - lottie-ios (3.3.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
@@ -168,6 +169,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - FSCalendar
   - GoogleSignIn
+  - Kingfisher
   - lottie-ios (~> 3.3.0)
   - Moya
   - Moya/Combine
@@ -204,6 +206,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - Kingfisher
     - lottie-ios
     - Moya
     - nanopb
@@ -240,6 +243,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
+  Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
@@ -258,6 +262,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 22365b7dc1b94020ebec4a5b88efcabf2a0c901a
+PODFILE CHECKSUM: 3b2f401aec42df539dcb341aabf886136074982c
 
 COCOAPODS: 1.14.3
