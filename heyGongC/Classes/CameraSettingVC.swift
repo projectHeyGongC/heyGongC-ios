@@ -33,3 +33,9 @@ class CameraSettingVC: BaseVC {
         onBack(vm: viewModel)
     }
 }
+
+extension CameraSettingVC {
+    public func updateParam(param: DeviceModel) {
+        self.viewModel.deviceInfo = param
+    }
+}

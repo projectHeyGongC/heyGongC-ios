@@ -11,4 +11,12 @@ import RxSwift
 import RxCocoa
 
 class CameraSettingVM: BaseVM {
+    
+    public var deviceName = BehaviorRelay<String?>(value: nil)
+    
+    public var deviceInfo: DeviceModel? {
+        didSet {
+            deviceName.accept(deviceInfo?.deviceName)
+        }
+    }
 }

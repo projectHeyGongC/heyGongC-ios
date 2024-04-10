@@ -92,6 +92,7 @@ extension MonitoringVC {
                 //DeviceCell에서 element가지고 있다가 gear버튼 눌렀을 경우 element를 CameraVC로 보내기?
                 cell.updateDisplay(element: element, index: index)
                 cell.selectionStyle = .none
+                cell.btnSettings.tag = index
                 
             }.disposed(by: viewModel.bag)
         
@@ -102,5 +103,18 @@ extension MonitoringVC {
                 
                 self.tableView.updateTableViewHeight(layout: self.tableViewHeight)
             }.disposed(by: viewModel.bag)
+    }
+}
+
+extension MonitoringVC {
+    
+    @IBAction func goSetting(_ sender: UIButton) {
+        guard let deviceInfo = self.viewModel.deviceList.value?[exist: sender.tag] else { return }
+        
+        if let vc = Link.CameraSettingVC.viewController as? CameraSettingVC {
+            vc.updateParam(param: deviceInfo)
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
