@@ -82,7 +82,9 @@ class NotificationAPI {
     
     func networking<T: Codable>(notiService: NotificationService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
+            LottieIndicator.shared.show()
             self.notiProvider.request(notiService) { result in
+                LottieIndicator.shared.dismiss()
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")

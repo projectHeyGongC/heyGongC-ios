@@ -103,7 +103,9 @@ class DeviceAPI {
     
     func networking<T: Codable>(deviceService: DeviceService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
+            LottieIndicator.shared.show()
             self.deviceProvider.request(deviceService) { result in
+                LottieIndicator.shared.dismiss()
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
