@@ -19,7 +19,7 @@ extension UITableView {
         self.reloadData()
     }
     
-    public func calculateTotalCellHeight() -> CGFloat {
+    private func calculateTotalCellHeight() -> CGFloat {
         var totalHeight: CGFloat = 0
         
         for section in 0..<self.numberOfSections {

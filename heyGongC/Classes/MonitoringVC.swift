@@ -13,12 +13,13 @@ import RxOptional
 
 class MonitoringVC: BaseVC {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAdd: UIButton!
     
     private let viewModel = MonitoringVM()
     
-    private var btnSettings: UIBarButtonItem = {
+    private var btnNotifications: UIBarButtonItem = {
         let object = UIBarButtonItem()
         object.image = UIImage(named: "ic_notification")
         object.tintColor = .black
@@ -27,12 +28,13 @@ class MonitoringVC: BaseVC {
     
     //MARK: LifeCycle
     override func initialize() {
-        viewModel.fetchUserInfo()
+        viewModel.callUserInfo()
+        viewModel.callDeviceList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = btnSettings
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = btnNotifications
     }
     
     override func bind() {
@@ -45,12 +47,8 @@ class MonitoringVC: BaseVC {
             }
             .disposed(by: viewModel.bag)
         
-        btnAdd.rx.tap
-            .bind(onNext: { [weak self] in
-                guard let self else { return }
-                SegueUtils.open(target: self, link: .QRCodeReaderVC)
-                
-            }).disposed(by: viewModel.bag)
+        bindAction()
+        bindTableView()
     }
     
     override func setupHandler() {
@@ -60,5 +58,63 @@ class MonitoringVC: BaseVC {
     deinit {
         print("[Clear... MonitoringVC ViewModel]")
         onBack(vm: viewModel)
+    }
+}
+
+// MARK: - private
+extension MonitoringVC {
+    private func bindAction() {
+        
+        btnAdd.rx.tap
+            .bind(onNext: { [weak self] in
+                guard let self else { return }
+                SegueUtils.open(target: self, link: .QRCodeReaderVC)
+                
+            }).disposed(by: viewModel.bag)
+        
+        btnNotifications.rx.tap
+            .bind(onNext: { [weak self] in
+                guard let self = self else { return }
+                
+                
+            }).disposed(by: viewModel.bag)
+        
+        
+    }
+    
+    private func bindTableView() {
+        
+        viewModel.deviceList
+            .filterNil()
+            .bind(to: tableView.rx.items(cellIdentifier: "DeviceCell", cellType: DeviceCell.self)) {
+                (index, element, cell) in
+                
+                //DeviceCell에서 element가지고 있다가 gear버튼 눌렀을 경우 element를 CameraVC로 보내기?
+                cell.updateDisplay(element: element, index: index)
+                cell.selectionStyle = .none
+                cell.btnSettings.tag = index
+                
+            }.disposed(by: viewModel.bag)
+        
+        viewModel.deviceList
+            .filterNil()
+            .bind { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.tableView.updateTableViewHeight(layout: self.tableViewHeight)
+            }.disposed(by: viewModel.bag)
+    }
+}
+
+extension MonitoringVC {
+    
+    @IBAction func goSetting(_ sender: UIButton) {
+        guard let deviceInfo = self.viewModel.deviceList.value?[exist: sender.tag] else { return }
+        
+        if let vc = Link.CameraSettingVC.viewController as? CameraSettingVC {
+            vc.updateParam(param: deviceInfo)
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

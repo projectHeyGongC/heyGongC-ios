@@ -55,6 +55,7 @@ enum Link: String {
     case RecordedVideoListVC    = "RecordedVideoListVC"
     case QRCodeReaderVC         = "QRCodeReaderVC"
     case DeviceNamingVC         = "DeviceNamingVC"
+    case CameraSettingVC        = "CameraSettingVC"
     
     var baseStoryboard: String {
         switch self {
@@ -62,7 +63,7 @@ enum Link: String {
             return Storyboard.Login
         case .MainTBC:
             return Storyboard.Monitoring
-        case .RecordedVideoListVC, .CameraAnalysisVC:
+        case .RecordedVideoListVC, .CameraAnalysisVC, .CameraSettingVC:
             return Storyboard.Analysis
         case .QRCodeReaderVC, .DeviceNamingVC:
             return Storyboard.DeviceRegister

@@ -10,14 +10,22 @@ import RxSwift
 import RxCocoa
 import RxOptional
 import FSCalendar
+import Kingfisher
 
 class AnalysisVC: BaseVC {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var btnMore: UIButton!
+    
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewHeaderCalendar: FSCalendar!
+    
+    @IBOutlet weak var imgVideo: UIImageView!
+    @IBOutlet weak var lblNoVideo: UILabel!
+    
+    private let viewModel = AnalysisVM()
     
     private var btnFullCalendar: UIBarButtonItem = {
         let object = UIBarButtonItem()
@@ -45,11 +53,10 @@ class AnalysisVC: BaseVC {
         return object
     }()
     
-    private let viewModel = AnalysisVM()
-    
     override func initialize() {
         setupLeftBarButtonUI()
         initHeaderCalendar()
+        initUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -115,6 +122,28 @@ extension AnalysisVC {
 // MARK: - Bind
 extension AnalysisVC {
     
+    private func initUI() {
+        self.tableView.separatorStyle = .none
+    }
+    
+    private func bindUI() {
+        
+        self.viewModel.videoImgUrl
+            .bind { [weak self] in
+                guard let self = self else { return }
+                if let imgUrl = $0 {
+                    self.imgVideo.isHidden = false
+                    self.lblNoVideo.isHidden = true
+                    if let url = URL(string: imgUrl) {
+                        imgVideo.kf.setImage(with: url)
+                    }
+                } else {
+                    self.imgVideo.isHidden = true
+                    self.lblNoVideo.isHidden = false
+                }
+            }.disposed(by: viewModel.bag)
+    }
+    
     private func bindAction() {
         
         btnMore.rx.tap
@@ -161,12 +190,12 @@ extension AnalysisVC {
             .bind(to: tableView.rx.items(cellIdentifier: "AnalysisNotiCell", cellType: AnalysisNotiCell.self)) {
                 (index, element, cell) in
                 
-                cell.updateDisplay(element: element)
+                cell.selectionStyle = .none
+                cell.updateDisplay(element: element, index: index)
                 
             }.disposed(by: viewModel.bag)
         
         viewModel.tableData
-            .filterNil()
             .bind { [weak self] _ in
                 guard let self = self else { return }
                 
@@ -179,11 +208,15 @@ extension AnalysisVC {
             .bind { [weak self] (model, indexPath) in
                 guard let stringDate = self?.viewModel.selectedDate.value?.makeToYMD() else { return }
                 
-                if let vc = Link.CameraAnalysisVC.viewController as? CameraAnalysisVC {
-                    let param = CameraAnalysisVM.Param(data: model, date: stringDate)
-                    vc.updateParam(param: param)
-                    
-                    self?.navigationController?.pushViewController(vc, animated: true)
+                // kes 240410 Analysis 화면에서 최대 3개까지는 빈 배열 보내줌
+                // kes 240410 -> deviceID가 nil 일 경우 cell Off로 표시
+                if let _ = model.deviceID {
+                    if let vc = Link.CameraAnalysisVC.viewController as? CameraAnalysisVC {
+                        let param = CameraAnalysisVM.Param(data: model, date: stringDate)
+                        vc.updateParam(param: param)
+                        
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
             }
             .disposed(by: viewModel.bag)

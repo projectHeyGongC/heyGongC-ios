@@ -26,4 +26,5 @@ struct GCColor {
     static let C_E5E5E5 = UIColor(named: "E5E5E5") ?? .white
     static let C_94A3B8 = UIColor(named: "94A3B8") ?? .white
     static let C_9291A5 = UIColor(named: "9291A5") ?? .white
+    static let C_CC9A00 = UIColor(named: "CC9A00") ?? .white
 }

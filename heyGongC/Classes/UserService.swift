@@ -125,7 +125,9 @@ class UserAPI {
     
     func networkingLogin<T: Codable>(userService: UserService, type: T.Type) -> Single<LoginResult<T>> {
         return Single<LoginResult<T>>.create { single in
+            LottieIndicator.shared.show()
             self.userProvider.request(userService) { result in
+                LottieIndicator.shared.dismiss()
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
@@ -147,7 +149,9 @@ class UserAPI {
     
     func networking<T: Codable>(userService: UserService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
+            LottieIndicator.shared.show()
             self.userProvider.request(userService) { result in
+                LottieIndicator.shared.dismiss()
                 switch result {
                 case .success(let response):
                     print("🥰🥰🥰 \(response)")
