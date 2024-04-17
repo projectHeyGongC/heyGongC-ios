@@ -12,19 +12,20 @@ class DeviceCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblBattery: UILabel!
+    
+    @IBOutlet weak var lblSoundSensitivity: UILabel!
+    @IBOutlet weak var switchSoundSensitivity: UISwitch!
     @IBOutlet weak var btnSettings: UIButton!
     
-    private var index: Int?
+    var connectStatus: DeviceStatus?
+    var sensorStatus: SensorStatus?
     
-    public func updateDisplay(element: DeviceModel, index: Int) {
+    public func updateDisplay(element: DeviceListModel) {
         lblName.text = element.deviceName
-        lblBattery.text = "\(element.battery)%"
-        self.index = index
+        lblBattery.text = String(element.battery)
+        lblSoundSensitivity.text = sensorStatus?.txtNoise
+        switchSoundSensitivity.isOn = sensorStatus == .On ? true : false
     }
-}
-
-extension DeviceCell {
-    
 }
 
 // MARK: - DeviceStatus

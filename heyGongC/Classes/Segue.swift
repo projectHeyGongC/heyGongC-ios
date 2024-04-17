@@ -60,9 +60,9 @@ enum Link: String {
         switch self {
         case .SelectAccountTypeVC, .CreateAccountVC:
             return Storyboard.Login
-        case .MainTBC:
+        case .MainTBC, .CameraSettingVC:
             return Storyboard.Monitoring
-        case .RecordedVideoListVC, .CameraAnalysisVC, .CameraSettingVC:
+        case .RecordedVideoListVC, .CameraAnalysisVC:
             return Storyboard.Analysis
         case .QRCodeReaderVC:
             return Storyboard.DeviceRegister

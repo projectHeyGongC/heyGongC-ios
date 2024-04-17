@@ -16,4 +16,6 @@ extension DefaultsKeys {
     
     var IS_PUSH: DefaultsKey<Bool> { .init("IS_PUSH", defaultValue: false) }
     var FCM_TOKEN: DefaultsKey<String> { .init("FCM_TOKEN", defaultValue: "") }
+    
+    var DEVICE_LIST: DefaultsKey<[DeviceListModel]?> { .init("DEVICE_LIST", defaultValue: nil) }
 }

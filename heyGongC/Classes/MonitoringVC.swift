@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxOptional
+import SwiftyUserDefaults
 
 class MonitoringVC: BaseVC {
     
@@ -29,11 +30,11 @@ class MonitoringVC: BaseVC {
     //MARK: LifeCycle
     override func initialize() {
         viewModel.callUserInfo()
-        viewModel.callDeviceList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        viewModel.callDeviceList()
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = btnNotifications
     }
     
@@ -89,10 +90,11 @@ extension MonitoringVC {
             .bind(to: tableView.rx.items(cellIdentifier: "DeviceCell", cellType: DeviceCell.self)) {
                 (index, element, cell) in
                 
-                //DeviceCell에서 element가지고 있다가 gear버튼 눌렀을 경우 element를 CameraVC로 보내기?
-                cell.updateDisplay(element: element, index: index)
                 cell.selectionStyle = .none
                 cell.btnSettings.tag = index
+                cell.switchSoundSensitivity.tag = index
+                cell.sensorStatus = element.soundSensingStatus == "ON" ? .On : .Off
+                cell.updateDisplay(element: element)
                 
             }.disposed(by: viewModel.bag)
         
@@ -112,7 +114,7 @@ extension MonitoringVC {
         guard let deviceInfo = self.viewModel.deviceList.value?[exist: sender.tag] else { return }
         
         if let vc = Link.CameraSettingVC.viewController as? CameraSettingVC {
-            vc.updateParam(param: deviceInfo)
+            vc.updateParam(deviceId: deviceInfo.deviceId)
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
