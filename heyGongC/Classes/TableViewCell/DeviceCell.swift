@@ -13,6 +13,7 @@ class DeviceCell: UITableViewCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblBattery: UILabel!
     
+    @IBOutlet weak var imgSensor: UIImageView!
     @IBOutlet weak var lblSoundSensitivity: UILabel!
     @IBOutlet weak var switchSoundSensitivity: UISwitch!
     @IBOutlet weak var btnSettings: UIButton!
@@ -20,11 +21,14 @@ class DeviceCell: UITableViewCell {
     var connectStatus: DeviceStatus?
     var sensorStatus: SensorStatus?
     
+    
+    
     public func updateDisplay(element: DeviceListModel) {
         lblName.text = element.deviceName
         lblBattery.text = String(element.battery)
         lblSoundSensitivity.text = sensorStatus?.txtNoise
         switchSoundSensitivity.isOn = sensorStatus == .On ? true : false
+        imgSensor.image = sensorStatus?.imgNoise
     }
 }
 

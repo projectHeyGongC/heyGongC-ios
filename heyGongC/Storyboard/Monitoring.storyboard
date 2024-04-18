@@ -327,6 +327,7 @@
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="btnSettings" destination="Tdt-py-R6E" id="rpa-Uf-b2H"/>
+                                                            <outlet property="imgSensor" destination="GgS-In-Yn8" id="k5w-un-RB3"/>
                                                             <outlet property="lblBattery" destination="94a-qy-ObA" id="HxK-jb-p8C"/>
                                                             <outlet property="lblName" destination="LfE-eA-k0x" id="kcN-d6-ppd"/>
                                                             <outlet property="lblSoundSensitivity" destination="DP8-zR-bpE" id="lhg-zW-zhj"/>
