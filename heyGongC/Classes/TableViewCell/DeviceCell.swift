@@ -7,6 +7,11 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
+import RxRelay
+import RxGesture
+import RxOptional
 
 class DeviceCell: UITableViewCell {
     
@@ -19,16 +24,42 @@ class DeviceCell: UITableViewCell {
     @IBOutlet weak var btnSettings: UIButton!
     
     var connectStatus: DeviceStatus?
-    var sensorStatus: SensorStatus?
+    var sensorStatus: SensorStatus? {
+        didSet {
+            sensor.accept(sensorStatus ?? .Off)
+        }
+    }
+    var sensor = BehaviorRelay<SensorStatus>(value: .Off)
     
+    let bag = DisposeBag()
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        bind()
+    }
+    
+    private func bind() {
+        
+        self.switchSoundSensitivity.rx.isOn
+            .bind(onNext: { [weak self] in
+                
+                let sensorStatus: SensorStatus = $0 ? .On : .Off
+                self?.sensor.accept(sensorStatus)
+                
+            }).disposed(by: bag)
+        
+        self.sensor.bind(onNext: { [weak self] in
+            guard let self = self else { return }
+            
+            lblSoundSensitivity.text = $0.txtNoise
+            imgSensor.image = $0.imgNoise
+            
+        }).disposed(by: bag)
+    }
     
     public func updateDisplay(element: DeviceListModel) {
         lblName.text = element.deviceName
         lblBattery.text = String(element.battery)
-        lblSoundSensitivity.text = sensorStatus?.txtNoise
-        switchSoundSensitivity.isOn = sensorStatus == .On ? true : false
-        imgSensor.image = sensorStatus?.imgNoise
     }
 }
 
