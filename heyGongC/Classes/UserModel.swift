@@ -17,7 +17,7 @@ class UserParam {
         var ads: Bool
         var snsType: String
         var accessToken: String
-        var fcmToken: String = Defaults.FCM_TOKEN
+        var fcmToken: String = Defaults.fcmToken
     }
     
     struct LoginRequest: Codable {
@@ -25,11 +25,11 @@ class UserParam {
         var deviceOs = "IOS"
         var snsType: String
         var accessToken: String
-        var fcmToken: String = Defaults.FCM_TOKEN
+        var fcmToken: String = Defaults.fcmToken
     }
     
     struct TokenRequest: Codable {
-        var refreshToken: String = Defaults.TOKEN?.refreshToken ?? ""
+        var refreshToken: String = Defaults.token?.refreshToken ?? ""
     }
     
     public func getData(params: RegisterRequest) -> [String: Any] {
@@ -51,7 +51,7 @@ class UserParam {
         data["deviceOs"] = params.deviceOs
         data["snsType"] = params.snsType
         data["accessToken"] = params.accessToken
-        data["fcmToken"] = Defaults.FCM_TOKEN
+        data["fcmToken"] = Defaults.fcmToken
         
         return data
     }

@@ -147,7 +147,7 @@ extension AppDelegate {
 //        
 //        App.shared.hasPushEvent = true
 //        if isLocalPush {
-//            Defaults.IS_PUSH = true
+//            Defaults.isPush = true
 //        }
 //        
         NotificationCenter.default.post(name: GCNotification.Push.name, object: nil)
@@ -194,7 +194,7 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let token = fcmToken {
             print("Firebase registration token: \(token)")
-            Defaults.FCM_TOKEN = token
+            Defaults.fcmToken = token
             let dataDict:[String: String] = ["token": token]
             NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         }

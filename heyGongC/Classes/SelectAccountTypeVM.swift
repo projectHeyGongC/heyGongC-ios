@@ -31,7 +31,10 @@ class SelectAccountTypeVM: BaseVM {
     }
     
     // MARK: - callAPI
-    /// 로그인
+    /// 로그인 api
+    /// - Parameters:
+    ///   - loginType: apple/google/kakao 로그인한 SNS 종류
+    ///   - accessToken: 서버로 보낼 토큰
     public func callLogin(loginType: LoginType, accessToken: String) {
         self.param = CreateAccountVM.Param(loginType: loginType, accessToken: accessToken, refreshToken: "")
         
@@ -43,7 +46,7 @@ class SelectAccountTypeVM: BaseVM {
                 switch networkResult {
                 case .success(let response):
                     ServiceAPI.shared.refreshToken(token: response)
-                    Defaults.LOGIN_TYPE = loginType
+                    Defaults.loginType = loginType
                     self.loginSuccess.accept(true)
                 case .register:
                     self.goRegister.accept(true)

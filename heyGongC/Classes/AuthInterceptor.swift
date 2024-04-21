@@ -26,8 +26,8 @@ final class AuthInterceptor: RequestInterceptor {
         }
         
         var urlRequest = urlRequest
-        urlRequest.setValue(Defaults.TOKEN?.accessToken ?? "", forHTTPHeaderField: "accessToken")
-        urlRequest.setValue(Defaults.TOKEN?.refreshToken ?? "", forHTTPHeaderField: "refreshToken")
+        urlRequest.setValue(Defaults.token?.accessToken ?? "", forHTTPHeaderField: "accessToken")
+        urlRequest.setValue(Defaults.token?.refreshToken ?? "", forHTTPHeaderField: "refreshToken")
         print("adator 적용 \(urlRequest.headers)")
         completion(.success(urlRequest))
     }
@@ -50,7 +50,7 @@ final class AuthInterceptor: RequestInterceptor {
                 case .success(let response):
                     // !!!: API 수정 이후 refresh 재갱신
 //                    ServiceAPI.shared.refreshToken(token: response ?? "")
-                    Defaults.TOKEN?.accessToken = response ?? ""
+                    Defaults.token?.accessToken = response ?? ""
                     completion(.retry)
                 case .error(let error):
                     completion(.doNotRetryWithError(error))
