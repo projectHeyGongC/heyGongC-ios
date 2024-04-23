@@ -38,7 +38,7 @@ class MonitoringVM: BaseVM {
             onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
-                    Defaults.DEVICE_LIST = response
+                    Defaults.deviceList = response
                     self.deviceList.accept(response)
                 case .error(let error):
                     self.errorHandler.accept(error)

@@ -95,19 +95,19 @@ class App {
     
     var deviceToken = "" {
         didSet {
-            print("🟠 [DEVICE TOKEN] \(self.deviceToken)")
+            print("🟠 [DEVICE token] \(self.deviceToken)")
         }
     }
     
     var accessToken = "" {
         didSet {
-            print("🟠 [ACCESS TOKEN] \(self.accessToken)")
+            print("🟠 [ACCESS token] \(self.accessToken)")
         }
     }
     
     var pushToken = "" {
         didSet {
-            print("🟠 [PUSH TOKEN] \(self.pushToken)")
+            print("🟠 [PUSH token] \(self.pushToken)")
         }
     }
     

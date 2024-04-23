@@ -43,34 +43,34 @@ class SplashView: UIViewController {
     }
     
     private func checkMember() {
-        switch Defaults.LOGIN_TYPE {
-        case .Google:
+        switch Defaults.loginType {
+        case .google:
             if GIDSignIn.sharedInstance.hasPreviousSignIn() {
                 
                 GIDSignIn.sharedInstance.restorePreviousSignIn() { [weak self] signInResult, _ in
                     guard let self,
                           let token = signInResult?.accessToken.tokenString else { return }
                     
-                    self.callAutoLogin(loginType: .Google, accessToken: token)
+                    self.callAutoLogin(loginType: .google, accessToken: token)
                     
                 }
             } else {
                 // kes 240226 구글 로그인 되어있지 않은 상태
                 SegueUtils.open(target: self, link: .SelectAccountTypeVC)
             }
-        case .Apple:
+        case .apple:
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             appleIDProvider.getCredentialState(forUserID: KeyChains.shared.APPLE_ID) { (credentialState, error) in
                     switch credentialState {
                     case .authorized:
                         // The Apple ID credential is valid.
-                        self.callAutoLogin(loginType: .Google, accessToken: Defaults.TOKEN?.accessToken ?? "")
+                        self.callAutoLogin(loginType: .google, accessToken: Defaults.token?.accessToken ?? "")
                     default:
                         // kes 240309 연동되어 있지않는 상태
                         SegueUtils.open(target: self, link: .SelectAccountTypeVC)
                     }
                 }
-        case .Kakao:
+        case .kakao:
             break
         default:
             SegueUtils.open(target: self, link: .SelectAccountTypeVC)

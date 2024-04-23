@@ -93,7 +93,7 @@ class DeviceAPI {
     static let shared = DeviceAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
-        return Defaults.TOKEN?.accessToken ?? ""
+        return Defaults.token?.accessToken ?? ""
     }
     
     let deviceProvider: MoyaProvider<DeviceService>

@@ -106,7 +106,7 @@ extension SelectAccountTypeVC {
             guard let self,
                   let result = signInResult?.user else { return }
             
-            self.viewModel.callLogin(loginType: .Google, accessToken: result.accessToken.tokenString)
+            self.viewModel.callLogin(loginType: .google, accessToken: result.accessToken.tokenString)
             //            self.viewModel.callRegister(userData: result)
             // 서버에 토큰을 보내기. 이 때 idToken, accessToken 차이에 주의할 것
         }
@@ -167,7 +167,7 @@ extension SelectAccountTypeVC: ASAuthorizationControllerDelegate, ASAuthorizatio
                 print("identifyTokenString: \(identifyTokenString)")
                 
                 self.viewModel.updateAppleID(appleID: appleIDCredential.user)
-                self.viewModel.callLogin(loginType: .Apple, accessToken: identifyTokenString)
+                self.viewModel.callLogin(loginType: .apple, accessToken: identifyTokenString)
             }
         default:
             break

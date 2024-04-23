@@ -95,7 +95,7 @@ class BaseVC: UIViewController, BaseImplementation {
 //            AuthInterceptor 추가로 test 필요
             
 //            self.showAlert(localized: .DLG_EXPIRED, confirm: { [weak self] in
-//                print(Defaults.REFRESH_TOKEN)
+//                print(Defaults.REFRESH_token)
 //                App.shared.introType = .login
 //                self?.navigationController?.backToIntro()
 //            })
