@@ -11,9 +11,9 @@ import SwiftyUserDefaults
                                                     
 extension DefaultsKeys {
     //기본정보
-    var TOKEN: DefaultsKey<Token?> { .init("TOKEN", defaultValue: nil) }
-    var LOGIN_TYPE: DefaultsKey<LoginType?> { .init("LOGIN_TYPE", defaultValue: nil) }
-    
-    var IS_PUSH: DefaultsKey<Bool> { .init("IS_PUSH", defaultValue: false) }
-    var FCM_TOKEN: DefaultsKey<String> { .init("FCM_TOKEN", defaultValue: "") }
+    var token: DefaultsKey<Token?> { .init("token", defaultValue: nil) }
+    var loginType: DefaultsKey<LoginType?> { .init("loginType", defaultValue: nil) }
+    var deviceList: DefaultsKey<[DeviceListModel]?> { .init("deviceList", defaultValue: nil) }
+    var isPush: DefaultsKey<Bool> { .init("isPush", defaultValue: false) }
+    var fcmToken: DefaultsKey<String> { .init("fcmToken", defaultValue: "") }
 }

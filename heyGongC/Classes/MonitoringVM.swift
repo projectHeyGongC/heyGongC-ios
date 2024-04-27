@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import SwiftyUserDefaults
 
 class MonitoringVM: BaseVM {
     public var successFetchUserInfo = BehaviorRelay<Bool>(value: false)
-    public var deviceList = BehaviorRelay<[DeviceModel]?>(value: nil)
+    public var deviceList = BehaviorRelay<[DeviceListModel]?>(value: nil)
     
     public func callUserInfo(){
         UserAPI.shared.networking(userService: .info, type: UserModel.self)
@@ -26,23 +27,24 @@ class MonitoringVM: BaseVM {
                     self.errorHandler.accept(error)
                 }
             }, onFailure: { owner, error in
-                print("fetchUserInfo - error")
+                print("callUserInfo - error")
             })
             .disposed(by: self.bag)
     }
     
     public func callDeviceList() {
-        DeviceAPI.shared.networking(deviceService: .devices, type: [DeviceModel].self)
+        DeviceAPI.shared.networking(deviceService: .devices, type: [DeviceListModel].self)
             .subscribe(with: self,
             onSuccess: { owner, networkResult in
                 switch networkResult {
                 case .success(let response):
+                    Defaults.deviceList = response
                     self.deviceList.accept(response)
                 case .error(let error):
                     self.errorHandler.accept(error)
                 }
             }, onFailure: { owner, error in
-                print("fetchUserInfo - error")
+                print("callDeviceList- error")
             })
             .disposed(by: self.bag)
     }

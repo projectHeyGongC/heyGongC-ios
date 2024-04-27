@@ -12,7 +12,7 @@ import Then
 class LottieIndicator {
     
     static let shared = LottieIndicator()
-    private let animationView = AnimationView(name:"loading")
+    private let animationView = LottieAnimationView(name:"loading")
     
     private let container = UIView()
     private let bg = UIView()

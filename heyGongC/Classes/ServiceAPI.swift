@@ -74,7 +74,7 @@ class ServiceAPI {
     }
     
     public func refreshToken(token: Token) {
-        Defaults.TOKEN = token
+        Defaults.token = token
         print("💎💎💎💎 update Token")
     }
 }

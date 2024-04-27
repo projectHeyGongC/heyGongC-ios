@@ -62,7 +62,7 @@ class AnalysisAPI {
     static let shared = AnalysisAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
-        return Defaults.TOKEN?.accessToken ?? ""
+        return Defaults.token?.accessToken ?? ""
     }
     
     let notiProvider: MoyaProvider<AnalysisService>

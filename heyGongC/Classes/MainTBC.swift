@@ -102,7 +102,7 @@ class MainTBC: UITabBarController {
     private func setupRightButton() {
         let button: UIButton = UIButton(type: .custom)
         
-        let image = Defaults.IS_PUSH ? UIImage(named: "ic_header_noti_on") : UIImage(named: "ic_header_noti_off")
+        let image = Defaults.isPush ? UIImage(named: "ic_header_noti_on") : UIImage(named: "ic_header_noti_off")
         guard let imageSize = image?.size else { return }
         
         button.setBackgroundImage(image, for: .normal)
@@ -117,7 +117,7 @@ class MainTBC: UITabBarController {
     
     @objc private func rightMenu() {
         print("rightMenu")
-        Defaults.IS_PUSH = false
+        Defaults.isPush = false
 //        SegueUtils.open(target: self, link: Link.NotificationVC)
     }
     

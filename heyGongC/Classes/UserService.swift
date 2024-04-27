@@ -106,7 +106,7 @@ class UserAPI {
     static let shared = UserAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
-        return Defaults.TOKEN?.accessToken ?? ""
+        return Defaults.token?.accessToken ?? ""
     }
     
     let userProvider: MoyaProvider<UserService>

@@ -23,7 +23,12 @@ enum Localized {
     case DLG_TEST
     case DLG_EXPIRED
     case DLG_QRCODE_SCANING_ERROR
-
+    case DLG_DEVICE_NAME_EDIT
+    case DLG_SENSITIVITY_VALUE_EDIT
+    case DLG_FRONT_CAMERA
+    case DLG_BACK_CAMERA
+    
+    case DLG_CAMERA_DISCONNECT
     /**
      *  다국어 처리
      */
@@ -66,6 +71,16 @@ enum Localized {
             return "세션 만료"
         case .DLG_QRCODE_SCANING_ERROR:
             return "QR코드 스캔을 다시 시도해주세요."
+        case .DLG_DEVICE_NAME_EDIT:
+            return "수정할 이름을 입력해 주세요."
+        case .DLG_SENSITIVITY_VALUE_EDIT:
+            return "민감도 설정을 변경할까요?"
+        case .DLG_FRONT_CAMERA:
+            return "전면 카메라로 전환할까요?"
+        case .DLG_BACK_CAMERA:
+            return "후면 카메라로 전환할까요?"
+        case .DLG_CAMERA_DISCONNECT:
+            return "기기 연동을 해제할까요?"
         default: return ""
         }
     }
@@ -74,19 +89,21 @@ enum Localized {
         switch self {
         case .DLG_TEST, .DLG_DISCONNECTED_ALL_DIVICES, .DLG_DELETE_USER:
             return "확인"
-        case .DLG_LOGOUT:
+        case .DLG_LOGOUT, .DLG_SENSITIVITY_VALUE_EDIT, .DLG_CAMERA_DISCONNECT:
             return "예"
-        case .DLG_NOTIFICATION_ON, .DLG_NOTIFICATION_OFF,  .DLG_EXPIRED, .DLG_QRCODE_SCANING_ERROR:
+        case .DLG_NOTIFICATION_ON, .DLG_NOTIFICATION_OFF,  .DLG_EXPIRED, .DLG_QRCODE_SCANING_ERROR, .DLG_DEVICE_NAME_EDIT:
             return "확인"
+        case .DLG_FRONT_CAMERA, .DLG_BACK_CAMERA:
+            return "전환하기"
         default: return ""
         }
     }
     
     var cancelText: String {
         switch self {
-        case .DLG_TEST, .DLG_DELETE_USER, .DLG_DISCONNECTED_ALL_DIVICES:
+        case .DLG_TEST, .DLG_DELETE_USER, .DLG_DISCONNECTED_ALL_DIVICES, .DLG_DEVICE_NAME_EDIT, .DLG_FRONT_CAMERA, .DLG_BACK_CAMERA:
             return "취소"
-        case .DLG_LOGOUT:
+        case .DLG_LOGOUT, .DLG_SENSITIVITY_VALUE_EDIT, .DLG_CAMERA_DISCONNECT:
             return "아니요"
         default: return ""
         }

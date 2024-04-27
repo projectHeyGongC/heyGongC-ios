@@ -11,16 +11,17 @@ import RxSwift
 import SwiftyUserDefaults
 
 enum DeviceService {
+    case deviceInfo(deviceId: String)
     case editInfo(deviceId: String, param: DeviceParam.EditRequest)
     case settings(deviceId: String, param: DeviceParam.DeviceSettingRequest)
-    case control(deviceId: String, param: DeviceParam.ControlTypeRequest)
+    case control(deviceId: String, param: DeviceParam.DeviceControlRequest)
     case subscribe(param: DeviceParam.InfoRequest)
-    case disconnect(param: DeviceParam.DeviceIdsRequest)
+    case disconnect(param: DeviceParam.DeviceDisconnectRequest)
     case devices
     
     var isParsing: Bool {
         switch self {
-        case .settings(deviceId: _, param: _), .disconnect(param: _), .subscribe(param: _):
+        case .settings, .disconnect, .subscribe, .editInfo:
             return false
         default:
             return true
@@ -40,7 +41,7 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
     
     var path: String {
         switch self {
-        case .editInfo(deviceId: let id, param: _):
+        case .editInfo(deviceId: let id, param: _), .deviceInfo(deviceId: let id):
             return "devices/\(id)"
         case .settings(deviceId: let id, param: _):
             return "devices/\(id)/settings"
@@ -61,7 +62,7 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
             return .put
         case .control(deviceId: _, param: _), .subscribe(param: _), .disconnect(param: _):
             return .post
-        case .devices:
+        case .devices, .deviceInfo(deviceId:_ ):
             return .get
         }
     }
@@ -78,7 +79,7 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
             return .requestJSONEncodable(param)
         case .disconnect(param: let param):
             return .requestJSONEncodable(param)
-        case .devices:
+        case .devices, .deviceInfo(deviceId: _):
             return .requestPlain
         }
     }
@@ -92,7 +93,7 @@ class DeviceAPI {
     static let shared = DeviceAPI()
     
     let tokenClosure: (TargetType) -> String = { _ in
-        return Defaults.TOKEN?.accessToken ?? ""
+        return Defaults.token?.accessToken ?? ""
     }
     
     let deviceProvider: MoyaProvider<DeviceService>
@@ -101,7 +102,7 @@ class DeviceAPI {
         deviceProvider = MoyaProvider<DeviceService>(plugins: [MoyaLoggingPlugin(), AccessTokenPlugin(tokenClosure: tokenClosure)])
     }
     
-    func networking<T: Codable>(deviceService: DeviceService, type: T.Type, isParsing: Bool = true) -> Single<NetworkResult2<T>> {
+    func networking<T: Codable>(deviceService: DeviceService, type: T.Type) -> Single<NetworkResult2<T>> {
         return Single<NetworkResult2<T>>.create { single in
             LottieIndicator.shared.show()
             self.deviceProvider.request(deviceService) { result in

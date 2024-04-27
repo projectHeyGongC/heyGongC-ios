@@ -1,5 +1,5 @@
 //
-//  DeviceModel.swift
+//  DeviceParam.swift
 //  heyGongC
 //
 //  Created by 장예지 on 2/20/24.
@@ -19,30 +19,23 @@ class DeviceParam {
     
     ///기기 정보 수정
     struct EditRequest: Codable {
-        let name: String
+        let deviceName: String
     }
     
     ///settings: 기기 설정 변경하기
     struct DeviceSettingRequest: Codable {
         var sensitivity: String
-        var cameraMode: String
+        var cameraOrientation: String
     }
     
     ///control: 기기 제어하기
-    struct ControlTypeRequest: Codable {
+    struct DeviceControlRequest: Codable {
         var controlType: String
+        var controlMode: String
     }
     
     ///disconnected: 모든/하나의 기기 연동 해제
-    struct DeviceIdsRequest: Codable {
+    struct DeviceDisconnectRequest: Codable {
         var deviceIds: [String]
     }
-}
-
-// MARK: - Model
-struct DeviceModel : Codable {
-    let deviceId: String
-    let deviceName: String
-    let battery: Int
-    let temperature: Int
 }

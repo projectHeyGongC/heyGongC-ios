@@ -22,7 +22,7 @@ class DeviceNamingVM: BaseVM {
         
         let data = DeviceParam.InfoRequest(deviceId: deviceId, deviceName: name)
         
-        DeviceAPI.shared.networking(deviceService: .subscribe(param: data), type: DeviceModel.self, isParsing: false)
+        DeviceAPI.shared.networking(deviceService: .subscribe(param: data), type: DeviceModel.self)
             .subscribe(with: self,
                        onSuccess: { owner, networkValue in
                 switch networkValue {

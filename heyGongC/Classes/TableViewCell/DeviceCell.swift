@@ -7,24 +7,60 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
+import RxRelay
+import RxGesture
+import RxOptional
 
 class DeviceCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblBattery: UILabel!
+    
+    @IBOutlet weak var imgSensor: UIImageView!
+    @IBOutlet weak var lblSoundSensitivity: UILabel!
+    @IBOutlet weak var switchSoundSensitivity: UISwitch!
     @IBOutlet weak var btnSettings: UIButton!
     
-    private var index: Int?
-    
-    public func updateDisplay(element: DeviceModel, index: Int) {
-        lblName.text = element.deviceName
-        lblBattery.text = "\(element.battery)%"
-        self.index = index
+    var connectStatus: DeviceStatus?
+    var sensorStatus: SensorStatus? {
+        didSet {
+            sensor.accept(sensorStatus ?? .Off)
+        }
     }
-}
-
-extension DeviceCell {
+    var sensor = BehaviorRelay<SensorStatus>(value: .Off)
     
+    let bag = DisposeBag()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        bind()
+    }
+    
+    private func bind() {
+        
+        self.switchSoundSensitivity.rx.isOn
+            .bind(onNext: { [weak self] in
+                
+                let sensorStatus: SensorStatus = $0 ? .On : .Off
+                self?.sensor.accept(sensorStatus)
+                
+            }).disposed(by: bag)
+        
+        self.sensor.bind(onNext: { [weak self] in
+            guard let self = self else { return }
+            
+            lblSoundSensitivity.text = $0.txtNoise
+            imgSensor.image = $0.imgNoise
+            
+        }).disposed(by: bag)
+    }
+    
+    public func updateDisplay(element: DeviceListModel) {
+        lblName.text = element.deviceName
+        lblBattery.text = String(element.battery)
+    }
 }
 
 // MARK: - DeviceStatus

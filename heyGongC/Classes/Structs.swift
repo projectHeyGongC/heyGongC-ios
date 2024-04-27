@@ -25,7 +25,26 @@ extension Token: DefaultsSerializable {
 }
 
 enum LoginType: String, DefaultsSerializable {
-    case Google = "GOOGLE"
-    case Kakao = "KAKAO"
-    case Apple = "APPLE"
+    case google = "GOOGLE"
+    case kakao = "KAKAO"
+    case apple = "APPLE"
+}
+
+// MARK: - Model
+struct DeviceModel : Codable {
+    var deviceId: String?
+    var deviceName: String?
+    var modelName: String?
+    var sensitivity: String?
+    var cameraOrientation: String?
+    var soundSensingStatus: String?
+}
+
+struct DeviceListModel: Codable, DefaultsSerializable {
+    var deviceId: String
+    var deviceName: String
+    var battery: Int
+    var temperature: Int
+    var connectStatus: String
+    var soundSensingStatus: String
 }
