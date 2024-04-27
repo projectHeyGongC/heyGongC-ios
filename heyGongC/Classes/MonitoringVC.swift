@@ -93,7 +93,6 @@ extension MonitoringVC {
                 cell.selectionStyle = .none
                 cell.btnSettings.tag = index
                 cell.switchSoundSensitivity.tag = index
-                cell.sensorStatus = element.soundSensingStatus == "ON" ? .On : .Off
                 cell.updateDisplay(element: element)
                 
             }.disposed(by: viewModel.bag)

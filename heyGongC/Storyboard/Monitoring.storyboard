@@ -331,6 +331,7 @@
                                                             <outlet property="lblBattery" destination="94a-qy-ObA" id="HxK-jb-p8C"/>
                                                             <outlet property="lblName" destination="LfE-eA-k0x" id="kcN-d6-ppd"/>
                                                             <outlet property="lblSoundSensitivity" destination="DP8-zR-bpE" id="lhg-zW-zhj"/>
+                                                            <outlet property="lblState" destination="9gg-iS-GJx" id="r5U-MZ-LWu"/>
                                                             <outlet property="switchSoundSensitivity" destination="EK0-iY-so4" id="LtI-E7-1nJ"/>
                                                         </connections>
                                                     </tableViewCell>

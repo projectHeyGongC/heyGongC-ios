@@ -15,6 +15,7 @@ import RxOptional
 
 class DeviceCell: UITableViewCell {
     
+    @IBOutlet weak var lblState: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblBattery: UILabel!
     
@@ -24,11 +25,6 @@ class DeviceCell: UITableViewCell {
     @IBOutlet weak var btnSettings: UIButton!
     
     var connectStatus: DeviceStatus?
-    var sensorStatus: SensorStatus? {
-        didSet {
-            sensor.accept(sensorStatus ?? .Off)
-        }
-    }
     var sensor = BehaviorRelay<SensorStatus>(value: .Off)
     
     let bag = DisposeBag()
@@ -60,6 +56,7 @@ class DeviceCell: UITableViewCell {
     public func updateDisplay(element: DeviceListModel) {
         lblName.text = element.deviceName
         lblBattery.text = String(element.battery)
+        self.sensor.accept(element.soundSensingStatus == "ON" ? .On : .Off)
     }
 }
 
