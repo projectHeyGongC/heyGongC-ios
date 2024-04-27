@@ -44,18 +44,19 @@ class QRCodeReaderVC: BaseVC {
             .bind { [weak self] in
                 guard let self = self else { return}
                 if $0 {
-                    if let vc = storyboard?.instantiateViewController(withIdentifier: "DeviceNamingVC") as? DeviceNamingVC,
-                       let deviceId = viewModel.deviceId {
-                        vc.updateDeviceId(deviceId: deviceId)
-                        vc.modalPresentationStyle = .fullScreen
-                        present(vc, animated: true, completion: nil)
+                    if let vc = Link.DeviceNamingVC.viewController as? DeviceNamingVC {
+                        if let deviceId = viewModel.deviceId {
+                            vc.updateDeviceId(deviceId: deviceId)
+                            vc.modalPresentationStyle = .fullScreen
+                            present(vc, animated: true, completion: nil)
+                        }
                     }
                 } else {
-                    showAlert(localized: .DLG_QRCODE_SCANING_ERROR, isAccent: false) {
+                    showAlert(localized: .DLG_QRCODE_SCANING_ERROR, confirm: { [weak self] in
                         DispatchQueue.global(qos: .background).async {
-                            self.session.startRunning()
+                            self?.session.startRunning()
                         }
-                    } cancel: { }
+                    })
 
                 }
             }
@@ -72,6 +73,7 @@ class QRCodeReaderVC: BaseVC {
     }
 }
 
+// MARK: - AVCapturDelegate
 extension QRCodeReaderVC: AVCaptureMetadataOutputObjectsDelegate {
     private func setupAVCatureInfo(){
         let rectOfInterest = CGRect(x: imgViewScanArea.frame.origin.x, y: imgViewScanArea.frame.origin.y, width: imgViewScanArea.frame.width, height: imgViewScanArea.frame.height)

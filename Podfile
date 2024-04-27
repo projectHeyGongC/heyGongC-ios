@@ -43,7 +43,7 @@ def common_pods
   
   # Utils
   pod 'SwiftyUserDefaults', '~> 5.0'
-  pod 'lottie-ios', '~> 3.3.0'
+  pod 'lottie-ios'
   pod 'Action'
   pod 'FSCalendar'
   pod 'TAKUUID'
