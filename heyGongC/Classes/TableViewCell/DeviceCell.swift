@@ -56,6 +56,7 @@ class DeviceCell: UITableViewCell {
     public func updateDisplay(element: DeviceListModel) {
         lblName.text = element.deviceName
         lblBattery.text = String(element.battery)
+        self.switchSoundSensitivity.isOn = element.soundSensingStatus == "ON"
         self.sensor.accept(element.soundSensingStatus == "ON" ? .On : .Off)
     }
 }

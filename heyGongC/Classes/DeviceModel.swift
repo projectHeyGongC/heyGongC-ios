@@ -22,12 +22,6 @@ class DeviceParam {
         let deviceName: String
     }
     
-    ///settings: 기기 설정 변경하기
-    struct DeviceSettingRequest: Codable {
-        var sensitivity: String
-        var cameraOrientation: String
-    }
-    
     ///control: 기기 제어하기
     struct DeviceControlRequest: Codable {
         var controlType: String

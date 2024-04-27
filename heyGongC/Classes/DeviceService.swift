@@ -13,7 +13,6 @@ import SwiftyUserDefaults
 enum DeviceService {
     case deviceInfo(deviceId: String)
     case editInfo(deviceId: String, param: DeviceParam.EditRequest)
-    case settings(deviceId: String, param: DeviceParam.DeviceSettingRequest)
     case control(deviceId: String, param: DeviceParam.DeviceControlRequest)
     case subscribe(param: DeviceParam.InfoRequest)
     case disconnect(param: DeviceParam.DeviceDisconnectRequest)
@@ -21,7 +20,7 @@ enum DeviceService {
     
     var isParsing: Bool {
         switch self {
-        case .settings, .disconnect, .subscribe, .editInfo:
+        case .disconnect, .subscribe, .editInfo, .control:
             return false
         default:
             return true
@@ -43,8 +42,6 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
         switch self {
         case .editInfo(deviceId: let id, param: _), .deviceInfo(deviceId: let id):
             return "devices/\(id)"
-        case .settings(deviceId: let id, param: _):
-            return "devices/\(id)/settings"
         case .control(deviceId: let id, param: _):
             return "devices/\(id)/control"
         case .subscribe(param: _):
@@ -58,7 +55,7 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
     
     var method: Moya.Method {
         switch self {
-        case .editInfo(deviceId: _, param: _), .settings(deviceId: _, param: _):
+        case .editInfo(deviceId: _, param: _):
             return .put
         case .control(deviceId: _, param: _), .subscribe(param: _), .disconnect(param: _):
             return .post
@@ -70,8 +67,6 @@ extension DeviceService: TargetType, AccessTokenAuthorizable {
     var task: Moya.Task {
         switch self {
         case .editInfo(deviceId: _, param: let param):
-            return .requestJSONEncodable(param)
-        case .settings(deviceId: _, param: let param):
             return .requestJSONEncodable(param)
         case .control(deviceId: _, param: let param):
             return .requestJSONEncodable(param)
