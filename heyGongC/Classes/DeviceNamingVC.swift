@@ -46,14 +46,17 @@ class DeviceNamingVC: BaseVC {
                 }
             }
             .disposed(by: viewModel.bag)
-            
+        
         viewModel.successAppendDevice
             .bind { [weak self] in
                 
                 guard let self else { return }
                 
                 if $0 {
-                    self.dismiss(animated: true)
+                    guard let presentingVC = self.presentingViewController as? UINavigationController else { return }
+                    self.dismiss(animated: true) {
+                        presentingVC.popToRootViewController(animated: true)
+                    }
                 }
             }
             .disposed(by: viewModel.bag)

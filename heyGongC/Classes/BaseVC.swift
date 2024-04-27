@@ -56,7 +56,7 @@ class BaseVC: UIViewController, BaseImplementation {
     }
     
     var tab: MainTBC? {
-        return self.tabBarController as? MainTBC
+        return self.navigationController?.viewControllers[0] as? MainTBC
     }
     
     /**
