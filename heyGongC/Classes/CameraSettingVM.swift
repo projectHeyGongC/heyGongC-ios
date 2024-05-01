@@ -60,29 +60,69 @@ class CameraSettingVM: BaseVM {
             .disposed(by: bag)
     }
     
-    public func editSensitivity(sensitivity: String?, orientation: String?){
+//    public func editSensitivity(sensitivity: String?, orientation: String?){
+//        guard let deviceId = deviceInfo.value?.deviceId else { return }
+//        guard let sensitivity = sensitivity, let orientation = orientation else { return }
+//        let request = DeviceParam.DeviceSettingRequest(sensitivity: sensitivity, cameraOrientation: orientation)
+//        DeviceAPI.shared.networking(deviceService: .settings(deviceId: deviceId, param: request), type: DeviceModel.self)
+//            .subscribe(with: self, 
+//             onSuccess: { owner, networkResult in
+//                switch networkResult{
+//                case .success:
+//                    if let currentInfo = self.deviceInfo.value {
+//                        self.deviceInfo.accept(DeviceModel(deviceId: currentInfo.deviceId,
+//                                                           deviceName: currentInfo.deviceName,
+//                                                            modelName: currentInfo.modelName,
+//                                                            sensitivity: sensitivity,
+//                                                            cameraOrientation: orientation,
+//                                                            soundSensingStatus: currentInfo.soundSensingStatus))
+//                    }
+//                case .error(let error):
+//                    self.errorHandler.accept(error)
+//                }
+//            },
+//            onFailure: { owner, error in
+//                print("error - editSensitivity")
+//            })
+//            .disposed(by: bag)
+//    }
+    
+    private func getDeviceModel(type: ControlType, mode: ControlMode) -> DeviceModel? {
+        guard let currentInfo = self.deviceInfo.value else { return nil }
+        
+        var deviceModel = currentInfo
+        
+        switch type {
+        case .sensitivity:
+            deviceModel.sensitivity = mode.value
+        case .cameraOrientation:
+            deviceModel.cameraOrientation = mode.value
+        case .soundSensing:
+            deviceModel.soundSensingStatus = mode.value
+        default:
+            break
+        }
+        return deviceModel
+    }
+    
+    public func postDeviceControl(type: ControlType, mode: ControlMode) {
         guard let deviceId = deviceInfo.value?.deviceId else { return }
-        guard let sensitivity = sensitivity, let orientation = orientation else { return }
-        let request = DeviceParam.DeviceSettingRequest(sensitivity: sensitivity, cameraOrientation: orientation)
-        DeviceAPI.shared.networking(deviceService: .settings(deviceId: deviceId, param: request), type: DeviceModel.self)
-            .subscribe(with: self, 
-             onSuccess: { owner, networkResult in
-                switch networkResult{
+        
+        let param = DeviceParam.DeviceControlRequest(controlType: type, controlMode: mode)
+        
+        DeviceAPI.shared.networking(deviceService: .control(deviceId: deviceId, param: param), type: BaseModel.self)
+            .subscribe(with: self,
+                       onSuccess: { owner, networkResult in
+                switch networkResult {
                 case .success:
-                    if let currentInfo = self.deviceInfo.value {
-                        self.deviceInfo.accept(DeviceModel(deviceId: currentInfo.deviceId,
-                                                           deviceName: currentInfo.deviceName,
-                                                            modelName: currentInfo.modelName,
-                                                            sensitivity: sensitivity,
-                                                            cameraOrientation: orientation,
-                                                            soundSensingStatus: currentInfo.soundSensingStatus))
-                    }
+                    let deviceModel = self.getDeviceModel(type: type, mode: mode)
+                    self.deviceInfo.accept(deviceModel)
                 case .error(let error):
                     self.errorHandler.accept(error)
                 }
             },
             onFailure: { owner, error in
-                print("error - editSensitivity")
+                print("postDeviceControl - error")
             })
             .disposed(by: bag)
     }

@@ -13,30 +13,6 @@ import RxOptional
 import SwiftyUserDefaults
 
 class CameraSettingVC: BaseVC {
-    
-    enum Sensitivity: String {
-        case VERYLOW
-        case LOW
-        case MEDIUM
-        case HIGH
-        case VERYHIGH
-        
-        var sliderValue: Float {
-            switch self {
-            case .VERYLOW:
-                return 0.0
-            case .LOW:
-                return 0.25
-            case .MEDIUM:
-                return 0.5
-            case .HIGH:
-                return 0.75
-            case .VERYHIGH:
-                return 1.0
-            }
-        }
-    }
-    
     @IBOutlet weak var lblDeviceName: UILabel!
     @IBOutlet weak var lblDeviceModel: UILabel!
     @IBOutlet weak var btnEditDeviceName: UIButton!
@@ -62,6 +38,21 @@ class CameraSettingVC: BaseVC {
         bindUI()
     }
     
+    override func setupHandler() {
+        self.setErrorHandler(vm: viewModel)
+    }
+    
+    deinit {
+        print("[Clear... CameraSettingVC ViewModel]")
+        onBack(vm: viewModel)
+    }
+    
+    public func updateParam(deviceId: String) {
+        viewModel.callDeviceInfo(deviceId: deviceId)
+    }
+}
+
+extension CameraSettingVC {
     func bindAction(){
         viewFrontCamera.addGestureRecognizer(frontCameraTapGesture)
         viewBackCamera.addGestureRecognizer(backCameraTapGesture)
@@ -78,7 +69,7 @@ class CameraSettingVC: BaseVC {
         sliderSoundSensitivity.rx.value
             .skip(1)
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
-            .map{ [weak self] value -> Sensitivity? in
+            .map{ [weak self] value -> ControlMode.Sensitivity? in
                 guard let self else { return nil }
                 let normalizedValue = round(sliderSoundSensitivity.value/stepSize) * stepSize
 
@@ -88,15 +79,15 @@ class CameraSettingVC: BaseVC {
                 
                 switch normalizedValue {
                 case 0.0:
-                    return .VERYLOW
+                    return .veryLow
                 case 0.25:
-                    return .LOW
+                    return .low
                 case 0.5:
-                    return .MEDIUM
+                    return .medium
                 case 0.75:
-                    return .HIGH
+                    return .high
                 case 1.0:
-                    return .VERYHIGH
+                    return .veryHigh
                 default:
                     return nil
                 }
@@ -106,9 +97,10 @@ class CameraSettingVC: BaseVC {
                 guard let self else { return }
                 
                 showAlert(localized: Localized.DLG_SENSITIVITY_VALUE_EDIT) {
-                    self.viewModel.editSensitivity(sensitivity: value.rawValue, orientation: self.viewModel.deviceInfo.value?.cameraOrientation)
+                    self.viewModel.postDeviceControl(type: .sensitivity, mode: .sensitivity(value))
+//                    self.viewModel.editSensitivity(sensitivity: value.rawValue, orientation: self.viewModel.deviceInfo.value?.cameraOrientation)
                 } cancel: {
-                    if let currentValue = self.viewModel.deviceInfo.value?.sensitivity, let sensitivity = Sensitivity(rawValue: currentValue) {
+                    if let currentValue = self.viewModel.deviceInfo.value?.sensitivity, let sensitivity = ControlMode.Sensitivity(rawValue: currentValue) {
                         self.sliderSoundSensitivity.value = sensitivity.sliderValue
                     }
                 }
@@ -118,17 +110,20 @@ class CameraSettingVC: BaseVC {
         // jyj 20240417 카메라 전면 후면
         frontCameraTapGesture.rx.event
             .bind{ [weak self] _ in
+                // kes 240501
+                // TODO: cameraOrientationRelay 없애기
                 self?.viewModel.cameraOrientationRelay.accept("FRONT")
                 
-                self?.presentCameraOrientationSettingAlert(orientation: "FRONT")
+                self?.presentCameraOrientationSettingAlert(mode: .front)
             }
             .disposed(by: viewModel.bag)
         
         backCameraTapGesture.rx.event
             .bind{ [weak self] _ in
                 self?.viewModel.cameraOrientationRelay.accept("BACK")
-                
-                self?.presentCameraOrientationSettingAlert(orientation: "BACK")
+                // kes 240501
+                // TODO: cameraOrientationRelay 없애기
+                self?.presentCameraOrientationSettingAlert(mode: .back)
             }
             .disposed(by: viewModel.bag)
         
@@ -158,35 +153,45 @@ class CameraSettingVC: BaseVC {
     
     func bindUI(){
         viewModel.deviceInfo
-            .map{ $0?.deviceName }
-            .filterNil()
-            .bind(to: lblDeviceName.rx.text)
-            .disposed(by: viewModel.bag)
-        
-        viewModel.deviceInfo
-            .map{ $0?.modelName }
-            .filterNil()
-            .bind(to: lblDeviceModel.rx.text)
-            .disposed(by: viewModel.bag)
-        
-        viewModel.deviceInfo
-            .map{ $0?.sensitivity }
-            .filterNil()
-            .map{ value -> Float in
-                return Sensitivity(rawValue: value)?.sliderValue ?? 0.0
-            }
-            .bind(to: sliderSoundSensitivity.rx.value)
-            .disposed(by: viewModel.bag)
-        
-        viewModel.deviceInfo
-            .map{ $0?.cameraOrientation }
-            .filterNil()
-            .bind{ [weak self] value in
+            .bind { [weak self] in
                 guard let self else { return }
                 
-                viewModel.cameraOrientationRelay.accept(value)
-            }
-            .disposed(by: viewModel.bag)
+                lblDeviceName.text = $0?.deviceName
+                lblDeviceModel.text = $0?.modelName
+                sliderSoundSensitivity.value = ControlMode.Sensitivity(rawValue: $0?.sensitivity ?? "")?.sliderValue ?? 0
+                viewModel.cameraOrientationRelay.accept($0?.cameraOrientation)
+                
+            }.disposed(by: viewModel.bag)
+//        viewModel.deviceInfo
+//            .map{ $0?.deviceName }
+//            .filterNil()
+//            .bind(to: lblDeviceName.rx.text)
+//            .disposed(by: viewModel.bag)
+//
+//        viewModel.deviceInfo
+//            .map{ $0?.modelName }
+//            .filterNil()
+//            .bind(to: lblDeviceModel.rx.text)
+//            .disposed(by: viewModel.bag)
+//
+//        viewModel.deviceInfo
+//            .map{ $0?.sensitivity }
+//            .filterNil()
+//            .map{ value -> Float in
+//                return Sensitivity(rawValue: value)?.sliderValue ?? 0.0
+//            }
+//            .bind(to: sliderSoundSensitivity.rx.value)
+//            .disposed(by: viewModel.bag)
+//
+//        viewModel.deviceInfo
+//            .map{ $0?.cameraOrientation }
+//            .filterNil()
+//            .bind{ [weak self] value in
+//                guard let self else { return }
+//
+//                viewModel.cameraOrientationRelay.accept(value)
+//            }
+//            .disposed(by: viewModel.bag)
         
         viewModel.cameraOrientationRelay
             .bind{ [weak self] value in
@@ -203,20 +208,23 @@ class CameraSettingVC: BaseVC {
         
     }
     
-    override func setupHandler() {
-        self.setErrorHandler(vm: viewModel)
-    }
-    
-    deinit {
-        print("[Clear... CameraSettingVC ViewModel]")
-        onBack(vm: viewModel)
-    }
-    
-    private func presentCameraOrientationSettingAlert(orientation: String){
-        showAlert(localized: orientation == "FRONT" ? Localized.DLG_FRONT_CAMERA : Localized.DLG_BACK_CAMERA) { [weak self] in
-            self?.viewModel.editSensitivity(sensitivity: self?.viewModel.deviceInfo.value?.sensitivity, orientation: orientation)
-        } cancel: { [weak self] in
-            self?.viewModel.cameraOrientationRelay.accept(self?.viewModel.deviceInfo.value?.cameraOrientation)
+    private func presentCameraOrientationSettingAlert(mode: ControlMode) {
+        var msg: Localized?
+        switch mode {
+        case .front:
+            msg = .DLG_FRONT_CAMERA
+        case .back:
+            msg = .DLG_BACK_CAMERA
+        default:
+            break
+        }
+        
+        if let msg = msg {
+            showAlert(localized: msg) { [weak self] in
+                self?.viewModel.postDeviceControl(type: .cameraOrientation, mode: mode)
+            } cancel: { [weak self] in
+                self?.viewModel.cameraOrientationRelay.accept(self?.viewModel.deviceInfo.value?.cameraOrientation)
+            }
         }
     }
     
@@ -245,11 +253,5 @@ class CameraSettingVC: BaseVC {
         alert.addAction(rightAction)
         
         present(alert, animated: true)
-    }
-}
-
-extension CameraSettingVC {
-    public func updateParam(deviceId: String) {
-        viewModel.callDeviceInfo(deviceId: deviceId)
     }
 }

@@ -26,6 +26,11 @@ class DeviceParam {
     struct DeviceControlRequest: Codable {
         var controlType: String
         var controlMode: String
+        
+        init(controlType: ControlType, controlMode: ControlMode) {
+            self.controlType = controlType.rawValue
+            self.controlMode = controlMode.value
+        }
     }
     
     ///disconnected: 모든/하나의 기기 연동 해제

@@ -18,6 +18,8 @@ enum DeviceService {
     case disconnect(param: DeviceParam.DeviceDisconnectRequest)
     case devices
     
+    
+    /// 결과를 응답받으면 파싱을 할건지 성공 유무만 따질지
     var isParsing: Bool {
         switch self {
         case .disconnect, .subscribe, .editInfo, .control:
