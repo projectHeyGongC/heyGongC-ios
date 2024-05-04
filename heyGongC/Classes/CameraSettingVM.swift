@@ -18,29 +18,36 @@ class CameraSettingVM: BaseVM {
     public var successDisconnected = PublishRelay<Bool>()
     public var cameraOrientationRelay = BehaviorRelay<String?>(value: nil)
     
-    public func editDeviceName(name: String){
-        guard let deviceId = deviceInfo.value?.deviceId else { return }
-        DeviceAPI.shared.networking(deviceService: .editInfo(deviceId: deviceId, param: .init(deviceName: name)), type: DeviceModel.self)
-            .subscribe(with: self,
-            onSuccess: { owner, networkResult in
-                switch networkResult {
-                case .success:
-                    if let currentInfo = self.deviceInfo.value {
-                        self.deviceInfo.accept(DeviceModel(deviceId: currentInfo.deviceId,
-                                                            deviceName: name,
-                                                            modelName: currentInfo.modelName,
-                                                            sensitivity: currentInfo.sensitivity,
-                                                            cameraOrientation: currentInfo.cameraOrientation,
-                                                            soundSensingStatus: currentInfo.soundSensingStatus))
+    public func editDeviceName(name: String) -> Observable<String?> {
+        guard let deviceId = deviceInfo.value?.deviceId else { return Observable.just(nil) }
+        
+        return Observable<String?>.create{ observe in
+            DeviceAPI.shared.networking(deviceService: .editInfo(deviceId: deviceId, param: .init(deviceName: name)), type: DeviceModel.self)
+                .subscribe(with: self,
+                onSuccess: { owner, networkResult in
+                    switch networkResult {
+                    case .success:
+                        if let currentInfo = self.deviceInfo.value {
+                            self.deviceInfo.accept(DeviceModel(deviceId: currentInfo.deviceId,
+                                                                deviceName: name,
+                                                                modelName: currentInfo.modelName,
+                                                                sensitivity: currentInfo.sensitivity,
+                                                                cameraOrientation: currentInfo.cameraOrientation,
+                                                                soundSensingStatus: currentInfo.soundSensingStatus))
+                        }
+                        observe.onNext(name)
+                    case .error(let error):
+                        self.errorHandler.accept(error)
                     }
-                case .error(let error):
-                    self.errorHandler.accept(error)
-                }
-            },
-            onFailure: { owner, error in
-                print("error - editDeviceName")
-            })
-            .disposed(by: bag)
+                },
+                onFailure: { owner, error in
+                    print("error - editDeviceName")
+                })
+                .disposed(by: self.bag)
+            
+            return Disposables.create()
+        }
+        
     }
     
     public func callDeviceInfo(deviceId: String){
@@ -59,33 +66,6 @@ class CameraSettingVM: BaseVM {
             })
             .disposed(by: bag)
     }
-    
-//    public func editSensitivity(sensitivity: String?, orientation: String?){
-//        guard let deviceId = deviceInfo.value?.deviceId else { return }
-//        guard let sensitivity = sensitivity, let orientation = orientation else { return }
-//        let request = DeviceParam.DeviceSettingRequest(sensitivity: sensitivity, cameraOrientation: orientation)
-//        DeviceAPI.shared.networking(deviceService: .settings(deviceId: deviceId, param: request), type: DeviceModel.self)
-//            .subscribe(with: self, 
-//             onSuccess: { owner, networkResult in
-//                switch networkResult{
-//                case .success:
-//                    if let currentInfo = self.deviceInfo.value {
-//                        self.deviceInfo.accept(DeviceModel(deviceId: currentInfo.deviceId,
-//                                                           deviceName: currentInfo.deviceName,
-//                                                            modelName: currentInfo.modelName,
-//                                                            sensitivity: sensitivity,
-//                                                            cameraOrientation: orientation,
-//                                                            soundSensingStatus: currentInfo.soundSensingStatus))
-//                    }
-//                case .error(let error):
-//                    self.errorHandler.accept(error)
-//                }
-//            },
-//            onFailure: { owner, error in
-//                print("error - editSensitivity")
-//            })
-//            .disposed(by: bag)
-//    }
     
     private func getDeviceModel(type: ControlType, mode: ControlMode) -> DeviceModel? {
         guard let currentInfo = self.deviceInfo.value else { return nil }
@@ -145,5 +125,106 @@ class CameraSettingVM: BaseVM {
                 print("deviceDisconnect - error")
             })
             .disposed(by: bag)
+    }
+}
+
+extension CameraSettingVM {
+    struct Input{
+        let editNameAlertTrigger: Observable<String?>
+        let changedSensitivityAlertTrigger: Observable<Float>
+        let changedCameraOrientationAlertTrigger: Observable<ControlMode>
+    }
+    
+    struct Output{
+        let deviceName = BehaviorRelay<String?>(value: "")
+        let deviceModelName = BehaviorRelay<String>(value: "")
+        let showEditNameToast = BehaviorRelay<Bool>(value: false)
+        let sensitivityValue = BehaviorRelay<Float>(value: 0.0)
+        let frontOrientationImage = BehaviorRelay<UIImage?>(value: nil)
+        let backOrientationImage = BehaviorRelay<UIImage?>(value: nil)
+    }
+    
+    func transform(input: Input) -> Output{
+        let output = Output()
+        
+        input.editNameAlertTrigger
+            .filterNil()
+            .flatMap { name -> Observable<String?> in
+                return self.editDeviceName(name: name)
+            }
+            .subscribe(onNext: { _ in
+                output.showEditNameToast.accept(true)
+            })
+            .disposed(by: bag)
+        
+        input.changedSensitivityAlertTrigger
+            .distinctUntilChanged()
+            .map{ value -> ControlMode.Sensitivity in
+                return self.getSensitivity(value: value)!
+            }
+            .bind{ value in
+                self.postDeviceControl(type: .sensitivity, mode: .sensitivity(value))
+            }
+            .disposed(by: bag)
+        
+        input.changedCameraOrientationAlertTrigger
+            .subscribe{ orientation in
+                self.postDeviceControl(type: .cameraOrientation, mode: orientation)
+            }
+            .disposed(by: bag)
+        
+        deviceInfo
+            .map{ $0?.deviceName }
+            .filterNil()
+            .bind(to: output.deviceName)
+            .disposed(by: bag)
+
+        deviceInfo
+            .map{ $0?.modelName }
+            .filterNil()
+            .bind(to: output.deviceModelName)
+            .disposed(by: bag)
+
+        deviceInfo
+            .map{ $0?.sensitivity }
+            .filterNil()
+            .map{ value -> Float in
+                return ControlMode.Sensitivity(rawValue: value)?.sliderValue ?? 0.0
+            }
+            .bind(to: output.sensitivityValue)
+            .disposed(by: bag)
+
+        deviceInfo
+            .map{ $0?.cameraOrientation }
+            .filterNil()
+            .bind { value in
+                if value == "FRONT" {
+                    output.frontOrientationImage.accept(UIImage(named: "ic_radioButton_on"))
+                    output.backOrientationImage.accept(UIImage(named: "ic_radioButton_off"))
+                } else {
+                    output.frontOrientationImage.accept(UIImage(named: "ic_radioButton_off"))
+                    output.backOrientationImage.accept(UIImage(named: "ic_radioButton_on"))
+                }
+            }
+            .disposed(by: bag)
+
+        return output
+    }
+    
+    func getSensitivity(value: Float) -> ControlMode.Sensitivity? {
+        switch value {
+        case 0.0:
+            return .veryLow
+        case 0.25:
+            return .low
+        case 0.5:
+            return .medium
+        case 0.75:
+            return .high
+        case 1.0:
+            return .veryHigh
+        default:
+            return nil
+        }
     }
 }

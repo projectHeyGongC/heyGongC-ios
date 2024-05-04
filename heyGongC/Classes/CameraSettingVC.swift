@@ -34,8 +34,7 @@ class CameraSettingVC: BaseVC {
     override func initialize() { }
     
     override func bind() {
-        bindAction()
-        bindUI()
+        bindViewModel()
     }
     
     override func setupHandler() {
@@ -44,6 +43,8 @@ class CameraSettingVC: BaseVC {
     
     deinit {
         print("[Clear... CameraSettingVC ViewModel]")
+        self.viewFrontCamera.removeGestureRecognizer(frontCameraTapGesture)
+        self.viewBackCamera.removeGestureRecognizer(backCameraTapGesture)
         onBack(vm: viewModel)
     }
     
@@ -53,205 +54,135 @@ class CameraSettingVC: BaseVC {
 }
 
 extension CameraSettingVC {
-    func bindAction(){
-        viewFrontCamera.addGestureRecognizer(frontCameraTapGesture)
-        viewBackCamera.addGestureRecognizer(backCameraTapGesture)
-        
-        // jyj 20240417 카메라 이름 변경
-        btnEditDeviceName.rx.tap
-            .bind{ [weak self] in
-                guard let self else { return }
-                presentDeviceSettingAlert()
-            }
-            .disposed(by: viewModel.bag)
-        
-        // jyj 20240417 민감도 설정
-        sliderSoundSensitivity.rx.value
-            .skip(1)
-            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
-            .map{ [weak self] value -> ControlMode.Sensitivity? in
-                guard let self else { return nil }
-                let normalizedValue = round(sliderSoundSensitivity.value/stepSize) * stepSize
-
-                DispatchQueue.main.async{
-                    self.sliderSoundSensitivity.value = normalizedValue
+    func bindViewModel(){
+        let editNameAlertTrigger = btnEditDeviceName.rx.tap.flatMap{
+            return Observable<String?>.create { observe in
+                let alert = UIAlertController(title: Localized.DLG_DEVICE_NAME_EDIT.title, message: "", preferredStyle: .alert)
+                
+                alert.addTextField { textField in
+                    textField.text = self.viewModel.deviceInfo.value?.deviceName
                 }
                 
-                switch normalizedValue {
-                case 0.0:
-                    return .veryLow
-                case 0.25:
-                    return .low
-                case 0.5:
-                    return .medium
-                case 0.75:
-                    return .high
-                case 1.0:
-                    return .veryHigh
-                default:
-                    return nil
-                }
-            }
-            .filterNil()
-            .bind{ [weak self] value in
-                guard let self else { return }
                 
-                showAlert(localized: Localized.DLG_SENSITIVITY_VALUE_EDIT) {
-                    self.viewModel.postDeviceControl(type: .sensitivity, mode: .sensitivity(value))
-//                    self.viewModel.editSensitivity(sensitivity: value.rawValue, orientation: self.viewModel.deviceInfo.value?.cameraOrientation)
-                } cancel: {
-                    if let currentValue = self.viewModel.deviceInfo.value?.sensitivity, let sensitivity = ControlMode.Sensitivity(rawValue: currentValue) {
-                        self.sliderSoundSensitivity.value = sensitivity.sliderValue
+                let leftAction = UIAlertAction(title: Localized.DLG_DEVICE_NAME_EDIT.confirmText, style: .default) { action in
+                    if let name = alert.textFields?.first?.text {
+                        print("name:\(name)")
+                        observe.onNext(name)
+                        observe.onCompleted()
                     }
                 }
-            }
-            .disposed(by: viewModel.bag)
-        
-        // jyj 20240417 카메라 전면 후면
-        frontCameraTapGesture.rx.event
-            .bind{ [weak self] _ in
-                // kes 240501
-                // TODO: cameraOrientationRelay 없애기
-                self?.viewModel.cameraOrientationRelay.accept("FRONT")
                 
-                self?.presentCameraOrientationSettingAlert(mode: .front)
-            }
-            .disposed(by: viewModel.bag)
-        
-        backCameraTapGesture.rx.event
-            .bind{ [weak self] _ in
-                self?.viewModel.cameraOrientationRelay.accept("BACK")
-                // kes 240501
-                // TODO: cameraOrientationRelay 없애기
-                self?.presentCameraOrientationSettingAlert(mode: .back)
-            }
-            .disposed(by: viewModel.bag)
-        
-        // jyj 20240417 원격 스트리밍 제어 함수 추가 필요
-        /*btnRemoteStreamingSetting.rx.tap
-            .bind{ [weak self] in
+                leftAction.setValue(UIColor(red: 0/255, green: 104/255, blue: 119/255, alpha: 1), forKey: "titleTextColor")
+                alert.addAction(leftAction)
                 
+                let rightAction = UIAlertAction(title: Localized.DLG_DEVICE_NAME_EDIT.cancelText, style: .cancel)
+                
+                rightAction.setValue(UIColor(red: 0, green: 0, blue: 0, alpha: 0.5), forKey: "titleTextColor")
+                alert.addAction(rightAction)
+                
+                self.present(alert, animated: true)
+                
+                return Disposables.create()
             }
-            .disposed(by: viewModel.bag)*/
+        }
         
-        // jyj 20240417 기기 연동 해제
-        btnDisconnected.rx.tap
-            .bind{ [weak self] in
-                self?.showAlert(localized: Localized.DLG_CAMERA_DISCONNECT){
-                    self?.viewModel.deviceDisconnect()
-                } cancel: { }
-            }
-            .disposed(by: viewModel.bag)
-        
-        viewModel.successDisconnected
-            .filter { $0 == true }
-            .bind{ [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }
-            .disposed(by: viewModel.bag)
-    }
-    
-    func bindUI(){
-        viewModel.deviceInfo
-            .bind { [weak self] in
+        let changedSensitivityAlertTrigger = sliderSoundSensitivity.rx.controlEvent(.valueChanged)
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .map{ [weak self] _ in
                 guard let self else { return }
                 
-                lblDeviceName.text = $0?.deviceName
-                lblDeviceModel.text = $0?.modelName
-                sliderSoundSensitivity.value = ControlMode.Sensitivity(rawValue: $0?.sensitivity ?? "")?.sliderValue ?? 0
-                viewModel.cameraOrientationRelay.accept($0?.cameraOrientation)
+                let normalizedValue = round(sliderSoundSensitivity.value/stepSize) * stepSize
                 
-            }.disposed(by: viewModel.bag)
-//        viewModel.deviceInfo
-//            .map{ $0?.deviceName }
-//            .filterNil()
-//            .bind(to: lblDeviceName.rx.text)
-//            .disposed(by: viewModel.bag)
-//
-//        viewModel.deviceInfo
-//            .map{ $0?.modelName }
-//            .filterNil()
-//            .bind(to: lblDeviceModel.rx.text)
-//            .disposed(by: viewModel.bag)
-//
-//        viewModel.deviceInfo
-//            .map{ $0?.sensitivity }
-//            .filterNil()
-//            .map{ value -> Float in
-//                return Sensitivity(rawValue: value)?.sliderValue ?? 0.0
-//            }
-//            .bind(to: sliderSoundSensitivity.rx.value)
-//            .disposed(by: viewModel.bag)
-//
-//        viewModel.deviceInfo
-//            .map{ $0?.cameraOrientation }
-//            .filterNil()
-//            .bind{ [weak self] value in
-//                guard let self else { return }
-//
-//                viewModel.cameraOrientationRelay.accept(value)
-//            }
-//            .disposed(by: viewModel.bag)
-        
-        viewModel.cameraOrientationRelay
-            .bind{ [weak self] value in
-                guard let self else { return }
-                if value == "FRONT" {
-                    imgFrontCamera.image = UIImage(named: "ic_radioButton_on")
-                    imgBackCamera.image = UIImage(named: "ic_radioButton_off")
-                } else {
-                    imgFrontCamera.image = UIImage(named: "ic_radioButton_off")
-                    imgBackCamera.image = UIImage(named: "ic_radioButton_on")
+                DispatchQueue.main.async{ [weak self] in
+                    self?.sliderSoundSensitivity.value = normalizedValue
                 }
             }
+            .flatMap { observer in
+                return Observable<Float>.create{ observe in
+                    
+                    self.showAlert(localized: Localized.DLG_SENSITIVITY_VALUE_EDIT) {
+                        observe.onNext(self.sliderSoundSensitivity.value)
+                        observe.onCompleted()
+                    } cancel: {
+                        if let currentValue = self.viewModel.deviceInfo.value?.sensitivity, let sensitivity = ControlMode.Sensitivity(rawValue: currentValue) {
+                            self.sliderSoundSensitivity.value = sensitivity.sliderValue
+                        }
+                    }
+                    
+                    return Disposables.create()
+                }
+            }
+        
+        let changedOrientationAlertTrigger = Observable<ControlMode>.create{ observe in
+            self.viewFrontCamera.addGestureRecognizer(self.frontCameraTapGesture)
+            self.viewBackCamera.addGestureRecognizer(self.backCameraTapGesture)
+            
+            let frontObservable = self.frontCameraTapGesture.rx.event
+                .map{ _ in return ControlMode.front }
+            
+            let backObservable = self.backCameraTapGesture.rx.event
+                .map{ _ in return ControlMode.back }
+            
+            Observable.of(frontObservable, backObservable).merge()
+                .subscribe{ mode in
+                    var msg: Localized?
+                    switch mode {
+                    case .front:
+                        msg = .DLG_FRONT_CAMERA
+                    case .back:
+                        msg = .DLG_BACK_CAMERA
+                    default:
+                        break
+                    }
+                    
+                    if let msg = msg {
+                        self.showAlert(localized: msg) {
+                            observe.onNext(mode)
+                        } cancel: { }
+                    }
+                }
+                .disposed(by: self.viewModel.bag)
+            
+            return Disposables.create()
+        }
+        
+        let input = CameraSettingVM.Input(editNameAlertTrigger: editNameAlertTrigger.asObservable(),
+                                          changedSensitivityAlertTrigger: changedSensitivityAlertTrigger.asObservable(),
+                                          changedCameraOrientationAlertTrigger: changedOrientationAlertTrigger.asObservable())
+        
+        configureViewModelOutput(viewModel.transform(input: input))
+    }
+    
+    func configureViewModelOutput(_ output: CameraSettingVM.Output){
+        output.deviceName
+            .asDriver()
+            .drive(lblDeviceName.rx.text)
             .disposed(by: viewModel.bag)
         
-    }
-    
-    private func presentCameraOrientationSettingAlert(mode: ControlMode) {
-        var msg: Localized?
-        switch mode {
-        case .front:
-            msg = .DLG_FRONT_CAMERA
-        case .back:
-            msg = .DLG_BACK_CAMERA
-        default:
-            break
-        }
+        output.deviceModelName
+            .asDriver()
+            .drive(lblDeviceModel.rx.text)
+            .disposed(by:
+                        viewModel.bag)
         
-        if let msg = msg {
-            showAlert(localized: msg) { [weak self] in
-                self?.viewModel.postDeviceControl(type: .cameraOrientation, mode: mode)
-            } cancel: { [weak self] in
-                self?.viewModel.cameraOrientationRelay.accept(self?.viewModel.deviceInfo.value?.cameraOrientation)
+        output.showEditNameToast
+            .skip(1)
+            .filter { _ in true }
+            .bind{ _ in
+                self.showToast("정상적으로 변경되었습니다.")
             }
-        }
-    }
-    
-    private func presentDeviceSettingAlert(){
-        let alert = UIAlertController(title: Localized.DLG_DEVICE_NAME_EDIT.title, message: "", preferredStyle: .alert)
+            .disposed(by: viewModel.bag)
         
+        output.sensitivityValue
+            .bind(to:sliderSoundSensitivity.rx.value)
+            .disposed(by: viewModel.bag)
         
-        alert.addTextField { textField in
-            textField.text = self.viewModel.deviceInfo.value?.deviceName
-        }
+        output.frontOrientationImage
+            .bind(to: imgFrontCamera.rx.image)
+            .disposed(by: viewModel.bag)
         
-        
-        let leftAction = UIAlertAction(title: Localized.DLG_DEVICE_NAME_EDIT.confirmText, style: .default) { action in
-            if let name = alert.textFields?.first?.text {
-                print("name:\(name)")
-                self.viewModel.editDeviceName(name: name)
-            }
-        }
-        
-        leftAction.setValue(UIColor(red: 0/255, green: 104/255, blue: 119/255, alpha: 1), forKey: "titleTextColor")
-        alert.addAction(leftAction)
-        
-        let rightAction = UIAlertAction(title: Localized.DLG_DEVICE_NAME_EDIT.cancelText, style: .cancel)
-        
-        rightAction.setValue(UIColor(red: 0, green: 0, blue: 0, alpha: 0.5), forKey: "titleTextColor")
-        alert.addAction(rightAction)
-        
-        present(alert, animated: true)
+        output.backOrientationImage
+            .bind(to: imgBackCamera.rx.image)
+            .disposed(by: viewModel.bag)
     }
 }
