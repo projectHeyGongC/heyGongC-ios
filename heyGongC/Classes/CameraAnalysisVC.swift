@@ -19,7 +19,8 @@ class CameraAnalysisVC: BaseVC {
     private let viewModel = CameraAnalysisVM()
     
     override func initialize() {
-        
+        self.view.backgroundColor = GCColor.C_F5F5F5
+        self.viewModel.callAnalysisDetail()
     }
     
     override func setupHandler() {

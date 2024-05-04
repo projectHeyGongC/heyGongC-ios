@@ -54,6 +54,7 @@ class AnalysisVC: BaseVC {
     }()
     
     override func initialize() {
+        viewModel.updateDate(Date())
         setupLeftBarButtonUI()
         initHeaderCalendar()
         initUI()
@@ -206,7 +207,7 @@ extension AnalysisVC {
         // 테이블 뷰 선택
         Observable.zip(tableView.rx.modelSelected(AnalysisModel.Notification.self), tableView.rx.itemSelected)
             .bind { [weak self] (model, indexPath) in
-                guard let stringDate = self?.viewModel.selectedDate.value?.makeToYMD() else { return }
+                guard let stringDate = self?.viewModel.selectedDate.value?.makeToY_M_D() else { return }
                 
                 // kes 240410 Analysis 화면에서 최대 3개까지는 빈 배열 보내줌
                 // kes 240410 -> deviceID가 nil 일 경우 cell Off로 표시

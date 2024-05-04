@@ -19,7 +19,6 @@ class AnalysisVM: BaseVM {
     }
     
     // MARK: - callAPI
-    /// 로그인
     public func callAnalysis(date: Date?) {
         guard let date else { return }
         
@@ -32,6 +31,9 @@ class AnalysisVM: BaseVM {
                 case .success(let response):
                     var tableData = [AnalysisModel.Notification]()
                     
+                    response?.notifications?.forEach({
+                        tableData.append($0)
+                    })
                     // kes 240410 최대 3개까지 빈데이터 전해줘서 해당 cell on/off 처리
                     for _ in 0 ..< 3 - (response?.notifications?.count ?? 0) {
                         tableData.append(AnalysisModel.Notification(deviceID: nil, deviceName: nil, contents: nil))

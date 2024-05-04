@@ -50,9 +50,14 @@ class CameraAnalysisVM: BaseVM {
     }
     
     private func makeDate(date: String?) -> String {
-        let month = date?.substring(from: 2, to: 3) ?? ""
-        let day = date?.substring(from: 4, to: 5) ?? ""
+        var dateWithDash = ""
         
-        return "\(month)월 \(day)일"
+        if let onlyDate = date?.removeAllSign() {
+            let month = onlyDate.substring(from: 4, to: 5)
+            let day = onlyDate.substring(from: 6, to: 7)
+            dateWithDash = "\(month)월 \(day)일"
+        }
+        
+        return dateWithDash
     }
 }
