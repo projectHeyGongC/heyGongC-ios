@@ -60,33 +60,6 @@ class CameraSettingVM: BaseVM {
             .disposed(by: bag)
     }
     
-//    public func editSensitivity(sensitivity: String?, orientation: String?){
-//        guard let deviceId = deviceInfo.value?.deviceId else { return }
-//        guard let sensitivity = sensitivity, let orientation = orientation else { return }
-//        let request = DeviceParam.DeviceSettingRequest(sensitivity: sensitivity, cameraOrientation: orientation)
-//        DeviceAPI.shared.networking(deviceService: .settings(deviceId: deviceId, param: request), type: DeviceModel.self)
-//            .subscribe(with: self, 
-//             onSuccess: { owner, networkResult in
-//                switch networkResult{
-//                case .success:
-//                    if let currentInfo = self.deviceInfo.value {
-//                        self.deviceInfo.accept(DeviceModel(deviceId: currentInfo.deviceId,
-//                                                           deviceName: currentInfo.deviceName,
-//                                                            modelName: currentInfo.modelName,
-//                                                            sensitivity: sensitivity,
-//                                                            cameraOrientation: orientation,
-//                                                            soundSensingStatus: currentInfo.soundSensingStatus))
-//                    }
-//                case .error(let error):
-//                    self.errorHandler.accept(error)
-//                }
-//            },
-//            onFailure: { owner, error in
-//                print("error - editSensitivity")
-//            })
-//            .disposed(by: bag)
-//    }
-    
     private func getDeviceModel(type: ControlType, mode: ControlMode) -> DeviceModel? {
         guard let currentInfo = self.deviceInfo.value else { return nil }
         

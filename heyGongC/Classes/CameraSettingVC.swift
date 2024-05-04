@@ -162,36 +162,6 @@ extension CameraSettingVC {
                 viewModel.cameraOrientationRelay.accept($0?.cameraOrientation)
                 
             }.disposed(by: viewModel.bag)
-//        viewModel.deviceInfo
-//            .map{ $0?.deviceName }
-//            .filterNil()
-//            .bind(to: lblDeviceName.rx.text)
-//            .disposed(by: viewModel.bag)
-//
-//        viewModel.deviceInfo
-//            .map{ $0?.modelName }
-//            .filterNil()
-//            .bind(to: lblDeviceModel.rx.text)
-//            .disposed(by: viewModel.bag)
-//
-//        viewModel.deviceInfo
-//            .map{ $0?.sensitivity }
-//            .filterNil()
-//            .map{ value -> Float in
-//                return Sensitivity(rawValue: value)?.sliderValue ?? 0.0
-//            }
-//            .bind(to: sliderSoundSensitivity.rx.value)
-//            .disposed(by: viewModel.bag)
-//
-//        viewModel.deviceInfo
-//            .map{ $0?.cameraOrientation }
-//            .filterNil()
-//            .bind{ [weak self] value in
-//                guard let self else { return }
-//
-//                viewModel.cameraOrientationRelay.accept(value)
-//            }
-//            .disposed(by: viewModel.bag)
         
         viewModel.cameraOrientationRelay
             .bind{ [weak self] value in
