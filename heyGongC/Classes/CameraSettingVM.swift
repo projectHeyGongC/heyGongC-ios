@@ -18,6 +18,25 @@ class CameraSettingVM: BaseVM {
     public var successDisconnected = PublishRelay<Bool>()
     public var cameraOrientationRelay = BehaviorRelay<String?>(value: nil)
     
+    private func getDeviceModel(type: ControlType, mode: ControlMode) -> DeviceModel? {
+        guard let currentInfo = self.deviceInfo.value else { return nil }
+        
+        var deviceModel = currentInfo
+        
+        switch type {
+        case .sensitivity:
+            deviceModel.sensitivity = mode.value
+        case .cameraOrientation:
+            deviceModel.cameraOrientation = mode.value
+        case .soundSensing:
+            deviceModel.soundSensingStatus = mode.value
+        default:
+            break
+        }
+        return deviceModel
+    }
+    
+    // MARK: - callAPI
     public func editDeviceName(name: String){
         guard let deviceId = deviceInfo.value?.deviceId else { return }
         DeviceAPI.shared.networking(deviceService: .editInfo(deviceId: deviceId, param: .init(deviceName: name)), type: DeviceModel.self)
@@ -58,24 +77,6 @@ class CameraSettingVM: BaseVM {
                 print("error - callDeviceInfo")
             })
             .disposed(by: bag)
-    }
-    
-    private func getDeviceModel(type: ControlType, mode: ControlMode) -> DeviceModel? {
-        guard let currentInfo = self.deviceInfo.value else { return nil }
-        
-        var deviceModel = currentInfo
-        
-        switch type {
-        case .sensitivity:
-            deviceModel.sensitivity = mode.value
-        case .cameraOrientation:
-            deviceModel.cameraOrientation = mode.value
-        case .soundSensing:
-            deviceModel.soundSensingStatus = mode.value
-        default:
-            break
-        }
-        return deviceModel
     }
     
     public func postDeviceControl(type: ControlType, mode: ControlMode) {

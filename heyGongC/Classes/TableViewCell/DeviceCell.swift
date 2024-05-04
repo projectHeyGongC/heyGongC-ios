@@ -26,6 +26,7 @@ class DeviceCell: UITableViewCell {
     
     var connectStatus: DeviceStatus?
     var sensor = BehaviorRelay<SensorStatus>(value: .Off)
+    private var deviceInfo: DeviceListModel?
     
     let bag = DisposeBag()
     
@@ -54,10 +55,16 @@ class DeviceCell: UITableViewCell {
     }
     
     public func updateDisplay(element: DeviceListModel) {
+        self.deviceInfo = element
+        
         lblName.text = element.deviceName
         lblBattery.text = String(element.battery)
         self.switchSoundSensitivity.isOn = element.soundSensingStatus == "ON"
         self.sensor.accept(element.soundSensingStatus == "ON" ? .On : .Off)
+    }
+    
+    public func updateSensorStatus(status: SensorStatus) {
+        self.sensor.accept(status)
     }
 }
 

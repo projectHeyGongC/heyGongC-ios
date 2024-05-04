@@ -40,13 +40,18 @@ class MonitoringVC: BaseVC {
     
     override func bind() {
         
-        viewModel.successFetchUserInfo
-            .bind {
-                if $0 {
-                    
+        viewModel.apiResult
+            .filterNil()
+            .bind { [weak self] result in
+                switch result {
+                case .fetchUserInfo:
+                    break
+                case .sensorOn(let index):
+                    self?.updateCellSensoring(index: index, status: .On)
+                case .sensorOff(let index):
+                    self?.updateCellSensoring(index: index, status: .Off)
                 }
-            }
-            .disposed(by: viewModel.bag)
+            }.disposed(by: viewModel.bag)
         
         bindAction()
         bindTableView()
@@ -108,6 +113,14 @@ extension MonitoringVC {
 }
 
 extension MonitoringVC {
+    private func updateCellSensoring(index: Int, status: DeviceCell.SensorStatus) {
+        if let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DeviceCell {
+            cell.updateSensorStatus(status: status)
+        }
+    }
+}
+
+extension MonitoringVC {
     
     @IBAction func goSetting(_ sender: UIButton) {
         guard let deviceInfo = self.viewModel.deviceList.value?[exist: sender.tag] else { return }
@@ -117,5 +130,10 @@ extension MonitoringVC {
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @IBAction func switchSensor(_ sender: UISwitch) {
+        let controlMode: ControlMode = sender.isOn ? .on : .off
+        self.viewModel.callSensor(index: sender.tag, controlMode: controlMode)
     }
 }
