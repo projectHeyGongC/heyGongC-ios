@@ -81,9 +81,8 @@ class UserProfileVC: BaseVC {
         
         btnAddDivice.rx.tap
             .bind{ [weak self] in
-                guard let self = self else { return }
-                guard let vc = Link.QRCodeReaderVC.viewController else { return }
-                present(vc, animated: true)
+                guard let self else { return }
+                SegueUtils.open(target: self, link: .QRCodeReaderVC)
             }
             .disposed(by: viewModel.bag)
         
