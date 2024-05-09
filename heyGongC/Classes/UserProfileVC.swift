@@ -37,13 +37,6 @@ class UserProfileVC: BaseVC {
     
     override func initialize() {
         collectionViewDeviceInfo.delegate = self
-        collectionViewDeviceInfo.dataSource = self
-        
-        collectionViewDeviceInfo.snp.makeConstraints { make in
-            collectionViewHeightConstraint = make.height.equalTo(0).constraint
-        }
-        
-        updateCollectionViewHeight()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,36 +46,50 @@ class UserProfileVC: BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.callDeviceList()
         setupUI()
     }
     
-    
     override func bind() {
+        viewModel.deviceList
+            .filterNil()
+            .bind(to: collectionViewDeviceInfo.rx.items(
+                cellIdentifier: DeviceInfoCollectionViewCell.identifier,
+                cellType: DeviceInfoCollectionViewCell.self)){ index, element, cell in
+                    
+                    cell.btnDeviceSetting.tag = index
+                    cell.updateDisplay(deviceName: element.deviceName ?? "")
+            }
+            .disposed(by: viewModel.bag)
+        
+        viewModel.deviceList
+            .bind{ [weak self] _ in
+                if let isHidden = self?.viewModel.deviceList.value?.isEmpty {
+                    self?.collectionViewDeviceInfo.isHidden = isHidden ? true : false
+                }
+            }
+            .disposed(by: viewModel.bag)
+        
         btnDisconnectAllDevices.rx.tap
             .bind{
                 self.showAlert(localized: .DLG_DISCONNECTED_ALL_DIVICES, isAccent: true) {
-                    
-                } cancel: {
-                    
-                }
-                
-                
+                    self.viewModel.disconnectDevices()
+                    self.collectionViewDeviceInfo.reloadData()
+                } cancel: { }
             }
             .disposed(by: viewModel.bag)
         
         btnAddDivice.rx.tap
             .bind{ [weak self] in
                 guard let self = self else { return }
-                viewModel.addDivice()
-                updateCollectionViewHeight()
-                collectionViewDeviceInfo.reloadData()
+                guard let vc = Link.QRCodeReaderVC.viewController else { return }
+                present(vc, animated: true)
             }
             .disposed(by: viewModel.bag)
         
         btnSettings.rx.tap
             .bind { [weak self] in
                 guard let self = self else { return }
-                
                 guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as? SettingsVC else { return }
                 navigationController?.pushViewController(nextVC, animated: true)
                 
@@ -90,28 +97,24 @@ class UserProfileVC: BaseVC {
             .disposed(by: viewModel.bag)
     }
     
-    private func setupUI(){
-        lblUserEmail.text = KeyChains.shared.USER_DATA?.email
-        setSNSTypeUI(type: KeyChains.shared.USER_DATA?.snsType)
-    }
     
-    private func setSNSTypeUI(type: String?){
-        guard let type = type else { return }
+    
+    private func setupUI(){
+        viewModel.userEmail
+            .bind(to: lblUserEmail.rx.text)
+            .disposed(by: viewModel.bag)
         
-        switch type {
-        case "GOOGLE":
-            viewBackground.backgroundColor = .white
-            imgViewSNSType.image = UIImage(named: "ic_google")
-        case "APPLE":
-            viewBackground.backgroundColor = .black
-            imgViewSNSType.image = UIImage(named: "ic_apple")
-        case "KAKAO":
-            viewBackground.backgroundColor = UIColor(named: "color_kakao")
-            imgViewSNSType.image = UIImage(named: "ic_kakao")
-        default:
-            viewBackground.backgroundColor = .white
-            imgViewSNSType.image = UIImage()
-        }
+        viewModel.logintType
+            .bind{ [weak self] type in
+                guard let self else { return }
+                imgViewSNSType.image = type?.image
+                viewBackground.backgroundColor = type?.backgroundColor
+            }
+            .disposed(by: viewModel.bag)
+        
+        
+        collectionViewDeviceInfo.reloadData()
+        updateCollectionViewHeight()
     }
     
     override func setupHandler() {
@@ -136,36 +139,26 @@ extension UserProfileVC {
         // 셀 높이와 간격 등을 고려하여 갯수에 따른 높이 계산
         let cellHeight: CGFloat = 50.0  // 셀의 예상 높이
         let spacing: CGFloat = 10.0    // 셀 간격
-        let numberOfCells = CGFloat(viewModel.devices.count)
+        let numberOfCells = CGFloat(viewModel.deviceList.value?.count ?? 0)
         
         return numberOfCells * cellHeight + (numberOfCells - 1) * spacing
     }
-}
-
-extension UserProfileVC: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.devices.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DeviceInfoCollectionViewCell.identifier, for: indexPath) as! DeviceInfoCollectionViewCell
-        
-        cell.configure(deviceName: viewModel.devices[indexPath.row])
-        return cell
-    }
-    
-    
 }
 
 extension UserProfileVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionViewDeviceInfo.bounds.width, height: 50)
     }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Monitoring", bundle: nil)
-        guard let settingVC = storyboard.instantiateViewController(withIdentifier: "CameraSettingVC") as? CameraSettingVC else { return }
-        navigationController?.pushViewController(settingVC, animated: true)
+}
+
+extension UserProfileVC {
+    @IBAction func goSetting(_ sender: UIButton) {
+        guard let deviceInfo = self.viewModel.deviceList.value?[exist: sender.tag],
+        let deviceId = deviceInfo.deviceId else { return }
+        
+        if let vc = Link.CameraSettingVC.viewController as? CameraSettingVC {
+            vc.updateParam(deviceId: deviceId)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

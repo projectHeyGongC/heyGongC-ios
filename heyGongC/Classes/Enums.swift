@@ -72,4 +72,27 @@ enum LoginType: String, DefaultsSerializable {
     case google = "GOOGLE"
     case kakao = "KAKAO"
     case apple = "APPLE"
+    
+    var image: UIImage? {
+        switch self {
+        case .google:
+            return UIImage(named: "ic_google")
+        case .apple:
+            return UIImage(named: "ic_apple")
+        case .kakao:
+            return UIImage(named: "ic_kakao")
+        }
+    }
+    
+    var backgroundColor: UIColor {
+        switch self {
+        case .google:
+            return .white
+        case .kakao:
+            guard let color = UIColor(named: "color_kakao") else { return .white }
+            return color
+        case .apple:
+            return .black
+        }
+    }
 }
