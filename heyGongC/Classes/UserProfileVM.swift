@@ -50,8 +50,5 @@ class UserProfileVM: BaseVM {
                 print("error - disconnectDevices")
             })
             .disposed(by: bag)
-        
     }
-    
-    
 }

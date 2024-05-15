@@ -16,13 +16,32 @@ class NotificationSettingsVM: BaseVM {
     
     override init(){
         super.init()
-        print("alam is : \(KeyChains.shared.USER_DATA?.alarm)")
+        
     }
     
     func changeNotificationStatus() {
-        //jyj 20240509 alam 변경 API 구현 필요
-        if let currentValue = changedNotificationSetting.value {
-            self.changedNotificationSetting.accept(!currentValue)
-        }
+        guard let alarm = changedNotificationSetting.value else { return }
+        let data = UserParam.ChangeAlarmRequest(alarm: !alarm)
+        
+        UserAPI.shared.networking(userService: .changedAlarm(param: data), type: UserModel.self)
+            .subscribe(onSuccess: { networkResult in
+                switch networkResult {
+                case .success:
+                    self.changeUserData(data.alarm)
+                case .error(let error):
+                    self.errorHandler.accept(error)
+                }
+            }, onFailure: { _ in
+                print("changeNotificationStatus - error")
+            })
+            .disposed(by: bag)
+    }
+    
+    private func changeUserData(_ newValue: Bool){
+        let currentValue = KeyChains.shared.USER_DATA
+        
+        KeyChains.shared.USER_DATA = UserModel(deviceID: currentValue?.deviceID, deviceOS: currentValue?.deviceOS, snsType: currentValue?.snsType, email: currentValue?.email, alarm: newValue, ads: currentValue?.ads)
+        
+        changedNotificationSetting.accept(newValue)
     }
 }

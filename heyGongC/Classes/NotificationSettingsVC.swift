@@ -89,7 +89,7 @@ extension NotificationSettingsVC {
         lblTitle.text = "이벤트 알림"
         lblTitle.font = .systemFont(ofSize: 12, weight: .regular)
         
-        lblSubtitle.text = "이벤트 알림을 켜야 소리가 발생했을 때 알려드릴 수 있\n어요!"
+        lblSubtitle.text = "이벤트 알림을 켜야 소리가 발생했을 때 알려드릴 수 있어요!"
         lblSubtitle.font = .systemFont(ofSize: 10, weight: .regular)
         lblSubtitle.numberOfLines = 2
         
