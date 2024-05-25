@@ -49,6 +49,7 @@ def common_pods
   pod 'TAKUUID'
   pod 'SwiftKeychainWrapper'
   pod 'Kingfisher'
+  pod 'Charts'
   
   # Login
   pod 'GoogleSignIn'

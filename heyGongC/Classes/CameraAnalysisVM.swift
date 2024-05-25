@@ -21,8 +21,8 @@ class CameraAnalysisVM: BaseVM {
     public var name = BehaviorRelay<String>(value: "")
     public var date = BehaviorRelay<String>(value: "")
     public var alarmCnt = BehaviorRelay<String>(value: "")
-//    public var chartDate = BehaviorRelay<>
-    
+    public var chartData = BehaviorRelay<[BarChartDataEntry]?>(value: nil)
+    public var chartXData: [String] = []
     
     public func callAnalysisDetail() {
         guard let param,
@@ -39,6 +39,9 @@ class CameraAnalysisVM: BaseVM {
                     self.name.accept(response?.deviceName ?? "")
                     self.date.accept(self.makeDate(date: response?.requestAt))
                     self.alarmCnt.accept("\(response?.alarmCount ?? 0)")
+
+                    let data = self.setBarChartData(graphData: response?.graph)
+                    self.chartData.accept(data)
                     
                 case .error(let error):
                     self.errorHandler.accept(error)
@@ -59,5 +62,21 @@ class CameraAnalysisVM: BaseVM {
         }
         
         return dateWithDash
+    }
+    
+    private func setBarChartData(graphData: [AnalysisDetailModel.Graph]?) -> [BarChartDataEntry] {
+        guard let graphData else { return [] }
+        
+        let xData: [String] = graphData.map({$0.x ?? ""})
+        let yData: [Double] = graphData.map({Double($0.y ?? 0)})
+
+        self.chartXData = xData
+        
+        var dataEntries: [BarChartDataEntry] = []
+        for i in 0..<xData.count {
+            let dataEntry = BarChartDataEntry(x: Double(i), y: yData[i])
+            dataEntries.append(dataEntry)
+        }
+        return dataEntries
     }
 }
