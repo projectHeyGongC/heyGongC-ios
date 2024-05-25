@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class DeviceInfoCollectionViewCell: UICollectionViewCell {
     
@@ -14,22 +15,10 @@ class DeviceInfoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var deviceInfoView: UIView!
     @IBOutlet weak var ellipseView: UIView!
     @IBOutlet weak var imgViewDeviceType: UIImageView!
+    @IBOutlet weak var btnDeviceSetting: UIButton!
     @IBOutlet weak var lblDeviceName: UILabel!
     
-    override var isHighlighted: Bool {
-        didSet{
-            if self.isHighlighted {
-                UIView.animate(withDuration: 0.3) { // for animation effect
-                    self.alpha = 0.5
-                }
-            }
-            else {
-                UIView.animate(withDuration: 0.3) { // for animation effect
-                    self.alpha = 1.0
-                }
-            }
-        }
-    }
+    public let bag: DisposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +29,7 @@ class DeviceInfoCollectionViewCell: UICollectionViewCell {
         lblDeviceName.text = nil
     }
     
-    func configure(deviceName: String){
+    func updateDisplay(deviceName: String){
         lblDeviceName.text = deviceName
     }
 }

@@ -17,11 +17,7 @@ class SettingsVC: BaseVC {
     @IBOutlet weak var btnDeleteUser: UIButton!
     
     private var viewModel = SettingsVM()
-    
-    override func initialize() {
-        
-    }
-    
+
     override func bind() {
         bindApi()
         bindAction()

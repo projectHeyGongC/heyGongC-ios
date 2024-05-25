@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import SwiftyUserDefaults
+import RxRelay
 
 class NotificationSettingsVC: BaseVC {
     
@@ -46,19 +47,29 @@ class NotificationSettingsVC: BaseVC {
     }
     
     override func bind() {
+        
         switchEventNotification.rx.controlEvent(.valueChanged)
-            .withLatestFrom(switchEventNotification.rx.value)
-            .subscribe{ newValue in
-                self.showAlert(localized: newValue ? .DLG_NOTIFICATION_ON : .DLG_NOTIFICATION_OFF)
+            .bind{ [weak self] _ in
+                guard let self else { return }
+                viewModel.changeNotificationStatus()
             }
             .disposed(by: viewModel.bag)
         
-        viewModel.switchNotificationStatus
-            .subscribe { [weak self] in
-                guard let self = self else { return }
-                switchEventNotification.isOn = $0
+        viewModel.changedNotificationSetting
+            .filterNil()
+            .asDriver(onErrorJustReturn: false)
+            .drive(switchEventNotification.rx.value)
+            .disposed(by: viewModel.bag)
+        
+        viewModel.changedNotificationSetting
+            .skip(1)
+            .filterNil()
+            .bind{ [weak self] result in
+                guard let self else { return }
+                showAlert(localized: result ? .DLG_NOTIFICATION_ON : .DLG_NOTIFICATION_OFF)
             }
             .disposed(by: viewModel.bag)
+        
     }
     
     override func setupHandler() {
@@ -78,7 +89,7 @@ extension NotificationSettingsVC {
         lblTitle.text = "이벤트 알림"
         lblTitle.font = .systemFont(ofSize: 12, weight: .regular)
         
-        lblSubtitle.text = "이벤트 알림을 켜야 소리가 발생했을 때 알려드릴 수 있\n어요!"
+        lblSubtitle.text = "이벤트 알림을 켜야 소리가 발생했을 때 알려드릴 수 있어요!"
         lblSubtitle.font = .systemFont(ofSize: 10, weight: .regular)
         lblSubtitle.numberOfLines = 2
         

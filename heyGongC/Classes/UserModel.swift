@@ -32,6 +32,10 @@ class UserParam {
         var refreshToken: String = Defaults.token?.refreshToken ?? ""
     }
     
+    struct ChangeAlarmRequest: Codable {
+        var alarm: Bool = KeyChains.shared.USER_DATA?.alarm ?? true
+    }
+    
     public func getData(params: RegisterRequest) -> [String: Any] {
         var data = [String : Any]()
         
@@ -60,6 +64,14 @@ class UserParam {
         var data = [String : Any]()
         
         data["refreshToken"] = params.refreshToken
+        
+        return data
+    }
+    
+    public func getData(params: ChangeAlarmRequest) -> [String: Any] {
+        var data = [String : Any]()
+        
+        data["alarm"] = params.alarm
         
         return data
     }

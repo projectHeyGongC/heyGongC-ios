@@ -17,6 +17,7 @@ enum UserService {
     case unregister
     case refreshToken(param: UserParam.TokenRequest)
     case info
+    case changedAlarm(param: UserParam.ChangeAlarmRequest)
     
     /**
      
@@ -25,7 +26,7 @@ enum UserService {
         switch self {
         case .register, .login, .refreshToken, .info:
             return true
-        case .unregister:
+        case .unregister, .changedAlarm:
             return false
         }
     }
@@ -62,6 +63,8 @@ extension UserService: TargetType, AccessTokenAuthorizable {
             return "users/token/refresh"
         case .info:
             return "users/info"
+        case .changedAlarm(_):
+            return "users/alarm"
         }
     }
     
@@ -71,6 +74,8 @@ extension UserService: TargetType, AccessTokenAuthorizable {
             return .post
         case .info:
             return .get
+        case .changedAlarm:
+            return .put
         }
     }
     
@@ -86,12 +91,14 @@ extension UserService: TargetType, AccessTokenAuthorizable {
             return .requestJSONEncodable(param)
         case .info:
             return .requestPlain
+        case .changedAlarm(param: let param):
+            return .requestJSONEncodable(param)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .register, .login, .unregister, .info:
+        case .register, .login, .unregister, .info, .changedAlarm:
             return ServiceAPI.shared.getHeader()
         case .refreshToken(let param):
             var header = ServiceAPI.shared.getHeader()
