@@ -537,32 +537,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-jW-7Bo">
-                                <rect key="frame" x="4" y="256" width="367" height="160"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebf-JT-ka7">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="160"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1I-Kz-9sE" customClass="BarChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="0.0" width="327" height="160"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" priority="1" constant="327" id="84r-Me-gG1"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Ebf-JT-ka7" firstAttribute="top" secondItem="OA6-ES-3s6" secondAttribute="top" id="1zh-dC-q59"/>
-                                    <constraint firstItem="Ebf-JT-ka7" firstAttribute="leading" secondItem="OA6-ES-3s6" secondAttribute="leading" id="2N7-12-g75"/>
-                                    <constraint firstItem="Ebf-JT-ka7" firstAttribute="trailing" secondItem="OA6-ES-3s6" secondAttribute="trailing" id="GGo-XS-etx"/>
-                                    <constraint firstAttribute="height" constant="160" id="KgT-Xi-JH0"/>
-                                    <constraint firstItem="Ebf-JT-ka7" firstAttribute="bottom" secondItem="OA6-ES-3s6" secondAttribute="bottom" id="QTo-9h-nof"/>
-                                    <constraint firstItem="Ebf-JT-ka7" firstAttribute="height" secondItem="XvO-HB-LwL" secondAttribute="height" id="Xz2-q1-t6p"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="OA6-ES-3s6"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="XvO-HB-LwL"/>
-                            </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="거실" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuF-tK-56s">
                                 <rect key="frame" x="174.5" y="40" width="26" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -570,10 +544,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VBQ-ep-oIP">
-                                <rect key="frame" x="144" y="254" width="87.5" height="20.5"/>
+                                <rect key="frame" x="156.5" y="254" width="62" height="12"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbt-Q9-LzC">
-                                        <rect key="frame" x="0.0" y="4.5" width="12" height="12"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
                                         <color key="backgroundColor" red="0.32549019607843138" green="0.53333333333333333" blue="0.84705882352941175" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="12" id="kVa-aI-lY3"/>
@@ -586,30 +560,36 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 횟수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWh-SQ-fCP">
-                                        <rect key="frame" x="24" y="0.0" width="63.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="24" y="0.0" width="38" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1I-Kz-9sE" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="24" y="266" width="327" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="X58-yU-I7m"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GxX-Qf-5Q6"/>
                         <color key="backgroundColor" name="FAFAFA"/>
                         <constraints>
+                            <constraint firstItem="m1I-Kz-9sE" firstAttribute="top" secondItem="VBQ-ep-oIP" secondAttribute="bottom" id="0pX-1z-hFx"/>
                             <constraint firstItem="zMK-nV-sAR" firstAttribute="top" secondItem="STM-SI-mIK" secondAttribute="bottom" constant="54" id="4cZ-2e-9m9"/>
-                            <constraint firstItem="GxX-Qf-5Q6" firstAttribute="trailing" secondItem="gUW-jW-7Bo" secondAttribute="trailing" constant="4" id="5r9-qM-2wu"/>
                             <constraint firstItem="VBQ-ep-oIP" firstAttribute="top" secondItem="fMK-am-DL2" secondAttribute="bottom" constant="22" id="5wk-T1-gpv"/>
-                            <constraint firstItem="gUW-jW-7Bo" firstAttribute="top" secondItem="fMK-am-DL2" secondAttribute="bottom" constant="24" id="BDW-Gj-TqK"/>
                             <constraint firstItem="fMK-am-DL2" firstAttribute="top" secondItem="zMK-nV-sAR" secondAttribute="bottom" constant="20" id="D3J-4D-nCu"/>
+                            <constraint firstItem="GxX-Qf-5Q6" firstAttribute="trailing" secondItem="m1I-Kz-9sE" secondAttribute="trailing" constant="24" id="JBb-Co-Pcj"/>
                             <constraint firstItem="STM-SI-mIK" firstAttribute="leading" secondItem="GxX-Qf-5Q6" secondAttribute="leading" constant="20" id="LeF-8m-igP"/>
                             <constraint firstItem="fMK-am-DL2" firstAttribute="leading" secondItem="4DL-kd-4Bk" secondAttribute="leading" constant="42" id="PQB-hU-FkF"/>
                             <constraint firstItem="STM-SI-mIK" firstAttribute="top" secondItem="GxX-Qf-5Q6" secondAttribute="top" constant="20" id="VSs-D8-jZg"/>
                             <constraint firstItem="QuF-tK-56s" firstAttribute="centerX" secondItem="4DL-kd-4Bk" secondAttribute="centerX" id="g3I-zD-hnl"/>
-                            <constraint firstItem="gUW-jW-7Bo" firstAttribute="leading" secondItem="GxX-Qf-5Q6" secondAttribute="leading" constant="4" id="gL7-pV-T0b"/>
                             <constraint firstItem="QuF-tK-56s" firstAttribute="top" secondItem="GxX-Qf-5Q6" secondAttribute="top" constant="20" id="iAM-F3-GUy"/>
                             <constraint firstItem="VBQ-ep-oIP" firstAttribute="centerX" secondItem="4DL-kd-4Bk" secondAttribute="centerX" id="qFq-7g-6bb"/>
                             <constraint firstItem="zMK-nV-sAR" firstAttribute="leading" secondItem="GxX-Qf-5Q6" secondAttribute="leading" constant="42" id="rbw-sZ-pbF"/>
+                            <constraint firstItem="m1I-Kz-9sE" firstAttribute="leading" secondItem="GxX-Qf-5Q6" secondAttribute="leading" constant="24" id="uL5-py-snz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uSZ-13-15c"/>
