@@ -163,7 +163,7 @@ extension AnalysisVC {
                 
                 reactionVC.modalPresentationStyle = .overFullScreen
                 reactionVC.delegate = self
-                reactionVC.selectedDateRelay.accept(viewModel.selectedDate.value)
+                reactionVC.selectedDate.accept(viewModel.selectedDate.value)
                 self.present(reactionVC, animated: false, completion: nil)
             }
             .disposed(by: viewModel.bag)

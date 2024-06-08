@@ -30,7 +30,7 @@ class FullCalendarVC: UIViewController {
     private let disposeBag = DisposeBag()
     
     var delegate: IsSelectedDate?
-    var selectedDateRelay = BehaviorRelay<Date?>(value: Date.now)
+    var selectedDate = BehaviorRelay<Date?>(value: Date.now)
     
     override func viewDidLoad() {
         initFullCalendar()
@@ -59,12 +59,16 @@ class FullCalendarVC: UIViewController {
             }
             .disposed(by: bag)
         
-        selectedDateRelay
+        selectedDate
         .bind{ [weak self] date in
             guard let self = self else { return }
             fullCalendar.select(date)
+            lblFullCalendarHeader.text = date?.convertDateToString(dateFormat: "MMMM yyyy")
         }
         .disposed(by: bag)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissCalendar))
+        viewBackground.addGestureRecognizer(tapGesture)
     }
     
     private func initFullCalendar() {
@@ -97,8 +101,13 @@ class FullCalendarVC: UIViewController {
         let cal = Calendar.current
         var dateComponents = DateComponents()
         dateComponents.month = next ? -1 : 1
-        fullCalendarCurrentPage = cal.date(byAdding: dateComponents, to: fullCalendarCurrentPage ?? Date.now)
+        fullCalendarCurrentPage = cal.date(byAdding: dateComponents, to: fullCalendar.currentPage)
         self.fullCalendar.setCurrentPage(fullCalendarCurrentPage!, animated: true)
+    }
+    
+    @objc private func dismissCalendar(){
+        self.delegate?.pass(date: fullCalendar.selectedDate ?? Date.now)
+        self.dismiss(animated: true)
     }
     
 }
