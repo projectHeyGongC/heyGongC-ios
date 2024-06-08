@@ -24,6 +24,7 @@ class SettingsVM: BaseVM {
                 switch networkResult {
                 case .success(_):
                     GIDSignIn.sharedInstance.disconnect()
+                    Defaults.removeAll()
                     self.completeUnregister.accept(true)
                 case .error(let error):
                     self.errorHandler.accept(error)
@@ -37,7 +38,10 @@ class SettingsVM: BaseVM {
     public func callLogout(){
         KeyChains.shared.USER_DATA = nil
         GIDSignIn.sharedInstance.signOut()
-        Defaults.removeAll()
+        // kes 240608 Defaults.removeAll()을 안하는 이유 _ FCMToken은 appDelegate에서 받아오기에 로그아웃 이후 바로 재로그인 시도할 경우 FCMToken이 없어서 로그인 불가
+        Defaults.token = nil
+        Defaults.loginType = nil
+        Defaults.deviceList = nil
         self.completLogout.accept(true)
     }
 }
